@@ -10,6 +10,17 @@ Students project at E-Business course, which has goal to implement insurance com
 ## Project specification:
 
 ## Tools used:
+### Backend:
+  - .NET Core 1.0
+  - Drools for .NET as Business Rules Management System (BRMS)
+  
+### Frontend:
+  - JavaScript - Angular 1.5 (Material design)
+  - HTML/CSS
+
+### Database:
+  - PowerDesigner for schema modeling
+  - Microsoft SQL Server
 
 ## Deployment instructions:
 
