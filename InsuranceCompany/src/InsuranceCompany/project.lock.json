@@ -588,6 +588,26 @@
           "lib/netstandard1.5/Microsoft.AspNetCore.Razor.Runtime.dll": {}
         }
       },
+      "Microsoft.AspNetCore.Razor.Tools/1.0.0-preview2-final": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Razor.Runtime": "1.0.0",
+          "Microsoft.DotNet.Cli.Utils": "1.0.0-preview2-003121",
+          "Microsoft.DotNet.ProjectModel.Loader": "1.0.0-preview2-003121",
+          "Microsoft.Extensions.CommandLineUtils": "1.0.0",
+          "Microsoft.Extensions.PlatformAbstractions": "1.0.0",
+          "Microsoft.NETCore.App": "1.0.0",
+          "Newtonsoft.Json": "9.0.1",
+          "System.Diagnostics.Process": "4.1.0",
+          "System.Runtime.Serialization.Primitives": "4.1.1"
+        },
+        "compile": {
+          "lib/netcoreapp1.0/dotnet-razor-tooling.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp1.0/dotnet-razor-tooling.dll": {}
+        }
+      },
       "Microsoft.AspNetCore.Routing/1.0.1": {
         "type": "package",
         "dependencies": {
@@ -894,6 +914,19 @@
           "lib/netstandard1.6/Microsoft.DotNet.ProjectModel.dll": {}
         }
       },
+      "Microsoft.DotNet.ProjectModel.Loader/1.0.0-preview2-003121": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.DotNet.ProjectModel": "1.0.0-rc3-003121",
+          "System.Runtime.Loader": "4.0.0"
+        },
+        "compile": {
+          "lib/netstandard1.6/Microsoft.DotNet.ProjectModel.Loader.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.6/Microsoft.DotNet.ProjectModel.Loader.dll": {}
+        }
+      },
       "Microsoft.EntityFrameworkCore/1.0.1": {
         "type": "package",
         "dependencies": {
@@ -1012,6 +1045,19 @@
           "Microsoft.Extensions.CommandLineUtils": "1.0.0",
           "Microsoft.NETCore.App": "1.0.0",
           "System.Runtime.InteropServices.RuntimeInformation": "4.0.0"
+        },
+        "compile": {
+          "lib/netcoreapp1.0/dotnet-ef.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp1.0/dotnet-ef.dll": {}
+        }
+      },
+      "Microsoft.EntityFrameworkCore.Tools.DotNet/1.0.0-preview3-final": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.DotNet.Cli.Utils": "1.0.0-preview2-003121",
+          "Microsoft.NETCore.App": "1.0.0"
         },
         "compile": {
           "lib/netcoreapp1.0/dotnet-ef.dll": {}
@@ -4597,6 +4643,22 @@
         "lib/netstandard1.5/Microsoft.AspNetCore.Razor.Runtime.xml"
       ]
     },
+    "Microsoft.AspNetCore.Razor.Tools/1.0.0-preview2-final": {
+      "sha512": "gUFr7P3hVd7ILgY5Q5AnBHxatElop3kpn7uYX7kPVktvWMkL0HK2DKw66hqYTy5BNz41BTuxCn0Foa7aKwvTVA==",
+      "type": "package",
+      "path": "Microsoft.AspNetCore.Razor.Tools/1.0.0-preview2-final",
+      "files": [
+        "Microsoft.AspNetCore.Razor.Tools.1.0.0-preview2-final.nupkg.sha512",
+        "Microsoft.AspNetCore.Razor.Tools.nuspec",
+        "lib/net451/dotnet-razor-tooling.exe",
+        "lib/net451/dotnet-razor-tooling.xml",
+        "lib/netcoreapp1.0/dotnet-razor-tooling.dll",
+        "lib/netcoreapp1.0/dotnet-razor-tooling.runtimeconfig.json",
+        "lib/netcoreapp1.0/dotnet-razor-tooling.xml",
+        "runtimes/win7-x64/lib/net451/dotnet-razor-tooling.exe",
+        "runtimes/win7-x86/lib/net451/dotnet-razor-tooling.exe"
+      ]
+    },
     "Microsoft.AspNetCore.Routing/1.0.1": {
       "sha512": "uddFeoL8aRYSlyl+zcBnHlrtRIkp1AEfPNBIiBjNJ4b9PMApTWIpvy8OdyXUksV+bM6TciA23zFfNvzZWIlG/Q==",
       "type": "package",
@@ -4870,6 +4932,16 @@
         "lib/netstandard1.6/Microsoft.DotNet.ProjectModel.dll"
       ]
     },
+    "Microsoft.DotNet.ProjectModel.Loader/1.0.0-preview2-003121": {
+      "sha512": "dpGbzFkk6se2DLkKjyycSBNlFFzjZWc3gxrviVq6UyOJDDUBKuiOk0si41dkRtfIGHB7dcPBlZHXUiEC7tPhKQ==",
+      "type": "package",
+      "path": "Microsoft.DotNet.ProjectModel.Loader/1.0.0-preview2-003121",
+      "files": [
+        "Microsoft.DotNet.ProjectModel.Loader.1.0.0-preview2-003121.nupkg.sha512",
+        "Microsoft.DotNet.ProjectModel.Loader.nuspec",
+        "lib/netstandard1.6/Microsoft.DotNet.ProjectModel.Loader.dll"
+      ]
+    },
     "Microsoft.EntityFrameworkCore/1.0.1": {
       "sha512": "bprn1t+6muzkNzh64Art4w20L1FKDFac/Tx4h+4d7Sd9ivRqAaec6MqU700CFo6h6CHjAjWeqzYjQFroCouECQ==",
       "type": "package",
@@ -4985,6 +5057,20 @@
         "tools/about_EntityFrameworkCore.help.txt",
         "tools/init.ps1",
         "tools/install.ps1"
+      ]
+    },
+    "Microsoft.EntityFrameworkCore.Tools.DotNet/1.0.0-preview3-final": {
+      "sha512": "rSwXRydanpscNS6oHLQ+QzIorSg37Zi6TZ9OzkMIPRihxlEZLI/5JvFEgfD6eXFSKptCAvDpPm9FFnxY8TxeEA==",
+      "type": "package",
+      "path": "Microsoft.EntityFrameworkCore.Tools.DotNet/1.0.0-preview3-final",
+      "files": [
+        "Microsoft.EntityFrameworkCore.Tools.DotNet.1.0.0-preview3-final.nupkg.sha512",
+        "Microsoft.EntityFrameworkCore.Tools.DotNet.nuspec",
+        "lib/netcoreapp1.0/dotnet-ef.dll",
+        "lib/netcoreapp1.0/dotnet-ef.runtimeconfig.json",
+        "tools/net451/ef.exe",
+        "tools/net451/ef.x86.exe",
+        "tools/netcoreapp1.0/ef.dll"
       ]
     },
     "Microsoft.Extensions.Caching.Abstractions/1.0.0": {
@@ -10672,12 +10758,14 @@
   "projectFileDependencyGroups": {
     "": [
       "Microsoft.AspNetCore.Mvc >= 1.0.1",
+      "Microsoft.AspNetCore.Razor.Tools >= 1.0.0-preview2-final",
       "Microsoft.AspNetCore.Routing >= 1.0.1",
       "Microsoft.AspNetCore.Server.IISIntegration >= 1.0.0",
       "Microsoft.AspNetCore.Server.Kestrel >= 1.0.1",
       "Microsoft.EntityFrameworkCore.SqlServer >= 1.0.1",
       "Microsoft.EntityFrameworkCore.SqlServer.Design >= 1.0.1",
       "Microsoft.EntityFrameworkCore.Tools >= 1.0.0-preview2-final",
+      "Microsoft.EntityFrameworkCore.Tools.DotNet >= 1.0.0-preview3-final",
       "Microsoft.Extensions.Configuration.EnvironmentVariables >= 1.0.0",
       "Microsoft.Extensions.Configuration.FileExtensions >= 1.0.0",
       "Microsoft.Extensions.Configuration.Json >= 1.0.0",
