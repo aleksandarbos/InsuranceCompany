@@ -11,7 +11,7 @@ Students project at E-Business course, which has goal to implement insurance com
 
 ## Tools used:
 ### Backend:
-  - .NET Core 1.0
+  - .NET Core 1.0 Web API 2
   - Drools for .NET as Business Rules Management System (BRMS)
   
 ### Frontend:
@@ -21,6 +21,15 @@ Students project at E-Business course, which has goal to implement insurance com
 ### Database:
   - PowerDesigner for schema modeling
   - Microsoft SQL Server
+  
+## Instructions for use:
+  - 1. ```dotnet restore``` at InsuranceCompany folder to install dotnet core Web Api 2 dependencies
+  - 2. ```dotnet run``` at InsuranceCompany folder to run the Web Api 2 server
+  - [Note now backend Web API server is being ran]
+  - 3. ```npm install``` at InsuranceCompany/wwwwroot folder to install dependencies for angular 
+  - 4. ```gulp serve``` run nodejs frontend server with angularjs app
+  - [Note now frontend NodeJS server is being ran with AngularJS app deployed]
+  
 
 ## Deployment instructions:
 
