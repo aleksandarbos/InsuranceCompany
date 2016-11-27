@@ -1,8 +1,246 @@
 /*==============================================================*/
-/* DBMS name:      Microsoft SQL Server 2012                    */
-/* Created on:     11/26/2016 7:34:21 PM                        */
+/* DBMS name:      Microsoft SQL Server 2014                    */
+/* Created on:     11/27/2016 4:34:28 PM                        */
 /*==============================================================*/
 
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('BANK_ACCOUNT') and o.name = 'FK_BANK_ACC_CLIENT_AC_CLIENT')
+alter table BANK_ACCOUNT
+   drop constraint FK_BANK_ACC_CLIENT_AC_CLIENT
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('BANK_ACCOUNT') and o.name = 'FK_BANK_ACC_OF_BANK')
+alter table BANK_ACCOUNT
+   drop constraint FK_BANK_ACC_OF_BANK
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('BANK_ACCOUNT') and o.name = 'FK_BANK_ACC_RELATIONS_INSURANC')
+alter table BANK_ACCOUNT
+   drop constraint FK_BANK_ACC_RELATIONS_INSURANC
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('BUSINESS_YEAR') and o.name = 'FK_BUSINESS_RELATIONS_INSURANC')
+alter table BUSINESS_YEAR
+   drop constraint FK_BUSINESS_RELATIONS_INSURANC
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('CAR') and o.name = 'FK_CAR_RELATIONS_CLIENT')
+alter table CAR
+   drop constraint FK_CAR_RELATIONS_CLIENT
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('CITY') and o.name = 'FK_CITY_IS_SITUAT_STATE_OF')
+alter table CITY
+   drop constraint FK_CITY_IS_SITUAT_STATE_OF
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('CLIENT') and o.name = 'FK_CLIENT_IS_TYPE_OF_')
+alter table CLIENT
+   drop constraint FK_CLIENT_IS_TYPE_OF_
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('CLIENT') and o.name = 'FK_CLIENT_RELATIONS_POLICY')
+alter table CLIENT
+   drop constraint FK_CLIENT_RELATIONS_POLICY
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('EMPLOYEE') and o.name = 'FK_EMPLOYEE_RELATIONS_INSURANC')
+alter table EMPLOYEE
+   drop constraint FK_EMPLOYEE_RELATIONS_INSURANC
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('EMPLOYEE') and o.name = 'FK_EMPLOYEE_RESPONSIB_EMPLOYEE')
+alter table EMPLOYEE
+   drop constraint FK_EMPLOYEE_RESPONSIB_EMPLOYEE
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('HOME') and o.name = 'FK_HOME_RELATIONS_TYPE_OF_')
+alter table HOME
+   drop constraint FK_HOME_RELATIONS_TYPE_OF_
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('INSURANCE_COMPANY') and o.name = 'FK_INSURANC_IS_FROM_CITY')
+alter table INSURANCE_COMPANY
+   drop constraint FK_INSURANC_IS_FROM_CITY
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('ITEMS_OF_PACKAGE') and o.name = 'FK_ITEMS_OF_RELATIONS_PACKAGE')
+alter table ITEMS_OF_PACKAGE
+   drop constraint FK_ITEMS_OF_RELATIONS_PACKAGE
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('POLICY') and o.name = 'FK_POLICY_CURENT_CURRENCY')
+alter table POLICY
+   drop constraint FK_POLICY_CURENT_CURRENCY
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('POLICY') and o.name = 'FK_POLICY_FOR_CALCT_PDV')
+alter table POLICY
+   drop constraint FK_POLICY_FOR_CALCT_PDV
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('POLICY') and o.name = 'FK_POLICY_HANDS_OUT_INSURANC')
+alter table POLICY
+   drop constraint FK_POLICY_HANDS_OUT_INSURANC
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('POLICY') and o.name = 'FK_POLICY_IN_CHARGE_EMPLOYEE')
+alter table POLICY
+   drop constraint FK_POLICY_IN_CHARGE_EMPLOYEE
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('POLICY') and o.name = 'FK_POLICY_OWNER_CLIENT')
+alter table POLICY
+   drop constraint FK_POLICY_OWNER_CLIENT
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('POLICY') and o.name = 'FK_POLICY_POSSIBLE__RISK')
+alter table POLICY
+   drop constraint FK_POLICY_POSSIBLE__RISK
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('POLICY') and o.name = 'FK_POLICY_RELATIONS_SUBJECT_')
+alter table POLICY
+   drop constraint FK_POLICY_RELATIONS_SUBJECT_
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('POLICY') and o.name = 'FK_POLICY_RELATIONS_BUSINESS')
+alter table POLICY
+   drop constraint FK_POLICY_RELATIONS_BUSINESS
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('POLICY') and o.name = 'FK_POLICY_RELATIONS_PACKAGE')
+alter table POLICY
+   drop constraint FK_POLICY_RELATIONS_PACKAGE
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('PRICELIST') and o.name = 'FK_PRICELIS_BELONGS_T_INSURANC')
+alter table PRICELIST
+   drop constraint FK_PRICELIS_BELONGS_T_INSURANC
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('PRICELIST_ITEM') and o.name = 'FK_PRICELIS_RELATIONS_PRICELIS')
+alter table PRICELIST_ITEM
+   drop constraint FK_PRICELIS_RELATIONS_PRICELIS
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('PRICELIST_ITEM') and o.name = 'FK_PRICELIS_RELATIONS_PACKAGE')
+alter table PRICELIST_ITEM
+   drop constraint FK_PRICELIS_RELATIONS_PACKAGE
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('RATE_OF_PDV') and o.name = 'FK_RATE_OF__IN_NEED_PDV')
+alter table RATE_OF_PDV
+   drop constraint FK_RATE_OF__IN_NEED_PDV
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('RISK_TYPE_OF_INSURANCE') and o.name = 'FK_RISK_TYP_RELATIONS_RISK')
+alter table RISK_TYPE_OF_INSURANCE
+   drop constraint FK_RISK_TYP_RELATIONS_RISK
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('RISK_TYPE_OF_INSURANCE') and o.name = 'FK_RISK_TYP_RELATIONS_TYPE_OF_')
+alter table RISK_TYPE_OF_INSURANCE
+   drop constraint FK_RISK_TYP_RELATIONS_TYPE_OF_
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('SUBJECT_OF_INSURANCE') and o.name = 'FK_SUBJECT__RELATIONS_TYPE_OF_')
+alter table SUBJECT_OF_INSURANCE
+   drop constraint FK_SUBJECT__RELATIONS_TYPE_OF_
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('SUBJECT_OF_INSURANCE') and o.name = 'FK_SUBJECT__RELATIONS_DESTINAT')
+alter table SUBJECT_OF_INSURANCE
+   drop constraint FK_SUBJECT__RELATIONS_DESTINAT
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('SUBJECT_OF_INSURANCE') and o.name = 'FK_SUBJECT__RELATIONS_HOME')
+alter table SUBJECT_OF_INSURANCE
+   drop constraint FK_SUBJECT__RELATIONS_HOME
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('SUBJECT_OF_INSURANCE') and o.name = 'FK_SUBJECT__RELATIONS_CAR')
+alter table SUBJECT_OF_INSURANCE
+   drop constraint FK_SUBJECT__RELATIONS_CAR
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('TYPE_OF_INSURANCE') and o.name = 'FK_TYPE_OF__RELATIONS_PACKAGE')
+alter table TYPE_OF_INSURANCE
+   drop constraint FK_TYPE_OF__RELATIONS_PACKAGE
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('TYPE_OF_RISK') and o.name = 'FK_TYPE_OF__RELATIONS_RISK')
+alter table TYPE_OF_RISK
+   drop constraint FK_TYPE_OF__RELATIONS_RISK
+go
 
 if exists (select 1
             from  sysobjects
@@ -380,27 +618,27 @@ go
 
 if exists (select 1
             from  sysindexes
-           where  id    = object_id('RISK_TYPE_OF_RISK')
+           where  id    = object_id('RISK_TYPE_OF_INSURANCE')
             and   name  = 'RELATIONSHIP_34_FK'
             and   indid > 0
             and   indid < 255)
-   drop index RISK_TYPE_OF_RISK.RELATIONSHIP_34_FK
+   drop index RISK_TYPE_OF_INSURANCE.RELATIONSHIP_34_FK
 go
 
 if exists (select 1
             from  sysindexes
-           where  id    = object_id('RISK_TYPE_OF_RISK')
+           where  id    = object_id('RISK_TYPE_OF_INSURANCE')
             and   name  = 'RELATIONSHIP_33_FK'
             and   indid > 0
             and   indid < 255)
-   drop index RISK_TYPE_OF_RISK.RELATIONSHIP_33_FK
+   drop index RISK_TYPE_OF_INSURANCE.RELATIONSHIP_33_FK
 go
 
 if exists (select 1
             from  sysobjects
-           where  id = object_id('RISK_TYPE_OF_RISK')
+           where  id = object_id('RISK_TYPE_OF_INSURANCE')
             and   type = 'U')
-   drop table RISK_TYPE_OF_RISK
+   drop table RISK_TYPE_OF_INSURANCE
 go
 
 if exists (select 1
@@ -515,8 +753,8 @@ go
 create table BANK_ACCOUNT (
    AC1_ID               int                  not null,
    CLIENT_ID            int                  not null,
-   BANK_ID              int                  not null,
    CP_ID                int                  not null,
+   BANK_ID              int                  not null,
    constraint PK_BANK_ACCOUNT primary key (AC1_ID)
 )
 go
@@ -600,7 +838,7 @@ go
 /* Table: CITY                                                  */
 /*==============================================================*/
 create table CITY (
-   CITY_ID              int                  identity,
+   CITY_ID              int                  not null,
    ST_ID                int                  not null,
    CITY_NAME            varchar(30)          not null,
    constraint PK_CITY primary key (CITY_ID)
@@ -677,9 +915,9 @@ go
 /* Table: EMPLOYEE                                              */
 /*==============================================================*/
 create table EMPLOYEE (
-   EN_ID                int                  identity,
-   CP_ID                int                  null,
+   EN_ID                int                  not null,
    ROLE_ID              int                  not null,
+   CP_ID                int                  null,
    EN_FIRSTNAME         varchar(30)          not null,
    EN_LASTNAME          varchar(30)          not null,
    constraint PK_EMPLOYEE primary key (EN_ID)
@@ -710,7 +948,7 @@ go
 /* Table: EMPLOYEE_ROLE                                         */
 /*==============================================================*/
 create table EMPLOYEE_ROLE (
-   ROLE_ID              int                  identity,
+   ROLE_ID              int                  not null,
    ROLE_NAME            varchar(30)          not null,
    constraint PK_EMPLOYEE_ROLE primary key (ROLE_ID)
 )
@@ -796,6 +1034,7 @@ go
 /*==============================================================*/
 create table PDV (
    PDV_ID               int                  not null,
+   NAME_PDV             varchar(30)          null,
    constraint PK_PDV primary key (PDV_ID)
 )
 go
@@ -805,15 +1044,15 @@ go
 /*==============================================================*/
 create table POLICY (
    POLICY_ID            int                  not null,
-   CLIENT_ID            int                  not null,
    RT_ID                int                  not null,
-   II_ID                int                  not null,
-   CP_ID                int                  not null,
-   CURRENCY_ID          int                  not null,
+   PDV_ID               int                  not null,
+   CLIENT_ID            int                  not null,
+   PACKAGE_ID           int                  null,
    YEAR_ID              int                  null,
    EN_ID                int                  not null,
-   PDV_ID               int                  not null,
-   PACKAGE_ID           int                  null,
+   CURRENCY_ID          int                  not null,
+   CP_ID                int                  not null,
+   II_ID                int                  not null,
    POLICY_START_OF_INSURANCE datetime             not null,
    POLICY_DST_END_OF_INSURANCE datetime             null,
    constraint PK_POLICY primary key (POLICY_ID)
@@ -970,6 +1209,7 @@ create table RATE_OF_PDV (
    PDV_RATE_ID          int                  not null,
    PDV_ID               int                  not null,
    VALID_UNTIL          datetime             null,
+   RATE                 numeric(10,10)       null,
    constraint PK_RATE_OF_PDV primary key (PDV_RATE_ID)
 )
 go
@@ -996,13 +1236,12 @@ create table RISK (
 go
 
 /*==============================================================*/
-/* Table: RISK_TYPE_OF_RISK                                     */
+/* Table: RISK_TYPE_OF_INSURANCE                                */
 /*==============================================================*/
-create table RISK_TYPE_OF_RISK (
+create table RISK_TYPE_OF_INSURANCE (
    RT_ID                int                  not null,
-   PACKAGE_ID           int                  not null,
    IT_ID                int                  not null,
-   constraint PK_RISK_TYPE_OF_RISK primary key (PACKAGE_ID, RT_ID, IT_ID)
+   constraint PK_RISK_TYPE_OF_INSURANCE primary key (RT_ID, IT_ID)
 )
 go
 
@@ -1013,7 +1252,7 @@ go
 
 
 
-create nonclustered index RELATIONSHIP_33_FK on RISK_TYPE_OF_RISK (RT_ID ASC)
+create nonclustered index RELATIONSHIP_33_FK on RISK_TYPE_OF_INSURANCE (RT_ID ASC)
 go
 
 /*==============================================================*/
@@ -1023,15 +1262,14 @@ go
 
 
 
-create nonclustered index RELATIONSHIP_34_FK on RISK_TYPE_OF_RISK (PACKAGE_ID ASC,
-  IT_ID ASC)
+create nonclustered index RELATIONSHIP_34_FK on RISK_TYPE_OF_INSURANCE (IT_ID ASC)
 go
 
 /*==============================================================*/
 /* Table: STATE_OF_ORIGIN                                       */
 /*==============================================================*/
 create table STATE_OF_ORIGIN (
-   ST_ID                int                  identity,
+   ST_ID                int                  not null,
    ST_NAME              varchar(30)          not null,
    constraint PK_STATE_OF_ORIGIN primary key (ST_ID)
 )
@@ -1042,11 +1280,10 @@ go
 /*==============================================================*/
 create table SUBJECT_OF_INSURANCE (
    II_ID                int                  not null,
-   HOME_ID              int                  null,
+   IT_ID                int                  null,
    CARID                int                  null,
    DST_ID               int                  null,
-   PACKAGE_ID           int                  null,
-   IT_ID                int                  null,
+   HOME_ID              int                  null,
    constraint PK_SUBJECT_OF_INSURANCE primary key (II_ID)
 )
 go
@@ -1058,8 +1295,7 @@ go
 
 
 
-create nonclustered index RELATIONSHIP_31_FK on SUBJECT_OF_INSURANCE (PACKAGE_ID ASC,
-  IT_ID ASC)
+create nonclustered index RELATIONSHIP_31_FK on SUBJECT_OF_INSURANCE (IT_ID ASC)
 go
 
 /*==============================================================*/
@@ -1096,7 +1332,7 @@ go
 /* Table: TYPE_OF_CLIENT                                        */
 /*==============================================================*/
 create table TYPE_OF_CLIENT (
-   CT_ID                int                  identity,
+   CT_ID                int                  not null,
    CT_NAME              varchar(30)          not null,
    constraint PK_TYPE_OF_CLIENT primary key (CT_ID)
 )
@@ -1116,10 +1352,10 @@ go
 /* Table: TYPE_OF_INSURANCE                                     */
 /*==============================================================*/
 create table TYPE_OF_INSURANCE (
-   PACKAGE_ID           int                  not null,
    IT_ID                int                  not null,
+   PACKAGE_ID           int                  not null,
    IT_NAME              varchar(30)          not null,
-   constraint PK_TYPE_OF_INSURANCE primary key (PACKAGE_ID, IT_ID)
+   constraint PK_TYPE_OF_INSURANCE primary key (IT_ID)
 )
 go
 
@@ -1152,5 +1388,175 @@ go
 
 
 create nonclustered index RELATIONSHIP_35_FK on TYPE_OF_RISK (RT_ID ASC)
+go
+
+alter table BANK_ACCOUNT
+   add constraint FK_BANK_ACC_CLIENT_AC_CLIENT foreign key (CLIENT_ID)
+      references CLIENT (CLIENT_ID)
+go
+
+alter table BANK_ACCOUNT
+   add constraint FK_BANK_ACC_OF_BANK foreign key (BANK_ID)
+      references BANK (BANK_ID)
+go
+
+alter table BANK_ACCOUNT
+   add constraint FK_BANK_ACC_RELATIONS_INSURANC foreign key (CP_ID)
+      references INSURANCE_COMPANY (CP_ID)
+go
+
+alter table BUSINESS_YEAR
+   add constraint FK_BUSINESS_RELATIONS_INSURANC foreign key (CP_ID)
+      references INSURANCE_COMPANY (CP_ID)
+go
+
+alter table CAR
+   add constraint FK_CAR_RELATIONS_CLIENT foreign key (CLIENT_ID)
+      references CLIENT (CLIENT_ID)
+go
+
+alter table CITY
+   add constraint FK_CITY_IS_SITUAT_STATE_OF foreign key (ST_ID)
+      references STATE_OF_ORIGIN (ST_ID)
+go
+
+alter table CLIENT
+   add constraint FK_CLIENT_IS_TYPE_OF_ foreign key (CT_ID)
+      references TYPE_OF_CLIENT (CT_ID)
+go
+
+alter table CLIENT
+   add constraint FK_CLIENT_RELATIONS_POLICY foreign key (POLICY_ID)
+      references POLICY (POLICY_ID)
+go
+
+alter table EMPLOYEE
+   add constraint FK_EMPLOYEE_RELATIONS_INSURANC foreign key (CP_ID)
+      references INSURANCE_COMPANY (CP_ID)
+go
+
+alter table EMPLOYEE
+   add constraint FK_EMPLOYEE_RESPONSIB_EMPLOYEE foreign key (ROLE_ID)
+      references EMPLOYEE_ROLE (ROLE_ID)
+go
+
+alter table HOME
+   add constraint FK_HOME_RELATIONS_TYPE_OF_ foreign key (HT_ID)
+      references TYPE_OF_HOME (HT_ID)
+go
+
+alter table INSURANCE_COMPANY
+   add constraint FK_INSURANC_IS_FROM_CITY foreign key (CITY_ID)
+      references CITY (CITY_ID)
+go
+
+alter table ITEMS_OF_PACKAGE
+   add constraint FK_ITEMS_OF_RELATIONS_PACKAGE foreign key (PACKAGE_ID)
+      references PACKAGE (PACKAGE_ID)
+go
+
+alter table POLICY
+   add constraint FK_POLICY_CURENT_CURRENCY foreign key (CURRENCY_ID)
+      references CURRENCY (CURRENCY_ID)
+go
+
+alter table POLICY
+   add constraint FK_POLICY_FOR_CALCT_PDV foreign key (PDV_ID)
+      references PDV (PDV_ID)
+go
+
+alter table POLICY
+   add constraint FK_POLICY_HANDS_OUT_INSURANC foreign key (CP_ID)
+      references INSURANCE_COMPANY (CP_ID)
+go
+
+alter table POLICY
+   add constraint FK_POLICY_IN_CHARGE_EMPLOYEE foreign key (EN_ID)
+      references EMPLOYEE (EN_ID)
+go
+
+alter table POLICY
+   add constraint FK_POLICY_OWNER_CLIENT foreign key (CLIENT_ID)
+      references CLIENT (CLIENT_ID)
+go
+
+alter table POLICY
+   add constraint FK_POLICY_POSSIBLE__RISK foreign key (RT_ID)
+      references RISK (RT_ID)
+go
+
+alter table POLICY
+   add constraint FK_POLICY_RELATIONS_SUBJECT_ foreign key (II_ID)
+      references SUBJECT_OF_INSURANCE (II_ID)
+go
+
+alter table POLICY
+   add constraint FK_POLICY_RELATIONS_BUSINESS foreign key (YEAR_ID)
+      references BUSINESS_YEAR (YEAR_ID)
+go
+
+alter table POLICY
+   add constraint FK_POLICY_RELATIONS_PACKAGE foreign key (PACKAGE_ID)
+      references PACKAGE (PACKAGE_ID)
+go
+
+alter table PRICELIST
+   add constraint FK_PRICELIS_BELONGS_T_INSURANC foreign key (CP_ID)
+      references INSURANCE_COMPANY (CP_ID)
+go
+
+alter table PRICELIST_ITEM
+   add constraint FK_PRICELIS_RELATIONS_PRICELIS foreign key (PRICELIST_ID)
+      references PRICELIST (PRICELIST_ID)
+go
+
+alter table PRICELIST_ITEM
+   add constraint FK_PRICELIS_RELATIONS_PACKAGE foreign key (PACKAGE_ID)
+      references PACKAGE (PACKAGE_ID)
+go
+
+alter table RATE_OF_PDV
+   add constraint FK_RATE_OF__IN_NEED_PDV foreign key (PDV_ID)
+      references PDV (PDV_ID)
+go
+
+alter table RISK_TYPE_OF_INSURANCE
+   add constraint FK_RISK_TYP_RELATIONS_RISK foreign key (RT_ID)
+      references RISK (RT_ID)
+go
+
+alter table RISK_TYPE_OF_INSURANCE
+   add constraint FK_RISK_TYP_RELATIONS_TYPE_OF_ foreign key (IT_ID)
+      references TYPE_OF_INSURANCE (IT_ID)
+go
+
+alter table SUBJECT_OF_INSURANCE
+   add constraint FK_SUBJECT__RELATIONS_TYPE_OF_ foreign key (IT_ID)
+      references TYPE_OF_INSURANCE (IT_ID)
+go
+
+alter table SUBJECT_OF_INSURANCE
+   add constraint FK_SUBJECT__RELATIONS_DESTINAT foreign key (DST_ID)
+      references DESTINATION (DST_ID)
+go
+
+alter table SUBJECT_OF_INSURANCE
+   add constraint FK_SUBJECT__RELATIONS_HOME foreign key (HOME_ID)
+      references HOME (HOME_ID)
+go
+
+alter table SUBJECT_OF_INSURANCE
+   add constraint FK_SUBJECT__RELATIONS_CAR foreign key (CARID)
+      references CAR (CARID)
+go
+
+alter table TYPE_OF_INSURANCE
+   add constraint FK_TYPE_OF__RELATIONS_PACKAGE foreign key (PACKAGE_ID)
+      references PACKAGE (PACKAGE_ID)
+go
+
+alter table TYPE_OF_RISK
+   add constraint FK_TYPE_OF__RELATIONS_RISK foreign key (RT_ID)
+      references RISK (RT_ID)
 go
 
