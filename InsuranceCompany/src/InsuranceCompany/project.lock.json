@@ -4211,6 +4211,9 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XPath.XDocument.dll": {}
         }
+      },
+      "zlib/1.2.8.8": {
+        "type": "package"
       }
     }
   },
@@ -10753,6 +10756,15 @@
         "ref/xamarintvos10/_._",
         "ref/xamarinwatchos10/_._"
       ]
+    },
+    "zlib/1.2.8.8": {
+      "sha512": "toiNl0JiDRlBu5rmO/wJVg5RwRjwn3AkzqDhgjDjXIZaTPiueixVhh5fHy4GNuMqb/3wpdPZFnQ6VjIoCDRuWA==",
+      "type": "package",
+      "path": "zlib/1.2.8.8",
+      "files": [
+        "zlib.1.2.8.8.nupkg.sha512",
+        "zlib.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
@@ -10775,7 +10787,8 @@
       "Microsoft.Extensions.Options.ConfigurationExtensions >= 1.0.0",
       "Microsoft.NETCore.App >= 1.0.1",
       "Microsoft.VisualStudio.Web.CodeGeneration.Tools >= 1.0.0-preview2-final",
-      "Microsoft.VisualStudio.Web.CodeGenerators.Mvc >= 1.0.0-preview2-final"
+      "Microsoft.VisualStudio.Web.CodeGenerators.Mvc >= 1.0.0-preview2-final",
+      "zlib >= 1.2.8.8"
     ],
     ".NETCoreApp,Version=v1.0": []
   },

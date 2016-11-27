@@ -12,6 +12,6 @@ namespace InsuranceCompany.Models
 
         public virtual Bank Bank { get; set; }
         public virtual Client Client { get; set; }
-        public virtual InsuranceCompany Cp { get; set; }
+        public virtual InsuranceCompanyModel Cp { get; set; }
     }
 }

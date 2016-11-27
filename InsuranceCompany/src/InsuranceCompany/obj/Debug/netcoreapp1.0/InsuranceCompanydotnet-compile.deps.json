@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v1.0/",
-    "signature": "fcfa4e67ed78f41cfd338e15858d5c0df8f0d65f"
+    "signature": "9948d00bedc21682c13016da45852088b7b1c8ba"
   },
   "compilationOptions": {
     "defines": [
@@ -30,7 +30,8 @@
           "Microsoft.EntityFrameworkCore.SqlServer": "1.0.1",
           "Microsoft.EntityFrameworkCore.Tools.DotNet": "1.0.0-preview3-final",
           "Microsoft.AspNetCore.Razor.Tools": "1.0.0-preview2-final",
-          "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0"
+          "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
+          "zlib": "1.2.8.8"
         },
         "compile": {
           "InsuranceCompany.dll": {}
@@ -2907,7 +2908,8 @@
           "System.Xml.XDocument": "4.0.11",
           "System.Xml.XPath": "4.0.1"
         }
-      }
+      },
+      "zlib/1.2.8.8": {}
     },
     ".NETCoreApp,Version=v1.0/": {
       "InsuranceCompany/1.0.0": {
@@ -2926,7 +2928,8 @@
           "Microsoft.EntityFrameworkCore.SqlServer": "1.0.1",
           "Microsoft.EntityFrameworkCore.Tools.DotNet": "1.0.0-preview3-final",
           "Microsoft.AspNetCore.Razor.Tools": "1.0.0-preview2-final",
-          "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0"
+          "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
+          "zlib": "1.2.8.8"
         },
         "runtime": {
           "InsuranceCompany.dll": {}
@@ -5713,7 +5716,8 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XPath.XDocument.dll": {}
         }
-      }
+      },
+      "zlib/1.2.8.8": {}
     }
   },
   "libraries": {
@@ -6806,6 +6810,11 @@
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-FLhdYJx4331oGovQypQ8JIw2kEmNzCsjVOVYY/16kZTUoquZG85oVn7yUhBE2OZt1yGPSXAL0HTEfzjlbNpM7Q=="
+    },
+    "zlib/1.2.8.8": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-toiNl0JiDRlBu5rmO/wJVg5RwRjwn3AkzqDhgjDjXIZaTPiueixVhh5fHy4GNuMqb/3wpdPZFnQ6VjIoCDRuWA=="
     }
   }
 }

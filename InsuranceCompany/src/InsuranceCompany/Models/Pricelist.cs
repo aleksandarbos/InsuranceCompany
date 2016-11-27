@@ -16,6 +16,6 @@ namespace InsuranceCompany.Models
         public DateTime? EndDate { get; set; }
 
         public virtual ICollection<PricelistItem> PricelistItem { get; set; }
-        public virtual InsuranceCompany Cp { get; set; }
+        public virtual InsuranceCompanyModel Cp { get; set; }
     }
 }

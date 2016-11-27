@@ -10,57 +10,57 @@ using InsuranceCompany.Models;
 namespace InsuranceCompany.Controllers
 {
     [Produces("application/json")]
-    [Route("api/InsuranceCompanies")]
-    public class InsuranceCompaniesController : Controller
+    [Route("api/RiskTypeOfInsurances")]
+    public class RiskTypeOfInsurancesController : Controller
     {
         private readonly InsuranceCompanyContext _context;
 
-        public InsuranceCompaniesController(InsuranceCompanyContext context)
+        public RiskTypeOfInsurancesController(InsuranceCompanyContext context)
         {
             _context = context;
         }
 
-        // GET: api/InsuranceCompanies
+        // GET: api/RiskTypeOfInsurances
         [HttpGet]
-        public IEnumerable<InsuranceCompany> GetInsuranceCompany()
+        public IEnumerable<RiskTypeOfInsurance> GetRiskTypeOfInsurance()
         {
-            return _context.InsuranceCompany;
+            return _context.RiskTypeOfInsurance;
         }
 
-        // GET: api/InsuranceCompanies/5
+        // GET: api/RiskTypeOfInsurances/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetInsuranceCompany([FromRoute] int id)
+        public async Task<IActionResult> GetRiskTypeOfInsurance([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            InsuranceCompany insuranceCompany = await _context.InsuranceCompany.SingleOrDefaultAsync(m => m.CpId == id);
+            RiskTypeOfInsurance riskTypeOfInsurance = await _context.RiskTypeOfInsurance.SingleOrDefaultAsync(m => m.RtId == id);
 
-            if (insuranceCompany == null)
+            if (riskTypeOfInsurance == null)
             {
                 return NotFound();
             }
 
-            return Ok(insuranceCompany);
+            return Ok(riskTypeOfInsurance);
         }
 
-        // PUT: api/InsuranceCompanies/5
+        // PUT: api/RiskTypeOfInsurances/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutInsuranceCompany([FromRoute] int id, [FromBody] InsuranceCompany insuranceCompany)
+        public async Task<IActionResult> PutRiskTypeOfInsurance([FromRoute] int id, [FromBody] RiskTypeOfInsurance riskTypeOfInsurance)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != insuranceCompany.CpId)
+            if (id != riskTypeOfInsurance.RtId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(insuranceCompany).State = EntityState.Modified;
+            _context.Entry(riskTypeOfInsurance).State = EntityState.Modified;
 
             try
             {
@@ -68,7 +68,7 @@ namespace InsuranceCompany.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!InsuranceCompanyExists(id))
+                if (!RiskTypeOfInsuranceExists(id))
                 {
                     return NotFound();
                 }
@@ -81,23 +81,23 @@ namespace InsuranceCompany.Controllers
             return NoContent();
         }
 
-        // POST: api/InsuranceCompanies
+        // POST: api/RiskTypeOfInsurances
         [HttpPost]
-        public async Task<IActionResult> PostInsuranceCompany([FromBody] InsuranceCompany insuranceCompany)
+        public async Task<IActionResult> PostRiskTypeOfInsurance([FromBody] RiskTypeOfInsurance riskTypeOfInsurance)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _context.InsuranceCompany.Add(insuranceCompany);
+            _context.RiskTypeOfInsurance.Add(riskTypeOfInsurance);
             try
             {
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateException)
             {
-                if (InsuranceCompanyExists(insuranceCompany.CpId))
+                if (RiskTypeOfInsuranceExists(riskTypeOfInsurance.RtId))
                 {
                     return new StatusCodeResult(StatusCodes.Status409Conflict);
                 }
@@ -107,33 +107,33 @@ namespace InsuranceCompany.Controllers
                 }
             }
 
-            return CreatedAtAction("GetInsuranceCompany", new { id = insuranceCompany.CpId }, insuranceCompany);
+            return CreatedAtAction("GetRiskTypeOfInsurance", new { id = riskTypeOfInsurance.RtId }, riskTypeOfInsurance);
         }
 
-        // DELETE: api/InsuranceCompanies/5
+        // DELETE: api/RiskTypeOfInsurances/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteInsuranceCompany([FromRoute] int id)
+        public async Task<IActionResult> DeleteRiskTypeOfInsurance([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            InsuranceCompany insuranceCompany = await _context.InsuranceCompany.SingleOrDefaultAsync(m => m.CpId == id);
-            if (insuranceCompany == null)
+            RiskTypeOfInsurance riskTypeOfInsurance = await _context.RiskTypeOfInsurance.SingleOrDefaultAsync(m => m.RtId == id);
+            if (riskTypeOfInsurance == null)
             {
                 return NotFound();
             }
 
-            _context.InsuranceCompany.Remove(insuranceCompany);
+            _context.RiskTypeOfInsurance.Remove(riskTypeOfInsurance);
             await _context.SaveChangesAsync();
 
-            return Ok(insuranceCompany);
+            return Ok(riskTypeOfInsurance);
         }
 
-        private bool InsuranceCompanyExists(int id)
+        private bool RiskTypeOfInsuranceExists(int id)
         {
-            return _context.InsuranceCompany.Any(e => e.CpId == id);
+            return _context.RiskTypeOfInsurance.Any(e => e.RtId == id);
         }
     }
 }

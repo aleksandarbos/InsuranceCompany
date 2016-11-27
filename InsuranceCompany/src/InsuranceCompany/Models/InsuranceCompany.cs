@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace InsuranceCompany.Models
 {
-    public partial class InsuranceCompany
+    public partial class InsuranceCompanyModel
     {
-        public InsuranceCompany()
+        public InsuranceCompanyModel()
         {
             BankAccount = new HashSet<BankAccount>();
             BusinessYear = new HashSet<BusinessYear>();

@@ -14,6 +14,6 @@ namespace InsuranceCompany.Models
         public int CpId { get; set; }
 
         public virtual ICollection<Policy> Policy { get; set; }
-        public virtual InsuranceCompany Cp { get; set; }
+        public virtual InsuranceCompanyModel Cp { get; set; }
     }
 }

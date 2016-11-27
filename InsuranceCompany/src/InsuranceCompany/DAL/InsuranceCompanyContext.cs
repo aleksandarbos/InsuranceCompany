@@ -9,7 +9,7 @@ namespace InsuranceCompany.Models
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=InsuranceCompany;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=InsuranceCompanyModel;Trusted_Connection=True;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -330,7 +330,7 @@ namespace InsuranceCompany.Models
                     .HasConstraintName("FK_HOME_RELATIONS_TYPE_OF_");
             });
 
-            modelBuilder.Entity<InsuranceCompany>(entity =>
+            modelBuilder.Entity<InsuranceCompanyModel>(entity =>
             {
                 entity.HasKey(e => e.CpId)
                     .HasName("PK_INSURANCE_COMPANY");
@@ -830,7 +830,7 @@ namespace InsuranceCompany.Models
         public virtual DbSet<Employee> Employee { get; set; }
         public virtual DbSet<EmployeeRole> EmployeeRole { get; set; }
         public virtual DbSet<Home> Home { get; set; }
-        public virtual DbSet<InsuranceCompany> InsuranceCompany { get; set; }
+        public virtual DbSet<InsuranceCompanyModel> InsuranceCompany { get; set; }
         public virtual DbSet<ItemsOfPackage> ItemsOfPackage { get; set; }
         public virtual DbSet<Package> Package { get; set; }
         public virtual DbSet<Pdv> Pdv { get; set; }

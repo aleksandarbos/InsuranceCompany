@@ -25,7 +25,7 @@ namespace InsuranceCompany.Models
 
         public virtual ICollection<Client> Client { get; set; }
         public virtual Client ClientNavigation { get; set; }
-        public virtual InsuranceCompany Cp { get; set; }
+        public virtual InsuranceCompanyModel Cp { get; set; }
         public virtual Currency Currency { get; set; }
         public virtual Employee En { get; set; }
         public virtual SubjectOfInsurance Ii { get; set; }

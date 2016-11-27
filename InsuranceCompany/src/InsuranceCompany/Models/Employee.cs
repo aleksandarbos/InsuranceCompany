@@ -17,7 +17,7 @@ namespace InsuranceCompany.Models
         public string EnLastname { get; set; }
 
         public virtual ICollection<Policy> Policy { get; set; }
-        public virtual InsuranceCompany Cp { get; set; }
+        public virtual InsuranceCompanyModel Cp { get; set; }
         public virtual EmployeeRole Role { get; set; }
     }
 }

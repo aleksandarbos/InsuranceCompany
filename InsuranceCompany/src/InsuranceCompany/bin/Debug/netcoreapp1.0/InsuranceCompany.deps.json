@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v1.0",
-    "signature": "43d8ba4bd742ed67b90cf5673fa139036c50bec2"
+    "signature": "a64bac60453ab0ddb50c8cad71ab203867dc4b2f"
   },
   "compilationOptions": {
     "defines": [
@@ -30,7 +30,8 @@
           "Microsoft.EntityFrameworkCore.SqlServer": "1.0.1",
           "Microsoft.EntityFrameworkCore.Tools.DotNet": "1.0.0-preview3-final",
           "Microsoft.AspNetCore.Razor.Tools": "1.0.0-preview2-final",
-          "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0"
+          "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
+          "zlib": "1.2.8.8"
         },
         "runtime": {
           "InsuranceCompany.dll": {}
@@ -1952,6 +1953,7 @@
           "lib/netstandard1.0/System.Text.Encodings.Web.dll": {}
         }
       },
+      "zlib/1.2.8.8": {},
       "Libuv/1.9.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "1.0.1"
@@ -4192,6 +4194,11 @@
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-TWZnuiJgPDAEEUfobD7njXvSVR2Toz+jvKWds6yL4oSztmKQfnWzucczjzA+6Dv1bktBdY71sZW1YN0X6m9chQ=="
+    },
+    "zlib/1.2.8.8": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-toiNl0JiDRlBu5rmO/wJVg5RwRjwn3AkzqDhgjDjXIZaTPiueixVhh5fHy4GNuMqb/3wpdPZFnQ6VjIoCDRuWA=="
     },
     "Libuv/1.9.0": {
       "type": "package",
