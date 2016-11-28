@@ -27,7 +27,7 @@ Students project at E-Business course, which has goal to implement insurance com
   - 2. ```dotnet run``` at InsuranceCompany folder to run the Web Api 2 server
   - [Note now backend Web API server is being ran]
   - 3. ```npm install``` at ```InsuranceCompany/wwwwroot``` folder to install dependencies for angular 
-  - 4. ```grunt serve``` run nodejs frontend server with angularjs app
+  - 4. ```grunt server``` run nodejs frontend server with angularjs app
   - [Note now frontend NodeJS server is being ran with AngularJS app deployed]
 
 ## Licence:
