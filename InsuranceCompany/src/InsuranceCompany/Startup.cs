@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using InsuranceCompany.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace InsuranceCompany
 {
@@ -28,6 +30,10 @@ namespace InsuranceCompany
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
+            var connection = @"Server=(localdb)\mssqllocaldb;Database=InsuranceCompany;Trusted_Connection=True;";
+            services.AddDbContext<InsuranceCompanyContext>(options => options.UseSqlServer(connection));
+
+            services.AddCors();
             services.AddMvc();
         }
 
