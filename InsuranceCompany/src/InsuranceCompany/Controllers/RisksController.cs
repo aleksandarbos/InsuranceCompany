@@ -22,9 +22,9 @@ namespace InsuranceCompany.Controllers
 
         // GET: api/Risks
         [HttpGet]
-        public IEnumerable<Risk> GetRisk()
+        public string GetRisk()
         {
-            return _context.Risk;
+            return "{\"test\":\"123\"}";
         }
 
         // GET: api/Risks/5
