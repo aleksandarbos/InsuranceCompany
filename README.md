@@ -1,5 +1,5 @@
 # InsuranceCompany
-Students project at E-Business course, which has goal to implement insurance company information system (ICIS), and full payment sistem middle layer that mediates ICIS and banking e-services required to process e-payment.
+Students' project at E-Business course at Faculty of Technical Sciences in Novi Sad, which has goal to implement insurance company information system (ICIS), and full payment sistem middle layer that mediates ICIS and banking e-services required to process e-payment.
 
 ## Team members:
   - [Violeta Novaković](https://github.com/Fireblume)
