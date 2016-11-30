@@ -27,6 +27,7 @@
             if (vm.typeOfRisk.id !== null) {
                 TypeOfRisk.update(vm.typeOfRisk, onSaveSuccess, onSaveError);
             } else {
+				console.log(onSaveError);
                 TypeOfRisk.save(vm.typeOfRisk, onSaveSuccess, onSaveError);
             }
         }

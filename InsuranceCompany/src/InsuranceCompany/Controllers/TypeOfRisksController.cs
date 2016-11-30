@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using InsuranceCompany.Models;
+using Microsoft.AspNetCore.Cors;
 
 namespace InsuranceCompany.Controllers
 {
+    [EnableCors("AllowSpecificOrigin")]
     [Produces("application/json")]
     [Route("api/TypeOfRisks")]
     public class TypeOfRisksController : Controller

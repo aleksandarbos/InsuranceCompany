@@ -7,7 +7,7 @@
     TypeOfRisk.$inject = ['$resource'];
 
     function TypeOfRisk ($resource) {
-        var resourceUrl =  'api/type-of-risks/:id';
+        var resourceUrl =  'http://localhost:5000/api/TypeOfRisks/:id';
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},
@@ -20,7 +20,8 @@
                     return data;
                 }
             },
-            'update': { method:'PUT' }
+            'update': { method:'PUT' },
+			'save' : { method: 'POST', headers: { 'Access-Control-Allow-Origin': '*' }}
         });
     }
 })();
