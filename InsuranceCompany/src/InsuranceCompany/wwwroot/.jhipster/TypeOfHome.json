@@ -1,0 +1,18 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20161130222504",
+    "dto": "no",
+    "service": "serviceImpl",
+    "entityTableName": "type_of_home",
+    "pagination": "no"
+}

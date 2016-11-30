@@ -1,0 +1,22 @@
+{
+    "insuranceFeApp": {
+        "typeOfHome" : {
+            "home": {
+                "title": "Type Of Homes",
+                "createLabel": "Create a new Type Of Home",
+                "createOrEditLabel": "Create or edit a Type Of Home",
+                "search": "Search for Type Of Home"
+            },
+            "created": "A new Type Of Home is created with identifier {{ param }}",
+            "updated": "A Type Of Home is updated with identifier {{ param }}",
+            "deleted": "A Type Of Home is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Type Of Home {{ id }}?"
+            },
+            "detail": {
+                "title": "Type Of Home"
+            },
+            "name": "Name"
+        }
+    }
+}

@@ -9,6 +9,7 @@
                 "main": "Entities",
                 "typeOfRisk": "Type Of Risk",
                 "bank": "Bank",
+                "typeOfHome": "Type Of Home",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
