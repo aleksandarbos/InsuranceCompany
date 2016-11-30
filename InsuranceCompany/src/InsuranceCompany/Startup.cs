@@ -32,7 +32,7 @@ namespace InsuranceCompany
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
-            var connection = @"Server=(localdb)\mssqllocaldb;Database=InsuranceCompany;Trusted_Connection=True;";
+            var connection = @"Server=VIOLETA\SQLEXPRESS;Database=InsuranceCompanyDB;Trusted_Connection=True;";
             services.AddDbContext<InsuranceCompanyContext>(options => options.UseSqlServer(connection));
 
             services.AddMvc();
@@ -41,7 +41,8 @@ namespace InsuranceCompany
             {
             options.AddPolicy("AllowSpecificOrigin",
                 builder => builder.AllowAnyOrigin()
-                    .WithHeaders("Access-Control-Allow-Origin", "content-type", "origin", "x-custom-header"));
+                    .WithHeaders("Access-Control-Allow-Origin", "content-type", "origin", "x-custom-header")
+                    .WithExposedHeaders("x-custom-header"));
             });
 
         }

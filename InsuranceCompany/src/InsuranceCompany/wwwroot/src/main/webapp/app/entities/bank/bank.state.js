@@ -13,7 +13,6 @@
             parent: 'entity',
             url: '/bank',
             data: {
-                authorities: ['ROLE_USER'],
                 pageTitle: 'insuranceFeApp.bank.home.title'
             },
             views: {
@@ -35,7 +34,6 @@
             parent: 'entity',
             url: '/bank/{id}',
             data: {
-                authorities: ['ROLE_USER'],
                 pageTitle: 'insuranceFeApp.bank.detail.title'
             },
             views: {
@@ -67,7 +65,6 @@
             parent: 'bank-detail',
             url: '/detail/edit',
             data: {
-                authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -92,7 +89,6 @@
             parent: 'bank',
             url: '/new',
             data: {
-                authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -120,7 +116,6 @@
             parent: 'bank',
             url: '/{id}/edit',
             data: {
-                authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -145,7 +140,6 @@
             parent: 'bank',
             url: '/{id}/delete',
             data: {
-                authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({

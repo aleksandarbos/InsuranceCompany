@@ -15,7 +15,7 @@
         loadAll();
 
         function loadAll() {
-            Bank.query(function(result) {
+            Bank.getAll(function(result) {
                 vm.banks = result;
             });
         }
