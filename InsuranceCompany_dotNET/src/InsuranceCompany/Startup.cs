@@ -36,13 +36,10 @@ namespace InsuranceCompany
             services.AddDbContext<InsuranceCompanyContext>(options => options.UseSqlServer(connection));
 
             services.AddMvc();
-            // services.AddCors();
             services.AddCors(options =>
             {
-            options.AddPolicy("AllowSpecificOrigin",
-                builder => builder.AllowAnyOrigin()
-                    .WithHeaders("Access-Control-Allow-Origin", "content-type", "origin", "x-custom-header")
-                    .WithExposedHeaders("x-custom-header"));
+                options.AddPolicy("AllowAngularApp",
+                    builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             });
 
         }
@@ -53,8 +50,9 @@ namespace InsuranceCompany
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
+            app.UseResponseBuffering();
             app.UseMvc();
-            app.UseCors("AllowSpecificOrigin");
+            app.UseCors("AllowAngularApp");
 
         }
     }

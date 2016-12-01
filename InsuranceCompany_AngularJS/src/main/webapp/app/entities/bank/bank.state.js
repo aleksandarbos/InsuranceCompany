@@ -55,7 +55,7 @@
                     var currentStateData = {
                         name: $state.current.name || 'bank',
                         params: $state.params,
-                        url: $state.href($state.current.name, $state.params)
+                        url: $state.href($state.current.name+"/"+$state.params)
                     };
                     return currentStateData;
                 }]

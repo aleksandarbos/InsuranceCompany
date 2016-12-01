@@ -6,9 +6,12 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using InsuranceCompany.Models;
+using Microsoft.AspNetCore.Cors;
+using Newtonsoft.Json;
 
 namespace InsuranceCompany.Controllers
 {
+    [EnableCors("AllowAngularApp")]
     [Produces("application/json")]
     [Route("api/Banks")]
     public class BanksController : Controller
@@ -22,15 +25,20 @@ namespace InsuranceCompany.Controllers
 
         // GET: api/Banks
         [HttpGet]
-        public IEnumerable<Bank> GetBank()
+        public string GetBank()
         {
-            return _context.Bank;
+            return JsonConvert.SerializeObject(new List<Bank> {
+                new Bank() {BankId=0, BankName = "Raiffeisen Bank" },
+                new Bank() {BankId=1, BankName = "Unicredit Bank" }
+            });
+            //return JsonConvert.SerializeObject(_context.Bank);
         }
 
         // GET: api/Banks/5
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetBank([FromRoute] int id)
+        public async Task<IActionResult> GetBank(int id)
         {
+            //TODO: Inspect accessing getbank with url parameters instead of route parameters.
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

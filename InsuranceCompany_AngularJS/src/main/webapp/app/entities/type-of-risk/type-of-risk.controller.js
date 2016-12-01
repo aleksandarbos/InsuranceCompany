@@ -16,6 +16,7 @@
 
         function loadAll() {
             TypeOfRisk.query(function(result) {
+				alert("result is: " + result)
                 vm.typeOfRisks = result;
             });
         }
