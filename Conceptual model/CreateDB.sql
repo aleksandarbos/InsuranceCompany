@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2014                    */
-/* Created on:     11/27/2016 4:34:28 PM                        */
+/* Created on:     12/1/2016 7:30:28 PM                         */
 /*==============================================================*/
 
 
@@ -188,6 +188,20 @@ go
 
 if exists (select 1
    from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('RISK') and o.name = 'FK_RISK_RELATIONS_TYPE_OF_')
+alter table RISK
+   drop constraint FK_RISK_RELATIONS_TYPE_OF_
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('RISK') and o.name = 'FK_RISK_RELATIONS_COEFFICI')
+alter table RISK
+   drop constraint FK_RISK_RELATIONS_COEFFICI
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
    where r.fkeyid = object_id('RISK_TYPE_OF_INSURANCE') and o.name = 'FK_RISK_TYP_RELATIONS_RISK')
 alter table RISK_TYPE_OF_INSURANCE
    drop constraint FK_RISK_TYP_RELATIONS_RISK
@@ -233,13 +247,6 @@ if exists (select 1
    where r.fkeyid = object_id('TYPE_OF_INSURANCE') and o.name = 'FK_TYPE_OF__RELATIONS_PACKAGE')
 alter table TYPE_OF_INSURANCE
    drop constraint FK_TYPE_OF__RELATIONS_PACKAGE
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('TYPE_OF_RISK') and o.name = 'FK_TYPE_OF__RELATIONS_RISK')
-alter table TYPE_OF_RISK
-   drop constraint FK_TYPE_OF__RELATIONS_RISK
 go
 
 if exists (select 1
@@ -354,6 +361,13 @@ if exists (select 1
            where  id = object_id('CLIENT')
             and   type = 'U')
    drop table CLIENT
+go
+
+if exists (select 1
+            from  sysobjects
+           where  id = object_id('COEFFICIENT')
+            and   type = 'U')
+   drop table COEFFICIENT
 go
 
 if exists (select 1
@@ -610,6 +624,24 @@ if exists (select 1
 go
 
 if exists (select 1
+            from  sysindexes
+           where  id    = object_id('RISK')
+            and   name  = 'RELATIONSHIP_41_FK'
+            and   indid > 0
+            and   indid < 255)
+   drop index RISK.RELATIONSHIP_41_FK
+go
+
+if exists (select 1
+            from  sysindexes
+           where  id    = object_id('RISK')
+            and   name  = 'RELATIONSHIP_35_FK'
+            and   indid > 0
+            and   indid < 255)
+   drop index RISK.RELATIONSHIP_35_FK
+go
+
+if exists (select 1
             from  sysobjects
            where  id = object_id('RISK')
             and   type = 'U')
@@ -623,15 +655,6 @@ if exists (select 1
             and   indid > 0
             and   indid < 255)
    drop index RISK_TYPE_OF_INSURANCE.RELATIONSHIP_34_FK
-go
-
-if exists (select 1
-            from  sysindexes
-           where  id    = object_id('RISK_TYPE_OF_INSURANCE')
-            and   name  = 'RELATIONSHIP_33_FK'
-            and   indid > 0
-            and   indid < 255)
-   drop index RISK_TYPE_OF_INSURANCE.RELATIONSHIP_33_FK
 go
 
 if exists (select 1
@@ -722,15 +745,6 @@ if exists (select 1
 go
 
 if exists (select 1
-            from  sysindexes
-           where  id    = object_id('TYPE_OF_RISK')
-            and   name  = 'RELATIONSHIP_35_FK'
-            and   indid > 0
-            and   indid < 255)
-   drop index TYPE_OF_RISK.RELATIONSHIP_35_FK
-go
-
-if exists (select 1
             from  sysobjects
            where  id = object_id('TYPE_OF_RISK')
             and   type = 'U')
@@ -741,7 +755,7 @@ go
 /* Table: BANK                                                  */
 /*==============================================================*/
 create table BANK (
-   BANK_ID              int                  not null,
+   BANK_ID              int                  identity,
    BANK_NAME            varchar(30)          not null,
    constraint PK_BANK primary key (BANK_ID)
 )
@@ -751,7 +765,7 @@ go
 /* Table: BANK_ACCOUNT                                          */
 /*==============================================================*/
 create table BANK_ACCOUNT (
-   AC1_ID               int                  not null,
+   AC1_ID               int                  identity,
    CLIENT_ID            int                  not null,
    CP_ID                int                  not null,
    BANK_ID              int                  not null,
@@ -793,7 +807,7 @@ go
 /* Table: BUSINESS_YEAR                                         */
 /*==============================================================*/
 create table BUSINESS_YEAR (
-   YEAR_ID              int                  not null,
+   YEAR_ID              int                  identity,
    CP_ID                int                  not null,
    constraint PK_BUSINESS_YEAR primary key (YEAR_ID)
 )
@@ -813,7 +827,7 @@ go
 /* Table: CAR                                                   */
 /*==============================================================*/
 create table CAR (
-   CARID                int                  not null,
+   CARID                int                  identity,
    CLIENT_ID            int                  not null,
    YEAR                 datetime             null,
    CHASSIS_NUMBER       int                  null,
@@ -838,7 +852,7 @@ go
 /* Table: CITY                                                  */
 /*==============================================================*/
 create table CITY (
-   CITY_ID              int                  not null,
+   CITY_ID              int                  identity,
    ST_ID                int                  not null,
    CITY_NAME            varchar(30)          not null,
    constraint PK_CITY primary key (CITY_ID)
@@ -864,7 +878,7 @@ create table CLIENT (
    DATE_OF_BIRTH        datetime             not null,
    JMBG                 varchar(30)          not null,
    PHONE                varchar(80)          null,
-   CLIENT_ID            int                  not null,
+   CLIENT_ID            int                  identity,
    CT_ID                int                  null,
    POLICY_ID            int                  null,
    constraint PK_CLIENT primary key (CLIENT_ID)
@@ -892,10 +906,21 @@ create nonclustered index RELATIONSHIP_22_FK on CLIENT (POLICY_ID ASC)
 go
 
 /*==============================================================*/
+/* Table: COEFFICIENT                                           */
+/*==============================================================*/
+create table COEFFICIENT (
+   COEFF_ID             int                  identity,
+   COEFF_VALUE          numeric(10,10)       null,
+   COEFF_DATE           datetime             null,
+   constraint PK_COEFFICIENT primary key (COEFF_ID)
+)
+go
+
+/*==============================================================*/
 /* Table: CURRENCY                                              */
 /*==============================================================*/
 create table CURRENCY (
-   CURRENCY_ID          int                  not null,
+   CURRENCY_ID          int                  identity,
    constraint PK_CURRENCY primary key (CURRENCY_ID)
 )
 go
@@ -904,7 +929,7 @@ go
 /* Table: DESTINATION                                           */
 /*==============================================================*/
 create table DESTINATION (
-   DST_ID               int                  not null,
+   DST_ID               int                  identity,
    DST_NAME             varchar(30)          not null,
    DST_DAYS             int                  not null,
    constraint PK_DESTINATION primary key (DST_ID)
@@ -915,7 +940,7 @@ go
 /* Table: EMPLOYEE                                              */
 /*==============================================================*/
 create table EMPLOYEE (
-   EN_ID                int                  not null,
+   EN_ID                int                  identity,
    ROLE_ID              int                  not null,
    CP_ID                int                  null,
    EN_FIRSTNAME         varchar(30)          not null,
@@ -948,7 +973,7 @@ go
 /* Table: EMPLOYEE_ROLE                                         */
 /*==============================================================*/
 create table EMPLOYEE_ROLE (
-   ROLE_ID              int                  not null,
+   ROLE_ID              int                  identity,
    ROLE_NAME            varchar(30)          not null,
    constraint PK_EMPLOYEE_ROLE primary key (ROLE_ID)
 )
@@ -958,7 +983,7 @@ go
 /* Table: HOME                                                  */
 /*==============================================================*/
 create table HOME (
-   HOME_ID              int                  not null,
+   HOME_ID              int                  identity,
    HT_ID                int                  not null,
    HOME_SQUARES         int                  not null,
    HOME_BUILDING_YEAR   varchar(4)           null,
@@ -981,7 +1006,7 @@ go
 /* Table: INSURANCE_COMPANY                                     */
 /*==============================================================*/
 create table INSURANCE_COMPANY (
-   CP_ID                int                  not null,
+   CP_ID                int                  identity,
    CITY_ID              int                  not null,
    CP_NAME              varchar(30)          null,
    PIB                  int                  not null,
@@ -1003,9 +1028,9 @@ go
 /* Table: ITEMS_OF_PACKAGE                                      */
 /*==============================================================*/
 create table ITEMS_OF_PACKAGE (
-   ID                   int                  not null,
+   ITEMS_OF_PACKAGE_ID  int                  identity,
    PACKAGE_ID           int                  null,
-   constraint PK_ITEMS_OF_PACKAGE primary key (ID)
+   constraint PK_ITEMS_OF_PACKAGE primary key (ITEMS_OF_PACKAGE_ID)
 )
 go
 
@@ -1023,8 +1048,8 @@ go
 /* Table: PACKAGE                                               */
 /*==============================================================*/
 create table PACKAGE (
-   PACKAGE_ID           int                  not null,
-   NAME                 varchar(20)          null,
+   PACKAGE_ID           int                  identity,
+   TOR_NAME             varchar(20)          null,
    constraint PK_PACKAGE primary key (PACKAGE_ID)
 )
 go
@@ -1033,7 +1058,7 @@ go
 /* Table: PDV                                                   */
 /*==============================================================*/
 create table PDV (
-   PDV_ID               int                  not null,
+   PDV_ID               int                  identity,
    NAME_PDV             varchar(30)          null,
    constraint PK_PDV primary key (PDV_ID)
 )
@@ -1043,8 +1068,8 @@ go
 /* Table: POLICY                                                */
 /*==============================================================*/
 create table POLICY (
-   POLICY_ID            int                  not null,
-   RT_ID                int                  not null,
+   POLICY_ID            int                  identity,
+   R_ID                 int                  not null,
    PDV_ID               int                  not null,
    CLIENT_ID            int                  not null,
    PACKAGE_ID           int                  null,
@@ -1106,7 +1131,7 @@ go
 
 
 
-create nonclustered index POSSIBLE_RISK_FK on POLICY (RT_ID ASC)
+create nonclustered index POSSIBLE_RISK_FK on POLICY (R_ID ASC)
 go
 
 /*==============================================================*/
@@ -1153,7 +1178,7 @@ go
 /* Table: PRICELIST                                             */
 /*==============================================================*/
 create table PRICELIST (
-   PRICELIST_ID         int                  not null,
+   PRICELIST_ID         int                  identity,
    CP_ID                int                  not null,
    START_DATE           datetime             not null,
    END_DATE             datetime             null,
@@ -1175,7 +1200,7 @@ go
 /* Table: PRICELIST_ITEM                                        */
 /*==============================================================*/
 create table PRICELIST_ITEM (
-   PL_ITEM_ID           int                  not null,
+   PL_ITEM_ID           int                  identity,
    PRICELIST_ID         int                  not null,
    PACKAGE_ID           int                  null,
    constraint PK_PRICELIST_ITEM primary key (PL_ITEM_ID)
@@ -1206,7 +1231,7 @@ go
 /* Table: RATE_OF_PDV                                           */
 /*==============================================================*/
 create table RATE_OF_PDV (
-   PDV_RATE_ID          int                  not null,
+   PDV_RATE_ID          int                  identity,
    PDV_ID               int                  not null,
    VALID_UNTIL          datetime             null,
    RATE                 numeric(10,10)       null,
@@ -1228,31 +1253,42 @@ go
 /* Table: RISK                                                  */
 /*==============================================================*/
 create table RISK (
-   RT_ID                int                  not null,
-   RT_NAME              varchar(30)          not null,
-   RT_COEFFICIENT       numeric(5,5)         null,
-   constraint PK_RISK primary key (RT_ID)
+   R_ID                 int                  identity,
+   TOR_ID               int                  not null,
+   COEFF_ID             int                  not null,
+   R_NAME               varchar(30)          not null,
+   constraint PK_RISK primary key (R_ID)
 )
+go
+
+/*==============================================================*/
+/* Index: RELATIONSHIP_35_FK                                    */
+/*==============================================================*/
+
+
+
+
+create nonclustered index RELATIONSHIP_35_FK on RISK (TOR_ID ASC)
+go
+
+/*==============================================================*/
+/* Index: RELATIONSHIP_41_FK                                    */
+/*==============================================================*/
+
+
+
+
+create nonclustered index RELATIONSHIP_41_FK on RISK (COEFF_ID ASC)
 go
 
 /*==============================================================*/
 /* Table: RISK_TYPE_OF_INSURANCE                                */
 /*==============================================================*/
 create table RISK_TYPE_OF_INSURANCE (
-   RT_ID                int                  not null,
+   R_ID                 int                  not null,
    IT_ID                int                  not null,
-   constraint PK_RISK_TYPE_OF_INSURANCE primary key (RT_ID, IT_ID)
+   constraint PK_RISK_TYPE_OF_INSURANCE primary key (R_ID, IT_ID)
 )
-go
-
-/*==============================================================*/
-/* Index: RELATIONSHIP_33_FK                                    */
-/*==============================================================*/
-
-
-
-
-create nonclustered index RELATIONSHIP_33_FK on RISK_TYPE_OF_INSURANCE (RT_ID ASC)
 go
 
 /*==============================================================*/
@@ -1269,7 +1305,7 @@ go
 /* Table: STATE_OF_ORIGIN                                       */
 /*==============================================================*/
 create table STATE_OF_ORIGIN (
-   ST_ID                int                  not null,
+   ST_ID                int                  identity,
    ST_NAME              varchar(30)          not null,
    constraint PK_STATE_OF_ORIGIN primary key (ST_ID)
 )
@@ -1279,7 +1315,7 @@ go
 /* Table: SUBJECT_OF_INSURANCE                                  */
 /*==============================================================*/
 create table SUBJECT_OF_INSURANCE (
-   II_ID                int                  not null,
+   II_ID                int                  identity,
    IT_ID                int                  null,
    CARID                int                  null,
    DST_ID               int                  null,
@@ -1332,7 +1368,7 @@ go
 /* Table: TYPE_OF_CLIENT                                        */
 /*==============================================================*/
 create table TYPE_OF_CLIENT (
-   CT_ID                int                  not null,
+   CT_ID                int                  identity,
    CT_NAME              varchar(30)          not null,
    constraint PK_TYPE_OF_CLIENT primary key (CT_ID)
 )
@@ -1342,7 +1378,7 @@ go
 /* Table: TYPE_OF_HOME                                          */
 /*==============================================================*/
 create table TYPE_OF_HOME (
-   HT_ID                int                  not null,
+   HT_ID                int                  identity,
    HT_NAME              varchar(30)          not null,
    constraint PK_TYPE_OF_HOME primary key (HT_ID)
 )
@@ -1352,7 +1388,7 @@ go
 /* Table: TYPE_OF_INSURANCE                                     */
 /*==============================================================*/
 create table TYPE_OF_INSURANCE (
-   IT_ID                int                  not null,
+   IT_ID                int                  identity,
    PACKAGE_ID           int                  not null,
    IT_NAME              varchar(30)          not null,
    constraint PK_TYPE_OF_INSURANCE primary key (IT_ID)
@@ -1373,21 +1409,10 @@ go
 /* Table: TYPE_OF_RISK                                          */
 /*==============================================================*/
 create table TYPE_OF_RISK (
-   NAME                 varchar(20)          null,
-   ID_TYPE              int                  not null,
-   RT_ID                int                  null,
-   constraint PK_TYPE_OF_RISK primary key (ID_TYPE)
+   TOR_NAME             varchar(20)          null,
+   TOR_ID               int                  identity,
+   constraint PK_TYPE_OF_RISK primary key (TOR_ID)
 )
-go
-
-/*==============================================================*/
-/* Index: RELATIONSHIP_35_FK                                    */
-/*==============================================================*/
-
-
-
-
-create nonclustered index RELATIONSHIP_35_FK on TYPE_OF_RISK (RT_ID ASC)
 go
 
 alter table BANK_ACCOUNT
@@ -1481,8 +1506,8 @@ alter table POLICY
 go
 
 alter table POLICY
-   add constraint FK_POLICY_POSSIBLE__RISK foreign key (RT_ID)
-      references RISK (RT_ID)
+   add constraint FK_POLICY_POSSIBLE__RISK foreign key (R_ID)
+      references RISK (R_ID)
 go
 
 alter table POLICY
@@ -1520,9 +1545,19 @@ alter table RATE_OF_PDV
       references PDV (PDV_ID)
 go
 
+alter table RISK
+   add constraint FK_RISK_RELATIONS_TYPE_OF_ foreign key (TOR_ID)
+      references TYPE_OF_RISK (TOR_ID)
+go
+
+alter table RISK
+   add constraint FK_RISK_RELATIONS_COEFFICI foreign key (COEFF_ID)
+      references COEFFICIENT (COEFF_ID)
+go
+
 alter table RISK_TYPE_OF_INSURANCE
-   add constraint FK_RISK_TYP_RELATIONS_RISK foreign key (RT_ID)
-      references RISK (RT_ID)
+   add constraint FK_RISK_TYP_RELATIONS_RISK foreign key (R_ID)
+      references RISK (R_ID)
 go
 
 alter table RISK_TYPE_OF_INSURANCE
@@ -1553,10 +1588,5 @@ go
 alter table TYPE_OF_INSURANCE
    add constraint FK_TYPE_OF__RELATIONS_PACKAGE foreign key (PACKAGE_ID)
       references PACKAGE (PACKAGE_ID)
-go
-
-alter table TYPE_OF_RISK
-   add constraint FK_TYPE_OF__RELATIONS_RISK foreign key (RT_ID)
-      references RISK (RT_ID)
 go
 
