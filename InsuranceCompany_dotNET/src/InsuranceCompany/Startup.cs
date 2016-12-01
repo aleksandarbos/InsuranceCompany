@@ -32,7 +32,7 @@ namespace InsuranceCompany
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
-            var connection = @"Server=VIOLETA\SQLEXPRESS;Database=InsuranceCompanyDB;Trusted_Connection=True;";
+            var connection = @"Server=VIOLETA\SQLEXPRESS;initial catalog=InsuranceCompanyDB;Trusted_Connection=True;";
             services.AddDbContext<InsuranceCompanyContext>(options => options.UseSqlServer(connection));
 
             services.AddMvc();

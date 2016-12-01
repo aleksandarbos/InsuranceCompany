@@ -27,11 +27,12 @@ namespace InsuranceCompany.Controllers
         [HttpGet]
         public string GetBank()
         {
-            return JsonConvert.SerializeObject(new List<Bank> {
+            /*return JsonConvert.SerializeObject(new List<Bank> {
                 new Bank() {BankId=0, BankName = "Raiffeisen Bank" },
                 new Bank() {BankId=1, BankName = "Unicredit Bank" }
             });
-            //return JsonConvert.SerializeObject(_context.Bank);
+            */
+            return JsonConvert.SerializeObject(_context.Bank);
         }
 
         // GET: api/Banks/5
