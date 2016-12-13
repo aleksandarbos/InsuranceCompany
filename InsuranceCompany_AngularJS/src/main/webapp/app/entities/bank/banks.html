@@ -24,25 +24,25 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="bank in banks track by bank.BankId">
-                    <td><a ui-sref="bank-detail({id:bank.BankId})">{{bank.BankId}}</a></td>
-                    <td>{{bank.BankName}}</td>
+                <tr ng-repeat="bank in vm.banks track by bank.bankId">
+                    <td><a ui-sref="bank-detail({id:bank.bankId})">{{bank.bankId}}</a></td>
+                    <td>{{bank.bankName}}</td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"
-                                    ui-sref="bank-detail({id:bank.BankId})"
+                                    ui-sref="bank-detail({id:bank.bankId})"
                                     class="btn btn-info btn-sm">
                                 <span class="glyphicon glyphicon-eye-open"></span>
                                 <span class="hidden-xs hidden-sm" data-translate="entity.action.view"></span>
                             </button>
                             <button type="submit"
-                                    ui-sref="bank.edit({id:bank.BankId})"
+                                    ui-sref="bank.edit({id:bank.bankId})"
                                     class="btn btn-primary btn-sm">
                                 <span class="glyphicon glyphicon-pencil"></span>
                                 <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"></span>
                             </button>
                             <button type="submit"
-                                    ui-sref="bank.delete({id:bank.BankId})"
+                                    ui-sref="bank.delete({id:bank.bankId})"
                                     class="btn btn-danger btn-sm">
                                 <span class="glyphicon glyphicon-remove-circle"></span>
                                 <span class="hidden-xs hidden-sm" data-translate="entity.action.delete"></span>

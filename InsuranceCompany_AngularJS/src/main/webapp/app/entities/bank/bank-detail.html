@@ -1,12 +1,12 @@
 
 <div>
-    <h2><span data-translate="insuranceFeApp.bank.detail.title">Bank</span> {{vm.bank.id}}</h2>
+    <h2><span data-translate="insuranceFeApp.bank.detail.title">Bank</span> {{vm.bank.bankName}}</h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="dl-horizontal jh-entity-details">
         <dt><span data-translate="insuranceFeApp.bank.name">Name</span></dt>
         <dd>
-            <span>{{vm.bank.name}}</span>
+            <span>{{vm.bank.bankName}}</span>
         </dd>
     </dl>
 
@@ -16,7 +16,7 @@
         <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
     </button>
 
-    <button type="button" ui-sref="bank-detail.edit({id:vm.bank.id})" class="btn btn-primary">
+    <button type="button" ui-sref="bank-detail.edit({id:vm.bank.bankId})" class="btn btn-primary">
         <span class="glyphicon glyphicon-pencil"></span>
         <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
     </button>

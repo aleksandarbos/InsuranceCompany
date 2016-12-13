@@ -8,15 +8,15 @@
     BankController.$inject = ['$scope', '$state', 'Bank'];
 
     function BankController ($scope, $state, Bank) {
+        var vm = this;
 
-        $scope.banks = [];
-
+        vm.banks = [];
+		
         loadAll();
 
         function loadAll() {
             Bank.query(function(result) {
-				debugger
-                $scope.banks = result;
+                vm.banks = result;
             });
         }
     }

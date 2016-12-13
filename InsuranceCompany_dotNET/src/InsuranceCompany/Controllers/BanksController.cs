@@ -25,17 +25,13 @@ namespace InsuranceCompany.Controllers
 
         // GET: api/Banks
         [HttpGet]
-        public string GetBank()
+        public JsonResult GetBank()
         {
-            /*return JsonConvert.SerializeObject(new List<Bank> {
-                new Bank() {BankId=0, BankName = "Raiffeisen Bank" },
-                new Bank() {BankId=1, BankName = "Unicredit Bank" }
-            });
-            */
-            return JsonConvert.SerializeObject(_context.Bank);
+            return Json(_context.Bank);
         }
 
         // GET: api/Banks/5
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetBank(int id)
         {
             //TODO: Inspect accessing getbank with url parameters instead of route parameters.

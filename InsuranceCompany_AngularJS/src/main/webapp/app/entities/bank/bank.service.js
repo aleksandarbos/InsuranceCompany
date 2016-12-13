@@ -7,7 +7,7 @@
     Bank.$inject = ['$resource'];
 
     function Bank ($resource) {
-        var resourceUrl =  'http://localhost:5000/api/banks';
+        var resourceUrl =  'http://localhost:5000/api/banks/:id';
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},

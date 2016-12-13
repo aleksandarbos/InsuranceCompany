@@ -13,7 +13,6 @@
         vm.bank = entity;
         vm.clear = clear;
         vm.save = save;
-		var bla;
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();
@@ -28,8 +27,7 @@
             if (vm.bank.id !== null) {
                 Bank.update(vm.bank, onSaveSuccess, onSaveError);
             } else {
-				bla={BankName:vm.bank.name};
-                Bank.save(JSON.stringify(bla), onSaveSuccess, onSaveError);
+                Bank.save(JSON.stringify({BankName:vm.bank.name}), onSaveSuccess, onSaveError);
             }
         }
 
