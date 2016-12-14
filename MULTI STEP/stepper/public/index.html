@@ -39,7 +39,7 @@
 										<div>
 											<md-input-container class="md-block" flex-gt-sm>
 												<label>Vrsta putovanja</label>
-												<md-select ng-model="polisa.state">
+												<md-select ng-model="vm.polisa.vrstaPutovanja">
 													<md-option  value="porodicno">
 														Porodicno
 													</md-option>
@@ -49,19 +49,19 @@
 												</md-select>
 											</md-input-container>
 
-											<div ng-show="polisa.state=='porodicno'">
+											<div ng-show="vm.polisa.vrstaPutovanja=='porodicno'">
 											<md-input-container >
 												<label>Broj odraslih</label>
-												<input type ="number" ng-model="polisa.odrasli" >
+												<input type ="number" ng-model="vm.polisa.brOdraslih" min=1>
 											</md-input-container>
 											<md-input-container>
 												<label>Broj dece</label>
-												<input type ="number" ng-model="polisa.deca" >
+												<input type ="number" ng-model="vm.polisa.brDece" min=0>
 											</md-input-container>
 											</div>
 											<md-input-container class="md-block" flex-gt-sm>
 												<label>Svrha putovanja</label>
-												<md-select ng-model="polisa.tip">
+												<md-select ng-model="vm.polisa.tip">
 													<md-option  value="turisticki">
 														Turisticki
 													</md-option>
@@ -73,37 +73,31 @@
 													</md-option>
 												</md-select>
 											</md-input-container>
-
-
-											<md-input-container>
-											</div>
+										</div>
 										</md-content>
 
 										<md-content layout-padding>
 											<div>
-													<div layout-gt-xs="row">
-														<md-input-container class="md-block" flex-gt-sm>
-															<label>State</label>
-															<md-select ng-model="polisa.drzava">
-																<md-option ng-repeat="state in states" value="{{state.abbrev}}">
-																	Drzava
-																</md-option>
-																<md-option  value="Srbija">
-																	Srbija
-																</md-option>
-															</md-select>
-														</md-input-container>
-														<md-input-container>
-														<label>Datum podetka</label>
-															<md-datepicker ng-model="myDate" md-placeholder="Enter date" md-min-date="minDate" md-max-date="maxDate"></md-datepicker>
-														</md-input-container>
-														<md-input-container>
-															<label>Broj dana</label>
-															<input type ="number" ng-model="polisa.dan" >
-														</md-input-container>
-
-
-													</div>													
+												<div layout-gt-xs="row">
+													<md-input-container class="md-block" flex-gt-sm>
+														<label>State</label>
+														<md-select ng-model="vm.polisa.drzava">
+															<md-option ng-repeat="state in states" value="{{state.abbrev}}">
+																Drzava
+															</md-option>
+															<md-option  value="Srbija">
+																Srbija
+															</md-option>
+														</md-select>
+													</md-input-container>
+													<md-input-container>
+													<md-datepicker ng-model="vm.polisa.datum" md-placeholder="Enter date" md-min-date="minDate" md-max-date="maxDate"></md-datepicker>
+													</md-input-container>
+													<md-input-container>
+														<label>Broj dana</label>
+														<input type ="number" ng-model="vm.polisa.brDana" min=1>
+													</md-input-container>
+												</div>													
 											</div>
 										</md-content>
 										<md-step-actions layout="row">
@@ -118,8 +112,10 @@
 
 							<md-step label="Odabir paketa" >
 								<md-step-body>
-								<<form name="step2" ng-submit="vm.submitCurrentStep()">
+								<form name="step2" ng-submit="vm.submitCurrentStep()" ng-cloak>
+								<md-radio-group ng-model="vm.polisa.paket">
 									<table class="table">
+									
 										<tr>
 											<td>Ponuda paketa</td>
 											<td>Cena</td>
@@ -129,7 +125,7 @@
 											Troškovi prevoza do bolnice, lečenja i hospitalizacije. Medicinska i ortopedska oprema prepisana od lekara. 
 											Lečenje akutne zubobolje u visini do 150€. Povratak pacijenta u domovinu u visini do 2.000€.</p></td>
 											<td>
-												<md-button class="md-raised md-warn">Kupi</md-button>
+												<md-radio-button value="1,000.00" /><br/>
 												<p>1000,00 rsd</p>
 											</td>
 										</tr>
@@ -138,8 +134,8 @@
 											Lečenje akutne zubobolje u visini do 300€. Povratak pacijenta u domovinu u visini do 7.000€.
 											Gubitak ili krađa prtljaga u visini do 100€. Prevodilačke usluge.</p></td>
 											<td>
-												<md-button class="md-raised md-warn">Kupi</md-button>
-												<p>1000,00 rsd</p>
+												<md-radio-button value="2,000.00" /><br/>
+												<p>2000,00 rsd</p>
 											</td>
 										</tr>
 										<tr>
@@ -150,11 +146,12 @@
 											Prevodilačke usluge. Povratak dece koja su ostala bez nadzora (avionska karta).
 											Pronalaženje advokata na račun osiguranika.</p></td>
 											<td>
-												<md-button class="md-raised md-warn">Kupi</md-button>
-												<p>1000,00 rsd</p>
+												<md-radio-button value="3,000.00" /><br/>
+												<p>3000,00 rsd</p>
 											</td>
-										</tr>
 
+										</tr>
+									
 									</table>
 							<md-step-actions layout="row">
 								<div flex layout="row" layout-align="end top">
@@ -162,6 +159,7 @@
 									<md-button type="submit"  class="md-primary md-raised">NEXT</md-button>
 								</div>
 							</md-step-actions>
+							</md-radio-group>
 							</form>
 							</md-step-body>
 						</md-step>
@@ -170,7 +168,7 @@
 
 						<md-step label="Informacije o korisniku" >
 							<md-step-body>
-								<form name="step1" >
+								<form name="step3" >
 									<md-button  class="md-primary md-raised"  ng-click="addNewChoice()">Dodaj korisnika</md-button>
 									<div ng-repeat="choice in choices">
 										<label>  Korisnik broj {{$index+1}}</label>
@@ -277,12 +275,10 @@
 
 							<md-step label="Placanje" md-complete="vm.stepData[3].data.completed" ng-disabled="vm.stepProgress < 4">
 								<md-step-body>
-									<form name="step2">
+									<form name="step4">
 										<md-content class="md-padding">
-											<div layout="column" layout-align="center center" style="min-height: 200px">
-												<h4>Account created!</h4>
-												<md-button class="md-primary md-raised">GO TO DASHBOARD</md-button>
-											</div>
+											<policy-review-directive></policy-review-directive>
+											<div id="paypal-button"></div>
 										</md-content>
 									</form>
 								</md-step-body>
@@ -292,7 +288,8 @@
 				</md-card>
 			</div>
 		</md-content>
-
+		
+		<script src="https://www.paypalobjects.com/api/checkout.js" data-version-4></script>
 		<!-- Angular Material requires Angular.js Libraries -->
 		<script src="/bower_components/angular/angular.min.js"></script>
 		<script src="/bower_components/angular-animate/angular-animate.min.js"></script>
@@ -307,6 +304,8 @@
 		<script src="/app/app.module.js"></script>
 		<script src="./app/core/core.module.js"></script>
 		<script src="./app/core/core.controller.js"></script>
+		<script src="./app/policy/policy.module.js"></script>
+		<script src="./app/policy/policyReview.directive.js"></script>
 		<script></script>
 	</body>
 
