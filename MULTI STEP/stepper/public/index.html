@@ -34,16 +34,111 @@
 							<md-step-body>
 								<form name="step1" ng-submit="vm.submitCurrentStep()">
 
+									<md-content md-theme="docs-dark"  >
+										<div>
+											<md-input-container class="md-block" flex-gt-sm>
+												<label>Vrsta putovanja</label>
+												<md-select ng-model="polisa.state">
+													<md-option  value="porodicno">
+														Porodicno
+													</md-option>
+													<md-option  value="pojedinacno">
+														Pojedinacno
+													</md-option>
+												</md-select>
+											</md-input-container>
 
-									<div  layout="column" ng-cloak class="md-inline-form">
+											<div ng-show="polisa.state=='porodicno'">
+											<md-input-container >
+												<label>Broj odraslih</label>
+												<input type ="number" ng-model="polisa.odrasli" >
+											</md-input-container>
+											<md-input-container>
+												<label>Broj dece</label>
+												<input type ="number" ng-model="polisa.deca" >
+											</md-input-container>
+											</div>
+											<md-input-container class="md-block" flex-gt-sm>
+												<label>Svrha putovanja</label>
+												<md-select ng-model="polisa.tip">
+													<md-option  value="porodicno">
+														Turisticki
+													</md-option>
+													<md-option  value="pojedinacno">
+														Turisticki-sport
+													</md-option>
+													<md-option  value="pojedinacno">
+														Poslovno
+													</md-option>
+												</md-select>
+											</md-input-container>
 
-										<md-radio-group ng-model="tip">
 
-											<md-radio-button  value="pojedinacno">Evropa</md-radio-button>
+											<md-input-container>
+											</div>
+										</md-content>
 
-											<md-radio-button value="porodicno"> Svet </md-radio-button>
+										<md-content layout-padding>
+											<div>
+												<form name="userForm">
 
-											
+													<div layout-gt-xs="row">
+														<md-input-container class="md-block" flex-gt-sm>
+															<label>State</label>
+															<md-select ng-model="polisa.drzava">
+																<md-option ng-repeat="state in states" value="{{state.abbrev}}">
+																	Drzava
+																</md-option>
+																<md-option  value="">
+																	Ovde ce biti izlistane drzave
+																</md-option>
+															</md-select>
+														</md-input-container>
+<md-input-container>
+														<label>Datum podetka</label>
+															<md-datepicker ng-model="user.submissionDate"></md-datepicker>
+														</md-input-container>
+														<md-input-container>
+															<label>Broj dana</label>
+															<input type ="number" ng-model="polisa.dan" >
+														</md-input-container>
+
+
+													</div>
+
+
+
+													
+
+												</form>
+											</div>
+										</md-content>
+										<md-step-actions layout="row">
+											<div flex layout="row" layout-align="end top">
+												<md-button class="md-warn">CANCEL</md-button>
+												<md-button type="submit"  class="md-primary md-raised">NEXT</md-button>
+											</div>
+										</md-step-actions>
+									</form>
+								</md-step-body>
+							</md-step>
+
+							<md-step label="Odabir paketa" >
+								<md-step-body>
+									<form name="step1" ng-submit="vm.submitCurrentStep()">
+
+
+										<div  layout="column" ng-cloak class="md-inline-form">
+
+											<md-radio-group ng-model="tip">
+
+												<md-radio-button   ng-value="'zlatni'"  value="grupno">Zlatni</md-radio-button>
+
+												<md-radio-button  ng-value="'srebrni'"  value="porodicno"> Srebrni </md-radio-button>
+												<md-radio-button  ng-value="'bronzani'"  value="porodicno"> Bronzani </md-radio-button>
+
+
+											</md-input-container>
 										</md-radio-group>
 									</div>
 									<md-step-actions layout="row">
@@ -56,42 +151,14 @@
 							</md-step-body>
 						</md-step>
 
-						<md-step label="Odabir paketa" >
+
+
+						<md-step label="Informacije o korisniku" >
 							<md-step-body>
-								<form name="step1" ng-submit="vm.submitCurrentStep()">
-
-
-									<div  layout="column" ng-cloak class="md-inline-form">
-
-										<md-radio-group ng-model="tip">
-
-											<md-radio-button   ng-value="'zlatni'"  value="grupno">Zlatni</md-radio-button>
-
-											<md-radio-button  ng-value="'srebrni'"  value="porodicno"> Srebrni </md-radio-button>
-											<md-radio-button  ng-value="'bronzani'"  value="porodicno"> Bronzani </md-radio-button>
-
-											
-										</md-input-container>
-									</md-radio-group>
-								</div>
-								<md-step-actions layout="row">
-									<div flex layout="row" layout-align="end top">
-										<md-button class="md-warn">CANCEL</md-button>
-										<md-button type="submit"  class="md-primary md-raised">NEXT</md-button>
-									</div>
-								</md-step-actions>
-							</form>
-						</md-step-body>
-					</md-step>
-
-
-
-					<md-step label="Informacije o korisniku" >
-						<md-step-body>
-							<form name="step1" >
-								<md-button  class="md-primary md-raised"  ng-click="addNewChoice()">Dodaj korisnika</md-button>
-								<div ng-repeat="choice in choices">
-								<label>  Korisnik broj {{$index+1}}</label>
+								<form name="step1" >
+									<md-button  class="md-primary md-raised"  ng-click="addNewChoice()">Dodaj korisnika</md-button>
+									<div ng-repeat="choice in choices">
+										<label>  Korisnik broj {{$index+1}}</label>
 										<div  layout="column" ng-cloak class="md-inline-form">
 
 											<md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
@@ -179,127 +246,127 @@
 
 										</div>
 										<md-divider md-inset>
-									
-									</md-divider>
-								</div>
-								<md-step-actions layout="row">
-									<div flex layout="row" layout-align="end top">
-										<md-button class="md-warn">CANCEL</md-button>
-										<md-button type="submit" ng-click="vm.submitCurrentStep()" class="md-primary md-raised">NEXT</md-button>
+
+										</md-divider>
 									</div>
-								</md-step-actions>
-
-
-							</form>
-						</md-step-body></md-step>
-
-
-
-
-
-
-
-
-
-						<md-step label="Login detail" md-complete="vm.stepData[1].data.completed" ng-disabled="vm.stepProgress < 2">
-							<md-step-body>
-								<form name="step1" ng-submit="vm.submitCurrentStep(vm.stepData[1].data)">
-									<md-content class="md-padding">
-										<div layout="row" layout-align="center top">
-											<div flex="nogrow" style="width: 400px">
-												<h4>Please enter your user name and password</h4>
-												<md-input-container class="md-block">
-													<label>Your user name here</label>
-													<input  name="username" ng-model="vm.stepData[1].data.username" required />
-													<div ng-messages="step1.username.$error">
-														<div ng-message="required">
-															User name is required to proceed on next step.
-														</div>
-													</div>
-												</md-input-container>
-												<md-input-container class="md-block">
-													<label>Your password here</label>
-													<input  type="password" name="username" ng-model="vm.stepData[1].data.password" required />
-													<div ng-messages="step1.password.$error">
-														<div ng-message="required">
-															Password required to proceed on next step.
-														</div>
-													</div>
-												</md-input-container>
-											</div>
-										</div>
-									</md-content>
 									<md-step-actions layout="row">
 										<div flex layout="row" layout-align="end top">
 											<md-button class="md-warn">CANCEL</md-button>
-											<md-button type="submit"  class="md-primary md-raised">NEXT</md-button>
+											<md-button type="submit" ng-click="vm.submitCurrentStep()" class="md-primary md-raised">NEXT</md-button>
 										</div>
 									</md-step-actions>
+
+
 								</form>
-							</md-step-body>
-						</md-step>
-						<md-step label="Personal Info" md-complete="vm.stepData[2].data.completed" ng-disabled="vm.stepProgress < 3">
-							<md-step-body>
-								<form name="step2">
-									<md-content class="md-padding">
-										<div layout="row" layout-align="center top">
-											<div flex="nogrow" style="width: 400px">
-												<h4>Please enter yout full name</h4>
-												<md-input-container class="md-block">
-													<label>Your first name here</label>
-													<input name="firsname" ng-model="vm.stepData[2].data.firsname"/>
-												</md-input-container>
-												<md-input-container class="md-block">
-													<label>Your last name</label>
-													<input name="lastname" ng-model="vm.stepData[2].data.lastname"/>
-												</md-input-container>
+							</md-step-body></md-step>
+
+
+
+
+
+
+
+
+
+							<md-step label="Login detail" md-complete="vm.stepData[1].data.completed" ng-disabled="vm.stepProgress < 2">
+								<md-step-body>
+									<form name="step1" ng-submit="vm.submitCurrentStep(vm.stepData[1].data)">
+										<md-content class="md-padding">
+											<div layout="row" layout-align="center top">
+												<div flex="nogrow" style="width: 400px">
+													<h4>Please enter your user name and password</h4>
+													<md-input-container class="md-block">
+														<label>Your user name here</label>
+														<input  name="username" ng-model="vm.stepData[1].data.username" required />
+														<div ng-messages="step1.username.$error">
+															<div ng-message="required">
+																User name is required to proceed on next step.
+															</div>
+														</div>
+													</md-input-container>
+													<md-input-container class="md-block">
+														<label>Your password here</label>
+														<input  type="password" name="username" ng-model="vm.stepData[1].data.password" required />
+														<div ng-messages="step1.password.$error">
+															<div ng-message="required">
+																Password required to proceed on next step.
+															</div>
+														</div>
+													</md-input-container>
+												</div>
 											</div>
-										</div>
-									</md-content>
-									<md-step-actions layout="row">
-										<div flex>
-											<md-button ng-click="vm.moveToPreviousStep()">PREVIOUS</md-button>
-										</div>
-										<div flex layout="row" layout-align="end top">
-											<md-button class="md-warn">CANCEL</md-button>
-											<md-button  ng-click="vm.submitCurrentStep(vm.stepData[2].data, !(vm.stepData[2].data.firsname && vm.stepData[2].data.lastname))" class="md-primary md-raised">
-												{{ vm.stepData[2].data.firsname && vm.stepData[2].data.lastname ? 'NEXT' : 'SKIP' }}
-											</md-button>
-										</div>
-									</md-step-actions>
-								</form>
-							</md-step-body>
-						</md-step>
-						<md-step label="Finish" md-complete="vm.stepData[3].data.completed" ng-disabled="vm.stepProgress < 4">
-							<md-step-body>
-								<form name="step2">
-									<md-content class="md-padding">
-										<div layout="column" layout-align="center center" style="min-height: 200px">
-											<h4>Account created!</h4>
-											<md-button class="md-primary md-raised">GO TO DASHBOARD</md-button>
-										</div>
-									</md-content>
-								</form>
-							</md-step-body>
-						</md-step>
-					</md-steppers>
-				</md-stepper-card-content>
-			</md-card>
-		</div>
-	</md-content>
+										</md-content>
+										<md-step-actions layout="row">
+											<div flex layout="row" layout-align="end top">
+												<md-button class="md-warn">CANCEL</md-button>
+												<md-button type="submit"  class="md-primary md-raised">NEXT</md-button>
+											</div>
+										</md-step-actions>
+									</form>
+								</md-step-body>
+							</md-step>
+							<md-step label="Personal Info" md-complete="vm.stepData[2].data.completed" ng-disabled="vm.stepProgress < 3">
+								<md-step-body>
+									<form name="step2">
+										<md-content class="md-padding">
+											<div layout="row" layout-align="center top">
+												<div flex="nogrow" style="width: 400px">
+													<h4>Please enter yout full name</h4>
+													<md-input-container class="md-block">
+														<label>Your first name here</label>
+														<input name="firsname" ng-model="vm.stepData[2].data.firsname"/>
+													</md-input-container>
+													<md-input-container class="md-block">
+														<label>Your last name</label>
+														<input name="lastname" ng-model="vm.stepData[2].data.lastname"/>
+													</md-input-container>
+												</div>
+											</div>
+										</md-content>
+										<md-step-actions layout="row">
+											<div flex>
+												<md-button ng-click="vm.moveToPreviousStep()">PREVIOUS</md-button>
+											</div>
+											<div flex layout="row" layout-align="end top">
+												<md-button class="md-warn">CANCEL</md-button>
+												<md-button  ng-click="vm.submitCurrentStep(vm.stepData[2].data, !(vm.stepData[2].data.firsname && vm.stepData[2].data.lastname))" class="md-primary md-raised">
+													{{ vm.stepData[2].data.firsname && vm.stepData[2].data.lastname ? 'NEXT' : 'SKIP' }}
+												</md-button>
+											</div>
+										</md-step-actions>
+									</form>
+								</md-step-body>
+							</md-step>
+							<md-step label="Finish" md-complete="vm.stepData[3].data.completed" ng-disabled="vm.stepProgress < 4">
+								<md-step-body>
+									<form name="step2">
+										<md-content class="md-padding">
+											<div layout="column" layout-align="center center" style="min-height: 200px">
+												<h4>Account created!</h4>
+												<md-button class="md-primary md-raised">GO TO DASHBOARD</md-button>
+											</div>
+										</md-content>
+									</form>
+								</md-step-body>
+							</md-step>
+						</md-steppers>
+					</md-stepper-card-content>
+				</md-card>
+			</div>
+		</md-content>
 
-	<!-- Angular Material requires Angular.js Libraries -->
-	<script src="/bower_components/angular/angular.min.js"></script>
-	<script src="/bower_components/angular-animate/angular-animate.min.js"></script>
-	<script src="/bower_components/angular-aria/angular-aria.min.js"></script>
-	<script src="/bower_components/angular-messages/angular-messages.min.js"></script>
+		<!-- Angular Material requires Angular.js Libraries -->
+		<script src="/bower_components/angular/angular.min.js"></script>
+		<script src="/bower_components/angular-animate/angular-animate.min.js"></script>
+		<script src="/bower_components/angular-aria/angular-aria.min.js"></script>
+		<script src="/bower_components/angular-messages/angular-messages.min.js"></script>
 
-	<!-- Angular Material Library -->
-	<script src="/bower_components/angular-material/angular-material.min.js"></script>
+		<!-- Angular Material Library -->
+		<script src="/bower_components/angular-material/angular-material.min.js"></script>
 
-	<!-- Your application bootstrap  -->
-	<script src="/bower_components/md-steppers/dist/md-steppers.js"></script>
-	<script src="app.js"></script>
-</body>
+		<!-- Your application bootstrap  -->
+		<script src="/bower_components/md-steppers/dist/md-steppers.js"></script>
+		<script src="app.js"></script>
+	</body>
 
-</html>
+	</html>
