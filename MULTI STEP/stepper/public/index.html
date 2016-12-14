@@ -11,7 +11,8 @@
 
 
 	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
-	<link rel="stylesheet" href="style.css" />
+	<link rel="stylesheet" href="./assets/style.css" />
+	<link rel="stylesheet" href="./assets/bootstrap.css" />
 	<link rel="stylesheet" href="/bower_components/md-steppers/dist/md-steppers.css">
 	
 </head>
@@ -61,13 +62,13 @@
 											<md-input-container class="md-block" flex-gt-sm>
 												<label>Svrha putovanja</label>
 												<md-select ng-model="polisa.tip">
-													<md-option  value="porodicno">
+													<md-option  value="turisticki">
 														Turisticki
 													</md-option>
-													<md-option  value="pojedinacno">
+													<md-option  value="sport">
 														Turisticki-sport
 													</md-option>
-													<md-option  value="pojedinacno">
+													<md-option  value="poslovno">
 														Poslovno
 													</md-option>
 												</md-select>
@@ -80,8 +81,6 @@
 
 										<md-content layout-padding>
 											<div>
-												<form name="userForm">
-
 													<div layout-gt-xs="row">
 														<md-input-container class="md-block" flex-gt-sm>
 															<label>State</label>
@@ -89,14 +88,14 @@
 																<md-option ng-repeat="state in states" value="{{state.abbrev}}">
 																	Drzava
 																</md-option>
-																<md-option  value="">
-																	Ovde ce biti izlistane drzave
+																<md-option  value="Srbija">
+																	Srbija
 																</md-option>
 															</md-select>
 														</md-input-container>
-<md-input-container>
+														<md-input-container>
 														<label>Datum podetka</label>
-															<md-datepicker ng-model="user.submissionDate"></md-datepicker>
+															<md-datepicker ng-model="myDate" md-placeholder="Enter date" md-min-date="minDate" md-max-date="maxDate"></md-datepicker>
 														</md-input-container>
 														<md-input-container>
 															<label>Broj dana</label>
@@ -104,13 +103,7 @@
 														</md-input-container>
 
 
-													</div>
-
-
-
-													
-
-												</form>
+													</div>													
 											</div>
 										</md-content>
 										<md-step-actions layout="row">
@@ -125,29 +118,51 @@
 
 							<md-step label="Odabir paketa" >
 								<md-step-body>
-									<form name="step1" ng-submit="vm.submitCurrentStep()">
+								<<form name="step2" ng-submit="vm.submitCurrentStep()">
+									<table class="table">
+										<tr>
+											<td>Ponuda paketa</td>
+											<td>Cena</td>
+										</tr>
+										<tr>
+											<td><p>Standard:Kompletna medicinska asistencija definisana standard paketom pokrića. 
+											Troškovi prevoza do bolnice, lečenja i hospitalizacije. Medicinska i ortopedska oprema prepisana od lekara. 
+											Lečenje akutne zubobolje u visini do 150€. Povratak pacijenta u domovinu u visini do 2.000€.</p></td>
+											<td>
+												<md-button class="md-raised md-warn">Kupi</md-button>
+												<p>1000,00 rsd</p>
+											</td>
+										</tr>
+										<tr>
+											<td><p>Komfort: Kompletna medicinska asistencija definisana komfort paketom pokrića. Troškovi prevoza do bolnice, lečenja i hospitalizacije. Medicinska i ortopedska oprema prepisana od lekara.
+											Lečenje akutne zubobolje u visini do 300€. Povratak pacijenta u domovinu u visini do 7.000€.
+											Gubitak ili krađa prtljaga u visini do 100€. Prevodilačke usluge.</p></td>
+											<td>
+												<md-button class="md-raised md-warn">Kupi</md-button>
+												<p>1000,00 rsd</p>
+											</td>
+										</tr>
+										<tr>
+											<td><p>Ekskluziv: Kompletna medicinska asistencija definisana ekskluziv paketom pokrića. 
+											Troškovi prevoza do bolnice, lečenja i hospitalizacije. Medicinska i ortopedska oprema prepisana od lekara. 
+											Lečenje akutne zubobolje u visini do 300€. Povratak pacijenta u domovinu u visini do 10.000€. 
+											Gubitak ili krađa prtljaga u visini do 200€. 
+											Prevodilačke usluge. Povratak dece koja su ostala bez nadzora (avionska karta).
+											Pronalaženje advokata na račun osiguranika.</p></td>
+											<td>
+												<md-button class="md-raised md-warn">Kupi</md-button>
+												<p>1000,00 rsd</p>
+											</td>
+										</tr>
 
-
-										<div  layout="column" ng-cloak class="md-inline-form">
-
-											<md-radio-group ng-model="tip">
-
-												<md-radio-button   ng-value="'zlatni'"  value="grupno">Zlatni</md-radio-button>
-
-												<md-radio-button  ng-value="'srebrni'"  value="porodicno"> Srebrni </md-radio-button>
-												<md-radio-button  ng-value="'bronzani'"  value="porodicno"> Bronzani </md-radio-button>
-
-
-											</md-input-container>
-										</md-radio-group>
-									</div>
-									<md-step-actions layout="row">
-										<div flex layout="row" layout-align="end top">
-											<md-button class="md-warn">CANCEL</md-button>
-											<md-button type="submit"  class="md-primary md-raised">NEXT</md-button>
-										</div>
-									</md-step-actions>
-								</form>
+									</table>
+							<md-step-actions layout="row">
+								<div flex layout="row" layout-align="end top">
+									<md-button class="md-warn">CANCEL</md-button>
+									<md-button type="submit"  class="md-primary md-raised">NEXT</md-button>
+								</div>
+							</md-step-actions>
+							</form>
 							</md-step-body>
 						</md-step>
 
@@ -260,84 +275,7 @@
 								</form>
 							</md-step-body></md-step>
 
-
-
-
-
-
-
-
-
-							<md-step label="Login detail" md-complete="vm.stepData[1].data.completed" ng-disabled="vm.stepProgress < 2">
-								<md-step-body>
-									<form name="step1" ng-submit="vm.submitCurrentStep(vm.stepData[1].data)">
-										<md-content class="md-padding">
-											<div layout="row" layout-align="center top">
-												<div flex="nogrow" style="width: 400px">
-													<h4>Please enter your user name and password</h4>
-													<md-input-container class="md-block">
-														<label>Your user name here</label>
-														<input  name="username" ng-model="vm.stepData[1].data.username" required />
-														<div ng-messages="step1.username.$error">
-															<div ng-message="required">
-																User name is required to proceed on next step.
-															</div>
-														</div>
-													</md-input-container>
-													<md-input-container class="md-block">
-														<label>Your password here</label>
-														<input  type="password" name="username" ng-model="vm.stepData[1].data.password" required />
-														<div ng-messages="step1.password.$error">
-															<div ng-message="required">
-																Password required to proceed on next step.
-															</div>
-														</div>
-													</md-input-container>
-												</div>
-											</div>
-										</md-content>
-										<md-step-actions layout="row">
-											<div flex layout="row" layout-align="end top">
-												<md-button class="md-warn">CANCEL</md-button>
-												<md-button type="submit"  class="md-primary md-raised">NEXT</md-button>
-											</div>
-										</md-step-actions>
-									</form>
-								</md-step-body>
-							</md-step>
-							<md-step label="Personal Info" md-complete="vm.stepData[2].data.completed" ng-disabled="vm.stepProgress < 3">
-								<md-step-body>
-									<form name="step2">
-										<md-content class="md-padding">
-											<div layout="row" layout-align="center top">
-												<div flex="nogrow" style="width: 400px">
-													<h4>Please enter yout full name</h4>
-													<md-input-container class="md-block">
-														<label>Your first name here</label>
-														<input name="firsname" ng-model="vm.stepData[2].data.firsname"/>
-													</md-input-container>
-													<md-input-container class="md-block">
-														<label>Your last name</label>
-														<input name="lastname" ng-model="vm.stepData[2].data.lastname"/>
-													</md-input-container>
-												</div>
-											</div>
-										</md-content>
-										<md-step-actions layout="row">
-											<div flex>
-												<md-button ng-click="vm.moveToPreviousStep()">PREVIOUS</md-button>
-											</div>
-											<div flex layout="row" layout-align="end top">
-												<md-button class="md-warn">CANCEL</md-button>
-												<md-button  ng-click="vm.submitCurrentStep(vm.stepData[2].data, !(vm.stepData[2].data.firsname && vm.stepData[2].data.lastname))" class="md-primary md-raised">
-													{{ vm.stepData[2].data.firsname && vm.stepData[2].data.lastname ? 'NEXT' : 'SKIP' }}
-												</md-button>
-											</div>
-										</md-step-actions>
-									</form>
-								</md-step-body>
-							</md-step>
-							<md-step label="Finish" md-complete="vm.stepData[3].data.completed" ng-disabled="vm.stepProgress < 4">
+							<md-step label="Placanje" md-complete="vm.stepData[3].data.completed" ng-disabled="vm.stepProgress < 4">
 								<md-step-body>
 									<form name="step2">
 										<md-content class="md-padding">
@@ -366,7 +304,10 @@
 
 		<!-- Your application bootstrap  -->
 		<script src="/bower_components/md-steppers/dist/md-steppers.js"></script>
-		<script src="app.js"></script>
+		<script src="/app/app.module.js"></script>
+		<script src="./app/core/core.module.js"></script>
+		<script src="./app/core/core.controller.js"></script>
+		<script></script>
 	</body>
 
 	</html>
