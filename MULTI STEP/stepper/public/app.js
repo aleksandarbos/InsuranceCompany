@@ -1,17 +1,38 @@
-var app = angular.module('app', ['ngMaterial', 'md-steppers']);
+var app = angular.module('app', ['ngMaterial', 'md-steppers','ngMessages']);
+
 
 app.controller('MainCtrl', function ($scope, $q, $timeout) {
-
     var vm = this;
+
+
+$scope.choices = [];
+  
+  $scope.addNewChoice = function() {
+    var newItemNo = $scope.choices.length+1;
+    $scope.choices.push($scope.choices.length);
+  };
+    
+  $scope.removeChoice = function() {
+    var lastItem = $scope.choices.length-1;
+    $scope.choices.splice(lastItem);
+  };
+
+
 
     vm.selectedStep = 0;
     vm.stepProgress = 1;
-    vm.maxStep = 3;
+    vm.maxStep = 6;
     vm.showBusyText = false;
     vm.stepData = [
         { step: 1, completed: false, optional: false, data: {} },
         { step: 2, completed: false, optional: false, data: {} },
         { step: 3, completed: false, optional: false, data: {} },
+        ,
+        { step: 4, completed: false, optional: false, data: {} },
+        ,
+        { step: 5, completed: false, optional: false, data: {} },
+        ,
+        { step: 6, completed: false, optional: false, data: {} },
     ];
 
     vm.enableNextStep = function nextStep() {
@@ -36,14 +57,15 @@ app.controller('MainCtrl', function ($scope, $q, $timeout) {
         var deferred = $q.defer();
         vm.showBusyText = true;
         console.log('On before submit');
-        if (!stepData.completed && !isSkip) {
+        //if (!stepData.completed && !isSkip) {
+            if(!isSkip){
             //simulate $http
             $timeout(function () {
                 vm.showBusyText = false;
                 console.log('On submit success');
                 deferred.resolve({ status: 200, statusText: 'success', data: {} });
                 //move to next step when success
-                stepData.completed = true;
+               // stepData.completed = true;
                 vm.enableNextStep();
             }, 1000)
         } else {
