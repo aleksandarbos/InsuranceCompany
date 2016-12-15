@@ -1,26 +1,30 @@
-(function(){
+(function () {
 	"use strict";
-	
+
 	angular
 		.module('coreModule')
 		.controller('MainCtrl', MainCtrl);
-		
-		MainCtrl.$inject = ['$window','$scope', '$q', '$timeout'];
-		function MainCtrl($window, $scope, $q, $timeout){
-			
-			var vm = this;
-			$window.localStorage.polisy = vm.polisa;
-			$scope.choices = [];
-		  
-		  $scope.addNewChoice = function() {
-			var newItemNo = $scope.choices.length+1;
+
+	MainCtrl.$inject = ['$scope', '$q', '$timeout', '$state'];
+	function MainCtrl($scope, $q, $timeout, $state) {
+
+		var vm = this;
+		$scope.myDate = new Date();
+
+		$scope.choices = [];
+
+		vm.states = ['destination', 'package', 'userinfo', 'payment'];
+		vm.stateIdx = 0;
+
+		$scope.addNewChoice = function () {
+			var newItemNo = $scope.choices.length + 1;
 			$scope.choices.push($scope.choices.length);
-		  };
-			
-		  $scope.removeChoice = function() {
-			var lastItem = $scope.choices.length-1;
+		};
+
+		$scope.removeChoice = function () {
+			var lastItem = $scope.choices.length - 1;
 			$scope.choices.splice(lastItem);
-		  };
+		};
 
 
 
@@ -37,23 +41,26 @@
 
 			];
 
-			vm.enableNextStep = function nextStep() {
-				//do not exceed into max step
-				if (vm.selectedStep >= vm.maxStep) {
-					return;
-				}
-				//do not increment vm.stepProgress when submitting from previously completed step
-				if (vm.selectedStep === vm.stepProgress - 1) {
-					vm.stepProgress = vm.stepProgress + 1;
-				}
-				vm.selectedStep = vm.selectedStep + 1;
+		vm.enableNextStep = function nextStep() {
+			//do not exceed into max step
+			if (vm.selectedStep >= vm.maxStep) {
+				return;
 			}
+			//do not increment vm.stepProgress when submitting from previously completed step
+			if (vm.selectedStep === vm.stepProgress - 1) {
+				vm.stepProgress = vm.stepProgress + 1;
+			}
+			vm.selectedStep = vm.selectedStep + 1;
+			$state.go(vm.states[++vm.stateIdx]);
+			
+		}
 
-			vm.moveToPreviousStep = function moveToPreviousStep() {
-				if (vm.selectedStep > 0) {
-					vm.selectedStep = vm.selectedStep - 1;
-				}
+		vm.moveToPreviousStep = function moveToPreviousStep() {
+			if (vm.selectedStep > 0) {
+				vm.selectedStep = vm.selectedStep - 1;
+				$state.go(vm.states[--vm.stateIdx]);
 			}
+		}
 
 			vm.submitCurrentStep = function submitCurrentStep(stepData, isSkip) {
 				var deferred = $q.defer();
