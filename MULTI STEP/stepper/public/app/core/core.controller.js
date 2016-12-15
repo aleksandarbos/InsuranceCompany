@@ -1,30 +1,30 @@
-(function(){
+(function () {
 	"use strict";
-	
+
 	angular
 		.module('coreModule')
 		.controller('MainCtrl', MainCtrl);
-		
-		MainCtrl.$inject = ['$scope', '$q', '$timeout'];
-		function MainCtrl($scope, $q, $timeout){
-			
-			var vm = this;
-			$scope.myDate = new Date();
 
+	MainCtrl.$inject = ['$scope', '$q', '$timeout', '$state'];
+	function MainCtrl($scope, $q, $timeout, $state) {
+
+		var vm = this;
+		$scope.myDate = new Date();
 
 		$scope.choices = [];
-		  
-		  $scope.addNewChoice = function() {
-			var newItemNo = $scope.choices.length+1;
+
+		vm.states = ['destination', 'package', 'userinfo', 'payment'];
+		vm.stateIdx = 0;
+
+		$scope.addNewChoice = function () {
+			var newItemNo = $scope.choices.length + 1;
 			$scope.choices.push($scope.choices.length);
-		  };
-			
-		  $scope.removeChoice = function() {
-			var lastItem = $scope.choices.length-1;
+		};
+
+		$scope.removeChoice = function () {
+			var lastItem = $scope.choices.length - 1;
 			$scope.choices.splice(lastItem);
-		  };
-
-
+		};
 
 		vm.selectedStep = 0;
 		vm.stepProgress = 1;
@@ -52,11 +52,14 @@
 				vm.stepProgress = vm.stepProgress + 1;
 			}
 			vm.selectedStep = vm.selectedStep + 1;
+			$state.go(vm.states[++vm.stateIdx]);
+			
 		}
 
 		vm.moveToPreviousStep = function moveToPreviousStep() {
 			if (vm.selectedStep > 0) {
 				vm.selectedStep = vm.selectedStep - 1;
+				$state.go(vm.states[--vm.stateIdx]);
 			}
 		}
 
@@ -65,14 +68,14 @@
 			vm.showBusyText = true;
 			console.log('On before submit');
 			//if (!stepData.completed && !isSkip) {
-				if(!isSkip){
+			if (!isSkip) {
 				//simulate $http
 				$timeout(function () {
 					vm.showBusyText = false;
 					console.log('On submit success');
 					deferred.resolve({ status: 200, statusText: 'success', data: {} });
 					//move to next step when success
-				   // stepData.completed = true;
+					// stepData.completed = true;
 					vm.enableNextStep();
 				}, 1000)
 			} else {
@@ -81,6 +84,6 @@
 			}
 		}
 
-			}
-	
+	}
+
 })();
