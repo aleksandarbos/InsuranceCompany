@@ -4,6 +4,7 @@
 	angular
 		.module('coreModule')
 		.controller('MainCtrl', MainCtrl);
+<<<<<<< Updated upstream
 
 	MainCtrl.$inject = ['$scope', '$q', '$timeout', '$state'];
 	function MainCtrl($scope, $q, $timeout, $state) {
@@ -18,6 +19,17 @@
 
 		$scope.addNewChoice = function () {
 			var newItemNo = $scope.choices.length + 1;
+=======
+		
+		MainCtrl.$inject = ['$window','$scope', '$q', '$timeout'];
+		function MainCtrl($window, $scope, $q, $timeout){
+			
+			var vm = this;
+			$scope.choices = [];
+		  
+		  $scope.addNewChoice = function() {
+			var newItemNo = $scope.choices.length+1;
+>>>>>>> Stashed changes
 			$scope.choices.push($scope.choices.length);
 		};
 
@@ -26,8 +38,20 @@
 			$scope.choices.splice(lastItem);
 		};
 
-
-
+		  $scope.userCount = function(){
+			  var brKorisnika = vm.polisa.brOdraslih + vm.polisa.brDece;
+			  vm.listaKorisnika = [];
+			  
+			  for(var i=1; i<brKorisnika; i++){
+				  vm.listaKorisnika.push({ime: '', prezime: '', myDate: '', pasos: '', jmbg: '', pol: '', email: ''});
+			  }
+		  }
+		  
+			$scope.savePolicy = function(){
+				$window.localStorage.polisy = vm.polisa;
+	
+			}
+			
 			vm.selectedStep = 0;
 			vm.stepProgress = 1;
 			vm.maxStep = 4;
@@ -36,7 +60,6 @@
 				{ step: 1, completed: false, optional: false, data: {} },
 				{ step: 2, completed: false, optional: false, data: {} },
 				{ step: 3, completed: false, optional: false, data: {} },
-				,
 				{ step: 4, completed: false, optional: false, data: {} },
 
 			];
@@ -65,6 +88,7 @@
 			vm.submitCurrentStep = function submitCurrentStep(stepData, isSkip) {
 				var deferred = $q.defer();
 				vm.showBusyText = true;
+				$scope.userCount();
 				console.log('On before submit');
 				//if (!stepData.completed && !isSkip) {
 					if(!isSkip){
