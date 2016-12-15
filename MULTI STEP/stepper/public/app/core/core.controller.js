@@ -4,14 +4,11 @@
 	angular
 		.module('coreModule')
 		.controller('MainCtrl', MainCtrl);
-<<<<<<< Updated upstream
 
-	MainCtrl.$inject = ['$scope', '$q', '$timeout', '$state'];
-	function MainCtrl($scope, $q, $timeout, $state) {
+	MainCtrl.$inject = ['$window','$scope', '$q', '$timeout', '$state'];
+	function MainCtrl($window,$scope, $q, $timeout, $state) {
 
 		var vm = this;
-		$scope.myDate = new Date();
-
 		$scope.choices = [];
 
 		vm.states = ['destination', 'package', 'userinfo', 'payment'];
@@ -19,17 +16,6 @@
 
 		$scope.addNewChoice = function () {
 			var newItemNo = $scope.choices.length + 1;
-=======
-		
-		MainCtrl.$inject = ['$window','$scope', '$q', '$timeout'];
-		function MainCtrl($window, $scope, $q, $timeout){
-			
-			var vm = this;
-			$scope.choices = [];
-		  
-		  $scope.addNewChoice = function() {
-			var newItemNo = $scope.choices.length+1;
->>>>>>> Stashed changes
 			$scope.choices.push($scope.choices.length);
 		};
 
