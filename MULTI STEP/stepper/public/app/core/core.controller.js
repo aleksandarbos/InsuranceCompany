@@ -5,8 +5,17 @@
 		.module('coreModule')
 		.controller('MainCtrl', MainCtrl);
 
-	MainCtrl.$inject = ['$window','$scope', '$q', '$timeout', '$state'];
-	function MainCtrl($window,$scope, $q, $timeout, $state) {
+	MainCtrl.$inject = ['$window','$scope', '$q', '$timeout', '$state','$translate'];
+	function MainCtrl($window,$scope, $q, $timeout, $state,$translate) {
+
+		
+$scope.changeLanguage = function (langKey) {
+    $translate.use(langKey);
+  };
+
+
+
+
 
 		var vm = this;
 		$scope.choices = [];
