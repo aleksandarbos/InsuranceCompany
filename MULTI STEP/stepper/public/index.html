@@ -154,6 +154,9 @@
 									
 									</table>
 							<md-step-actions layout="row">
+							<div flex>
+ +                                            <md-button ng-click="vm.moveToPreviousStep()">PREVIOUS</md-button>
+ +                                        </div>
 								<div flex layout="row" layout-align="end top">
 									<md-button class="md-warn">CANCEL</md-button>
 									<md-button type="submit"  class="md-primary md-raised">NEXT</md-button>
@@ -263,6 +266,9 @@
 										</md-divider>
 									</div>
 									<md-step-actions layout="row">
+									<div flex>
+ +                                            <md-button ng-click="vm.moveToPreviousStep()">PREVIOUS</md-button>
+ +                                        </div>
 										<div flex layout="row" layout-align="end top">
 											<md-button class="md-warn">CANCEL</md-button>
 											<md-button type="submit" ng-click="vm.submitCurrentStep()" class="md-primary md-raised">NEXT</md-button>
