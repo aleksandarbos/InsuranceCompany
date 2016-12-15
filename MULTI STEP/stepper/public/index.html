@@ -102,7 +102,7 @@
 										</md-content>
 										<md-step-actions layout="row">
 											<div flex layout="row" layout-align="end top">
-												<md-button class="md-warn">{{ 'CANCEl' | translate }}</md-button>
+												<md-button class="md-warn">{{ 'CANCEL' | translate }}</md-button>
 												<md-button type="submit"  class="md-primary md-raised">{{ 'NEXT' | translate }}</md-button>
 											</div>
 										</md-step-actions>
@@ -110,41 +110,32 @@
 								</md-step-body>
 							</md-step>
 
-							<md-step label="Odabir paketa" >
+							<md-step label="{{ 'PACKAGE' | translate }}" >
 								<md-step-body>
 								<form name="step2" ng-submit="vm.submitCurrentStep()" ng-cloak>
 								<md-radio-group ng-model="vm.polisa.paket">
 									<table class="table">
 									
 										<tr>
-											<td>Ponuda paketa</td>
-											<td>Cena</td>
+											<td>{{ 'OFFER' | translate }}</td>
+											<td>{{ 'PRICE' | translate }}</td>
 										</tr>
 										<tr>
-											<td><p>Standard:Kompletna medicinska asistencija definisana standard paketom pokrića. 
-											Troškovi prevoza do bolnice, lečenja i hospitalizacije. Medicinska i ortopedska oprema prepisana od lekara. 
-											Lečenje akutne zubobolje u visini do 150€. Povratak pacijenta u domovinu u visini do 2.000€.</p></td>
+											<td><p>{{ 'PACKAGE1' | translate }}</p></td>
 											<td>
 												<md-radio-button value="1,000.00" /><br/>
 												<p>1000,00 rsd</p>
 											</td>
 										</tr>
 										<tr>
-											<td><p>Komfort: Kompletna medicinska asistencija definisana komfort paketom pokrića. Troškovi prevoza do bolnice, lečenja i hospitalizacije. Medicinska i ortopedska oprema prepisana od lekara.
-											Lečenje akutne zubobolje u visini do 300€. Povratak pacijenta u domovinu u visini do 7.000€.
-											Gubitak ili krađa prtljaga u visini do 100€. Prevodilačke usluge.</p></td>
+											<td><p>{{ 'PACKAGE2' | translate }}</p></td>
 											<td>
 												<md-radio-button value="2,000.00" /><br/>
 												<p>2000,00 rsd</p>
 											</td>
 										</tr>
 										<tr>
-											<td><p>Ekskluziv: Kompletna medicinska asistencija definisana ekskluziv paketom pokrića. 
-											Troškovi prevoza do bolnice, lečenja i hospitalizacije. Medicinska i ortopedska oprema prepisana od lekara. 
-											Lečenje akutne zubobolje u visini do 300€. Povratak pacijenta u domovinu u visini do 10.000€. 
-											Gubitak ili krađa prtljaga u visini do 200€. 
-											Prevodilačke usluge. Povratak dece koja su ostala bez nadzora (avionska karta).
-											Pronalaženje advokata na račun osiguranika.</p></td>
+											<td><p>{{ 'PACKAGE3' | translate }}</p></td>
 											<td>
 												<md-radio-button value="3,000.00" /><br/>
 												<p>3000,00 rsd</p>
@@ -155,11 +146,11 @@
 									</table>
 							<md-step-actions layout="row">
 							<div flex>
- +                                            <md-button ng-click="vm.moveToPreviousStep()">PREVIOUS</md-button>
+ +                                            <md-button ng-click="vm.moveToPreviousStep()">{{ 'PREVIOUS' | translate }}</md-button>
  +                                        </div>
 								<div flex layout="row" layout-align="end top">
-									<md-button class="md-warn">CANCEL</md-button>
-									<md-button type="submit"  class="md-primary md-raised">NEXT</md-button>
+									<md-button class="md-warn">{{ 'CANCEL' | translate }}</md-button>
+												<md-button type="submit"  class="md-primary md-raised">{{ 'NEXT' | translate }}</md-button>
 								</div>
 							</md-step-actions>
 							</md-radio-group>
@@ -271,6 +262,8 @@
 
 		<!-- Your application bootstrap  -->
 		<script src="/bower_components/md-steppers/dist/md-steppers.js"></script>
+		<script src="/bower_components/angular-translate/angular-translate.min.js"></script>
+		
 		<script src="/app/app.module.js"></script>
 		<script src="./app/core/core.module.js"></script>
 		<script src="./app/core/core.controller.js"></script>
