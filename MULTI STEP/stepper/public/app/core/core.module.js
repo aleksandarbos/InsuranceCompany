@@ -23,7 +23,7 @@ var translationsEN = {
   PURPOSE: 'Travel purpose',
   TOURIST: 'Vacation',
   SPORT: 'Active holiday(Skiing...)',
-  BUISNESS: 'Business travel',
+  BUSINESS: 'Business travel',
   STATE: 'State',
   DAYS: 'Number of days',
   CANCEL: 'CANCEL',
@@ -48,7 +48,10 @@ var translationsEN = {
   FEMALE:'Female',
   OTHER:'Other',
   INFO:'Personal info',
-  PAYMENT:'Billing options'
+  PAYMENT:'Billing options',
+  FINISH: 'Finish',
+  INSURANCE_WIZARD: 'Insurance wizard',
+  DATE: 'Enter date'
 
 };
  
@@ -62,7 +65,7 @@ var translationsSRB= {
   PURPOSE:'Svrha putovanja',
   TOURIST: 'Turisticki',
   SPORT: 'Aktivan odmor(skijanje..)',
-  BUISNESS: 'Poslovni put',
+  BUSINESS: 'Poslovni put',
   STATE: 'Drzava',
   DAYS: 'Broj dana',
   CANCEL: 'ODUSTANI',
@@ -87,7 +90,11 @@ var translationsSRB= {
   FEMALE:'Zensko',
   OTHER:'Nepoznat',
   INFO:'Informacije o korisniku',
-  PAYMENT:'Placanje'
+  PAYMENT:'Placanje',
+  FINISH: 'Zavrsi',
+  INSURANCE_WIZARD: 'Osiguravajuci carobnjak',
+  DATE: 'Unesi datum'
+
 };
 
 

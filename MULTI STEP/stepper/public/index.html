@@ -17,8 +17,49 @@
 	
 </head>
 
-<body ng-controller="MainCtrl as vm" layout="row">
-	<md-content flex="nogrow" style="width: 800px; margin: 40px auto">
+<body ng-controller="MainCtrl as vm" layout="row" >
+
+
+	
+  <md-content flex="nogrow" style="width: 100%; ">
+	<br />
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+	<!--     <md-button aria-label="Go Back">
+			Go Back
+			</md-button> -->
+			<h2>
+			<span>{{ 'INSURANCE_WIZARD' | translate }}</span>
+			</h2>
+			<span flex></span>
+			<md-button class="md-raised" aria-label="English" ng-click="changeLanguage('en')" >
+			<md-icon md-svg-icon="images/us.svg"></md-icon>
+			English
+			</md-button>
+			<md-button class="md-raised" aria-label="Serbian" ng-click="changeLanguage('srb')" >
+			<md-icon md-svg-icon="images/rs2.svg"></md-icon>
+			Srpski
+			</md-button>
+		</div>
+		</md-toolbar>
+		<br />
+		
+					
+
+
+ <!--   <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
+      <md-nav-item md-nav-click="goto('page1')" name="page1"> {{'INSURANCE' | translate} </md-nav-item> -->
+  
+      <!-- these require actual routing with ui-router or ng-route, so they won't work in the demo
+      <md-nav-item md-nav-sref="app.page4" name="page4">Page Four</md-nav-item>
+      <md-nav-item md-nav-href="#page5" name="page5">Page Five</md-nav-item>
+      -->
+   <!-- </md-nav-bar> -->
+   		 <div class="ext-content">
+ 		  </md-content>
+
+
+	<md-content flex="nogrow" style="width: 70%; margin: 40px auto">
 		<div>
 			<md-card>
 				<md-toolbar>
@@ -33,14 +74,14 @@
 
 						<md-step label="{{'CHOOSE' | translate }}" >
 							<md-step-body>
-								<form name="step1" ng-submit="vm.submitCurrentStep()" ng-click="savePolicy()">
+								<form name="step1" ng-submit="vm.submitCurrentStep()" ng-click="savePolicy()" novalidate>
 
 									<md-content md-theme="docs-dark"  >
 										<div>
 											<md-input-container class="md-block" flex-gt-sm>
 												<label>{{ 'TYPEOFTRAVEL' | translate }}</label>
-												<md-select ng-model="vm.polisa.vrstaPutovanja">
-													<md-option  value="porodicno">
+												<md-select ng-model="vm.polisa.vrstaPutovanja" required>
+													<md-option  value="porodicno" >
 														{{ 'FAMILY' | translate }}
 													</md-option>
 													<md-option  value="pojedinacno">
@@ -56,12 +97,12 @@
 												</md-input-container>
 												<md-input-container>
 													<label>{{ 'KIDS' | translate }}</label>
-													<input type ="number" ng-model="vm.polisa.brDece" min=0>
+													<input type ="number" ng-model="vm.polisa.brDece" min=0 >
 												</md-input-container>
 											</div>
 											<md-input-container class="md-block" flex-gt-sm>
 												<label>{{ 'PURPOSE' | translate }}</label>
-												<md-select ng-model="vm.polisa.tip">
+												<md-select ng-model="vm.polisa.tip" required>
 													<md-option  value="turisticki">
 														{{ 'TOURIST' | translate }}
 													</md-option>
@@ -81,17 +122,23 @@
 											<div layout-gt-xs="row">
 												<md-input-container class="md-block" flex-gt-sm>
 													<label>{{ 'STATE' | translate }}</label>
-													<md-select ng-model="vm.polisa.drzava">
+													<md-select ng-model="vm.polisa.drzava" required>
 														<md-option ng-repeat="state in states" value="{{state.abbrev}}">
 															Engleska
 														</md-option>
 														<md-option  value="Srbija">
 															Srbija
 														</md-option>
+														<md-option  value="Bosna">
+															Bosna i Hercegovina
+														</md-option>
+														<md-option  value="Engleska">
+															Engleska
+														</md-option>
 													</md-select>
 												</md-input-container>
 												<md-input-container>
-													<input type="date" ng-model="vm.polisa.datum" placeholder="Enter date" min-date="minDate" max-date="maxDate" />
+													<input type="date" ng-model="vm.polisa.datum" placeholder="{{'DATE' |translate}}" required min-date="minDate" max-date="maxDate" />
 												</md-input-container>
 												<md-input-container>
 													<label>{{ 'DAYS' | translate }}</label>
@@ -112,7 +159,7 @@
 
 						<md-step label="{{ 'PACKAGE' | translate }}" >
 							<md-step-body>
-								<form name="step2" ng-submit="vm.submitCurrentStep()" ng-cloak>
+								<form name="step2" ng-submit="vm.submitCurrentStep()" ng-cloak novalidate>
 									<md-radio-group ng-model="vm.polisa.paket">
 										<table class="table">
 
@@ -145,11 +192,9 @@
 
 										</table>
 										<md-step-actions layout="row">
-											<div flex>
-												+                                            <md-button ng-click="vm.moveToPreviousStep()">{{ 'PREVIOUS' | translate }}</md-button>
-												+                                        </div>
+				
 												<div flex layout="row" layout-align="end top">
-													<md-button class="md-warn">{{ 'CANCEL' | translate }}</md-button>
+													<md-button class="md-warn" ng-click="vm.moveToPreviousStep()">{{ 'PREVIOUS' | translate }}</md-button>
 													<md-button type="submit"  class="md-primary md-raised">{{ 'NEXT' | translate }}</md-button>
 												</div>
 											</md-step-actions>
@@ -162,10 +207,9 @@
 
 							<md-step label="{{ 'INFO' | translate }}" >
 								<md-step-body>
-									<form name="step3" >
+									<form name="step3" ng-submit="vm.submitCurrentStep()" novalidate ng-cloak >
 										<div  layout="column" ng-cloak class="md-inline-form">
 
-											<form name="userFormDetails">
 												<md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
 													<label>{{ 'USER' | translate }} 1</label>
 													<div>
@@ -202,22 +246,21 @@
 															<input type="email" ng-model="userMain.email" required/>
 														</md-input-container>
 													</div>
+													<div ng-repeat="user in vm.listaKorisnika track by $index">
+													<user-info-directive></user-info-directive>
+													</div>
 												</md-content>
-											</form>
-										</div>
-										<div ng-repeat="user in vm.listaKorisnika track by $index">
-											<user-info-directive></user-info-directive>
+											
 										</div>
 
-										<md-step-actions layout="row">
-											<div flex>
-												+                                            <md-button ng-click="vm.moveToPreviousStep()">{{ 'PREVIOUS' | translate }}</md-button>
-												+                                        </div>
-												<div flex layout="row" layout-align="end top">
-													<md-button class="md-warn">{{ 'CANCEL' | translate }}</md-button>
-													<md-button type="submit"  class="md-primary md-raised">{{ 'NEXT' | translate }}</md-button>
-												</div>
-											</md-step-actions>
+									
+
+										<md-step-actions layout="row">										
+											<div flex layout="row" layout-align="end top">
+												<md-button class="md-warn" ng-click="vm.moveToPreviousStep()">{{ 'PREVIOUS' | translate }}</md-button>
+												<md-button type="submit"  class="md-primary md-raised">{{ 'NEXT' | translate }}</md-button>
+											</div>
+										</md-step-actions>
 
 
 										</form>
@@ -225,7 +268,7 @@
 
 									<md-step label="{{ 'PAYMENT' | translate }}" md-complete="vm.stepData[3].data.completed" ng-disabled="vm.stepProgress < 4">
 										<md-step-body>
-											<form name="step4">
+											<form name="step4" >
 												<md-content class="md-padding">
 													<policy-review-directive></policy-review-directive>
 													<div id="paypal-button"></div>
@@ -234,8 +277,8 @@
 
 												<md-step-actions layout="row">
 												<div flex>
-												+                                            <md-button ng-click="vm.moveToPreviousStep()">{{ 'PREVIOUS' | translate }}</md-button>
-												+                                        </div>
+													<md-button class="md-warn" ng-click="vm.moveToPreviousStep()">{{ 'PREVIOUS' | translate }}</md-button>
+													<md-button  >{{ 'FINISH' | translate }}</md-button>
 													</md-step-actions>
 												</form>
 											</md-step-body>
@@ -245,10 +288,10 @@
 							</md-card>
 						</div>
 					</md-content>
+    </div>
+ 
 
-					<button ng-click="changeLanguage('srb')" translate="BUTTON_LANG_SRB"></button>
-					<button ng-click="changeLanguage('en')" translate="BUTTON_LANG_EN"></button>
-
+			
 					<script src="https://www.paypalobjects.com/api/checkout.js" data-version-4></script>
 					<!-- Angular Material requires Angular.js Libraries -->
 					<script src="/bower_components/angular/angular.min.js"></script>
