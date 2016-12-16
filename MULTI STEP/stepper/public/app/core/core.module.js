@@ -51,7 +51,9 @@ var translationsEN = {
   PAYMENT:'Billing options',
   FINISH: 'Finish',
   INSURANCE_WIZARD: 'Insurance wizard',
-  DATE: 'Enter date'
+  DATE: 'Enter date',
+    HOME: 'Home',
+  ABOUT: 'About'
 
 };
  
@@ -93,7 +95,9 @@ var translationsSRB= {
   PAYMENT:'Placanje',
   FINISH: 'Zavrsi',
   INSURANCE_WIZARD: 'Osiguravajuci carobnjak',
-  DATE: 'Unesi datum'
+  DATE: 'Unesi datum',
+  HOME: 'Pocetna',
+  ABOUT: 'O nama'
 
 };
 

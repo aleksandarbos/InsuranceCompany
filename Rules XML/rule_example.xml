@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RuleML xmlns="http://www.ruleml.org/0.9/xsd" xsi:schemaLocation="http://www.ruleml.org/0.9/xsd ruleml-0_9-nafdatalog.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <Query>
+        <oid>
+            <Ind>Who is Bob</Ind>
+        </oid>
+        <Atom>
+            <Rel>Gender</Rel>
+            <Ind>Bob</Ind>
+            <Var>The Gender</Var>
+        </Atom>
+    </Query>
+    <Assert>
+        <Atom>
+            <Rel>Gender</Rel>
+            <Ind>Bob</Ind>
+            <Ind>Male</Ind>
+        </Atom>
+        <Implies>
+            <oid>
+                <Ind>Is Bob A Man</Ind>
+            </oid>
+            <Atom>
+                <Rel>Gender</Rel>
+                <Ind>Bob</Ind>
+                <Var>TheGender</Var>
+            </Atom>
+            <Atom>
+                <Rel>Is Bob A Man</Rel>
+                <Ind uri="nxbre://expression">"Male".Equals({var:TheGender})</Ind>
+            </Atom>
+        </Implies>
+        <Implies>
+            <oid>
+                <Ind>label:How many men are there?;action:count;</Ind>
+            </oid>
+            <Atom>
+                <Rel>Gender</Rel>
+                <Var>FirstName</Var>
+                <Ind>Male</Ind>
+            </Atom>
+            <Atom>
+                <Rel>Number of Men</Rel>
+                <Var>value</Var>
+            </Atom>
+        </Implies>
+        <Implies>
+            <oid>
+                <Ind>label:How many people have the name Bob?;action:count;</Ind>
+            </oid>
+            <Atom>
+                <Rel>Gender</Rel>
+                <Ind>Bob</Ind>
+                <Var>TheGender</Var>
+            </Atom>
+            <Atom>
+                <Rel>Number of Bobs</Rel>
+                <Var>value</Var>
+            </Atom>
+        </Implies>
+    </Assert>
+</RuleML>
+
+

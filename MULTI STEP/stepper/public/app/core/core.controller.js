@@ -14,7 +14,7 @@ $scope.changeLanguage = function (langKey) {
   };
 
 
-
+$scope.currentNavItem = 'page1';
 
 
 		var vm = this;
