@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2014                    */
-/* Created on:     12/1/2016 7:30:28 PM                         */
+/* Created on:     12/22/2016 1:21:11 PM                        */
 /*==============================================================*/
 
 
@@ -921,6 +921,7 @@ go
 /*==============================================================*/
 create table CURRENCY (
    CURRENCY_ID          int                  identity,
+   CURRENCY_NAME        varchar(50)          null,
    constraint PK_CURRENCY primary key (CURRENCY_ID)
 )
 go
@@ -1203,6 +1204,7 @@ create table PRICELIST_ITEM (
    PL_ITEM_ID           int                  identity,
    PRICELIST_ID         int                  not null,
    PACKAGE_ID           int                  null,
+   PL_PRICE             numeric(12,4)        null,
    constraint PK_PRICELIST_ITEM primary key (PL_ITEM_ID)
 )
 go
