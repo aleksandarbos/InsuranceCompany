@@ -1,0 +1,229 @@
+<md-content flex="nogrow" style="width: 70%; margin: 40px auto" name="page1">
+		<div>
+			<md-card>
+				<md-toolbar>
+					<div class="md-toolbar-tools">
+						<h2>
+							<span>{{ 'INSURANCE' | translate }}</span>
+						</h2>
+					</div>
+				</md-toolbar>
+				<md-stepper-card-content class="md-no-padding">
+					<md-steppers md-dynamic-height md-disable-tabs-behavior="true" md-stretch-steppers="always" md-selected="vm.selectedStep" md-busy-text="'Processing...'" md-busy="vm.showBusyText">
+
+						<md-step label="{{'CHOOSE' | translate }}" >
+							<md-step-body>
+								<form name="step1" ng-submit="vm.submitCurrentStep()" ng-click="savePolicy()" novalidate>
+
+									<md-content md-theme="docs-dark"  >
+										<div>
+											<md-input-container class="md-block" flex-gt-sm>
+												<label>{{ 'TYPEOFTRAVEL' | translate }}</label>
+												<md-select ng-model="vm.polisa.vrstaPutovanja" required>
+													<md-option  value="porodicno" >
+														{{ 'FAMILY' | translate }}
+													</md-option>
+													<md-option  value="pojedinacno">
+														{{ 'SELF' | translate }}
+													</md-option>
+												</md-select>
+											</md-input-container>
+
+											<div ng-show="vm.polisa.vrstaPutovanja=='porodicno'">
+												<md-input-container >
+													<label>{{ 'ADULT' | translate }}</label>
+													<input type ="number" ng-model="vm.polisa.brOdraslih" min=1>
+												</md-input-container>
+												<md-input-container>
+													<label>{{ 'KIDS' | translate }}</label>
+													<input type ="number" ng-model="vm.polisa.brDece" min=0 >
+												</md-input-container>
+											</div>
+											<md-input-container class="md-block" flex-gt-sm>
+												<label>{{ 'PURPOSE' | translate }}</label>
+												<md-select ng-model="vm.polisa.tip" required>
+													<md-option  value="turisticki">
+														{{ 'TOURIST' | translate }}
+													</md-option>
+													<md-option  value="sport">
+														{{ 'SPORT' | translate }}
+													</md-option>
+													<md-option  value="poslovno">
+														{{ 'BUSINESS' | translate }}
+													</md-option>
+												</md-select>
+											</md-input-container>
+										</div>
+									</md-content>
+
+									<md-content layout-padding>
+										<div>
+											<div layout-gt-xs="row">
+												<md-input-container class="md-block" flex-gt-sm>
+													<label>{{ 'STATE' | translate }}</label>
+													<md-select ng-model="vm.polisa.drzava" required>
+														<md-option ng-repeat="state in states" value="{{state.abbrev}}">
+															Engleska
+														</md-option>
+														<md-option  value="Srbija">
+															Srbija
+														</md-option>
+														<md-option  value="Bosna">
+															Bosna i Hercegovina
+														</md-option>
+														<md-option  value="Engleska">
+															Engleska
+														</md-option>
+													</md-select>
+												</md-input-container>
+												<md-input-container>
+													<input type="date" ng-model="vm.polisa.datum" placeholder="{{'DATE' |translate}}" required min-date="minDate" max-date="maxDate" />
+												</md-input-container>
+												<md-input-container>
+													<label>{{ 'DAYS' | translate }}</label>
+													<input type ="number" ng-model="vm.polisa.brDana" min=1>
+												</md-input-container>
+											</div>													
+										</div>
+									</md-content>
+									<md-step-actions layout="row">
+										<div flex layout="row" layout-align="end top">
+											<md-button class="md-warn">{{ 'CANCEL' | translate }}</md-button>
+											<md-button type="submit"  class="md-primary md-raised">{{ 'NEXT' | translate }}</md-button>
+										</div>
+									</md-step-actions>
+								</form>
+							</md-step-body>
+						</md-step>
+
+						<md-step label="{{ 'PACKAGE' | translate }}" >
+							<md-step-body>
+								<form name="step2" ng-submit="vm.submitCurrentStep()" ng-cloak novalidate>
+									<md-radio-group ng-model="vm.polisa.paket">
+										<table class="table">
+
+											<tr>
+												<td>{{ 'OFFER' | translate }}</td>
+												<td>{{ 'PRICE' | translate }}</td>
+											</tr>
+											<tr>
+												<td><p>{{ 'PACKAGE1' | translate }}</p></td>
+												<td>
+													<md-radio-button value="1,000.00" /><br/>
+													<p>1000,00 rsd</p>
+												</td>
+											</tr>
+											<tr>
+												<td><p>{{ 'PACKAGE2' | translate }}</p></td>
+												<td>
+													<md-radio-button value="2,000.00" /><br/>
+													<p>2000,00 rsd</p>
+												</td>
+											</tr>
+											<tr>
+												<td><p>{{ 'PACKAGE3' | translate }}</p></td>
+												<td>
+													<md-radio-button value="3,000.00" /><br/>
+													<p>3000,00 rsd</p>
+												</td>
+
+											</tr>
+
+										</table>
+										<md-step-actions layout="row">
+				
+												<div flex layout="row" layout-align="end top">
+													<md-button class="md-warn" ng-click="vm.moveToPreviousStep()">{{ 'PREVIOUS' | translate }}</md-button>
+													<md-button type="submit"  class="md-primary md-raised">{{ 'NEXT' | translate }}</md-button>
+												</div>
+											</md-step-actions>
+										</md-radio-group>
+									</form>
+								</md-step-body>
+							</md-step>
+
+
+
+							<md-step label="{{ 'INFO' | translate }}" >
+								<md-step-body>
+									<form name="step3" ng-submit="vm.submitCurrentStep()" novalidate ng-cloak >
+										<div  layout="column" ng-cloak class="md-inline-form">
+
+												<md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
+													<label>{{ 'USER' | translate }} 1</label>
+													<div>
+														<md-input-container class="md-block" flex-gt-sm>
+															<label>{{ 'NAME' | translate }}</label>
+															<input type="text" ng-model="userMain.name" required/>
+														</md-input-container >
+														<md-input-container class="md-block" flex-gt-sm>
+															<label>{{ 'SURNAME' | translate }}</label>
+															<input type="text" ng-model="userMain.prezime" required/>
+														</md-input-container>
+														<md-input-container >
+															<label>{{ 'DATEBIRTH' | translate }}</label>
+															<input type="date" ng-model="userMain.myDate" placeholder="{{ 'DATEBIRTH' | translate }}" min-date="minDate" max-date="maxDate" required/>
+														</md-input-container>
+														<md-input-container class="md-block" flex-gt-sm>
+															<label>{{ 'PASSPORT' | translate }}</label>
+															<input type="text" ng-model="userMain.pasos" required/>
+														</md-input-container>
+														<md-input-container class="md-block" flex-gt-sm>
+															<label>JMBG</label>
+															<input type="text" ng-model="userMain.jmbg" required/>
+														</md-input-container>
+														<md-input-container class="md-block" flex-gt-sm>
+															<label>{{ 'SEX' | translate }}</label>
+															<md-select ng-model="userMain.pol" required>
+																<md-option value="musko">{{ 'MALE' | translate }}</md-option>
+																<md-option value="zensko">{{ 'FEMALE' | translate }}</md-option>
+																<md-option value="other">{{ 'OTHER' | translate }}</md-option>
+															</md-select>
+														</md-input-container>
+														<md-input-container class="md-block" flex-gt-sm>
+															<label>Email</label>
+															<input type="email" ng-model="userMain.email" required/>
+														</md-input-container>
+													</div>
+													<div ng-repeat="user in vm.listaKorisnika track by $index">
+													<user-info-directive></user-info-directive>
+													</div>
+												</md-content>
+											
+										</div>
+
+									
+
+										<md-step-actions layout="row">										
+											<div flex layout="row" layout-align="end top">
+												<md-button class="md-warn" ng-click="vm.moveToPreviousStep()">{{ 'PREVIOUS' | translate }}</md-button>
+												<md-button type="submit"  class="md-primary md-raised">{{ 'NEXT' | translate }}</md-button>
+											</div>
+										</md-step-actions>
+
+
+										</form>
+									</md-step-body></md-step>
+
+									<md-step label="{{ 'PAYMENT' | translate }}" md-complete="vm.stepData[3].data.completed" ng-disabled="vm.stepProgress < 4">
+										<md-step-body>
+											<form name="step4" >
+												<md-content class="md-padding">
+													<policy-review-directive></policy-review-directive>
+													<div id="paypal-button"></div>
+												</md-content>
+
+
+												<md-step-actions layout="row">
+												<div flex>
+													<md-button class="md-warn" ng-click="vm.moveToPreviousStep()">{{ 'PREVIOUS' | translate }}</md-button>
+													<md-button  >{{ 'FINISH' | translate }}</md-button>
+													</md-step-actions>
+												</form>
+											</md-step-body>
+										</md-step>
+									</md-steppers>
+								</md-stepper-card-content>
+							</md-card>
+						</div>
+					</md-content>

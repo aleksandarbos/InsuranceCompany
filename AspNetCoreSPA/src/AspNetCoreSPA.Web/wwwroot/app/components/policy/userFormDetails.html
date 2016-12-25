@@ -1,0 +1,35 @@
+
+	<label>{{ 'USER' | translate }}{{$index+2}}</label>
+		<div>
+			<md-input-container class="md-block" flex-gt-sm>
+				<label>{{ 'NAME' | translate }}</label>
+				<input type="text" ng-model="user.ime" required/>
+			</md-input-container>
+			<md-input-container class="md-block" flex-gt-sm>
+				<label>{{ 'SURNAME' | translate }}</label>
+				<input type="text" ng-model="user.prezime" required/>
+			</md-input-container>
+			<md-input-container>
+				<label>{{ 'DATEBIRTH' | translate }}</label>
+				<input type="date" ng-model="user.myDate" placeholder="Enter date" min-date="minDate" max-date="maxDate" required/>
+			</md-input-container>
+			<md-input-container class="md-block" flex-gt-sm>
+				<label>{{ 'PASSPORT' | translate }}</label>
+				<input type="text" ng-model="user.pasos" required/>
+			</md-input-container>
+			<md-input-container class="md-block" flex-gt-sm>
+				<label>JMBG</label>
+				<input type="text" ng-model="user.jmbg" required/>
+			</md-input-container>
+			<md-input-container class="md-block" flex-gt-sm>
+				<label>{{ 'SEX' | translate }}</label>
+				<md-select ng-model="userMain.pol" required>
+					<md-option value="musko">{{ 'MALE' | translate }}</md-option>
+					<md-option value="zensko">{{ 'FEMALE' | translate }}</md-option>
+					<md-option  value="other">{{ 'OTHER' | translate }}</md-option>
+				</md-select>
+			</md-input-container>
+		</div>
+
+
+</div>
