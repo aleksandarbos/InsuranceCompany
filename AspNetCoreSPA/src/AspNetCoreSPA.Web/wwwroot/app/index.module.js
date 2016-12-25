@@ -5,6 +5,11 @@
         .module('app',
         [
             'apiMock',
+            'ngAria',
+            'ngMessages',
+            'ngAnimate',
+            'ngMaterial',
+            'md-steppers',
             'angular-loading-bar',
             'ngStorage',
             'ui.router',
