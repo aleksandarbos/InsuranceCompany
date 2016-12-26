@@ -58,3 +58,13 @@ textarea {
         opacity: 0;
     }
 
+.img-responsive {
+    height: auto;
+    width: auto;
+    max-height: 72px;
+    max-width: 250px;
+}
+
+.md-toolbar{
+    background-color: rgb(39,68,116)
+}

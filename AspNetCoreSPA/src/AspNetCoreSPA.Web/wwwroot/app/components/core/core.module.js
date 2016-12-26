@@ -50,22 +50,25 @@ var translationsEN = {
   INSURANCE_WIZARD: 'Insurance wizard',
   DATE: 'Enter date',
     HOME: 'Home',
-  ABOUT: 'About'
+    ABOUT: 'About',
+    LOGO_PHOTO: '/images/logo_full_white.png',
+    ENGLISH: 'ENGLISH',
+    SERBIAN: 'SERBIAN'
 
 };
  
 var translationsSRB= {
   INSURANCE: 'Putno osiguranje',
   TYPEOFTRAVEL: 'Vrsta putovanja',
-  FAMILY: 'Porodicno',
+  FAMILY: 'Porodično',
   SELF: 'Individualno',
   ADULT: 'Broj odraslih',
   KIDS: 'Broj dece',
   PURPOSE:'Svrha putovanja',
-  TOURIST: 'Turisticki',
-  SPORT: 'Aktivan odmor(skijanje..)',
+  TOURIST: 'Turistički',
+  SPORT: 'Aktivan odmor (skijanje..)',
   BUSINESS: 'Poslovni put',
-  STATE: 'Drzava',
+  STATE: 'Država',
   DAYS: 'Broj dana',
   CANCEL: 'ODUSTANI',
   NEXT: 'DALJE',
@@ -82,19 +85,23 @@ var translationsSRB= {
   USER:'Korisnik',
   NAME:'Ime',
   SURNAME:'Prezime',
-  DATEBIRTH:'Datum rodjenja',
-  PASSPORT:'Broj pasosa',
+  DATEBIRTH:'Datum rođenja',
+  PASSPORT:'Broj pasoša',
   SEX:'Pol',
-  MALE:'Musko',
-  FEMALE:'Zensko',
-  OTHER:'Nepoznat',
+  MALE:'Muški',
+  FEMALE:'Ženski',
+  OTHER:'Drugo',
   INFO:'Informacije o korisniku',
-  PAYMENT:'Placanje',
-  FINISH: 'Zavrsi',
-  INSURANCE_WIZARD: 'Osiguravajuci carobnjak',
+  PAYMENT:'Plaćanje',
+  FINISH: 'Završi',
+  INSURANCE_WIZARD: 'Osiguravajući čarobnjak',
   DATE: 'Unesi datum',
-  HOME: 'Pocetna',
-  ABOUT: 'O nama'
+  HOME: 'Početna',
+  ABOUT: 'O nama',
+  LOGO_PHOTO: '/images/logo_full_white_srb.png',
+  ENGLISH: 'ENGLESKI',
+  SERBIAN: 'SRPSKI'
+
 
 };
 
