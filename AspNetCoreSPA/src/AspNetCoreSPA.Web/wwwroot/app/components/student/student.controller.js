@@ -20,6 +20,7 @@
         activate();
 
         function createStudent() {
+            alert("usao")
             $http.post("api/student/createStudent", JSON.stringify(vm.createStudentInput))
                 .then(function (response) {
                     // Re-load data
