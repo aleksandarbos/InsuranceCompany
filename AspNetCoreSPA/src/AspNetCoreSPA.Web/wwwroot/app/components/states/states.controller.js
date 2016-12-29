@@ -22,11 +22,11 @@
             vm.createStates = function createStates() {
           // vm.status= StatesService.post(vm.createStatesInput);
          //  vm.states= StatesService.getAll().data;
-         vm.createStatesInput.id=vm.states.length+1;
+         //vm.createStatesInput.id=vm.states.length+1;
          
-         vm.states.push(vm.createStatesInput);
+        // vm.states.push(vm.createStatesInput);
 
-         vm.createStatesInput={};
+         //vm.createStatesInput={};
          $('#formCreateStates').modal('toggle');
 
      };
