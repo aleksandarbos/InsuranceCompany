@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2014                    */
-/* Created on:     12/22/2016 1:21:11 PM                        */
+/* Created on:     1/6/2017 5:04:17 PM                          */
 /*==============================================================*/
 
 
@@ -216,6 +216,13 @@ go
 
 if exists (select 1
    from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('STATE_OF_ORIGIN') and o.name = 'FK_STATE_OF_RELATIONS_CONTINEN')
+alter table STATE_OF_ORIGIN
+   drop constraint FK_STATE_OF_RELATIONS_CONTINEN
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
    where r.fkeyid = object_id('SUBJECT_OF_INSURANCE') and o.name = 'FK_SUBJECT__RELATIONS_TYPE_OF_')
 alter table SUBJECT_OF_INSURANCE
    drop constraint FK_SUBJECT__RELATIONS_TYPE_OF_
@@ -368,6 +375,13 @@ if exists (select 1
            where  id = object_id('COEFFICIENT')
             and   type = 'U')
    drop table COEFFICIENT
+go
+
+if exists (select 1
+            from  sysobjects
+           where  id = object_id('CONTINENT')
+            and   type = 'U')
+   drop table CONTINENT
 go
 
 if exists (select 1
@@ -665,6 +679,15 @@ if exists (select 1
 go
 
 if exists (select 1
+            from  sysindexes
+           where  id    = object_id('STATE_OF_ORIGIN')
+            and   name  = 'RELATIONSHIP_42_FK'
+            and   indid > 0
+            and   indid < 255)
+   drop index STATE_OF_ORIGIN.RELATIONSHIP_42_FK
+go
+
+if exists (select 1
             from  sysobjects
            where  id = object_id('STATE_OF_ORIGIN')
             and   type = 'U')
@@ -881,6 +904,8 @@ create table CLIENT (
    CLIENT_ID            int                  identity,
    CT_ID                int                  null,
    POLICY_ID            int                  null,
+   PASSPORT_NUMBER      numeric(10)          null,
+   SEX                  varchar(50)          null,
    constraint PK_CLIENT primary key (CLIENT_ID)
 )
 go
@@ -913,6 +938,16 @@ create table COEFFICIENT (
    COEFF_VALUE          numeric(10,10)       null,
    COEFF_DATE           datetime             null,
    constraint PK_COEFFICIENT primary key (COEFF_ID)
+)
+go
+
+/*==============================================================*/
+/* Table: CONTINENT                                             */
+/*==============================================================*/
+create table CONTINENT (
+   CONTINENT_ID         int                  not null,
+   CONTINENT_NAME       varchar(50)          not null,
+   constraint PK_CONTINENT primary key (CONTINENT_ID)
 )
 go
 
@@ -1308,9 +1343,20 @@ go
 /*==============================================================*/
 create table STATE_OF_ORIGIN (
    ST_ID                int                  identity,
+   CONTINENT_ID         int                  not null,
    ST_NAME              varchar(30)          not null,
    constraint PK_STATE_OF_ORIGIN primary key (ST_ID)
 )
+go
+
+/*==============================================================*/
+/* Index: RELATIONSHIP_42_FK                                    */
+/*==============================================================*/
+
+
+
+
+create nonclustered index RELATIONSHIP_42_FK on STATE_OF_ORIGIN (CONTINENT_ID ASC)
 go
 
 /*==============================================================*/
@@ -1565,6 +1611,11 @@ go
 alter table RISK_TYPE_OF_INSURANCE
    add constraint FK_RISK_TYP_RELATIONS_TYPE_OF_ foreign key (IT_ID)
       references TYPE_OF_INSURANCE (IT_ID)
+go
+
+alter table STATE_OF_ORIGIN
+   add constraint FK_STATE_OF_RELATIONS_CONTINEN foreign key (CONTINENT_ID)
+      references CONTINENT (CONTINENT_ID)
 go
 
 alter table SUBJECT_OF_INSURANCE
