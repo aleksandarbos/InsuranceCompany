@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2014                    */
-/* Created on:     1/6/2017 5:04:17 PM                          */
+/* Created on:     1/7/2017 4:59:55 PM                          */
 /*==============================================================*/
 
 
@@ -62,6 +62,13 @@ go
 
 if exists (select 1
    from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('DESTINATION') and o.name = 'FK_DESTINAT_RELATIONS_STATE_OF')
+alter table DESTINATION
+   drop constraint FK_DESTINAT_RELATIONS_STATE_OF
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
    where r.fkeyid = object_id('EMPLOYEE') and o.name = 'FK_EMPLOYEE_RELATIONS_INSURANC')
 alter table EMPLOYEE
    drop constraint FK_EMPLOYEE_RELATIONS_INSURANC
@@ -90,9 +97,16 @@ go
 
 if exists (select 1
    from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('ITEMS_OF_PACKAGE') and o.name = 'FK_ITEMS_OF_RELATIONS_PACKAGE')
+   where r.fkeyid = object_id('INSURANCE_PACKAGE') and o.name = 'FK_INSURANC_RELATIONS_PRICELIS')
+alter table INSURANCE_PACKAGE
+   drop constraint FK_INSURANC_RELATIONS_PRICELIS
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('ITEMS_OF_PACKAGE') and o.name = 'FK_ITEMS_OF_RELATIONS_INSURANC')
 alter table ITEMS_OF_PACKAGE
-   drop constraint FK_ITEMS_OF_RELATIONS_PACKAGE
+   drop constraint FK_ITEMS_OF_RELATIONS_INSURANC
 go
 
 if exists (select 1
@@ -153,9 +167,9 @@ go
 
 if exists (select 1
    from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('POLICY') and o.name = 'FK_POLICY_RELATIONS_PACKAGE')
+   where r.fkeyid = object_id('POLICY') and o.name = 'FK_POLICY_RELATIONS_INSURANC')
 alter table POLICY
-   drop constraint FK_POLICY_RELATIONS_PACKAGE
+   drop constraint FK_POLICY_RELATIONS_INSURANC
 go
 
 if exists (select 1
@@ -170,13 +184,6 @@ if exists (select 1
    where r.fkeyid = object_id('PRICELIST_ITEM') and o.name = 'FK_PRICELIS_RELATIONS_PRICELIS')
 alter table PRICELIST_ITEM
    drop constraint FK_PRICELIS_RELATIONS_PRICELIS
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('PRICELIST_ITEM') and o.name = 'FK_PRICELIS_RELATIONS_PACKAGE')
-alter table PRICELIST_ITEM
-   drop constraint FK_PRICELIS_RELATIONS_PACKAGE
 go
 
 if exists (select 1
@@ -251,9 +258,9 @@ go
 
 if exists (select 1
    from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('TYPE_OF_INSURANCE') and o.name = 'FK_TYPE_OF__RELATIONS_PACKAGE')
+   where r.fkeyid = object_id('TYPE_OF_INSURANCE') and o.name = 'FK_TYPE_OF__RELATIONS_INSURANC')
 alter table TYPE_OF_INSURANCE
-   drop constraint FK_TYPE_OF__RELATIONS_PACKAGE
+   drop constraint FK_TYPE_OF__RELATIONS_INSURANC
 go
 
 if exists (select 1
@@ -392,6 +399,15 @@ if exists (select 1
 go
 
 if exists (select 1
+            from  sysindexes
+           where  id    = object_id('DESTINATION')
+            and   name  = 'RELATIONSHIP_43_FK'
+            and   indid > 0
+            and   indid < 255)
+   drop index DESTINATION.RELATIONSHIP_43_FK
+go
+
+if exists (select 1
             from  sysobjects
            where  id = object_id('DESTINATION')
             and   type = 'U')
@@ -463,6 +479,13 @@ if exists (select 1
 go
 
 if exists (select 1
+            from  sysobjects
+           where  id = object_id('INSURANCE_PACKAGE')
+            and   type = 'U')
+   drop table INSURANCE_PACKAGE
+go
+
+if exists (select 1
             from  sysindexes
            where  id    = object_id('ITEMS_OF_PACKAGE')
             and   name  = 'RELATIONSHIP_32_FK'
@@ -476,13 +499,6 @@ if exists (select 1
            where  id = object_id('ITEMS_OF_PACKAGE')
             and   type = 'U')
    drop table ITEMS_OF_PACKAGE
-go
-
-if exists (select 1
-            from  sysobjects
-           where  id = object_id('PACKAGE')
-            and   type = 'U')
-   drop table PACKAGE
 go
 
 if exists (select 1
@@ -594,15 +610,6 @@ if exists (select 1
            where  id = object_id('PRICELIST')
             and   type = 'U')
    drop table PRICELIST
-go
-
-if exists (select 1
-            from  sysindexes
-           where  id    = object_id('PRICELIST_ITEM')
-            and   name  = 'RELATIONSHIP_36_FK'
-            and   indid > 0
-            and   indid < 255)
-   drop index PRICELIST_ITEM.RELATIONSHIP_36_FK
 go
 
 if exists (select 1
@@ -966,10 +973,21 @@ go
 /*==============================================================*/
 create table DESTINATION (
    DST_ID               int                  identity,
+   ST_ID                int                  null,
    DST_NAME             varchar(30)          not null,
    DST_DAYS             int                  not null,
    constraint PK_DESTINATION primary key (DST_ID)
 )
+go
+
+/*==============================================================*/
+/* Index: RELATIONSHIP_43_FK                                    */
+/*==============================================================*/
+
+
+
+
+create nonclustered index RELATIONSHIP_43_FK on DESTINATION (ST_ID ASC)
 go
 
 /*==============================================================*/
@@ -1061,6 +1079,17 @@ create nonclustered index IS_FROM_FK on INSURANCE_COMPANY (CITY_ID ASC)
 go
 
 /*==============================================================*/
+/* Table: INSURANCE_PACKAGE                                     */
+/*==============================================================*/
+create table INSURANCE_PACKAGE (
+   PACKAGE_ID           int                  identity,
+   PL_ITEM_ID           int                  null,
+   TOR_NAME             varchar(20)          null,
+   constraint PK_INSURANCE_PACKAGE primary key (PACKAGE_ID)
+)
+go
+
+/*==============================================================*/
 /* Table: ITEMS_OF_PACKAGE                                      */
 /*==============================================================*/
 create table ITEMS_OF_PACKAGE (
@@ -1078,16 +1107,6 @@ go
 
 
 create nonclustered index RELATIONSHIP_32_FK on ITEMS_OF_PACKAGE (PACKAGE_ID ASC)
-go
-
-/*==============================================================*/
-/* Table: PACKAGE                                               */
-/*==============================================================*/
-create table PACKAGE (
-   PACKAGE_ID           int                  identity,
-   TOR_NAME             varchar(20)          null,
-   constraint PK_PACKAGE primary key (PACKAGE_ID)
-)
 go
 
 /*==============================================================*/
@@ -1238,7 +1257,6 @@ go
 create table PRICELIST_ITEM (
    PL_ITEM_ID           int                  identity,
    PRICELIST_ID         int                  not null,
-   PACKAGE_ID           int                  null,
    PL_PRICE             numeric(12,4)        null,
    constraint PK_PRICELIST_ITEM primary key (PL_ITEM_ID)
 )
@@ -1252,16 +1270,6 @@ go
 
 
 create nonclustered index RELATIONSHIP_21_FK on PRICELIST_ITEM (PRICELIST_ID ASC)
-go
-
-/*==============================================================*/
-/* Index: RELATIONSHIP_36_FK                                    */
-/*==============================================================*/
-
-
-
-
-create nonclustered index RELATIONSHIP_36_FK on PRICELIST_ITEM (PACKAGE_ID ASC)
 go
 
 /*==============================================================*/
@@ -1503,6 +1511,11 @@ alter table CLIENT
       references POLICY (POLICY_ID)
 go
 
+alter table DESTINATION
+   add constraint FK_DESTINAT_RELATIONS_STATE_OF foreign key (ST_ID)
+      references STATE_OF_ORIGIN (ST_ID)
+go
+
 alter table EMPLOYEE
    add constraint FK_EMPLOYEE_RELATIONS_INSURANC foreign key (CP_ID)
       references INSURANCE_COMPANY (CP_ID)
@@ -1523,9 +1536,14 @@ alter table INSURANCE_COMPANY
       references CITY (CITY_ID)
 go
 
+alter table INSURANCE_PACKAGE
+   add constraint FK_INSURANC_RELATIONS_PRICELIS foreign key (PL_ITEM_ID)
+      references PRICELIST_ITEM (PL_ITEM_ID)
+go
+
 alter table ITEMS_OF_PACKAGE
-   add constraint FK_ITEMS_OF_RELATIONS_PACKAGE foreign key (PACKAGE_ID)
-      references PACKAGE (PACKAGE_ID)
+   add constraint FK_ITEMS_OF_RELATIONS_INSURANC foreign key (PACKAGE_ID)
+      references INSURANCE_PACKAGE (PACKAGE_ID)
 go
 
 alter table POLICY
@@ -1569,8 +1587,8 @@ alter table POLICY
 go
 
 alter table POLICY
-   add constraint FK_POLICY_RELATIONS_PACKAGE foreign key (PACKAGE_ID)
-      references PACKAGE (PACKAGE_ID)
+   add constraint FK_POLICY_RELATIONS_INSURANC foreign key (PACKAGE_ID)
+      references INSURANCE_PACKAGE (PACKAGE_ID)
 go
 
 alter table PRICELIST
@@ -1581,11 +1599,6 @@ go
 alter table PRICELIST_ITEM
    add constraint FK_PRICELIS_RELATIONS_PRICELIS foreign key (PRICELIST_ID)
       references PRICELIST (PRICELIST_ID)
-go
-
-alter table PRICELIST_ITEM
-   add constraint FK_PRICELIS_RELATIONS_PACKAGE foreign key (PACKAGE_ID)
-      references PACKAGE (PACKAGE_ID)
 go
 
 alter table RATE_OF_PDV
@@ -1639,7 +1652,7 @@ alter table SUBJECT_OF_INSURANCE
 go
 
 alter table TYPE_OF_INSURANCE
-   add constraint FK_TYPE_OF__RELATIONS_PACKAGE foreign key (PACKAGE_ID)
-      references PACKAGE (PACKAGE_ID)
+   add constraint FK_TYPE_OF__RELATIONS_INSURANC foreign key (PACKAGE_ID)
+      references INSURANCE_PACKAGE (PACKAGE_ID)
 go
 
