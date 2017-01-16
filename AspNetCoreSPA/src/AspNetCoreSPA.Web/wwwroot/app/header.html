@@ -1,0 +1,36 @@
+﻿<div ng-controller="MainCtrl" class="navbar navbar-inverse navbar-fixed-top" style="background-color:rgb(39,68,116);">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <img class="img-responsive" style="width:40px; padding-top:5px; vertical-align:middle; " src="/images/rsz_logo_crop.png" />
+        </div>
+        <div class="navbar-collapse collapse" style="color:white">
+            <ul class="nav navbar-nav">
+                <li><a ui-sref="main">{{'HOME' | translate}}</a></li>
+                <li><a ui-sref="student">Student</a></li>
+                <li><a ui-sref="states">States</a></li>
+                <li><a ui-sref="packages">Packages</a></li>
+                <li><a ui-sref="insuranceWizard">{{'INSURANCE_WIZARD' | translate}}</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <md-button aria-label="English" ng-click="changeLanguage('en')">
+                        <md-icon md-svg-icon="/images/us.svg"></md-icon>
+                        {{'ENGLISH' | translate}}
+                    </md-button>
+                </li>
+                <li>
+                    <md-button aria-label="Serbian" ng-click="changeLanguage('srb')">
+                        <md-icon md-svg-icon="/images/rs.svg"></md-icon>
+                        {{'SERBIAN' | translate}}
+                    </md-button>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</div>

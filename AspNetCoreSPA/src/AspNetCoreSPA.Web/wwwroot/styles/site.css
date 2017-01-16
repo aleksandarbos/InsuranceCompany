@@ -6,8 +6,13 @@
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+    overflow: hidden;
+    width: 100vw;
+    height: calc(100vh - 90px);
+    padding-top: 50px;
+   
 }
 
 /* Set widths on the form inputs since otherwise they're 100% wide */
@@ -67,4 +72,27 @@ textarea {
 
 .md-toolbar{
     background-color: rgb(39,68,116)
+}
+
+md-input-container{
+    padding-left: 50px;
+    padding-right: 5px;
+    max-width: 400px;
+    width: 250px;
+  
+}
+
+
+.label-without-icon{
+    padding-left: 50px !important;
+    padding-right: 5px !important;
+}
+
+
+.birthdate-picker .md-datepicker-button {
+    display: none !important;   
+}
+
+.birthdate-picker .md-datepicker-input-container {
+    margin-left: 0 !important;    
 }

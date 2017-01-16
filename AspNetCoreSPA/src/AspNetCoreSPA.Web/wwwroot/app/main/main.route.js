@@ -28,5 +28,16 @@
                     }
                 }
             });
+
+        $stateProvider
+            .state('insuranceWizard',
+            {
+                url: '/insuranceWizard',
+                views: {
+                    'main': {
+                        templateUrl: 'app/components/stepper/stepper.html'
+                    }
+                }
+            });
     }
 })();

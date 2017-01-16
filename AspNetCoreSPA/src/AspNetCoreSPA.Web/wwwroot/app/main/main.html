@@ -1,53 +1,19 @@
-﻿<div ng-controller="MainCtrl" class="navbar navbar-inverse navbar-fixed-top"   style="background-color:rgb(39,68,116);">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-           <img class="img-responsive" style="width:40px; padding-top:5px; vertical-align:middle; " src="/images/rsz_logo_crop.png" />
+﻿<div class="container body-content" style="background: url('/images/bckg.png');
+           background-size: 100%;
+           background-repeat: no-repeat;
+           " ng-controller="MainCtrl">
+    <div class="jumbotron vertical-center" style="background-color: rgba(39, 68, 116, 0.8); margin-left:20vw; margin-right:20vw">
+        <div style="clear:both; text-align:center">
+            <img src="{{'LOGO_PHOTO' | translate}}" style="width:90%; height:auto" />
         </div>
-        <div class="navbar-collapse collapse" style="color:white">
-            <ul class="nav navbar-nav">
-                <li><a ui-sref="main">{{'HOME' | translate}}</a></li>
-                <li><a ui-sref="student">Student</a></li>
-                <li><a ui-sref="states">States</a></li>
-               <li><a ui-sref="packages">Packages</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <md-button  aria-label="English" ng-click="changeLanguage('en')">
-                        <md-icon md-svg-icon="/images/us.svg"></md-icon>
-                        {{'ENGLISH' | translate}}
-                    </md-button>
-                </li>
-                <li>
-                    <md-button  aria-label="Serbian" ng-click="changeLanguage('srb')">
-                        <md-icon md-svg-icon="/images/rs.svg"></md-icon>
-                        {{'SERBIAN' | translate}}
-                    </md-button>
-                </li>
-            </ul>
-         
-        </div>
-    </div>
-</div>
-<div class="container body-content" >
-    <div class="jumbotron container-fluid" style="background-color: rgba(39, 68, 116, 0.7)">
-        <div style="clear:both">
-            <img src="{{'LOGO_PHOTO' | translate}}" style="width:100%" />
-        </div>
-       
-        
+
     </div>
 
-    <div ui-view="content"></div>
+    <div style="text-align:center; width:100%; height:10%" ng-controller="MainCtrl">
+        <md-button class="md-primary md-raised" href="#!/insuranceWizard" style="width:30%;height:100%">{{'START' | translate}}</md-button>
+    </div>
+    
+    </div>
+    <!--  <div ui-view="content"></div>
 
-    <div ui-view="stepper"></div>
-
-    <hr />
-    <footer>
-        <p>&copy; 2016 - IVVA Team</p>
-    </footer>
-</div>
+      <div ui-view="stepper"></div> -->

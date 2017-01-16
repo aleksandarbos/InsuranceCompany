@@ -3,25 +3,48 @@
 
 	angular
 		.module('coreModule')
-		.controller('MainCtrl', MainCtrl);
-
-	MainCtrl.$inject = ['$window','$scope', '$q', '$timeout', '$state','$translate'];
+		.controller('MainCtrl', MainCtrl)
+        .config(function($mdDateLocaleProvider, $compileProvider){
+            $mdDateLocaleProvider.firstDayOfWeek = 1;
+            $compileProvider.preAssignBindingsEnabled(true);
+        });
+	MainCtrl.$inject = ['$window', '$scope', '$q', '$timeout', '$state', '$translate'];
+    
 	function MainCtrl($window,$scope, $q, $timeout, $state,$translate) {
 
-		
-$scope.changeLanguage = function (langKey) {
-    $translate.use(langKey);
-  };
+	    $scope.myDate = new Date();
+	    $scope.minDate = new Date(
+            $scope.myDate.getFullYear(),
+            $scope.myDate.getMonth(),
+            $scope.myDate.getDate() + 1);
 
+	    $scope.maxDateBirth = new Date(
+                $scope.myDate.getFullYear() - 18,
+                $scope.myDate.getMonth(),
+                $scope.myDate.getDate()
+            );
+        
 
-$scope.currentNavItem = 'page1';
+            $scope.changeLanguage = function (langKey) {
+                $translate.use(langKey);
+             };
 
 
 		var vm = this;
 		$scope.choices = [];
 
+		vm.stepNo = 0;
+		vm.stepNoNext = function () {
+		    console.log('stepNoNext function');
+		    vm.stepNo = vm.stepNo + 1;
+            console.log('step'+vm.stepNo)
+		    return 'step' + vm.stepNo;
+		}
+
 		vm.states = ['destination', 'package', 'userinfo', 'payment'];
 		vm.stateIdx = 0;
+		vm.currentUser;
+
 
 		$scope.addNewChoice = function () {
 			var newItemNo = $scope.choices.length + 1;
@@ -33,14 +56,41 @@ $scope.currentNavItem = 'page1';
 			$scope.choices.splice(lastItem);
 		};
 
+
+
 		  $scope.userCount = function(){
 			  var brKorisnika = vm.polisa.brOdraslih + vm.polisa.brDece;
 			  vm.listaKorisnika = [];
 			  
 			  for(var i=1; i<brKorisnika; i++){
-				  vm.listaKorisnika.push({ime: '', prezime: '', myDate: '', pasos: '', jmbg: '', pol: '', email: ''});
+				  vm.listaKorisnika.push({ime: 'Jane ', prezime: 'Doe'+i, myDate: '', pasos: '', jmbg: '', pol: '', email: ''});
 			  }
+			  vm.currentUser = vm.listaKorisnika[0];
+			  vm.currentUserIndex = 0;
+			
+              
 		  }
+
+		  $scope.saveUser = function () {
+		      vm.listaKorisnika[vm.currentUserIndex] = vm.currentUser;
+		  }
+
+	     $scope.nextUser = function () {
+	         $scope.saveUser();
+	         vm.currentUserIndex++;
+		     vm.currentUser = vm.listaKorisnika[vm.currentUserIndex];
+            
+	     }
+
+	     $scope.editUser = function (index) {
+	         console.log(index);
+	         vm.currentUserIndex = index;
+	         vm.currentUser = vm.listaKorisnika[index];
+	     }
+
+	
+
+           
 		  
 			$scope.savePolicy = function(){
 				$window.localStorage.polisy = vm.polisa;
@@ -49,13 +99,17 @@ $scope.currentNavItem = 'page1';
 			
 			vm.selectedStep = 0;
 			vm.stepProgress = 1;
-			vm.maxStep = 4;
+			vm.maxStep = 7;
 			vm.showBusyText = false;
 			vm.stepData = [
 				{ step: 1, completed: false, optional: false, data: {} },
 				{ step: 2, completed: false, optional: false, data: {} },
 				{ step: 3, completed: false, optional: false, data: {} },
 				{ step: 4, completed: false, optional: false, data: {} },
+                { step: 5, completed: false, optional: false, data: {} },
+                { step: 6, completed: false, optional: false, data: {} },
+                { step: 7, completed: false, optional: false, data: {} }
+              
 
 			];
 
