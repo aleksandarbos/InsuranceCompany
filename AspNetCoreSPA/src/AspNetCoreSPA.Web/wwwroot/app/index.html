@@ -1,4 +1,4 @@
-<html>
+﻿<html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -23,7 +23,8 @@
     <div ng-include src="'app/header.html'"></div>
     <div ui-view="main"></div>
     <div ng-include src="'app/footer.html'"></div>
-
+        
+        <script src="https://www.paypalobjects.com/api/checkout.js" data-version-4></script>
         <!-- bower:js -->
         <script src="/libraries/jquery/dist/jquery.js"></script>
         <script src="/libraries/bootstrap/dist/js/bootstrap.js"></script>
@@ -38,20 +39,23 @@
         <script src="/libraries/md-steppers/dist/md-steppers.js"></script>
         <script src="/libraries/angular-translate/angular-translate.js"></script>
         <script src="/libraries/ngstorage/ngStorage.js"></script>
+        <script src="/libraries/angular-resource/angular-resource.js"></script>
         <!-- endbower -->
         <!-- inject:js -->
         <script src="/scripts/site.common.js"></script>
         <script src="/scripts/site.ng.js"></script>
         <script src="/app/index.module.js"></script>
-        <script src="/app/components/policy/policy.module.js"></script>
         <script src="/app/components/core/core.module.js"></script>
+        <script src="/app/components/drools/drools.module.js"></script>
+        <script src="/app/components/policy/policy.module.js"></script>
         <script src="/app/services/auth.service.js"></script>
+        <script src="/app/components/drools/drools.service.js"></script>
         <script src="/app/components/states/states.service.js"></script>
         <script src="/app/components/typeofpackage/typeofpackage.service.js"></script>
         <script src="/app/login/login.controller.js"></script>
         <script src="/app/main/main.controller.js"></script>
-        <script src="/app/components/home/home.controller.js"></script>
         <script src="/app/components/core/core.controller.js"></script>
+        <script src="/app/components/home/home.controller.js"></script>
         <script src="/app/components/states/states.controller.js"></script>
         <script src="/app/components/typeofpackage/typeofpackage.controller.js"></script>
         <script src="/app/components/student/student.controller.js"></script>
@@ -64,7 +68,7 @@
         <!-- endinject -->
 
 
-        <script src="https://www.paypalobjects.com/api/checkout.js" data-version-4></script>
+       
 
 </body>
 </html>

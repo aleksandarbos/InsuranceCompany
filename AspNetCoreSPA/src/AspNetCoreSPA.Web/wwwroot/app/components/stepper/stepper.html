@@ -17,7 +17,7 @@
 
                         <md-step label="{{'CHOOSE' | translate }}">
                             <md-step-body>
-                                <form name="vm.stepNoNext()" ng-submit="vm.submitCurrentStep()" ng-click="savePolicy()" novalidate>
+                                <form name="vm.stepNoNext()" ng-submit="vm.submitCurrentStep(1,false)" ng-click="savePolicy()" novalidate>
 
                                     <md-content md-theme="docs-dark">
                                         <div>
@@ -130,7 +130,7 @@
                                                 <md-card-title>
                                                     <md-card-title-text>
                                                         <span class="md-headline">Standard</span>
-                                                        <span class="md-subhead"><strong>Base price: </strong>1000.00 RSD</span>
+                                                        <span class="md-subhead"><strong>Base price: </strong>{{vm.paket1}} RSD</span>
                                                     </md-card-title-text>
                                                 </md-card-title>
                                                 <md-card-content>
@@ -138,7 +138,7 @@
                                                 </md-card-content>
                                                 <md-card-actions layout="row" layout-align="end center">
 
-                                                    <md-radio-button value="1,000.00">Select this package for 1000.00 RSD</md-radio-button>
+                                                    <md-radio-button value="{{vm.paket1}}">Select this package for {{vm.paket1}} RSD</md-radio-button>
 
 
                                                 </md-card-actions>
@@ -147,7 +147,7 @@
                                                 <md-card-title>
                                                     <md-card-title-text>
                                                         <span class="md-headline">Comfort</span>
-                                                        <span class="md-subhead"><strong>Base price: </strong>2000.00 RSD</span>
+                                                        <span class="md-subhead"><strong>Base price: </strong>{{vm.paket2}} RSD</span>
                                                     </md-card-title-text>
                                                 </md-card-title>
                                                 <md-card-content>
@@ -155,7 +155,7 @@
                                                 </md-card-content>
                                                 <md-card-actions layout="row" layout-align="end center">
 
-                                                    <md-radio-button value="2,000.00">Select this package for 2000.00 RSD</md-radio-button>
+                                                    <md-radio-button value="{{vm.paket2}}">Select this package for {{vm.paket2}} RSD</md-radio-button>
 
 
                                                 </md-card-actions>
@@ -164,7 +164,7 @@
                                                 <md-card-title>
                                                     <md-card-title-text>
                                                         <span class="md-headline">Exclusive</span>
-                                                        <span class="md-subhead"><strong>Base price: </strong>3000.00 RSD</span>
+                                                        <span class="md-subhead"><strong>Base price: </strong>{{vm.paket3}} RSD</span>
                                                     </md-card-title-text>
                                                 </md-card-title>
                                                 <md-card-content>
@@ -172,7 +172,7 @@
                                                 </md-card-content>
                                                 <md-card-actions layout="row" layout-align="end center">
 
-                                                    <md-radio-button value="3,000.00">Select this package for 3000.00 RSD </md-radio-button>
+                                                    <md-radio-button value="{{vm.paket3}}">Select this package for {{vm.paket3}} RSD </md-radio-button>
 
 
                                                 </md-card-actions>

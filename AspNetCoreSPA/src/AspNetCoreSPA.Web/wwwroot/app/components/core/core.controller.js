@@ -8,9 +8,9 @@
             $mdDateLocaleProvider.firstDayOfWeek = 1;
             $compileProvider.preAssignBindingsEnabled(true);
         });
-	MainCtrl.$inject = ['$window', '$scope', '$q', '$timeout', '$state', '$translate'];
+	MainCtrl.$inject = ['$window', '$scope', '$q', '$timeout', '$state', '$translate', 'DroolsInfo'];
     
-	function MainCtrl($window,$scope, $q, $timeout, $state,$translate) {
+	function MainCtrl($window, $scope, $q, $timeout, $state, $translate, DroolsInfo) {
 
 	    $scope.myDate = new Date();
 	    $scope.minDate = new Date(
@@ -139,6 +139,9 @@
 				vm.showBusyText = true;
 				$scope.userCount();
 				console.log('On before submit');
+                //Pozivanje drools-a
+				if (stepData == 1)
+				    DroolsInfo.save({}, onSaveSuccess);
 				//if (!stepData.completed && !isSkip) {
 					if(!isSkip){
 					//simulate $http
@@ -156,6 +159,16 @@
 				}
 			}
 		
+			function onSaveSuccess(result) {
+			    vm.paket1 = {};
+			    vm.paket2 = {};
+			    vm.paket3 = {};
+			    vm.paket1 = result.cenaPaketa1
+			    vm.paket2 = result.cenaPaketa2
+			    vm.paket3 = result.cenaPaketa3
+			}
+
+
 			 paypal.Button.render({
 
 					env: 'sandbox', // Specify 'sandbox' for the test environment //'production'

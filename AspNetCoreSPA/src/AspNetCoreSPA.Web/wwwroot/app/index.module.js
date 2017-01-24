@@ -15,7 +15,8 @@
             'ui.router',
             'site',
             'coreModule',
-            'policyModule'
+            'policyModule',
+            'droolsModule'
         ]);
 
     angular
