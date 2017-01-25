@@ -59,7 +59,7 @@
 
 
 		  $scope.userCount = function(){
-			  var brKorisnika = vm.polisa.brOdraslih + vm.polisa.brDece;
+			  var brKorisnika = vm.polisy.noAdults + vm.polisy.noChildren;
 			  vm.listaKorisnika = [];
 			  
 			  for(var i=1; i<brKorisnika; i++){
@@ -93,7 +93,7 @@
            
 		  
 			$scope.savePolicy = function(){
-				$window.localStorage.polisy = vm.polisa;
+				$window.localStorage.polisy = vm.polisy;
 	
 			}
 			
@@ -141,7 +141,7 @@
 				console.log('On before submit');
                 //Pozivanje drools-a
 				if (stepData == 1)
-				    DroolsInfo.save({}, onSaveSuccess);
+				    DroolsInfo.save(vm.polisy, onSaveSuccess);
 				//if (!stepData.completed && !isSkip) {
 					if(!isSkip){
 					//simulate $http
@@ -152,7 +152,7 @@
 						//move to next step when success
 					   // stepData.completed = true;
 						vm.enableNextStep();
-					}, 1000)
+					}, 2000)
 				} else {
 					vm.showBusyText = false;
 					vm.enableNextStep();
@@ -160,12 +160,12 @@
 			}
 		
 			function onSaveSuccess(result) {
-			    vm.paket1 = {};
-			    vm.paket2 = {};
-			    vm.paket3 = {};
-			    vm.paket1 = result.cenaPaketa1
-			    vm.paket2 = result.cenaPaketa2
-			    vm.paket3 = result.cenaPaketa3
+			    vm.package1 = {};
+			    vm.package2 = {};
+			    vm.package3 = {};
+			    vm.package1 = result.packagePrice1
+			    vm.package2 = result.packagePrice2
+			    vm.package3 = result.packagePrice3
 			}
 
 
@@ -196,7 +196,7 @@
 						return paypal.rest.payment.create(env, client, {
 							transactions: [
 								{
-									amount: { total: vm.polisa.paket, currency: 'USD' }
+								    amount: { total: vm.polisy.polisyPackage, currency: 'USD' }
 								}
 							]
 						});
@@ -226,7 +226,7 @@
 						console.log(data);
 					}
 
-				}, '#paypal-button');
+				}, '.paypal-button');
 			
 		}
 	

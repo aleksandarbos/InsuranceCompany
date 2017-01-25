@@ -24,7 +24,7 @@
                                             <div layout="row">
                                                 <md-input-container class="md-block" style=" width:250px">
                                                     <label class="label-without-icon"">{{ 'TYPEOFTRAVEL' | translate }}</label>
-                                                    <md-select ng-model="vm.polisa.vrstaPutovanja" required>
+                                                    <md-select ng-model="vm.polisy.travelType" required>
                                                         <md-option value="porodicno">
                                                             {{ 'FAMILY' | translate }}
                                                         </md-option>
@@ -34,14 +34,14 @@
                                                     </md-select>
                                                 </md-input-container>
 
-                                                <div ng-show="vm.polisa.vrstaPutovanja=='porodicno'"  layout="row">
+                                                <div ng-show="vm.polisy.travelType=='porodicno'"  layout="row">
                                                     <md-input-container class="md-block">
                                                         <md-icon md-svg-src="images/adults.svg"></md-icon>
-                                                        <input type="number" ng-model="vm.polisa.brOdraslih" min=1 placeholder="{{ 'ADULT' | translate }}">
+                                                        <input type="number" ng-model="vm.polisy.noAdults" min=1 placeholder="{{ 'ADULT' | translate }}">
                                                     </md-input-container>
                                                     <md-input-container class="md-block">
                                                         <md-icon md-svg-src="images/girl.svg"></md-icon>
-                                                        <input type="number" ng-model="vm.polisa.brDece" min=0 placeholder="{{ 'KIDS' | translate }}">
+                                                        <input type="number" ng-model="vm.polisy.noChildren" min=0 placeholder="{{ 'KIDS' | translate }}">
                                                     </md-input-container>
                                                 
                                                 </div>
@@ -50,7 +50,7 @@
                                             <div layout="row">
                                                 <md-input-container class="md-block" style="width:250px">
                                                     <label class="label-without-icon"">{{ 'PURPOSE' | translate }}</label>
-                                                    <md-select ng-model="vm.polisa.tip" required>
+                                                    <md-select ng-model="vm.polisy.riskType" required>
                                                         <md-option value="turisticki">
                                                             {{ 'TOURIST' | translate }}
                                                         </md-option>
@@ -63,10 +63,10 @@
                                                     </md-select>
                                                 </md-input-container>
 
-                                                <div ng-show="vm.polisa.tip=='sport'">
+                                                <div ng-show="vm.polisy.riskType=='sport'">
                                                     <md-input-container class="md-block" style="width:250px">
                                                         <label class="label-without-icon"">{{ 'SPORT_TYPE' | translate }}</label>
-                                                        <md-select ng-model="vm.polisa.sport">
+                                                        <md-select ng-model="vm.polisy.sport">
                                                             <md-option value="1">Skijanje</md-option>
                                                             <md-option value="2">Jedrenje</md-option>
                                                             <md-option value="3">Planinarenje</md-option>
@@ -78,7 +78,7 @@
                                             <div layout="column">
                                                 <md-input-container class="md-block" style="width:250px">
                                                     <label class="label-without-icon">{{ 'STATE' | translate }}</label>
-                                                    <md-select ng-model="vm.polisa.drzava" required>
+                                                    <md-select ng-model="vm.polisy.destination" required>
                                                         <md-option ng-repeat="state in states" value="{{state.abbrev}}">
                                                             Engleska
                                                         </md-option>
@@ -96,12 +96,12 @@
 
                                                 <div layout-gt-xs="row">
                                                     <md-input-container style="padding-left:35px!important">
-                                                        <md-datepicker ng-model="vm.polisa.datum" md-placeholder="{{'DATE' | translate}}" required md-min-date="minDate"></md-datepicker>
+                                                        <md-datepicker ng-model="vm.polisy.date" md-placeholder="{{'DATE' | translate}}" required md-min-date="minDate"></md-datepicker>
                                                     </md-input-container>
 
                                                     <md-input-container>
                                                         <label class="label-without-icon">{{ 'DAYS' | translate }}</label>
-                                                        <input type="number" ng-model="vm.polisa.brDana" min=1>
+                                                        <input type="number" ng-model="vm.polisy.noDays" min=1>
                                                     </md-input-container>
 
                                                 </div>
@@ -124,13 +124,13 @@
                         <md-step label="{{ 'PACKAGE' | translate }}">
                             <md-step-body>
                                 <form name="vm.stepNoNext()" ng-submit="vm.submitCurrentStep()" ng-cloak novalidate>
-                                    <md-radio-group ng-model="vm.polisa.paket">
+                                    <md-radio-group ng-model="vm.polisy.polisyPackage">
                                         <div row="column">
                                             <md-card>
                                                 <md-card-title>
                                                     <md-card-title-text>
                                                         <span class="md-headline">Standard</span>
-                                                        <span class="md-subhead"><strong>Base price: </strong>{{vm.paket1}} RSD</span>
+                                                        <span class="md-subhead"><strong>Base price: </strong>{{vm.package1}} RSD</span>
                                                     </md-card-title-text>
                                                 </md-card-title>
                                                 <md-card-content>
@@ -138,7 +138,7 @@
                                                 </md-card-content>
                                                 <md-card-actions layout="row" layout-align="end center">
 
-                                                    <md-radio-button value="{{vm.paket1}}">Select this package for {{vm.paket1}} RSD</md-radio-button>
+                                                    <md-radio-button value="{{vm.package1}}">Select this package for {{vm.package1}} RSD</md-radio-button>
 
 
                                                 </md-card-actions>
@@ -147,7 +147,7 @@
                                                 <md-card-title>
                                                     <md-card-title-text>
                                                         <span class="md-headline">Comfort</span>
-                                                        <span class="md-subhead"><strong>Base price: </strong>{{vm.paket2}} RSD</span>
+                                                        <span class="md-subhead"><strong>Base price: </strong>{{vm.package2}} RSD</span>
                                                     </md-card-title-text>
                                                 </md-card-title>
                                                 <md-card-content>
@@ -155,7 +155,7 @@
                                                 </md-card-content>
                                                 <md-card-actions layout="row" layout-align="end center">
 
-                                                    <md-radio-button value="{{vm.paket2}}">Select this package for {{vm.paket2}} RSD</md-radio-button>
+                                                    <md-radio-button value="{{vm.package2}}">Select this package for {{vm.package2}} RSD</md-radio-button>
 
 
                                                 </md-card-actions>
@@ -164,7 +164,7 @@
                                                 <md-card-title>
                                                     <md-card-title-text>
                                                         <span class="md-headline">Exclusive</span>
-                                                        <span class="md-subhead"><strong>Base price: </strong>{{vm.paket3}} RSD</span>
+                                                        <span class="md-subhead"><strong>Base price: </strong>{{vm.package3}} RSD</span>
                                                     </md-card-title-text>
                                                 </md-card-title>
                                                 <md-card-content>
@@ -172,7 +172,7 @@
                                                 </md-card-content>
                                                 <md-card-actions layout="row" layout-align="end center">
 
-                                                    <md-radio-button value="{{vm.paket3}}">Select this package for {{vm.paket3}} RSD </md-radio-button>
+                                                    <md-radio-button value="{{vm.package3}}">Select this package for {{vm.package3}} RSD </md-radio-button>
 
 
                                                 </md-card-actions>
@@ -472,8 +472,9 @@
                             <md-step-body>
                                 <form name="vm.stepNoNext()">
                                     <md-content class="md-padding">
-                                        <policy-review-directive></policy-review-directive>
-                                        <div id="paypal-button"></div>
+                                        <!--<policy-review-directive></policy-review-directive>-->
+                                        <div class="paypal-button"></div>
+                                        <pay-pal-directive></pay-pal-directive>
                                     </md-content>
 
 
@@ -491,6 +492,4 @@
             </md-card>
             </div>
     </md-content>
-    </div>
-
     </div>
