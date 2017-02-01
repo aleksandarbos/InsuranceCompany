@@ -12,7 +12,8 @@
     "angular-animate": "1.6.0",
     "md-steppers": "^0.3.4",
     "angular-translate": "^2.13.1",
-    "ngstorage": "0.3.10"
+    "ngstorage": "0.3.10",
+    "angular-resource": "^1.6.1"
   },
   "overrides": {
     "bootstrap": {
