@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2014                    */
-/* Created on:     2/2/2017 11:22:50 PM                         */
+/* Created on:     2/2/2017 11:43:40 PM                         */
 /*==============================================================*/
 
 
@@ -167,20 +167,6 @@ go
 
 if exists (select 1
    from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('RELATIONSHIP_51') and o.name = 'FK_RELATION_RELATIONS_TRAVEL_A')
-alter table RELATIONSHIP_51
-   drop constraint FK_RELATION_RELATIONS_TRAVEL_A
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('RELATIONSHIP_51') and o.name = 'FK_RELATION_RELATIONS_TRAVEL_P')
-alter table RELATIONSHIP_51
-   drop constraint FK_RELATION_RELATIONS_TRAVEL_P
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
    where r.fkeyid = object_id('STATE_OF_ORIGIN') and o.name = 'FK_STATE_OF_RELATIONS_TRANSLAT')
 alter table STATE_OF_ORIGIN
    drop constraint FK_STATE_OF_RELATIONS_TRANSLAT
@@ -233,6 +219,20 @@ if exists (select 1
    where r.fkeyid = object_id('TRAVEL_ACTIVITY') and o.name = 'FK_TRAVEL_A_RELATIONS_TRANSLAT')
 alter table TRAVEL_ACTIVITY
    drop constraint FK_TRAVEL_A_RELATIONS_TRANSLAT
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('TRAVEL_ACTIVITY_TRAVEL_PURPOSE') and o.name = 'FK_TRAVEL_A_TRAVEL_AC_TRAVEL_A')
+alter table TRAVEL_ACTIVITY_TRAVEL_PURPOSE
+   drop constraint FK_TRAVEL_A_TRAVEL_AC_TRAVEL_A
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('TRAVEL_ACTIVITY_TRAVEL_PURPOSE') and o.name = 'FK_TRAVEL_A_TRAVEL_AC_TRAVEL_P')
+alter table TRAVEL_ACTIVITY_TRAVEL_PURPOSE
+   drop constraint FK_TRAVEL_A_TRAVEL_AC_TRAVEL_P
 go
 
 if exists (select 1
@@ -563,22 +563,6 @@ go
 
 if exists (select 1
             from  sysindexes
-           where  id    = object_id('RELATIONSHIP_51')
-            and   name  = 'RELATIONSHIP_52_FK'
-            and   indid > 0
-            and   indid < 255)
-   drop index RELATIONSHIP_51.RELATIONSHIP_52_FK
-go
-
-if exists (select 1
-            from  sysobjects
-           where  id = object_id('RELATIONSHIP_51')
-            and   type = 'U')
-   drop table RELATIONSHIP_51
-go
-
-if exists (select 1
-            from  sysindexes
            where  id    = object_id('STATE_OF_ORIGIN')
             and   name  = 'RELATIONSHIP_29_FK'
             and   indid > 0
@@ -675,6 +659,22 @@ if exists (select 1
            where  id = object_id('TRAVEL_ACTIVITY')
             and   type = 'U')
    drop table TRAVEL_ACTIVITY
+go
+
+if exists (select 1
+            from  sysindexes
+           where  id    = object_id('TRAVEL_ACTIVITY_TRAVEL_PURPOSE')
+            and   name  = 'RELATIONSHIP_52_FK'
+            and   indid > 0
+            and   indid < 255)
+   drop index TRAVEL_ACTIVITY_TRAVEL_PURPOSE.RELATIONSHIP_52_FK
+go
+
+if exists (select 1
+            from  sysobjects
+           where  id = object_id('TRAVEL_ACTIVITY_TRAVEL_PURPOSE')
+            and   type = 'U')
+   drop table TRAVEL_ACTIVITY_TRAVEL_PURPOSE
 go
 
 if exists (select 1
@@ -1129,26 +1129,6 @@ create nonclustered index IN_NEED_FK on RATE_OF_PDV (PDV_ID ASC)
 go
 
 /*==============================================================*/
-/* Table: RELATIONSHIP_51                                       */
-/*==============================================================*/
-create table RELATIONSHIP_51 (
-   R_ID                 int                  not null,
-   IT_ID                int                  not null,
-   constraint PK_RELATIONSHIP_51 primary key (R_ID, IT_ID)
-)
-go
-
-/*==============================================================*/
-/* Index: RELATIONSHIP_52_FK                                    */
-/*==============================================================*/
-
-
-
-
-create nonclustered index RELATIONSHIP_52_FK on RELATIONSHIP_51 (IT_ID ASC)
-go
-
-/*==============================================================*/
 /* Table: STATE_OF_ORIGIN                                       */
 /*==============================================================*/
 create table STATE_OF_ORIGIN (
@@ -1273,6 +1253,26 @@ go
 
 
 create nonclustered index RELATIONSHIP_49_FK on TRAVEL_ACTIVITY (TRANSLATE_ID ASC)
+go
+
+/*==============================================================*/
+/* Table: TRAVEL_ACTIVITY_TRAVEL_PURPOSE                        */
+/*==============================================================*/
+create table TRAVEL_ACTIVITY_TRAVEL_PURPOSE (
+   R_ID                 int                  not null,
+   IT_ID                int                  not null,
+   constraint PK_TRAVEL_ACTIVITY_TRAVEL_PURP primary key (R_ID, IT_ID)
+)
+go
+
+/*==============================================================*/
+/* Index: RELATIONSHIP_52_FK                                    */
+/*==============================================================*/
+
+
+
+
+create nonclustered index RELATIONSHIP_52_FK on TRAVEL_ACTIVITY_TRAVEL_PURPOSE (IT_ID ASC)
 go
 
 /*==============================================================*/
@@ -1443,16 +1443,6 @@ alter table RATE_OF_PDV
       references PDV (PDV_ID)
 go
 
-alter table RELATIONSHIP_51
-   add constraint FK_RELATION_RELATIONS_TRAVEL_A foreign key (R_ID)
-      references TRAVEL_ACTIVITY (R_ID)
-go
-
-alter table RELATIONSHIP_51
-   add constraint FK_RELATION_RELATIONS_TRAVEL_P foreign key (IT_ID)
-      references TRAVEL_PURPOSE (IT_ID)
-go
-
 alter table STATE_OF_ORIGIN
    add constraint FK_STATE_OF_RELATIONS_TRANSLAT foreign key (TRANSLATE_ID)
       references TRANSLATE (TRANSLATE_ID)
@@ -1491,6 +1481,16 @@ go
 alter table TRAVEL_ACTIVITY
    add constraint FK_TRAVEL_A_RELATIONS_TRANSLAT foreign key (TRANSLATE_ID)
       references TRANSLATE (TRANSLATE_ID)
+go
+
+alter table TRAVEL_ACTIVITY_TRAVEL_PURPOSE
+   add constraint FK_TRAVEL_A_TRAVEL_AC_TRAVEL_A foreign key (R_ID)
+      references TRAVEL_ACTIVITY (R_ID)
+go
+
+alter table TRAVEL_ACTIVITY_TRAVEL_PURPOSE
+   add constraint FK_TRAVEL_A_TRAVEL_AC_TRAVEL_P foreign key (IT_ID)
+      references TRAVEL_PURPOSE (IT_ID)
 go
 
 alter table TRAVEL_PURPOSE
