@@ -27,6 +27,7 @@
 
             $scope.changeLanguage = function (langKey) {
                 $translate.use(langKey);
+                //odraditi poziv i dodeliti ng modelu za odredjene entite
              };
 
 

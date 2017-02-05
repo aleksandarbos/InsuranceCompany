@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2014                    */
-/* Created on:     2/2/2017 11:43:40 PM                         */
+/* Created on:     2/5/2017 6:55:05 PM                          */
 /*==============================================================*/
 
 
@@ -13,23 +13,9 @@ go
 
 if exists (select 1
    from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('AGE_GROUP') and o.name = 'FK_AGE_GROU_RELATIONS_TRANSLAT')
-alter table AGE_GROUP
-   drop constraint FK_AGE_GROU_RELATIONS_TRANSLAT
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
    where r.fkeyid = object_id('CAR') and o.name = 'FK_CAR_RELATIONS_CLIENT')
 alter table CAR
    drop constraint FK_CAR_RELATIONS_CLIENT
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('CAR') and o.name = 'FK_CAR_RELATIONS_TRANSLAT')
-alter table CAR
-   drop constraint FK_CAR_RELATIONS_TRANSLAT
 go
 
 if exists (select 1
@@ -44,13 +30,6 @@ if exists (select 1
    where r.fkeyid = object_id('CLIENT') and o.name = 'FK_CLIENT_RELATIONS_POLICY')
 alter table CLIENT
    drop constraint FK_CLIENT_RELATIONS_POLICY
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('CLIENT') and o.name = 'FK_CLIENT_RELATIONS_TRANSLAT')
-alter table CLIENT
-   drop constraint FK_CLIENT_RELATIONS_TRANSLAT
 go
 
 if exists (select 1
@@ -76,16 +55,16 @@ go
 
 if exists (select 1
    from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('HOME') and o.name = 'FK_HOME_RELATIONS_TYPE_OF_')
+   where r.fkeyid = object_id('HOME') and o.name = 'FK_HOME_RELATIONS_PRICELIS')
 alter table HOME
-   drop constraint FK_HOME_RELATIONS_TYPE_OF_
+   drop constraint FK_HOME_RELATIONS_PRICELIS
 go
 
 if exists (select 1
    from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('HOME') and o.name = 'FK_HOME_RELATIONS_TRANSLAT')
+   where r.fkeyid = object_id('HOME') and o.name = 'FK_HOME_RISK_OF_H_RISK')
 alter table HOME
-   drop constraint FK_HOME_RELATIONS_TRANSLAT
+   drop constraint FK_HOME_RISK_OF_H_RISK
 go
 
 if exists (select 1
@@ -100,6 +79,13 @@ if exists (select 1
    where r.fkeyid = object_id('INSURANCE_PACKAGE') and o.name = 'FK_INSURANC_RELATIONS_TRANSLAT')
 alter table INSURANCE_PACKAGE
    drop constraint FK_INSURANC_RELATIONS_TRANSLAT
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('INSURANCE_PACKAGE') and o.name = 'FK_INSURANC_RELATIONS_TRANSLAT2')
+alter table INSURANCE_PACKAGE
+   drop constraint FK_INSURANC_RELATIONS_TRANSLAT2
 go
 
 if exists (select 1
@@ -132,9 +118,9 @@ go
 
 if exists (select 1
    from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('POLICY') and o.name = 'FK_POLICY_POSSIBLE__TRAVEL_A')
+   where r.fkeyid = object_id('POLICY') and o.name = 'FK_POLICY_POSSIBLE__RISK')
 alter table POLICY
-   drop constraint FK_POLICY_POSSIBLE__TRAVEL_A
+   drop constraint FK_POLICY_POSSIBLE__RISK
 go
 
 if exists (select 1
@@ -163,6 +149,27 @@ if exists (select 1
    where r.fkeyid = object_id('RATE_OF_PDV') and o.name = 'FK_RATE_OF__IN_NEED_PDV')
 alter table RATE_OF_PDV
    drop constraint FK_RATE_OF__IN_NEED_PDV
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('RISK') and o.name = 'FK_RISK_RELATIONS_COEFFICI')
+alter table RISK
+   drop constraint FK_RISK_RELATIONS_COEFFICI
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('RISK') and o.name = 'FK_RISK_RELATIONS_TRANSLAT2')
+alter table RISK
+   drop constraint FK_RISK_RELATIONS_TRANSLAT2
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('RISK') and o.name = 'FK_RISK_RELATIONS_TRANSLAT')
+alter table RISK
+   drop constraint FK_RISK_RELATIONS_TRANSLAT
 go
 
 if exists (select 1
@@ -209,23 +216,9 @@ go
 
 if exists (select 1
    from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('TRAVEL_ACTIVITY') and o.name = 'FK_TRAVEL_A_RELATIONS_COEFFICI')
-alter table TRAVEL_ACTIVITY
-   drop constraint FK_TRAVEL_A_RELATIONS_COEFFICI
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('TRAVEL_ACTIVITY') and o.name = 'FK_TRAVEL_A_RELATIONS_TRANSLAT')
-alter table TRAVEL_ACTIVITY
-   drop constraint FK_TRAVEL_A_RELATIONS_TRANSLAT
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('TRAVEL_ACTIVITY_TRAVEL_PURPOSE') and o.name = 'FK_TRAVEL_A_TRAVEL_AC_TRAVEL_A')
+   where r.fkeyid = object_id('TRAVEL_ACTIVITY_TRAVEL_PURPOSE') and o.name = 'FK_TRAVEL_A_TRAVEL_AC_RISK')
 alter table TRAVEL_ACTIVITY_TRAVEL_PURPOSE
-   drop constraint FK_TRAVEL_A_TRAVEL_AC_TRAVEL_A
+   drop constraint FK_TRAVEL_A_TRAVEL_AC_RISK
 go
 
 if exists (select 1
@@ -250,22 +243,6 @@ alter table TRAVEL_PURPOSE
 go
 
 if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('TYPE_OF_HOME') and o.name = 'FK_TYPE_OF__RELATIONS_TRANSLAT')
-alter table TYPE_OF_HOME
-   drop constraint FK_TYPE_OF__RELATIONS_TRANSLAT
-go
-
-if exists (select 1
-            from  sysindexes
-           where  id    = object_id('AGE_GROUP')
-            and   name  = 'RELATIONSHIP_50_FK'
-            and   indid > 0
-            and   indid < 255)
-   drop index AGE_GROUP.RELATIONSHIP_50_FK
-go
-
-if exists (select 1
             from  sysindexes
            where  id    = object_id('AGE_GROUP')
             and   name  = 'RELATIONSHIP_25_FK'
@@ -284,15 +261,6 @@ go
 if exists (select 1
             from  sysindexes
            where  id    = object_id('CAR')
-            and   name  = 'RELATIONSHIP_45_FK'
-            and   indid > 0
-            and   indid < 255)
-   drop index CAR.RELATIONSHIP_45_FK
-go
-
-if exists (select 1
-            from  sysindexes
-           where  id    = object_id('CAR')
             and   name  = 'RELATIONSHIP_34_FK'
             and   indid > 0
             and   indid < 255)
@@ -304,15 +272,6 @@ if exists (select 1
            where  id = object_id('CAR')
             and   type = 'U')
    drop table CAR
-go
-
-if exists (select 1
-            from  sysindexes
-           where  id    = object_id('CLIENT')
-            and   name  = 'RELATIONSHIP_44_FK'
-            and   indid > 0
-            and   indid < 255)
-   drop index CLIENT.RELATIONSHIP_44_FK
 go
 
 if exists (select 1
@@ -391,19 +350,19 @@ go
 if exists (select 1
             from  sysindexes
            where  id    = object_id('HOME')
-            and   name  = 'RELATIONSHIP_43_FK'
+            and   name  = 'RISK_OF_HOUSE_FK'
             and   indid > 0
             and   indid < 255)
-   drop index HOME.RELATIONSHIP_43_FK
+   drop index HOME.RISK_OF_HOUSE_FK
 go
 
 if exists (select 1
             from  sysindexes
            where  id    = object_id('HOME')
-            and   name  = 'RELATIONSHIP_26_FK'
+            and   name  = 'RELATIONSHIP_35_FK'
             and   indid > 0
             and   indid < 255)
-   drop index HOME.RELATIONSHIP_26_FK
+   drop index HOME.RELATIONSHIP_35_FK
 go
 
 if exists (select 1
@@ -411,6 +370,15 @@ if exists (select 1
            where  id = object_id('HOME')
             and   type = 'U')
    drop table HOME
+go
+
+if exists (select 1
+            from  sysindexes
+           where  id    = object_id('INSURANCE_PACKAGE')
+            and   name  = 'RELATIONSHIP_44_FK'
+            and   indid > 0
+            and   indid < 255)
+   drop index INSURANCE_PACKAGE.RELATIONSHIP_44_FK
 go
 
 if exists (select 1
@@ -563,6 +531,40 @@ go
 
 if exists (select 1
             from  sysindexes
+           where  id    = object_id('RISK')
+            and   name  = 'RELATIONSHIP_51_FK'
+            and   indid > 0
+            and   indid < 255)
+   drop index RISK.RELATIONSHIP_51_FK
+go
+
+if exists (select 1
+            from  sysindexes
+           where  id    = object_id('RISK')
+            and   name  = 'RELATIONSHIP_49_FK'
+            and   indid > 0
+            and   indid < 255)
+   drop index RISK.RELATIONSHIP_49_FK
+go
+
+if exists (select 1
+            from  sysindexes
+           where  id    = object_id('RISK')
+            and   name  = 'RELATIONSHIP_40_FK'
+            and   indid > 0
+            and   indid < 255)
+   drop index RISK.RELATIONSHIP_40_FK
+go
+
+if exists (select 1
+            from  sysobjects
+           where  id = object_id('RISK')
+            and   type = 'U')
+   drop table RISK
+go
+
+if exists (select 1
+            from  sysindexes
            where  id    = object_id('STATE_OF_ORIGIN')
             and   name  = 'RELATIONSHIP_29_FK'
             and   indid > 0
@@ -638,36 +640,11 @@ go
 
 if exists (select 1
             from  sysindexes
-           where  id    = object_id('TRAVEL_ACTIVITY')
-            and   name  = 'RELATIONSHIP_49_FK'
-            and   indid > 0
-            and   indid < 255)
-   drop index TRAVEL_ACTIVITY.RELATIONSHIP_49_FK
-go
-
-if exists (select 1
-            from  sysindexes
-           where  id    = object_id('TRAVEL_ACTIVITY')
-            and   name  = 'RELATIONSHIP_40_FK'
-            and   indid > 0
-            and   indid < 255)
-   drop index TRAVEL_ACTIVITY.RELATIONSHIP_40_FK
-go
-
-if exists (select 1
-            from  sysobjects
-           where  id = object_id('TRAVEL_ACTIVITY')
-            and   type = 'U')
-   drop table TRAVEL_ACTIVITY
-go
-
-if exists (select 1
-            from  sysindexes
            where  id    = object_id('TRAVEL_ACTIVITY_TRAVEL_PURPOSE')
-            and   name  = 'RELATIONSHIP_52_FK'
+            and   name  = 'TRAVEL_ACTIVITY_TRAVEL_PURPOSE2_FK'
             and   indid > 0
             and   indid < 255)
-   drop index TRAVEL_ACTIVITY_TRAVEL_PURPOSE.RELATIONSHIP_52_FK
+   drop index TRAVEL_ACTIVITY_TRAVEL_PURPOSE.TRAVEL_ACTIVITY_TRAVEL_PURPOSE2_FK
 go
 
 if exists (select 1
@@ -702,28 +679,11 @@ if exists (select 1
    drop table TRAVEL_PURPOSE
 go
 
-if exists (select 1
-            from  sysindexes
-           where  id    = object_id('TYPE_OF_HOME')
-            and   name  = 'RELATIONSHIP_35_FK'
-            and   indid > 0
-            and   indid < 255)
-   drop index TYPE_OF_HOME.RELATIONSHIP_35_FK
-go
-
-if exists (select 1
-            from  sysobjects
-           where  id = object_id('TYPE_OF_HOME')
-            and   type = 'U')
-   drop table TYPE_OF_HOME
-go
-
 /*==============================================================*/
 /* Table: AGE_GROUP                                             */
 /*==============================================================*/
 create table AGE_GROUP (
    CT_ID                int                  not null,
-   TRANSLATE_ID         int                  null,
    COEFF_ID             int                  null,
    CT_NAME              varchar(30)          not null,
    constraint PK_AGE_GROUP primary key (CT_ID)
@@ -741,22 +701,11 @@ create nonclustered index RELATIONSHIP_25_FK on AGE_GROUP (COEFF_ID ASC)
 go
 
 /*==============================================================*/
-/* Index: RELATIONSHIP_50_FK                                    */
-/*==============================================================*/
-
-
-
-
-create nonclustered index RELATIONSHIP_50_FK on AGE_GROUP (TRANSLATE_ID ASC)
-go
-
-/*==============================================================*/
 /* Table: CAR                                                   */
 /*==============================================================*/
 create table CAR (
    CARID                int                  not null,
    CLIENT_ID            int                  not null,
-   TRANSLATE_ID         int                  null,
    YEAR                 datetime             null,
    CHASSIS_NUMBER       int                  null,
    LICENCE_PLATE        varchar(20)          null,
@@ -777,16 +726,6 @@ create nonclustered index RELATIONSHIP_34_FK on CAR (CLIENT_ID ASC)
 go
 
 /*==============================================================*/
-/* Index: RELATIONSHIP_45_FK                                    */
-/*==============================================================*/
-
-
-
-
-create nonclustered index RELATIONSHIP_45_FK on CAR (TRANSLATE_ID ASC)
-go
-
-/*==============================================================*/
 /* Table: CLIENT                                                */
 /*==============================================================*/
 create table CLIENT (
@@ -796,7 +735,6 @@ create table CLIENT (
    JMBG                 varchar(30)          not null,
    PHONE                varchar(80)          null,
    CLIENT_ID            int                  not null,
-   TRANSLATE_ID         int                  null,
    CT_ID                int                  null,
    POLICY_ID            int                  null,
    PASSPORT_NUMBER      numeric(10)          null,
@@ -826,21 +764,11 @@ create nonclustered index RELATIONSHIP_22_FK on CLIENT (POLICY_ID ASC)
 go
 
 /*==============================================================*/
-/* Index: RELATIONSHIP_44_FK                                    */
-/*==============================================================*/
-
-
-
-
-create nonclustered index RELATIONSHIP_44_FK on CLIENT (TRANSLATE_ID ASC)
-go
-
-/*==============================================================*/
 /* Table: COEFFICIENT                                           */
 /*==============================================================*/
 create table COEFFICIENT (
    COEFF_ID             int                  not null,
-   COEFF_VALUE          numeric(10,10)       null,
+   COEFF_VALUE          numeric(5,2)         null,
    COEFF_DATE           datetime             null,
    constraint PK_COEFFICIENT primary key (COEFF_ID)
 )
@@ -904,8 +832,8 @@ go
 /*==============================================================*/
 create table HOME (
    HOME_ID              int                  not null,
-   TRANSLATE_ID         int                  null,
-   HT_ID                int                  not null,
+   PL_ITEM_ID           int                  null,
+   R_ID                 int                  null,
    HOME_SQUARES         int                  not null,
    HOME_BUILDING_YEAR   varchar(4)           null,
    HOME_ADDRESS         varchar(30)          not null,
@@ -914,23 +842,23 @@ create table HOME (
 go
 
 /*==============================================================*/
-/* Index: RELATIONSHIP_26_FK                                    */
+/* Index: RELATIONSHIP_35_FK                                    */
 /*==============================================================*/
 
 
 
 
-create nonclustered index RELATIONSHIP_26_FK on HOME (HT_ID ASC)
+create nonclustered index RELATIONSHIP_35_FK on HOME (PL_ITEM_ID ASC)
 go
 
 /*==============================================================*/
-/* Index: RELATIONSHIP_43_FK                                    */
+/* Index: RISK_OF_HOUSE_FK                                      */
 /*==============================================================*/
 
 
 
 
-create nonclustered index RELATIONSHIP_43_FK on HOME (TRANSLATE_ID ASC)
+create nonclustered index RISK_OF_HOUSE_FK on HOME (R_ID ASC)
 go
 
 /*==============================================================*/
@@ -938,8 +866,9 @@ go
 /*==============================================================*/
 create table INSURANCE_PACKAGE (
    PACKAGE_ID           int                  not null,
+   TRANSLATE_PACKAGE_NAME int                  null,
    PL_ITEM_ID           int                  null,
-   TRANSLATE_ID         int                  null,
+   TRANSLATE_PACKAGE_DESCRIPTION int                  null,
    TOR_NAME             varchar(20)          null,
    PACKAGE_DESCRIPTION  varchar(1000)        null,
    constraint PK_INSURANCE_PACKAGE primary key (PACKAGE_ID)
@@ -963,7 +892,17 @@ go
 
 
 
-create nonclustered index RELATIONSHIP_47_FK on INSURANCE_PACKAGE (TRANSLATE_ID ASC)
+create nonclustered index RELATIONSHIP_47_FK on INSURANCE_PACKAGE (TRANSLATE_PACKAGE_DESCRIPTION ASC)
+go
+
+/*==============================================================*/
+/* Index: RELATIONSHIP_44_FK                                    */
+/*==============================================================*/
+
+
+
+
+create nonclustered index RELATIONSHIP_44_FK on INSURANCE_PACKAGE (TRANSLATE_PACKAGE_NAME ASC)
 go
 
 /*==============================================================*/
@@ -1129,6 +1068,50 @@ create nonclustered index IN_NEED_FK on RATE_OF_PDV (PDV_ID ASC)
 go
 
 /*==============================================================*/
+/* Table: RISK                                                  */
+/*==============================================================*/
+create table RISK (
+   R_ID                 int                  not null,
+   COEFF_ID             int                  not null,
+   TRANSLATE_R_NAME     int                  null,
+   TRANSLATE_R_DESCRIPTION int                  null,
+   R_NAME               varchar(30)          not null,
+   R_DESCRIPTION        varchar(2000)        not null,
+   constraint PK_RISK primary key (R_ID)
+)
+go
+
+/*==============================================================*/
+/* Index: RELATIONSHIP_40_FK                                    */
+/*==============================================================*/
+
+
+
+
+create nonclustered index RELATIONSHIP_40_FK on RISK (COEFF_ID ASC)
+go
+
+/*==============================================================*/
+/* Index: RELATIONSHIP_49_FK                                    */
+/*==============================================================*/
+
+
+
+
+create nonclustered index RELATIONSHIP_49_FK on RISK (TRANSLATE_R_DESCRIPTION ASC)
+go
+
+/*==============================================================*/
+/* Index: RELATIONSHIP_51_FK                                    */
+/*==============================================================*/
+
+
+
+
+create nonclustered index RELATIONSHIP_51_FK on RISK (TRANSLATE_R_NAME ASC)
+go
+
+/*==============================================================*/
 /* Table: STATE_OF_ORIGIN                                       */
 /*==============================================================*/
 create table STATE_OF_ORIGIN (
@@ -1218,41 +1201,9 @@ go
 /*==============================================================*/
 create table TRANSLATE (
    TRANSLATE_ID         int                  not null,
-   TRANSLATE_WORD_EN    varchar(2000)        null,
+   TRANSLATE_WORD_SRB   varchar(2000)        null,
    constraint PK_TRANSLATE primary key (TRANSLATE_ID)
 )
-go
-
-/*==============================================================*/
-/* Table: TRAVEL_ACTIVITY                                       */
-/*==============================================================*/
-create table TRAVEL_ACTIVITY (
-   R_ID                 int                  not null,
-   COEFF_ID             int                  not null,
-   TRANSLATE_ID         int                  null,
-   R_NAME               varchar(30)          not null,
-   constraint PK_TRAVEL_ACTIVITY primary key (R_ID)
-)
-go
-
-/*==============================================================*/
-/* Index: RELATIONSHIP_40_FK                                    */
-/*==============================================================*/
-
-
-
-
-create nonclustered index RELATIONSHIP_40_FK on TRAVEL_ACTIVITY (COEFF_ID ASC)
-go
-
-/*==============================================================*/
-/* Index: RELATIONSHIP_49_FK                                    */
-/*==============================================================*/
-
-
-
-
-create nonclustered index RELATIONSHIP_49_FK on TRAVEL_ACTIVITY (TRANSLATE_ID ASC)
 go
 
 /*==============================================================*/
@@ -1266,13 +1217,13 @@ create table TRAVEL_ACTIVITY_TRAVEL_PURPOSE (
 go
 
 /*==============================================================*/
-/* Index: RELATIONSHIP_52_FK                                    */
+/* Index: TRAVEL_ACTIVITY_TRAVEL_PURPOSE2_FK                    */
 /*==============================================================*/
 
 
 
 
-create nonclustered index RELATIONSHIP_52_FK on TRAVEL_ACTIVITY_TRAVEL_PURPOSE (IT_ID ASC)
+create nonclustered index TRAVEL_ACTIVITY_TRAVEL_PURPOSE2_FK on TRAVEL_ACTIVITY_TRAVEL_PURPOSE (IT_ID ASC)
 go
 
 /*==============================================================*/
@@ -1307,45 +1258,14 @@ go
 create nonclustered index RELATIONSHIP_46_FK on TRAVEL_PURPOSE (TRANSLATE_ID ASC)
 go
 
-/*==============================================================*/
-/* Table: TYPE_OF_HOME                                          */
-/*==============================================================*/
-create table TYPE_OF_HOME (
-   HT_ID                int                  not null,
-   TRANSLATE_ID         int                  null,
-   HT_NAME              varchar(30)          not null,
-   constraint PK_TYPE_OF_HOME primary key (HT_ID)
-)
-go
-
-/*==============================================================*/
-/* Index: RELATIONSHIP_35_FK                                    */
-/*==============================================================*/
-
-
-
-
-create nonclustered index RELATIONSHIP_35_FK on TYPE_OF_HOME (TRANSLATE_ID ASC)
-go
-
 alter table AGE_GROUP
    add constraint FK_AGE_GROU_RELATIONS_COEFFICI foreign key (COEFF_ID)
       references COEFFICIENT (COEFF_ID)
 go
 
-alter table AGE_GROUP
-   add constraint FK_AGE_GROU_RELATIONS_TRANSLAT foreign key (TRANSLATE_ID)
-      references TRANSLATE (TRANSLATE_ID)
-go
-
 alter table CAR
    add constraint FK_CAR_RELATIONS_CLIENT foreign key (CLIENT_ID)
       references CLIENT (CLIENT_ID)
-go
-
-alter table CAR
-   add constraint FK_CAR_RELATIONS_TRANSLAT foreign key (TRANSLATE_ID)
-      references TRANSLATE (TRANSLATE_ID)
 go
 
 alter table CLIENT
@@ -1356,11 +1276,6 @@ go
 alter table CLIENT
    add constraint FK_CLIENT_RELATIONS_POLICY foreign key (POLICY_ID)
       references POLICY (POLICY_ID)
-go
-
-alter table CLIENT
-   add constraint FK_CLIENT_RELATIONS_TRANSLAT foreign key (TRANSLATE_ID)
-      references TRANSLATE (TRANSLATE_ID)
 go
 
 alter table CONTINENT
@@ -1379,13 +1294,13 @@ alter table DESTINATION
 go
 
 alter table HOME
-   add constraint FK_HOME_RELATIONS_TYPE_OF_ foreign key (HT_ID)
-      references TYPE_OF_HOME (HT_ID)
+   add constraint FK_HOME_RELATIONS_PRICELIS foreign key (PL_ITEM_ID)
+      references PRICELIST_ITEM (PL_ITEM_ID)
 go
 
 alter table HOME
-   add constraint FK_HOME_RELATIONS_TRANSLAT foreign key (TRANSLATE_ID)
-      references TRANSLATE (TRANSLATE_ID)
+   add constraint FK_HOME_RISK_OF_H_RISK foreign key (R_ID)
+      references RISK (R_ID)
 go
 
 alter table INSURANCE_PACKAGE
@@ -1394,7 +1309,12 @@ alter table INSURANCE_PACKAGE
 go
 
 alter table INSURANCE_PACKAGE
-   add constraint FK_INSURANC_RELATIONS_TRANSLAT foreign key (TRANSLATE_ID)
+   add constraint FK_INSURANC_RELATIONS_TRANSLAT foreign key (TRANSLATE_PACKAGE_NAME)
+      references TRANSLATE (TRANSLATE_ID)
+go
+
+alter table INSURANCE_PACKAGE
+   add constraint FK_INSURANC_RELATIONS_TRANSLAT2 foreign key (TRANSLATE_PACKAGE_DESCRIPTION)
       references TRANSLATE (TRANSLATE_ID)
 go
 
@@ -1419,8 +1339,8 @@ alter table POLICY
 go
 
 alter table POLICY
-   add constraint FK_POLICY_POSSIBLE__TRAVEL_A foreign key (R_ID)
-      references TRAVEL_ACTIVITY (R_ID)
+   add constraint FK_POLICY_POSSIBLE__RISK foreign key (R_ID)
+      references RISK (R_ID)
 go
 
 alter table POLICY
@@ -1441,6 +1361,21 @@ go
 alter table RATE_OF_PDV
    add constraint FK_RATE_OF__IN_NEED_PDV foreign key (PDV_ID)
       references PDV (PDV_ID)
+go
+
+alter table RISK
+   add constraint FK_RISK_RELATIONS_COEFFICI foreign key (COEFF_ID)
+      references COEFFICIENT (COEFF_ID)
+go
+
+alter table RISK
+   add constraint FK_RISK_RELATIONS_TRANSLAT2 foreign key (TRANSLATE_R_DESCRIPTION)
+      references TRANSLATE (TRANSLATE_ID)
+go
+
+alter table RISK
+   add constraint FK_RISK_RELATIONS_TRANSLAT foreign key (TRANSLATE_R_NAME)
+      references TRANSLATE (TRANSLATE_ID)
 go
 
 alter table STATE_OF_ORIGIN
@@ -1473,19 +1408,9 @@ alter table SUBJECT_OF_INSURANCE
       references CAR (CARID)
 go
 
-alter table TRAVEL_ACTIVITY
-   add constraint FK_TRAVEL_A_RELATIONS_COEFFICI foreign key (COEFF_ID)
-      references COEFFICIENT (COEFF_ID)
-go
-
-alter table TRAVEL_ACTIVITY
-   add constraint FK_TRAVEL_A_RELATIONS_TRANSLAT foreign key (TRANSLATE_ID)
-      references TRANSLATE (TRANSLATE_ID)
-go
-
 alter table TRAVEL_ACTIVITY_TRAVEL_PURPOSE
-   add constraint FK_TRAVEL_A_TRAVEL_AC_TRAVEL_A foreign key (R_ID)
-      references TRAVEL_ACTIVITY (R_ID)
+   add constraint FK_TRAVEL_A_TRAVEL_AC_RISK foreign key (R_ID)
+      references RISK (R_ID)
 go
 
 alter table TRAVEL_ACTIVITY_TRAVEL_PURPOSE
@@ -1500,11 +1425,6 @@ go
 
 alter table TRAVEL_PURPOSE
    add constraint FK_TRAVEL_P_RELATIONS_TRANSLAT foreign key (TRANSLATE_ID)
-      references TRANSLATE (TRANSLATE_ID)
-go
-
-alter table TYPE_OF_HOME
-   add constraint FK_TYPE_OF__RELATIONS_TRANSLAT foreign key (TRANSLATE_ID)
       references TRANSLATE (TRANSLATE_ID)
 go
 
