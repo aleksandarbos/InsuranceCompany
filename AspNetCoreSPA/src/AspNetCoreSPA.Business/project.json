@@ -3,8 +3,8 @@
 
   "dependencies": {
     "AspNetCoreSPA.Common": "1.0.0-*",
-    "AspNetCoreSPA.Core": "1.0.0-*",
     "AspNetCoreSPA.DataAccess": "1.0.0-*",
+    "AspNetCoreSPA.Model": "1.0.0-*",
     "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "1.0.0-rc2-final",
     "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0-rc2-final"
   },

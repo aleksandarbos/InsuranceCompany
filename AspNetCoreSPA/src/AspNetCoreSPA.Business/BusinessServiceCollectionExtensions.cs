@@ -1,5 +1,4 @@
-﻿using System;
-using AspNetCoreSPA.Business.Student;
+﻿using AspNetCoreSPA.BLL;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace AspNetCoreSPA
@@ -8,7 +7,7 @@ namespace AspNetCoreSPA
     {
         public static void AddBusinessTier(this IServiceCollection services)
         {
-            services.AddTransient<IStudentBusiness, StudentBusiness>();
+            services.AddTransient<ICountryBLL, CountryBLL>();
         }
     }
 }
