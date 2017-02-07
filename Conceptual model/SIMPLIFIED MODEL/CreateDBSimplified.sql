@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2014                    */
-/* Created on:     2/7/2017 4:01:50 PM                          */
+/* Created on:     2/7/2017 4:57:18 PM                          */
 /*==============================================================*/
 
 
@@ -44,13 +44,6 @@ if exists (select 1
    where r.fkeyid = object_id('DESTINATION') and o.name = 'FK_DESTINAT_RELATIONS_STATE_OF')
 alter table DESTINATION
    drop constraint FK_DESTINAT_RELATIONS_STATE_OF
-go
-
-if exists (select 1
-   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('HOME') and o.name = 'FK_HOME_RISK_OF_H_RISK')
-alter table HOME
-   drop constraint FK_HOME_RISK_OF_H_RISK
 go
 
 if exists (select 1
@@ -135,6 +128,34 @@ if exists (select 1
    where r.fkeyid = object_id('RISK') and o.name = 'FK_RISK_RELATIONS_COEFFICI')
 alter table RISK
    drop constraint FK_RISK_RELATIONS_COEFFICI
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('RISK_OF_CAR') and o.name = 'FK_RISK_OF__RISK_OF_C_CAR')
+alter table RISK_OF_CAR
+   drop constraint FK_RISK_OF__RISK_OF_C_CAR
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('RISK_OF_CAR') and o.name = 'FK_RISK_OF__RISK_OF_C_RISK')
+alter table RISK_OF_CAR
+   drop constraint FK_RISK_OF__RISK_OF_C_RISK
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('RISK_OF_HOUSE') and o.name = 'FK_RISK_OF__RISK_OF_H_RISK')
+alter table RISK_OF_HOUSE
+   drop constraint FK_RISK_OF__RISK_OF_H_RISK
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('RISK_OF_HOUSE') and o.name = 'FK_RISK_OF__RISK_OF_H_HOME')
+alter table RISK_OF_HOUSE
+   drop constraint FK_RISK_OF__RISK_OF_H_HOME
 go
 
 if exists (select 1
@@ -287,15 +308,6 @@ if exists (select 1
            where  id = object_id('DESTINATION')
             and   type = 'U')
    drop table DESTINATION
-go
-
-if exists (select 1
-            from  sysindexes
-           where  id    = object_id('HOME')
-            and   name  = 'RISK_OF_HOUSE_FK'
-            and   indid > 0
-            and   indid < 255)
-   drop index HOME.RISK_OF_HOUSE_FK
 go
 
 if exists (select 1
@@ -467,6 +479,56 @@ if exists (select 1
            where  id = object_id('RISK')
             and   type = 'U')
    drop table RISK
+go
+
+if exists (select 1
+            from  sysindexes
+           where  id    = object_id('RISK_OF_CAR')
+            and   name  = 'RISK_OF_CAR2_FK'
+            and   indid > 0
+            and   indid < 255)
+   drop index RISK_OF_CAR.RISK_OF_CAR2_FK
+go
+
+if exists (select 1
+            from  sysindexes
+           where  id    = object_id('RISK_OF_CAR')
+            and   name  = 'RISK_OF_CAR_FK'
+            and   indid > 0
+            and   indid < 255)
+   drop index RISK_OF_CAR.RISK_OF_CAR_FK
+go
+
+if exists (select 1
+            from  sysobjects
+           where  id = object_id('RISK_OF_CAR')
+            and   type = 'U')
+   drop table RISK_OF_CAR
+go
+
+if exists (select 1
+            from  sysindexes
+           where  id    = object_id('RISK_OF_HOUSE')
+            and   name  = 'RISK_OF_HOUSE2_FK'
+            and   indid > 0
+            and   indid < 255)
+   drop index RISK_OF_HOUSE.RISK_OF_HOUSE2_FK
+go
+
+if exists (select 1
+            from  sysindexes
+           where  id    = object_id('RISK_OF_HOUSE')
+            and   name  = 'RISK_OF_HOUSE_FK'
+            and   indid > 0
+            and   indid < 255)
+   drop index RISK_OF_HOUSE.RISK_OF_HOUSE_FK
+go
+
+if exists (select 1
+            from  sysobjects
+           where  id = object_id('RISK_OF_HOUSE')
+            and   type = 'U')
+   drop table RISK_OF_HOUSE
 go
 
 if exists (select 1
@@ -722,7 +784,6 @@ go
 /*==============================================================*/
 create table HOME (
    HOME_ID              int                  identity,
-   R_ID                 int                  null,
    HOME_SQUARES         int                  not null,
    HOME_BUILDING_YEAR   datetime             null,
    HOME_ADDRESS         varchar(30)          not null,
@@ -731,16 +792,6 @@ create table HOME (
    HOME_END_DATE        datetime             null,
    constraint PK_HOME primary key (HOME_ID)
 )
-go
-
-/*==============================================================*/
-/* Index: RISK_OF_HOUSE_FK                                      */
-/*==============================================================*/
-
-
-
-
-create nonclustered index RISK_OF_HOUSE_FK on HOME (R_ID ASC)
 go
 
 /*==============================================================*/
@@ -968,6 +1019,68 @@ create nonclustered index RELATIONSHIP_40_FK on RISK (COEFF_ID ASC)
 go
 
 /*==============================================================*/
+/* Table: RISK_OF_CAR                                           */
+/*==============================================================*/
+create table RISK_OF_CAR (
+   CARID                int                  not null,
+   R_ID                 int                  not null,
+   ROC_ID               int                  not null,
+   constraint PK_RISK_OF_CAR primary key (ROC_ID)
+)
+go
+
+/*==============================================================*/
+/* Index: RISK_OF_CAR_FK                                        */
+/*==============================================================*/
+
+
+
+
+create nonclustered index RISK_OF_CAR_FK on RISK_OF_CAR (CARID ASC)
+go
+
+/*==============================================================*/
+/* Index: RISK_OF_CAR2_FK                                       */
+/*==============================================================*/
+
+
+
+
+create nonclustered index RISK_OF_CAR2_FK on RISK_OF_CAR (R_ID ASC)
+go
+
+/*==============================================================*/
+/* Table: RISK_OF_HOUSE                                         */
+/*==============================================================*/
+create table RISK_OF_HOUSE (
+   R_ID                 int                  not null,
+   HOME_ID              int                  not null,
+   ROH_ID               int                  not null,
+   constraint PK_RISK_OF_HOUSE primary key (ROH_ID)
+)
+go
+
+/*==============================================================*/
+/* Index: RISK_OF_HOUSE_FK                                      */
+/*==============================================================*/
+
+
+
+
+create nonclustered index RISK_OF_HOUSE_FK on RISK_OF_HOUSE (R_ID ASC)
+go
+
+/*==============================================================*/
+/* Index: RISK_OF_HOUSE2_FK                                     */
+/*==============================================================*/
+
+
+
+
+create nonclustered index RISK_OF_HOUSE2_FK on RISK_OF_HOUSE (HOME_ID ASC)
+go
+
+/*==============================================================*/
 /* Table: STATE_OF_ORIGIN                                       */
 /*==============================================================*/
 create table STATE_OF_ORIGIN (
@@ -1135,11 +1248,6 @@ alter table DESTINATION
       references STATE_OF_ORIGIN (ST_ID)
 go
 
-alter table HOME
-   add constraint FK_HOME_RISK_OF_H_RISK foreign key (R_ID)
-      references RISK (R_ID)
-go
-
 alter table INSURANCE_PACKAGE
    add constraint FK_INSURANC_RELATIONS_TYPE_OF_ foreign key (TOP_ID)
       references TYPE_OF_PACKAGE (TOP_ID)
@@ -1198,6 +1306,26 @@ go
 alter table RISK
    add constraint FK_RISK_RELATIONS_COEFFICI foreign key (COEFF_ID)
       references COEFFICIENT (COEFF_ID)
+go
+
+alter table RISK_OF_CAR
+   add constraint FK_RISK_OF__RISK_OF_C_CAR foreign key (CARID)
+      references CAR (CARID)
+go
+
+alter table RISK_OF_CAR
+   add constraint FK_RISK_OF__RISK_OF_C_RISK foreign key (R_ID)
+      references RISK (R_ID)
+go
+
+alter table RISK_OF_HOUSE
+   add constraint FK_RISK_OF__RISK_OF_H_RISK foreign key (R_ID)
+      references RISK (R_ID)
+go
+
+alter table RISK_OF_HOUSE
+   add constraint FK_RISK_OF__RISK_OF_H_HOME foreign key (HOME_ID)
+      references HOME (HOME_ID)
 go
 
 alter table STATE_OF_ORIGIN
