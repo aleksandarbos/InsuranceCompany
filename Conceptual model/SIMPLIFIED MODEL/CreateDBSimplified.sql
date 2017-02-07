@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2014                    */
-/* Created on:     2/6/2017 11:46:57 PM                         */
+/* Created on:     2/7/2017 4:01:50 PM                          */
 /*==============================================================*/
 
 
@@ -51,6 +51,13 @@ if exists (select 1
    where r.fkeyid = object_id('HOME') and o.name = 'FK_HOME_RISK_OF_H_RISK')
 alter table HOME
    drop constraint FK_HOME_RISK_OF_H_RISK
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('INSURANCE_PACKAGE') and o.name = 'FK_INSURANC_RELATIONS_TYPE_OF_')
+alter table INSURANCE_PACKAGE
+   drop constraint FK_INSURANC_RELATIONS_TYPE_OF_
 go
 
 if exists (select 1
@@ -296,6 +303,15 @@ if exists (select 1
            where  id = object_id('HOME')
             and   type = 'U')
    drop table HOME
+go
+
+if exists (select 1
+            from  sysindexes
+           where  id    = object_id('INSURANCE_PACKAGE')
+            and   name  = 'RELATIONSHIP_26_FK'
+            and   indid > 0
+            and   indid < 255)
+   drop index INSURANCE_PACKAGE.RELATIONSHIP_26_FK
 go
 
 if exists (select 1
@@ -553,11 +569,18 @@ if exists (select 1
    drop table TRAVEL_PURPOSE
 go
 
+if exists (select 1
+            from  sysobjects
+           where  id = object_id('TYPE_OF_PACKAGE')
+            and   type = 'U')
+   drop table TYPE_OF_PACKAGE
+go
+
 /*==============================================================*/
 /* Table: AGE_GROUP                                             */
 /*==============================================================*/
 create table AGE_GROUP (
-   AG_ID                int                  identity,
+   AG_ID                int                  not null,
    COEFF_ID             int                  null,
    AG_NAME_EN           varchar(30)          not null,
    AG_NAME_SRB          varchar(100)         null,
@@ -586,6 +609,8 @@ create table CAR (
    LICENCE_PLATE        varchar(20)          null,
    CAR_TYPE             varchar(20)          null,
    CAR_MODEL            varchar(20)          null,
+   CAR_START_DATE       datetime             null,
+   CAR_END_DATE         datetime             null,
    constraint PK_CAR primary key (CARID)
 )
 go
@@ -724,6 +749,7 @@ go
 create table INSURANCE_PACKAGE (
    PACKAGE_ID           int                  identity,
    PL_ITEM_ID           int                  null,
+   TOP_ID               int                  null,
    PACKAGE_NAME_EN      varchar(20)          null,
    PACKAGE_DESCRIPTION_EN varchar(1000)        null,
    PACKAGE_NAME_SRB     varchar(20)          null,
@@ -740,6 +766,16 @@ go
 
 
 create nonclustered index RELATIONSHIP_36_FK on INSURANCE_PACKAGE (PL_ITEM_ID ASC)
+go
+
+/*==============================================================*/
+/* Index: RELATIONSHIP_26_FK                                    */
+/*==============================================================*/
+
+
+
+
+create nonclustered index RELATIONSHIP_26_FK on INSURANCE_PACKAGE (TOP_ID ASC)
 go
 
 /*==============================================================*/
@@ -858,8 +894,8 @@ go
 /*==============================================================*/
 create table PRICELIST (
    PRICELIST_ID         int                  identity,
-   HOME_START_DATE      datetime             not null,
-   HOME_END_DATE        datetime             null,
+   PRICELIST_START_DATE datetime             not null,
+   PRICELIST_END_DATE   datetime             null,
    constraint PK_PRICELIST primary key (PRICELIST_ID)
 )
 go
@@ -1059,6 +1095,16 @@ go
 create nonclustered index RELATIONSHIP_24_FK on TRAVEL_PURPOSE (PACKAGE_ID ASC)
 go
 
+/*==============================================================*/
+/* Table: TYPE_OF_PACKAGE                                       */
+/*==============================================================*/
+create table TYPE_OF_PACKAGE (
+   TOP_ID               int                  identity,
+   TOP_NAME             varchar(100)         null,
+   constraint PK_TYPE_OF_PACKAGE primary key (TOP_ID)
+)
+go
+
 alter table AGE_GROUP
    add constraint FK_AGE_GROU_RELATIONS_COEFFICI foreign key (COEFF_ID)
       references COEFFICIENT (COEFF_ID)
@@ -1092,6 +1138,11 @@ go
 alter table HOME
    add constraint FK_HOME_RISK_OF_H_RISK foreign key (R_ID)
       references RISK (R_ID)
+go
+
+alter table INSURANCE_PACKAGE
+   add constraint FK_INSURANC_RELATIONS_TYPE_OF_ foreign key (TOP_ID)
+      references TYPE_OF_PACKAGE (TOP_ID)
 go
 
 alter table INSURANCE_PACKAGE

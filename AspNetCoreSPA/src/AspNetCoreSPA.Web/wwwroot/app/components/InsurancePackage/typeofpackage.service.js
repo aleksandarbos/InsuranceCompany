@@ -1,34 +1,34 @@
 (function () {
 
     angular.module('app')
-    .service('TypeOfPackageService', ['$http', function ($http) {
+    .service('InsurancePackageService', ['$http', function ($http) {
             //metode servisa
             return {
                 getAll: function () {
 
-                   $http.get("api/Packages")
+                   $http.get("api/InsurancePackages")
                    .then(function (response) {
                     return response;
                 });
                },
                getId:function(id){
-                $http.get("api/Packages/"+id)
+                $http.get("api/InsurancePackages/"+id)
                 .then(function (response) {
                     return response;
                 });
             }
 
             ,
-            put: function (state)
+            put: function (package)
             {
-                $http.put("api/Packages/"+state.id, state).then(function(response){
+                $http.put("api/InsurancePackages/"+package.id, package).then(function(response){
                     return response;
                 });
 
 
             },
-            post: function (state) {
-               $http.post("api/Packages", state)
+            post: function (package) {
+               $http.post("api/InsurancePackages", package)
                .then(function (response) {
                     // Re-load data
                     return response;
@@ -37,9 +37,9 @@
 
                 });
            },
-               delete : function(state)
+               delete : function(packages)
                {
-                $http.delete("api/Packages/"+state.id).then(function(response){
+                $http.delete("api/InsurancePackages/"+package.id).then(function(response){
                     return response;
                 });
 
