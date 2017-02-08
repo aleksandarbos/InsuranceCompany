@@ -1,6 +1,13 @@
-<div ng-controller="MainCtrl as vm" layout="row" class="body-content">
+<div class="container body-content" style="background: url('/images/bckg.png');
+            -webkit-background-size:cover;
+            -moz-background-size:cover;
+            -o-background-size:cover;
+            background-size:cover;
+            background-position:center;
+            background-repeat: no-repeat;
+           "  ng-controller="MainCtrl as vm" layout="row">
 
-    <md-content flex="nogrow" style="width: 100%; height:100%; margin-left:5vw; margin-right:5vw"  name="page1">
+    <md-content flex="nogrow" style="width: 100%; height:98%;  margin-left:5vw; margin-right:5vw"  name="page1">
         <div>
             <md-card>
                 <md-toolbar>
@@ -19,7 +26,7 @@
                             <md-step-body>
                                 <form name="vm.stepNoNext()" ng-submit="vm.submitCurrentStep(1,false)" ng-click="savePolicy()" novalidate>
 
-                                    <md-content md-theme="docs-dark">
+                                    <md-content style="height:73%">
                                         <div>
                                             <div layout="row">
                                                 <md-input-container class="md-block" style=" width:250px">
@@ -124,18 +131,19 @@
                         <md-step label="{{ 'INFO' | translate }}">
                             <md-step-body>
                                 <form name="vm.stepNoNext()" ng-submit="vm.submitCurrentStep(2,false)" novalidate ng-cloak>
-                                    <div layout="row">
-                                        <div style="width:25vw; padding-left:30px">
-                                            <md-list ng-cloak style="padding-top:0px">
-                                                <md-subheader class="md-no-sticky">Users of the insurance</md-subheader>
-                                                <md-list-item ng-repeat="user in vm.listaKorisnika track by $index">
-                                                    <p>{{ user.ime }}  {{user.prezime}}</p>
-                                                    <md-icon md-svg-icon="images/icons/pencil.svg" ng-click="editUser($index)" aria-label="Edit user info" class="md-secondary md-hue-3"></md-icon>
-                                                </md-list-item>
-                                            </md-list>
-                                        </div>
-                                        <div layout="column" ng-cloak class="md-inline-form" style="width:50vw">
-                                            <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
+                                    <md-content layout-gt-sm="row" layout-padding style="height:72%" >
+                                        <div layout="row">
+                                            <div style="width:25vw; padding-left:30px">
+                                                <md-list ng-cloak style="padding-top:0px">
+                                                    <md-subheader class="md-no-sticky">Users of the insurance</md-subheader>
+                                                    <md-list-item ng-repeat="user in vm.listaKorisnika track by $index">
+                                                        <p>{{ user.name }} {{user.surname}}</p>
+                                                        <md-icon md-svg-icon="images/icons/pencil.svg" ng-click="editUser($index)" aria-label="Edit user info" class="md-secondary md-hue-3"></md-icon>
+                                                    </md-list-item>
+                                                </md-list>
+                                            </div>
+                                            <div layout="column" ng-cloak class="md-inline-form" style="width:50vw">
+                                                <!--   <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding> -->
                                                 <!-- dodati ikonicu za nosioca osiguranja-->
                                                 <div>
                                                     <div layout="row">
@@ -149,7 +157,7 @@
                                                             <input type="text" ng-model="vm.currentUser.surname" ng-disabled="vm.listaKorisnika.length <= vm.currentUserIndex" required />
                                                         </md-input-container>
                                                     </div>
-                                                    <md-input-container class="birthdate-picker" style="margin-top:0px; margin-bottom:0px">
+                                                    <md-input-container class="birthdate-picker" style="margin-top:0px; margin-bottom:0px; padding-left:35px">
                                                         <md-icon md-svg-src="images/icons/calendar.svg"></md-icon>
                                                         <md-datepicker ng-disabled="vm.listaKorisnika.length <= vm.currentUserIndex" ng-model="vm.currentUser.myDate" md-placeholder="{{'DATEBIRTH' | translate}}" required md-max-date="maxDateBirth"></md-datepicker>
                                                     </md-input-container>
@@ -175,23 +183,23 @@
                                                         </md-select>
                                                     </md-input-container>
 
-                                                    <md-input-container class="md-block" flex-gt-sm ng-show="vm.currentUserIndex==0" style="padding-right:3px">
+                                                    <md-input-container class="md-block" flex-gt-sm ng-show="vm.currentUserIndex==0" style="padding-right:3px; margin-bottom:10px">
                                                         <md-icon md-svg-src="images/icons/email.svg"></md-icon>
                                                         <label>Email</label>
                                                         <input type="email" ng-model="vm.currentUser.email" required ng-disabled="vm.listaKorisnika.length <= vm.currentUserIndex" />
                                                     </md-input-container>
 
-                                                    <md-input-container flex layout="row" layout-align="end bottom">
+                                                    <div flex layout="row" layout-align="start bottom">
                                                         <md-button class="md-raised" ng-disabled="vm.listaKorisnika.length <= vm.currentUserIndex" ng-click="saveUser()">Save user</md-button>
                                                         <md-button class="md-raised" ng-disabled="vm.listaKorisnika.length <= vm.currentUserIndex" ng-click="nextUser()">Enter next user</md-button>
-                                                    </md-input-container>
+                                                    </div>
                                                 </div>
 
-                                            </md-content>
 
+                                            </div>
                                         </div>
-                                    </div>
 
+                                    </md-content>
                                     <md-step-actions layout="row">
                                         <div flex layout="row" layout-align="end top">
                                             <md-button class="md-warn" ng-click="vm.moveToPreviousStep()">{{ 'PREVIOUS' | translate }}</md-button>
@@ -326,26 +334,33 @@
                             <md-step-body>
                               
                                 <form name="vm.stepNoNext()" ng-submit="vm.submitCurrentStep()" novalidate ng-cloak>
-                                    <div layout="row">
-                                     
-                                        <div layout="column" ng-cloak class="md-inline-form" style="width:80vw">
+                                    <md-content layout-gt-sm="row" layout-wrap layout-padding style="height:72%">
+                                        <div layout="row">
+                                            <div layout="column" ng-cloak class="md-inline-form" style="width:30vw; align-items:center">
+                                                <img src="images/person.svg" style="width:64px; height:auto;" />
+                                                                                         
+                                                <md-input-container class="md-block" flex-gt-sm>
+                                                    <label class="label-without-icon">{{ 'HOME_OWNER' | translate }}</label>
+                                                    <input type="text" ng-model="vm.homeInfo.owner" required />
+                                                </md-input-container>
+                                                <md-input-container class="md-block" flex-gt-sm>
+                                                    <label class="label-without-icon">{{ 'JMBG_HOME_OWNER' | translate }}</label>
+                                                    <input type="text" ng-model="vm.homeInfo.ownerJMBG" required />
+                                                </md-input-container>
 
-                                            <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
-
-                                                <div>
-                                                    <md-input-container class="md-block" style="padding-right:3px">
-                                                        <label class="label-without-icon">{{ 'ADDRESS' | translate }}</label>
-                                                        <input type="text" ng-model="vm.homeInfo.adress" required  />
+                                            </div>
+                                            <div layout="column" ng-cloak class="md-inline-form" style="width:50vw">
+                                             <div style="align-items:center">
+                                                    <img src="images/house.svg" style="width:64px; height:auto; align-self:center" />
+                                             </div> 
+                                                   <md-input-container class="md-block" style="padding-right:3px">
+                                                         <label class="label-without-icon">{{ 'ADDRESS' | translate }}</label>
+                                                         <input type="text" ng-model="vm.homeInfo.adress" required />
+                                                    </md-input-container> 
+                                                   <md-input-container class="md-block" flex-gt-sm>
+                                                        <label class="label-without-icon">{{ 'FLAT_SIZE' | translate }}</label>
+                                                        <input type="number" ng-model="vm.homeInfo.flatSize" required />
                                                     </md-input-container>
-                                                    <md-input-container class="md-block" flex-gt-sm>
-                                                        <label class="label-without-icon">{{ 'HOME_OWNER' | translate }}</label>
-                                                        <input type="text" ng-model="vm.homeInfo.owner" required />
-                                                    </md-input-container>
-                                                    <md-input-container class="md-block" flex-gt-sm>
-                                                        <label class="label-without-icon">{{ 'JMBG_HOME_OWNER' | translate }}</label>
-                                                        <input type="text" ng-model="vm.homeInfo.ownerJMBG" required />
-                                                    </md-input-container>
-                                                                                                     
                                                     <md-input-container class="md-block" flex-gt-sm>
                                                         <label class="label-without-icon">{{ 'BUILD_YEAR' | translate }}</label>
                                                         <input type="number" ng-model="vm.homeInfo.buildYear" required />
@@ -355,22 +370,28 @@
                                                         <input type="text" ng-model="vm.homeInfo.estimatedValue" required />
                                                     </md-input-container>
 
-                                                    <md-input-container class="md-block" flex-gt-sm">
-                                                        <label class="label-without-icon">{{ 'TYPE_OF_HOME_INSURANCE' | translate }}</label>
-                                                        <md-select ng-model="vm.homeInfo.insuranceType" required >
-                                                            <!--Trebalo bi da bude checkbox -->
-                                                            <md-option value="poplava">Poplava</md-option>
-                                                            <md-option value="pozar">Pozar</md-option>
-                                                            <md-option value="kradja">Kradja</md-option>
-                                                        </md-select>
-                                                    </md-input-container>
-                                                </div>
 
-                                            </md-content>
+                                                  
+                                                     <fieldset class="standard">
+                                                         <legend>{{'TYPE_OF_HOME_INSURANCE'  | translate}}</legend>
+                                                         <div layout-wrap="" layout-gt-sm="row" style="align-items:stretch">
+                                                                 <md-checkbox ng-model="vm.homeInfo.flood" aria-label="Flood"></md-checkbox>
+                                                                 <img src="images/flood.svg" style="width:64px; height:auto" alt="Flood" name="Flood" />
+                                                                                                                       
+                                                                 <md-checkbox ng-model="vm.homeInfo.fire" aria-label="Fire"/>
+                                                                <img src="images/fire.svg" style="width:64px; height:auto" alt="Fire" name="Fire" />
+                                                          
+                                                                 <md-checkbox ng-model="vm.homeInfo.robbery" aria-label="Robbery">
+                                                                 <img src="images/roberry.svg" style="width:64px; height:auto" alt="Robbery" name="Robbery" />       
+                                                            
+                                                   
+                                                         </div>
+                                                     </fieldset>
+                                                 </div>
 
-                                        </div>
-                                    </div>
+                                             </div>
 
+                                    </md-content>
 
                                     <md-step-actions layout="row">
                                         <div flex layout="row" layout-align="end top">
@@ -389,12 +410,45 @@
                             <md-step-body>
 
                                 <form name="vm.stepNoNext()" ng-submit="vm.submitCurrentStep()" novalidate ng-cloak>
-                                    <div layout="row">
+                                    <md-content  layout-gt-sm="row" layout-padding style="height:72%">
+                                        <div layout="row">
+                                            <div layout="column" ng-cloak width="50vw">
+                                                <fieldset class="standard">
+                                                    <legend>Choose type of insurance</legend>
+                                                    <div layout-wrap="" layout-gt-sm="row" style="align-items:stretch">
+                                                        <div>
+                                                            <md-checkbox ng-model="vm.vehicleInfo.slepovanje" aria-label="Slepovanje">Slepovanje</md-checkbox>
+                                                            <md-input-container class="md-block" flex-gt-sm ng-if="vm.vehicleInfo.slepovanje">
+                                                                <label class="label-without-icon">Slepovanje do:</label>
+                                                                <input type="number" ng-model="vm.vehicleInfo.kilometers" />
+                                                            </md-input-container>
+                                                        </div>
+                                                        <div>
+                                                            <md-checkbox ng-model="vm.vehicleInfo.repair" aria-label="Repair" > Popravka </md-checkbox>
+                                                            <md-input-container class="md-block" flex-gt-sm ng-if="vm.vehicleInfo.repair">
+                                                                <label class="label-without-icon"> do:</label>
+                                                                <input type="number" ng-model="vm.vehicleInfo.repairPrice" />
+                                                            </md-input-container>
+                                                        </div>
+                                                        <div>
+                                                            <md-checkbox ng-model="vm.vehicleInfo.hotel" aria-label="Hotel" > Smestaj u hotelu </md-checkbox>
+                                                            <md-input-container class="md-block" flex-gt-sm ng-if="vm.vehicleInfo.hotel">
+                                                                <label class="label-without-icon"> do:</label>
+                                                                <input type="number" ng-model="vm.vehicleInfo.hotelDays" />
+                                                            </md-input-container>
+                                                        </div>
+                                                        <div>
 
-                                        <div layout="column" ng-cloak class="md-inline-form" style="width:80vw">
 
-                                            <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
+                                                            <md-checkbox ng-model="vm.vehicleInfo.alternativeTransportation" aria-label="Alternative transporattion">
+                                                                Alternativni prevoz
+                                                            </md-checkbox>
+                                                        </div>
+                                                    </div>
+                                                </fieldset>
 
+                                            </div>
+                                            <div layout="column" ng-cloak class="md-inline-form" style="width:30vw">
                                                 <div>
                                                     <md-input-container class="md-block" style="padding-right:3px">
                                                         <label class="label-without-icon">Marka vozila</label>
@@ -422,24 +476,12 @@
                                                         <input type="text" ng-model="vm.vehicleInfo.ownerJMBG" required />
                                                     </md-input-container>
 
-                                                    <md-input-container class="md-block" flex-gt-sm">
-                                                        <label class="label-without-icon">Vrsta osiguranja</label>
-                                                        <p> Ovo treba doraditi, bice checkboxovi i postojace dodatna polja za nove informacije</p>
-                                                        <md-select ng-model="vm.vehicleInfo.insuranceType" required>
-                                                            <!--Trebalo bi da bude checkbox -->
-                                                            <md-option value="slepovanje">Slepovanje</md-option>
-                                                            <md-option value="popravka">Popravka</md-option>
-                                                            <md-option value="smestaj">Smestaj u hotelu</md-option>
-                                                            <md-option value="alternativniPrevoz">Alternativni prevoz</md-option>
-                                                        </md-select>
-                                                    </md-input-container>
+                                                 
                                                 </div>
+                                                </div>
+                                            </div>
 
-                                            </md-content>
-
-                                        </div>
-                                    </div>
-
+                                    </md-content>
 
                                     <md-step-actions layout="row">
                                         <div flex layout="row" layout-align="end top">
