@@ -1,14 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace AspNetCoreSPA.Model.POCOs
 {
-    public class Country
+    public partial class Country
     {
-        public int Id { get; set; }
-        public string NameEN { get; set; }
-        public string NameRS { get; set; }
+        public Country()
+        {
+            Destination = new HashSet<Destination>();
+        }
+
+        public int StId { get; set; }
+        public int ContinentId { get; set; }
+        public string StNameSrb { get; set; }
+        public string StNameEn { get; set; }
+
+        public virtual ICollection<Destination> Destination { get; set; }
+        public virtual Continent Continent { get; set; }
     }
 }
