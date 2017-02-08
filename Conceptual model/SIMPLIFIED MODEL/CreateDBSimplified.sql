@@ -729,8 +729,13 @@ go
 /* Table: COEFFICIENT                                           */
 /*==============================================================*/
 create table COEFFICIENT (
+<<<<<<< Updated upstream
    COEFF_ID             int                  identity,
    COEFF_VALUE          numeric(5,2)         null,
+=======
+   COEFF_ID             int                  not null,
+   COEFF_VALUE          numeric(10,4)       null,
+>>>>>>> Stashed changes
    COEFF_DATE           datetime             null,
    constraint PK_COEFFICIENT primary key (COEFF_ID)
 )
@@ -979,7 +984,7 @@ create table RATE_OF_PDV (
    PDV_RATE_ID          int                  identity,
    PDV_ID               int                  not null,
    VALID_UNTIL          datetime             null,
-   RATE                 numeric(10,10)       null,
+   RATE                 numeric(10,4)       null,
    constraint PK_RATE_OF_PDV primary key (PDV_RATE_ID)
 )
 go

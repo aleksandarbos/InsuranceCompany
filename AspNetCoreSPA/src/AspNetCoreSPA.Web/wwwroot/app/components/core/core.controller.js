@@ -33,6 +33,8 @@
 
 		var vm = this;
 		$scope.choices = [];
+		vm.listaKorisnika = [];
+
 
 		vm.stepNo = 0;
 		vm.stepNoNext = function () {
@@ -45,7 +47,7 @@
 		vm.states = ['destination', 'package', 'userinfo', 'payment'];
 		vm.stateIdx = 0;
 		vm.currentUser;
-
+		
 
 		$scope.addNewChoice = function () {
 			var newItemNo = $scope.choices.length + 1;
@@ -61,10 +63,9 @@
 
 		  $scope.userCount = function(){
 			  var brKorisnika = vm.polisy.noAdults + vm.polisy.noChildren;
-			  vm.listaKorisnika = [];
-			  
-			  for(var i=1; i<brKorisnika; i++){
-				  vm.listaKorisnika.push({ime: 'Jane ', prezime: 'Doe'+i, myDate: '', pasos: '', jmbg: '', pol: '', email: ''});
+			  		  
+			  for(var i=1; i<=brKorisnika; i++){
+				  vm.listaKorisnika.push({name: 'Jane ', surname: 'Doe'+i, myDate: '', passport: '', jmbg: '', sex: '', email: ''});
 			  }
 			  vm.currentUser = vm.listaKorisnika[0];
 			  vm.currentUserIndex = 0;
@@ -73,6 +74,8 @@
 		  }
 
 		  $scope.saveUser = function () {
+		      vm.currentUser.age = [];
+		      vm.currentUser.age = $scope.calculateAge(vm.currentUser.myDate);
 		      vm.listaKorisnika[vm.currentUserIndex] = vm.currentUser;
 		  }
 
@@ -89,6 +92,11 @@
 	         vm.currentUser = vm.listaKorisnika[index];
 	     }
 
+	     $scope.calculateAge = function (year) {
+	         var userYear = year.getFullYear();
+	         var currentYear = new Date().getFullYear();
+	         return currentYear - userYear;
+	     }
 	
 
            
@@ -138,11 +146,15 @@
 			vm.submitCurrentStep = function submitCurrentStep(stepData, isSkip) {
 				var deferred = $q.defer();
 				vm.showBusyText = true;
-				$scope.userCount();
+                if(stepData == 1)
+				    $scope.userCount();
 				console.log('On before submit');
-                //Pozivanje drools-a
-				if (stepData == 1)
+                //connecting with drools
+				if (stepData == 2) {
+				    vm.polisy.listOfUsers = [];
+				    vm.polisy.listOfUsers = vm.listaKorisnika;
 				    DroolsInfo.save(vm.polisy, onSaveSuccess);
+				}
 				//if (!stepData.completed && !isSkip) {
 					if(!isSkip){
 					//simulate $http
