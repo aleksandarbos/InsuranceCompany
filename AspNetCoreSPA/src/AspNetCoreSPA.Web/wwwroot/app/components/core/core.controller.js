@@ -4,9 +4,20 @@
 	angular
 		.module('coreModule')
 		.controller('MainCtrl', MainCtrl)
-        .config(function($mdDateLocaleProvider, $compileProvider){
+        .config(function($mdDateLocaleProvider, $compileProvider, $mdThemingProvider){
             $mdDateLocaleProvider.firstDayOfWeek = 1;
             $compileProvider.preAssignBindingsEnabled(true);
+
+            var darkBlueMap = $mdThemingProvider.extendPalette('indigo', {
+                '500': '#274474',
+                'contrastDefaultColor': 'light'
+            });
+
+            $mdThemingProvider.definePalette('darkBlue', darkBlueMap);
+
+            $mdThemingProvider.theme('default')
+                .primaryPalette('darkBlue')
+                .accentPalette('orange');
         });
 	MainCtrl.$inject = ['$window', '$scope', '$q', '$timeout', '$state', '$translate', 'DroolsInfo'];
     
@@ -44,7 +55,7 @@
 		    return 'step' + vm.stepNo;
 		}
 
-		vm.states = ['destination', 'package', 'userinfo', 'payment'];
+		vm.states = ['destination', 'userinfo', 'package', 'payment'];
 		vm.stateIdx = 0;
 		vm.currentUser;
 		
@@ -62,7 +73,8 @@
 
 
 		  $scope.userCount = function(){
-			  var brKorisnika = vm.polisy.noAdults + vm.polisy.noChildren;
+		      var brKorisnika = vm.polisy.noAdults + vm.polisy.noChildren;
+		      
 			  		  
 			  for(var i=1; i<=brKorisnika; i++){
 				  vm.listaKorisnika.push({name: 'Jane ', surname: 'Doe'+i, myDate: '', passport: '', jmbg: '', sex: '', email: ''});
