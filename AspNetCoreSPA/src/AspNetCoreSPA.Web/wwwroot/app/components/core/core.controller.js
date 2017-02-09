@@ -19,9 +19,9 @@
                 .primaryPalette('darkBlue')
                 .accentPalette('orange');
         });
-	MainCtrl.$inject = ['$window', '$scope', '$q', '$timeout', '$state', '$translate', 'DroolsInfo'];
+	MainCtrl.$inject = ['$window', '$scope', '$q', '$timeout', '$state', '$translate', 'DroolsInfo', 'DroolsHome', 'DroolsVehicle'];
     
-	function MainCtrl($window, $scope, $q, $timeout, $state, $translate, DroolsInfo) {
+	function MainCtrl($window, $scope, $q, $timeout, $state, $translate, DroolsInfo, DroolsHome, DroolsVehicle) {
 
 	    $scope.myDate = new Date();
 	    $scope.minDate = new Date(
@@ -45,7 +45,7 @@
 		var vm = this;
 		$scope.choices = [];
 		vm.listaKorisnika = [];
-
+		var currentYear = new Date().getFullYear();
 
 		vm.stepNo = 0;
 		vm.stepNoNext = function () {
@@ -106,10 +106,26 @@
 
 	     $scope.calculateAge = function (year) {
 	         var userYear = year.getFullYear();
-	         var currentYear = new Date().getFullYear();
 	         return currentYear - userYear;
 	     }
 	
+	     $scope.sendHomeInfo = function () {
+	         vm.homeInfo.chosenPackagePrice = {};
+	         vm.homeInfo.age = {};
+	         vm.homeInfo.insuranceDuration = {};
+	         vm.homeInfo.insuranceDuration = vm.polisy.noDays;
+	         vm.homeInfo.chosenPackagePrice = vm.polisy.polisyPackage;
+	         vm.homeInfo.age = currentYear - vm.homeInfo.buildYear;
+	         DroolsHome.save(vm.homeInfo, onsuccessHome)
+	     }
+
+	     $scope.sendVehicleInfo = function () {
+	         vm.vehicleInfo.chosenPackagePrice = {};
+	         vm.vehicleInfo.insuranceDuration = {};
+	         vm.vehicleInfo.insuranceDuration = vm.polisy.noDays;
+	         vm.vehicleInfo.chosenPackagePrice = vm.polisy.polisyPackage;
+             DroolsVehicle.save(vm.vehicleInfo, onsuccessVehicle)
+	     }
 
            
 		  
@@ -191,6 +207,17 @@
 			    vm.package1 = result.packagePrice1
 			    vm.package2 = result.packagePrice2
 			    vm.package3 = result.packagePrice3
+			}
+
+			function onsuccessHome(result) {
+			    vm.packageHome = {};
+			    vm.packageHome = result.price;
+			    console.log("Rezultat jeee " + result);
+			}
+
+			function onsuccessVehicle(result) {
+			    vm.packageVehicle = {};
+			    vm.packageVehicle = result.price;
 			}
 
 
