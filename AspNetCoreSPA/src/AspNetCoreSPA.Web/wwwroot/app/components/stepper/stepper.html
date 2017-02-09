@@ -333,7 +333,7 @@
                         <md-step label="{{ 'HOME_INSURANCE_INFO' | translate }}" ng-if="vm.homeInsuranceRadio == 'yes'">
                             <md-step-body>
                               
-                                <form name="vm.stepNoNext()" ng-submit="vm.submitCurrentStep()" novalidate ng-cloak>
+                                <form name="vm.stepNoNext()" ng-submit="vm.submitCurrentStep(); sendHomeInfo()" novalidate ng-cloak>
                                     <md-content layout-gt-sm="row" layout-wrap layout-padding style="height:72%">
                                         <div layout="row">
                                             <div layout="column" ng-cloak class="md-inline-form" style="width:30vw; align-items:center">
@@ -355,7 +355,7 @@
                                              </div> 
                                                    <md-input-container class="md-block" style="padding-right:3px">
                                                          <label class="label-without-icon">{{ 'ADDRESS' | translate }}</label>
-                                                         <input type="text" ng-model="vm.homeInfo.adress" required />
+                                                         <input type="text" ng-model="vm.homeInfo.address" required />
                                                     </md-input-container> 
                                                    <md-input-container class="md-block" flex-gt-sm>
                                                         <label class="label-without-icon">{{ 'FLAT_SIZE' | translate }}</label>
@@ -363,11 +363,11 @@
                                                     </md-input-container>
                                                     <md-input-container class="md-block" flex-gt-sm>
                                                         <label class="label-without-icon">{{ 'BUILD_YEAR' | translate }}</label>
-                                                        <input type="number" ng-model="vm.homeInfo.buildYear" required />
+                                                        <input type="text" ng-model="vm.homeInfo.buildYear" required />
                                                     </md-input-container>
                                                     <md-input-container class="md-block" flex-gt-sm>
                                                         <label class="label-without-icon">{{ 'ESTIMATED_VALUE' | translate }}</label>
-                                                        <input type="text" ng-model="vm.homeInfo.estimatedValue" required />
+                                                        <input type="number" ng-model="vm.homeInfo.estimatedValue" required />
                                                     </md-input-container>
 
 
@@ -417,8 +417,8 @@
                                                     <legend>Choose type of insurance</legend>
                                                     <div layout-wrap="" layout-gt-sm="row" style="align-items:stretch">
                                                         <div>
-                                                            <md-checkbox ng-model="vm.vehicleInfo.slepovanje" aria-label="Slepovanje">Slepovanje</md-checkbox>
-                                                            <md-input-container class="md-block" flex-gt-sm ng-if="vm.vehicleInfo.slepovanje">
+                                                            <md-checkbox ng-model="vm.vehicleInfo.towing" aria-label="Slepovanje">Slepovanje</md-checkbox>
+                                                            <md-input-container class="md-block" flex-gt-sm ng-if="vm.vehicleInfo.towing">
                                                                 <label class="label-without-icon">Slepovanje do:</label>
                                                                 <input type="number" ng-model="vm.vehicleInfo.kilometers" />
                                                             </md-input-container>
@@ -465,7 +465,7 @@
 
                                                     <md-input-container class="md-block" flex-gt-sm>
                                                         <label class="label-without-icon">Broj sasije</label>
-                                                        <input type="number" ng-model="vm.vehicleInfo.sasija" required />
+                                                        <input type="number" ng-model="vm.vehicleInfo.chassis" required />
                                                     </md-input-container>
                                                     <md-input-container class="md-block" flex-gt-sm>
                                                         <label class="label-without-icon">{{ 'HOME_OWNER' | translate }}</label>
