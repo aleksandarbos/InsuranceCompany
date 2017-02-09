@@ -8,10 +8,12 @@ namespace AspNetCoreSPA.Web.Controllers
     public class CountriesController : Controller
     {
         private readonly ICountryBLL _countryBLL;
+        private readonly IContinentBLL _continentBLL;
 
-        public CountriesController(ICountryBLL countryBLL)
+        public CountriesController(ICountryBLL countryBLL, IContinentBLL continentBLL)
         {
             _countryBLL = countryBLL;
+            _continentBLL = continentBLL;
         }
         
         public IActionResult Index()
@@ -22,6 +24,7 @@ namespace AspNetCoreSPA.Web.Controllers
         [Route("getAll"), HttpGet]
         public IActionResult GetAll()
         {
+            var x = _continentBLL.GetAll(); // for demo only
             return Json(_countryBLL.GetAll());
         }
     }
