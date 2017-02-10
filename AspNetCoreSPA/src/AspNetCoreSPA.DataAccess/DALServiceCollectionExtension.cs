@@ -1,35 +1,32 @@
 ﻿using AspNetCoreSPA.DAL;
+using AspNetCoreSPA.Model.POCOs;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace AspNetCoreSPA
 {
-    public static class DALServiceCollectionExtension
+    public static class ServiceCollectionExtension
     {
         public static void AddDALTier(this IServiceCollection services)
         {
-            services.AddTransient<ICountryDAL, CountryDAL>();
-            services.AddTransient<IAgeGroupDAL, AgeGroupDAL>();
-            services.AddTransient<ICoefficientDAL, CoefficientDAL>();
-            services.AddTransient<IContinentDAL, ContinentDAL>();
-            services.AddTransient<IDestinationDAL, DestinationDAL>();
-            services.AddTransient<IHomeDAL, HomeDAL>();
-            services.AddTransient<IInsurancePackageDAL, InsurancePackageDAL>();
-            services.AddTransient<IItemsOfPackageDAL, ItemsOfPackageDAL>();
-            services.AddTransient<IPdvDAL, PdvDAL>();
-            services.AddTransient<IPolicyDAL, PolicyDAL>();
-            services.AddTransient<IPricelistDAL, PricelistDAL>();
-            services.AddTransient<IRateOfPdvDAL, RateOfPdvDAL>();
-            services.AddTransient<IRiskDAL, RiskDAL>();
-            services.AddTransient<IRiskOfCarDAL, RiskOfCarDAL>();
-            services.AddTransient<IRiskOfHouseDAL, RiskOfHouseDAL>();
-            services.AddTransient<ISubjectOfInsuranceDAL, SubjectOfInsuranceDAL>();
-            services.AddTransient<ITravelActivityTravelPurposeDAL, TravelActivityTravelPurposeDAL>();
-            services.AddTransient<ITravelPurposeDAL, TravelPurposeDAL>();
-            services.AddTransient<ITypeOfPackageDAL, TypeOfPackageDAL>();
+            services.AddTransient<IRepository<Country>, Repository<Country>>();
+            services.AddTransient<IRepository<AgeGroup>, Repository<AgeGroup>>();
+            services.AddTransient<IRepository<Coefficient>, Repository<Coefficient>>();
+            services.AddTransient<IRepository<Continent>, Repository<Continent>>();
+            services.AddTransient<IRepository<Destination>, Repository<Destination>>();
+            services.AddTransient<IRepository<Home>, Repository<Home>>();
+            services.AddTransient<IRepository<InsurancePackage>, Repository<InsurancePackage>>();
+            services.AddTransient<IRepository<ItemsOfPackage>, Repository<ItemsOfPackage>>();
+            services.AddTransient<IRepository<Pdv>, Repository<Pdv>>();
+            services.AddTransient<IRepository<Policy>, Repository<Policy>>();
+            services.AddTransient<IRepository<Pricelist>, Repository<Pricelist>>();
+            services.AddTransient<IRepository<RateOfPdv>, Repository<RateOfPdv>>();
+            services.AddTransient<IRepository<Risk>, Repository<Risk>>();
+            services.AddTransient<IRepository<RiskOfCar>, Repository<RiskOfCar>>();
+            services.AddTransient<IRepository<RiskOfHouse>, Repository<RiskOfHouse>>();
+            services.AddTransient<IRepository<SubjectOfInsurance>, Repository<SubjectOfInsurance>>();
+            services.AddTransient<IRepository<TravelActivityTravelPurpose>, Repository<TravelActivityTravelPurpose>>();
+            services.AddTransient<IRepository<TravelPurpose>, Repository<TravelPurpose>>();
+            services.AddTransient<IRepository<TypeOfPackage>, Repository<TypeOfPackage>>();
         }
     }
 }

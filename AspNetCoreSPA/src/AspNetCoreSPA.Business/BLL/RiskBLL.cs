@@ -8,9 +8,9 @@ namespace AspNetCoreSPA.BLL
 {
     public class RiskBLL : IRiskBLL
     {
-        private readonly IRiskDAL _riskDAL;
+        private readonly IRepository<Risk> _riskDAL;
 
-        public RiskBLL(IRiskDAL riskDAL)
+        public RiskBLL(IRepository<Risk> riskDAL)
         {
             _riskDAL = riskDAL;
         }

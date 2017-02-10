@@ -8,9 +8,9 @@ namespace AspNetCoreSPA.BLL
 {
     public class RateOfPdvBLL : IRateOfPdvBLL
     {
-        private readonly IRateOfPdvDAL _rateOfPdvDAL;
+        private readonly IRepository<RateOfPdv> _rateOfPdvDAL;
 
-        public RateOfPdvBLL(IRateOfPdvDAL rateOfPdvDAL)
+        public RateOfPdvBLL(IRepository<RateOfPdv> rateOfPdvDAL)
         {
             _rateOfPdvDAL = rateOfPdvDAL;
         }

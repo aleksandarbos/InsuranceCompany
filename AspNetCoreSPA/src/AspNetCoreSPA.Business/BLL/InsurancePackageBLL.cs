@@ -8,9 +8,9 @@ namespace AspNetCoreSPA.BLL
 {
     public class InsurancePackageBLL : IInsurancePackageBLL
     {
-        private readonly IInsurancePackageDAL _insurancePackageDAL;
+        private readonly IRepository<InsurancePackage> _insurancePackageDAL;
 
-        public InsurancePackageBLL(IInsurancePackageDAL insurancePackageDAL)
+        public InsurancePackageBLL(IRepository<InsurancePackage> insurancePackageDAL)
         {
             _insurancePackageDAL = insurancePackageDAL;
         }

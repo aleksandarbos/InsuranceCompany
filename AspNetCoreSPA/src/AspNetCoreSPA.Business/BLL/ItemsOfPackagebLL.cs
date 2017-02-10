@@ -8,9 +8,9 @@ namespace AspNetCoreSPA.BLL
 {
     public class ItemsOfPackageBLL : IItemsOfPackageBLL
     {
-        private readonly IItemsOfPackageDAL _itemsOfPackageDAL;
+        private readonly IRepository<ItemsOfPackage> _itemsOfPackageDAL;
 
-        public ItemsOfPackageBLL(IItemsOfPackageDAL itemsOfPackageDAL)
+        public ItemsOfPackageBLL(IRepository<ItemsOfPackage> itemsOfPackageDAL)
         {
             _itemsOfPackageDAL = itemsOfPackageDAL;
         }

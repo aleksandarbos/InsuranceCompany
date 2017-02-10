@@ -8,9 +8,9 @@ namespace AspNetCoreSPA.BLL
 {
     public class PdvBLL : IPdvBLL
     {
-        private readonly IPdvDAL _pdvDAL;
+        private readonly IRepository<Pdv> _pdvDAL;
 
-        public PdvBLL(IPdvDAL pdvDAL)
+        public PdvBLL(IRepository<Pdv> pdvDAL)
         {
             _pdvDAL = pdvDAL;
         }

@@ -8,9 +8,9 @@ namespace AspNetCoreSPA.BLL
 {
     public class RiskOfCarBLL : IRiskOfCarBLL
     {
-        private readonly IRiskOfCarDAL _riskOfCarDAL;
+        private readonly IRepository<RiskOfCar> _riskOfCarDAL;
 
-        public RiskOfCarBLL(IRiskOfCarDAL riskOfCarDAL)
+        public RiskOfCarBLL(IRepository<RiskOfCar> riskOfCarDAL)
         {
             _riskOfCarDAL = riskOfCarDAL;
         }

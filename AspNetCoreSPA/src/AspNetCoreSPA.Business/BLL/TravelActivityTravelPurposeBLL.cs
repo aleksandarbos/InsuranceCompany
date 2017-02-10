@@ -8,9 +8,9 @@ namespace AspNetCoreSPA.BLL
 {
     public class TravelActivityTravelPurposeBLL : ITravelActivityTravelPurposeBLL
     {
-        private readonly ITravelActivityTravelPurposeDAL _travelActivityTravelPurposeDAL;
+        private readonly IRepository<TravelActivityTravelPurpose> _travelActivityTravelPurposeDAL;
 
-        public TravelActivityTravelPurposeBLL(ITravelActivityTravelPurposeDAL travelActivityTravelPurposeDAL)
+        public TravelActivityTravelPurposeBLL(IRepository<TravelActivityTravelPurpose> travelActivityTravelPurposeDAL)
         {
             _travelActivityTravelPurposeDAL = travelActivityTravelPurposeDAL;
         }

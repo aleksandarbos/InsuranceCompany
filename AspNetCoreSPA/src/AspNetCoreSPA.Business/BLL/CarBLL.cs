@@ -8,9 +8,9 @@ namespace AspNetCoreSPA.BLL
 {
     public class CarBLL : ICarBLL
     {
-        private readonly ICarDAL _carDAL;
+        private readonly IRepository<Car> _carDAL;
 
-        public CarBLL(ICarDAL carDAL)
+        public CarBLL(IRepository<Car> carDAL)
         {
             _carDAL = carDAL;
         }

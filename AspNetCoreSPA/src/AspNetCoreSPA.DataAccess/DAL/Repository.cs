@@ -1,24 +1,26 @@
 ﻿using AspNetCoreSPA.EntityFramework;
-using AspNetCoreSPA.Model.POCOs;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
 namespace AspNetCoreSPA.DAL
 {
-    public class CountryDAL : ICountryDAL
+    public class Repository<T> : IRepository<T> where T : class //Repository<T>
     {
         private readonly ApplicationDbContext _context;
 
-        public CountryDAL(ApplicationDbContext context)
+        public Repository(ApplicationDbContext context)
         {
-            _context = context;
+            this._context = context;
         }
-
-        public void CreateCountry(Country country)
+   
+        public void CreateCountry(T entity)
         {
             try
             {
-                _context.Country.Add(country);
+                _context.Set<T>().Add(entity);
             }
             catch (Exception)
             {
@@ -26,11 +28,11 @@ namespace AspNetCoreSPA.DAL
             }
         }
 
-        public DbSet<Country> GetAll()
+        public DbSet<T> GetAll()
         {
             try
             {
-                return _context.Country;
+                return _context.Set<T>();
             }
             catch (Exception)
             {

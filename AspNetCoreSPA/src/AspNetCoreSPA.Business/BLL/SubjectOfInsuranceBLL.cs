@@ -8,9 +8,9 @@ namespace AspNetCoreSPA.BLL
 {
     public class SubjectOfInsuranceBLL : ISubjectOfInsurnaceBLL
     {
-        private readonly ISubjectOfInsuranceDAL _subjectOfInsuranceDAL;
+        private readonly IRepository<SubjectOfInsurance> _subjectOfInsuranceDAL;
 
-        public SubjectOfInsuranceBLL(ISubjectOfInsuranceDAL subjectOfInsuranceDAL)
+        public SubjectOfInsuranceBLL(IRepository<SubjectOfInsurance> subjectOfInsuranceDAL)
         {
             _subjectOfInsuranceDAL = subjectOfInsuranceDAL;
         }

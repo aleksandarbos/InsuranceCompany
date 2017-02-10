@@ -8,9 +8,9 @@ namespace AspNetCoreSPA.BLL
 {
     public class HomeBLL : IHomeBLL
     {
-        private readonly IHomeDAL _homeDAL;
+        private readonly IRepository<Home> _homeDAL;
 
-        public HomeBLL(IHomeDAL homeDAL)
+        public HomeBLL(IRepository<Home> homeDAL)
         {
             _homeDAL = homeDAL;
         }

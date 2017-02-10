@@ -8,9 +8,9 @@ namespace AspNetCoreSPA.BLL
 {
     public class ContinentBLL : IContinentBLL
     {
-        private readonly IContinentDAL _continentDAL;
+        private readonly IRepository<Continent> _continentDAL;
 
-        public ContinentBLL(IContinentDAL continentDAL)
+        public ContinentBLL(IRepository<Continent> continentDAL)
         {
             _continentDAL = continentDAL;
         }

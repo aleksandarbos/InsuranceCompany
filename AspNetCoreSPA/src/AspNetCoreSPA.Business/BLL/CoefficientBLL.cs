@@ -8,9 +8,9 @@ namespace AspNetCoreSPA.BLL
 {
     public class CoefficientBLL : ICoefficentBLL
     {
-        private readonly ICoefficientDAL _coefficientDAL;
+        private readonly IRepository<Coefficient> _coefficientDAL;
 
-        public CoefficientBLL(ICoefficientDAL coefficientDAL)
+        public CoefficientBLL(IRepository<Coefficient> coefficientDAL)
         {
             _coefficientDAL = coefficientDAL;
         }

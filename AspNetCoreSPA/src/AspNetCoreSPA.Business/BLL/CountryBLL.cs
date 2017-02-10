@@ -8,9 +8,9 @@ namespace AspNetCoreSPA.BLL
 {
     public class CountryBLL : ICountryBLL
     {
-        private readonly ICountryDAL _countryDAL;
+        private readonly IRepository<Country> _countryDAL;
 
-        public CountryBLL(ICountryDAL countryDAL)
+        public CountryBLL(IRepository<Country> countryDAL)
         {
             _countryDAL = countryDAL;
         }

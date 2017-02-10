@@ -8,9 +8,9 @@ namespace AspNetCoreSPA.BLL
 {
     public class AgeGroupBLL : IAgeGroupBLL
     {
-        private readonly IAgeGroupDAL _ageGroupDAL;
+        private readonly IRepository<AgeGroup> _ageGroupDAL;
 
-        public AgeGroupBLL(IAgeGroupDAL ageGroupDAL)
+        public AgeGroupBLL(IRepository<AgeGroup> ageGroupDAL)
         {
             _ageGroupDAL = ageGroupDAL;
         }

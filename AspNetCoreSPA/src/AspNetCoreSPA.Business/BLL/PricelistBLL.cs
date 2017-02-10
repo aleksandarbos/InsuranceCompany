@@ -8,9 +8,9 @@ namespace AspNetCoreSPA.BLL
 {
     public class PricelistBLL : IPricelistBLL
     {
-        private readonly IPricelistDAL _pricelistDAL;
+        private readonly IRepository<Pricelist> _pricelistDAL;
 
-        public PricelistBLL(IPricelistDAL pricelistDAL)
+        public PricelistBLL(IRepository<Pricelist> pricelistDAL)
         {
             _pricelistDAL = pricelistDAL;
         }

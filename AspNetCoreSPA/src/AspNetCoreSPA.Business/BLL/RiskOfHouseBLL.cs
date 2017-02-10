@@ -8,9 +8,9 @@ namespace AspNetCoreSPA.BLL
 {
     public class RiskOfHouseBLL : IRiskOfHouseBLL
     {
-        private readonly IRiskOfHouseDAL _riskOfHouseDAL;
+        private readonly IRepository<RiskOfHouse> _riskOfHouseDAL;
 
-        public RiskOfHouseBLL(IRiskOfHouseDAL riskOfHouseDAL)
+        public RiskOfHouseBLL(IRepository<RiskOfHouse> riskOfHouseDAL)
         {
             _riskOfHouseDAL = riskOfHouseDAL;
         }

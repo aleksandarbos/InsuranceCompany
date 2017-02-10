@@ -8,9 +8,9 @@ namespace AspNetCoreSPA.BLL
 {
     public class DestinationBLL : IDestinationBLL
     {
-        private readonly IDestinationDAL _destinationDAL;
+        private readonly IRepository<Destination> _destinationDAL;
 
-        public DestinationBLL(IDestinationDAL destinationDAL)
+        public DestinationBLL(IRepository<Destination> destinationDAL)
         {
             _destinationDAL = destinationDAL;
         }

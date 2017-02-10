@@ -8,9 +8,9 @@ namespace AspNetCoreSPA.BLL
 {
     public class PolicyBLL : IPolicyBLL
     {
-        private readonly IPolicyDAL _policyDAL;
+        private readonly IRepository<Policy> _policyDAL;
 
-        public PolicyBLL(IPolicyDAL policyDAL)
+        public PolicyBLL(IRepository<Policy> policyDAL)
         {
             _policyDAL = policyDAL;
         }

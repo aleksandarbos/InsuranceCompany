@@ -8,9 +8,9 @@ namespace AspNetCoreSPA.BLL
 {
     public class TypeOfPackageBLL : ITypeOfPackageBLL
     {
-        private readonly ITypeOfPackageDAL _typeOfPackageDAL;
+        private readonly IRepository<TypeOfPackage> _typeOfPackageDAL;
 
-        public TypeOfPackageBLL(ITypeOfPackageDAL typeOfPackageDAL)
+        public TypeOfPackageBLL(IRepository<TypeOfPackage> typeOfPackageDAL)
         {
             _typeOfPackageDAL = typeOfPackageDAL;
         }
