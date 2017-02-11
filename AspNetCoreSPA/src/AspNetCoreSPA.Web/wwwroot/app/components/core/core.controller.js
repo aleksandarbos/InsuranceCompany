@@ -159,10 +159,10 @@
 
 	     $scope.sendTravelInfo = function () {
 	         vm.polisy.listOfUsers = {}
-	         vm.polisy.isSport = {}
+	         vm.polisy.sportBool = {}
 
-             if (vm.polisy.riskType == sport)
-                 vm.polisy.isSsport = true;
+             if (vm.polisy.riskType == 'sport')
+                 vm.polisy.sportBool = true;
 	             
 	         vm.polisy.listOfUsers = vm.listaKorisnika;
 	         DroolsInfo.save(vm.polisy, onSaveSuccess);

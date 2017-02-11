@@ -74,9 +74,9 @@
                                                     <md-input-container class="md-block" style="width:250px">
                                                         <label class="label-without-icon"">{{ 'SPORT_TYPE' | translate }}</label>
                                                         <md-select ng-model="vm.polisy.sport">
-                                                            <md-option value="1">Skijanje</md-option>
-                                                            <md-option value="2">Jedrenje</md-option>
-                                                            <md-option value="3">Planinarenje</md-option>
+                                                            <md-option value="Skijanje">Skijanje</md-option>
+                                                            <md-option value="Jedrenje">Jedrenje</md-option>
+                                                            <md-option value="Planinarenje">Planinarenje</md-option>
                                                         </md-select>
                                                     </md-input-container>
                                                 </div>
@@ -297,8 +297,8 @@
                                             </md-card-content>
                                             <md-card-actions layout="row" layout-align="end center">
                                                 <md-radio-group class="homeInsuranceRadio" ng-model="vm.homeInsuranceRadio">
-                                                    <md-radio-button value="yes">I want home insurance</md-radio-button>
-                                                    <md-radio-button value="no">I am not interested</md-radio-button>
+                                                    <md-radio-button value="true">I want home insurance</md-radio-button>
+                                                    <md-radio-button value="false">I am not interested</md-radio-button>
                                                 </md-radio-group>
                                             </md-card-actions>
                                         </md-card>
@@ -313,8 +313,8 @@
                                             </md-card-content>
                                             <md-card-actions layout="row" layout-align="end center">
                                                 <md-radio-group class="vehicleInsuranceRadio" ng-model="vm.vehicleInsuranceRadio">
-                                                    <md-radio-button value="yes">I want vehicle insurance</md-radio-button>
-                                                    <md-radio-button value="no">I am not interested</md-radio-button>
+                                                    <md-radio-button value="true">I want vehicle insurance</md-radio-button>
+                                                    <md-radio-button value="false">I am not interested</md-radio-button>
                                                 </md-radio-group>
                                             </md-card-actions>
                                         </md-card>
@@ -330,7 +330,7 @@
                             </md-step-body>
                         </md-step>
                         
-                        <md-step label="{{ 'HOME_INSURANCE_INFO' | translate }}" ng-if="vm.homeInsuranceRadio == 'yes'">
+                        <md-step label="{{ 'HOME_INSURANCE_INFO' | translate }}" ng-if="vm.homeInsuranceRadio == 'true'">
                             <md-step-body>
                               
                                 <form name="vm.stepNoNext()" ng-submit="vm.submitCurrentStep(); sendHomeInfo()" novalidate ng-cloak>
@@ -406,7 +406,7 @@
                         </md-step>
 
 
-                        <md-step label="{{ 'VEHICLE_INSURANCE_INFO' | translate }}" ng-if="vm.vehicleInsuranceRadio == 'yes'">
+                        <md-step label="{{ 'VEHICLE_INSURANCE_INFO' | translate }}" ng-if="vm.vehicleInsuranceRadio == 'true'">
                             <md-step-body>
 
                                 <form name="vm.stepNoNext()" ng-submit="vm.submitCurrentStep(); sendVehicleInfo()" novalidate ng-cloak>
@@ -508,8 +508,8 @@
 
                                     <md-step-actions layout="row">
                                         <div flex>
-                                            <md-button class="md-warn" ng-mouseenter="sendAllPackagesPriceInfo()" ng-click="vm.moveToPreviousStep()">{{ 'PREVIOUS' | translate }}</md-button>
-                                            <md-button>{{ 'FINISH' | translate }}</md-button>
+                                            <md-button class="md-warn" ng-click="vm.moveToPreviousStep()">{{ 'PREVIOUS' | translate }}</md-button>
+                                            <md-button ng-mouseenter="sendAllPackagesPriceInfo()" >{{ 'FINISH' | translate }}</md-button>
                                         </div>
                                     </md-step-actions>
                                 </form>
