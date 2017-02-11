@@ -8,42 +8,38 @@ using AspNetCoreSPA.BLL;
 
 namespace AspNetCoreSPA.Web.Controllers
 {
-    public class HomeController : Controller
+    [Produces("application/json")]
+    [Route("api/TravelActivityTravelPurpose")]
+    public class TravelActivityTravelPurposeController : Controller
     {
-        private readonly IHomeBLL _homeBLL;
+        private readonly ITravelActivityTravelPurposeBLL _travelActivityTravelPurposeBLL;
 
-        public HomeController(IHomeBLL homeBLL)
+        public TravelActivityTravelPurposeController(ITravelActivityTravelPurposeBLL travelActivityTravelPurposeBLL)
         {
-            _homeBLL = homeBLL;
+            _travelActivityTravelPurposeBLL = travelActivityTravelPurposeBLL;
         }
 
-        // GET: Application entry point
-        public IActionResult Index()
-        {
-            return View("index");
-        }
-
-        // GET: api/Home
+        // GET: api/TravelActivityTravelPurpose
         [HttpGet]
         public IActionResult Get()
         {
-            return Json(_homeBLL.GetAll());
+            return Json(_travelActivityTravelPurposeBLL.GetAll());
         }
 
-        // GET: api/Home/5
+        // GET: api/TravelActivityTravelPurpose/5
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
             return Json("value" + id);
         }
 
-        // POST: api/Home
+        // POST: api/TravelActivityTravelPurpose
         [HttpPost]
         public void Post([FromBody]string value)
         {
         }
 
-        // PUT: api/Home/5
+        // PUT: api/TravelActivityTravelPurpose/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]string value)
         {

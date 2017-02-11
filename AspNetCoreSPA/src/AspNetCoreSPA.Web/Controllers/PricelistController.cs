@@ -8,42 +8,38 @@ using AspNetCoreSPA.BLL;
 
 namespace AspNetCoreSPA.Web.Controllers
 {
-    public class HomeController : Controller
+    [Produces("application/json")]
+    [Route("api/Pricelist")]
+    public class PricelistController : Controller
     {
-        private readonly IHomeBLL _homeBLL;
+        private readonly IPricelistBLL _pricelistBLL;
 
-        public HomeController(IHomeBLL homeBLL)
+        public PricelistController(IPricelistBLL pricelistBLL)
         {
-            _homeBLL = homeBLL;
+            _pricelistBLL = pricelistBLL;
         }
 
-        // GET: Application entry point
-        public IActionResult Index()
-        {
-            return View("index");
-        }
-
-        // GET: api/Home
+        // GET: api/Pricelist
         [HttpGet]
         public IActionResult Get()
         {
-            return Json(_homeBLL.GetAll());
+            return Json(_pricelistBLL.GetAll());
         }
 
-        // GET: api/Home/5
+        // GET: api/Pricelist/5
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
             return Json("value" + id);
         }
 
-        // POST: api/Home
+        // POST: api/Pricelist
         [HttpPost]
         public void Post([FromBody]string value)
         {
         }
 
-        // PUT: api/Home/5
+        // PUT: api/Pricelist/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]string value)
         {

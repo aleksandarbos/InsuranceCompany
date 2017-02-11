@@ -8,42 +8,38 @@ using AspNetCoreSPA.BLL;
 
 namespace AspNetCoreSPA.Web.Controllers
 {
-    public class HomeController : Controller
+    [Produces("application/json")]
+    [Route("api/Continent")]
+    public class ContinentController : Controller
     {
-        private readonly IHomeBLL _homeBLL;
+        private readonly IContinentBLL _continentBLL;
 
-        public HomeController(IHomeBLL homeBLL)
+        public ContinentController(IContinentBLL continentBLL)
         {
-            _homeBLL = homeBLL;
+            _continentBLL = continentBLL;
         }
 
-        // GET: Application entry point
-        public IActionResult Index()
-        {
-            return View("index");
-        }
-
-        // GET: api/Home
+        // GET: api/Continent
         [HttpGet]
         public IActionResult Get()
         {
-            return Json(_homeBLL.GetAll());
+            return Json(_continentBLL.GetAll());
         }
 
-        // GET: api/Home/5
+        // GET: api/Continent/5
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
             return Json("value" + id);
         }
-
-        // POST: api/Home
+        
+        // POST: api/Continent
         [HttpPost]
         public void Post([FromBody]string value)
         {
         }
-
-        // PUT: api/Home/5
+        
+        // PUT: api/Continent/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]string value)
         {

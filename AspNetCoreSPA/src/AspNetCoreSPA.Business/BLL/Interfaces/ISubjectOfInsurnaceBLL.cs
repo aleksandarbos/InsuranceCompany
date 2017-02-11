@@ -3,7 +3,7 @@ using AspNetCoreSPA.Model.POCOs;
 
 namespace AspNetCoreSPA.BLL
 {
-    public interface ISubjectOfInsurnaceBLL
+    public interface ISubjectOfInsuranceBLL
     {
         List<SubjectOfInsurance> GetAll();
     }

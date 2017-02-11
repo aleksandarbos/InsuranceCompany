@@ -8,42 +8,38 @@ using AspNetCoreSPA.BLL;
 
 namespace AspNetCoreSPA.Web.Controllers
 {
-    public class HomeController : Controller
+    [Produces("application/json")]
+    [Route("api/Risk")]
+    public class RiskController : Controller
     {
-        private readonly IHomeBLL _homeBLL;
+        private readonly IRiskBLL _riskBLL;
 
-        public HomeController(IHomeBLL homeBLL)
+        public RiskController(IRiskBLL riskBLL)
         {
-            _homeBLL = homeBLL;
+            _riskBLL = riskBLL;
         }
 
-        // GET: Application entry point
-        public IActionResult Index()
-        {
-            return View("index");
-        }
-
-        // GET: api/Home
+        // GET: api/Risk
         [HttpGet]
         public IActionResult Get()
         {
-            return Json(_homeBLL.GetAll());
+            return Json(_riskBLL.GetAll());
         }
 
-        // GET: api/Home/5
+        // GET: api/Risk/5
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
             return Json("value" + id);
         }
 
-        // POST: api/Home
+        // POST: api/Risk
         [HttpPost]
         public void Post([FromBody]string value)
         {
         }
 
-        // PUT: api/Home/5
+        // PUT: api/Risk/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]string value)
         {

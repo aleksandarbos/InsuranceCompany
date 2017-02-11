@@ -6,7 +6,7 @@ using AspNetCoreSPA.DAL;
 
 namespace AspNetCoreSPA.BLL
 {
-    public class CoefficientBLL : ICoefficentBLL
+    public class CoefficientBLL : ICoefficientBLL
     {
         private readonly IRepository<Coefficient> _coefficientDAL;
 

@@ -8,42 +8,38 @@ using AspNetCoreSPA.BLL;
 
 namespace AspNetCoreSPA.Web.Controllers
 {
-    public class HomeController : Controller
+    [Produces("application/json")]
+    [Route("api/Car")]
+    public class CarController : Controller
     {
-        private readonly IHomeBLL _homeBLL;
+        private readonly ICarBLL _carBLL;
 
-        public HomeController(IHomeBLL homeBLL)
+        public CarController(ICarBLL carBLL)
         {
-            _homeBLL = homeBLL;
+            _carBLL = carBLL;
         }
 
-        // GET: Application entry point
-        public IActionResult Index()
-        {
-            return View("index");
-        }
-
-        // GET: api/Home
+        // GET: api/Car
         [HttpGet]
         public IActionResult Get()
         {
-            return Json(_homeBLL.GetAll());
+            return Json(_carBLL.GetAll());
         }
 
-        // GET: api/Home/5
+        // GET: api/Car/5
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
             return Json("value" + id);
         }
 
-        // POST: api/Home
+        // POST: api/Car
         [HttpPost]
         public void Post([FromBody]string value)
         {
         }
 
-        // PUT: api/Home/5
+        // PUT: api/Car/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]string value)
         {

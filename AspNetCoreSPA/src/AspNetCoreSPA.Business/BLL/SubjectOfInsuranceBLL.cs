@@ -6,7 +6,7 @@ using AspNetCoreSPA.DAL;
 
 namespace AspNetCoreSPA.BLL
 {
-    public class SubjectOfInsuranceBLL : ISubjectOfInsurnaceBLL
+    public class SubjectOfInsuranceBLL : ISubjectOfInsuranceBLL
     {
         private readonly IRepository<SubjectOfInsurance> _subjectOfInsuranceDAL;
 

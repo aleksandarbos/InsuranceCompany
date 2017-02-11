@@ -8,42 +8,38 @@ using AspNetCoreSPA.BLL;
 
 namespace AspNetCoreSPA.Web.Controllers
 {
-    public class HomeController : Controller
+    [Produces("application/json")]
+    [Route("api/TypeOfPackage")]
+    public class TypeOfPackageController : Controller
     {
-        private readonly IHomeBLL _homeBLL;
+        private readonly ITypeOfPackageBLL _typeOfPackageBLL;
 
-        public HomeController(IHomeBLL homeBLL)
+        public TypeOfPackageController(ITypeOfPackageBLL typeOfPackageBLL)
         {
-            _homeBLL = homeBLL;
+            _typeOfPackageBLL = typeOfPackageBLL;
         }
 
-        // GET: Application entry point
-        public IActionResult Index()
-        {
-            return View("index");
-        }
-
-        // GET: api/Home
+        // GET: api/TypeOfPackage
         [HttpGet]
         public IActionResult Get()
         {
-            return Json(_homeBLL.GetAll());
+            return Json(_typeOfPackageBLL.GetAll());
         }
 
-        // GET: api/Home/5
+        // GET: api/TypeOfPackage/5
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
             return Json("value" + id);
         }
 
-        // POST: api/Home
+        // POST: api/TypeOfPackage
         [HttpPost]
         public void Post([FromBody]string value)
         {
         }
 
-        // PUT: api/Home/5
+        // PUT: api/TypeOfPackage/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]string value)
         {

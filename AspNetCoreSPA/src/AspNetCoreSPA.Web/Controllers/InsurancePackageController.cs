@@ -8,42 +8,38 @@ using AspNetCoreSPA.BLL;
 
 namespace AspNetCoreSPA.Web.Controllers
 {
-    public class HomeController : Controller
+    [Produces("application/json")]
+    [Route("api/InsurancePackage")]
+    public class InsurancePackageController : Controller
     {
-        private readonly IHomeBLL _homeBLL;
+        private readonly IInsurancePackageBLL _insurancePackageBLL;
 
-        public HomeController(IHomeBLL homeBLL)
+        public InsurancePackageController(IInsurancePackageBLL insurancePackageBLL)
         {
-            _homeBLL = homeBLL;
+            _insurancePackageBLL = insurancePackageBLL;
         }
 
-        // GET: Application entry point
-        public IActionResult Index()
-        {
-            return View("index");
-        }
-
-        // GET: api/Home
+        // GET: api/InsurancePackage
         [HttpGet]
         public IActionResult Get()
         {
-            return Json(_homeBLL.GetAll());
+            return Json(_insurancePackageBLL.GetAll());
         }
 
-        // GET: api/Home/5
+        // GET: api/InsurancePackage/5
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
             return Json("value" + id);
         }
 
-        // POST: api/Home
+        // POST: api/InsurancePackage
         [HttpPost]
         public void Post([FromBody]string value)
         {
         }
 
-        // PUT: api/Home/5
+        // PUT: api/InsurancePackage/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]string value)
         {

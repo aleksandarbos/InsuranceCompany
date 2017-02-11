@@ -8,42 +8,38 @@ using AspNetCoreSPA.BLL;
 
 namespace AspNetCoreSPA.Web.Controllers
 {
-    public class HomeController : Controller
+    [Produces("application/json")]
+    [Route("api/Coefficient")]
+    public class CoefficientController : Controller
     {
-        private readonly IHomeBLL _homeBLL;
+        private readonly ICoefficientBLL _coefficientBLL;
 
-        public HomeController(IHomeBLL homeBLL)
+        public CoefficientController(ICoefficientBLL coefficientBLL)
         {
-            _homeBLL = homeBLL;
+            _coefficientBLL = coefficientBLL;
         }
 
-        // GET: Application entry point
-        public IActionResult Index()
-        {
-            return View("index");
-        }
-
-        // GET: api/Home
+        // GET: api/Coefficient
         [HttpGet]
         public IActionResult Get()
         {
-            return Json(_homeBLL.GetAll());
+            return Json(_coefficientBLL.GetAll());
         }
 
-        // GET: api/Home/5
+        // GET: api/Coefficient/5
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
             return Json("value" + id);
         }
-
-        // POST: api/Home
+                
+        // POST: api/Coefficient
         [HttpPost]
         public void Post([FromBody]string value)
         {
         }
-
-        // PUT: api/Home/5
+        
+        // PUT: api/Coefficient/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]string value)
         {

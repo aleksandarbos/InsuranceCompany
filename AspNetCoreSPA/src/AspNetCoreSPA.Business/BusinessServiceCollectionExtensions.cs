@@ -9,7 +9,7 @@ namespace AspNetCoreSPA
         {
             services.AddTransient<ICountryBLL, CountryBLL>();
             services.AddTransient<IAgeGroupBLL, AgeGroupBLL>();
-            services.AddTransient<ICoefficentBLL, CoefficientBLL>();
+            services.AddTransient<ICoefficientBLL, CoefficientBLL>();
             services.AddTransient<IContinentBLL, ContinentBLL>();
             services.AddTransient<IDestinationBLL, DestinationBLL>();
             services.AddTransient<IHomeBLL, HomeBLL>();
@@ -22,7 +22,7 @@ namespace AspNetCoreSPA
             services.AddTransient<IRiskBLL, RiskBLL>();
             services.AddTransient<IRiskOfCarBLL, RiskOfCarBLL>();
             services.AddTransient<IRiskOfHouseBLL, RiskOfHouseBLL>();
-            services.AddTransient<ISubjectOfInsurnaceBLL, SubjectOfInsuranceBLL>();
+            services.AddTransient<ISubjectOfInsuranceBLL, SubjectOfInsuranceBLL>();
             services.AddTransient<ITravelActivityTravelPurposeBLL, TravelActivityTravelPurposeBLL>();
             services.AddTransient<ITravelPurposeBLL, TravelPurposeBLL>();
             services.AddTransient<ITypeOfPackageBLL, TypeOfPackageBLL>();

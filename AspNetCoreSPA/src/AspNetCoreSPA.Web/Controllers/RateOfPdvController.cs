@@ -8,42 +8,38 @@ using AspNetCoreSPA.BLL;
 
 namespace AspNetCoreSPA.Web.Controllers
 {
-    public class HomeController : Controller
+    [Produces("application/json")]
+    [Route("api/RateOfPdv")]
+    public class RateOfPdvController : Controller
     {
-        private readonly IHomeBLL _homeBLL;
+        private readonly IRateOfPdvBLL _rateOfPdvBLL;
 
-        public HomeController(IHomeBLL homeBLL)
+        public RateOfPdvController(IRateOfPdvBLL rateOfPdvBLL)
         {
-            _homeBLL = homeBLL;
+            _rateOfPdvBLL = rateOfPdvBLL;
         }
 
-        // GET: Application entry point
-        public IActionResult Index()
-        {
-            return View("index");
-        }
-
-        // GET: api/Home
+        // GET: api/RateOfPdv
         [HttpGet]
         public IActionResult Get()
         {
-            return Json(_homeBLL.GetAll());
+            return Json(_rateOfPdvBLL.GetAll());
         }
 
-        // GET: api/Home/5
+        // GET: api/RateOfPdv/5
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
             return Json("value" + id);
         }
 
-        // POST: api/Home
+        // POST: api/RateOfPdv
         [HttpPost]
         public void Post([FromBody]string value)
         {
         }
 
-        // PUT: api/Home/5
+        // PUT: api/RateOfPdv/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]string value)
         {

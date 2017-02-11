@@ -3,7 +3,7 @@ using AspNetCoreSPA.Model.POCOs;
 
 namespace AspNetCoreSPA.BLL
 {
-    public interface ICoefficentBLL
+    public interface ICoefficientBLL
     {
         List<Coefficient> GetAll();
     }
