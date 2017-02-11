@@ -409,7 +409,7 @@
                         <md-step label="{{ 'VEHICLE_INSURANCE_INFO' | translate }}" ng-if="vm.vehicleInsuranceRadio == 'yes'">
                             <md-step-body>
 
-                                <form name="vm.stepNoNext()" ng-submit="vm.submitCurrentStep()" novalidate ng-cloak>
+                                <form name="vm.stepNoNext()" ng-submit="vm.submitCurrentStep(); sendVehicleInfo()" novalidate ng-cloak>
                                     <md-content  layout-gt-sm="row" layout-padding style="height:72%">
                                         <div layout="row">
                                             <div layout="column" ng-cloak width="50vw">
@@ -508,7 +508,7 @@
 
                                     <md-step-actions layout="row">
                                         <div flex>
-                                            <md-button class="md-warn" ng-click="vm.moveToPreviousStep()">{{ 'PREVIOUS' | translate }}</md-button>
+                                            <md-button class="md-warn" ng-mouseenter="sendAllPackagesPriceInfo()" ng-click="vm.moveToPreviousStep()">{{ 'PREVIOUS' | translate }}</md-button>
                                             <md-button>{{ 'FINISH' | translate }}</md-button>
                                         </div>
                                     </md-step-actions>
