@@ -74,7 +74,7 @@ textarea {
     background-color: rgb(39,68,116)
 }
 
-md-input-container{
+.modified-input md-input-container{
     padding-left: 50px;
     padding-right: 5px;
     max-width: 400px;
@@ -96,3 +96,5 @@ md-input-container{
 .birthdate-picker .md-datepicker-input-container {
     margin-left: 0 !important;    
 }
+
+

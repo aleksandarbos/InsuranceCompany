@@ -60,16 +60,30 @@ var translationsEN = {
     ADDITIONAL_OPTIONS: 'Additional options',
     OFFER: "With us, you don't have to think about anything, we are thinking for you. <br /> Take a look at additional offers we have prepared for you.",
     HOME_INSURANCE: 'Home insurance',
-    VEHICLE_INSURANCE: 'Vehicle insurance',
     HOME_INSURANCE_INFO: 'Home insurance info',
-    VEHICLE_INSURANCE_INFO: 'Vehicle insurance info',
     ADDRESS: 'Address',
     HOME_OWNER: 'Owner (Name and Surname)',
     JMBG_HOME_OWNER: "Owner's JMBG",
     FLAT_SIZE: 'Surface area',
     BUILD_YEAR: 'The Year of construction',
     ESTIMATED_VALUE: 'Estimated value',
-    TYPE_OF_HOME_INSURANCE: 'Type of insurance'
+    TYPE_OF_HOME_INSURANCE: 'Type of insurance',
+    USERS_INSURANCE: 'Users of the insurance',
+    NOT_INTERESTED: 'I am not interested',
+    VEHICLE_INSURANCE_WANT: 'I want assistence on the road insurance',
+    HOME_INSURANCE_WANT: 'I want home insurance',
+    VEHICLE_CHOOSE: 'Choose services',
+    VEHICLE_YEAR: 'Year of manufacture',
+    VEHICLE_PLATES_NO: 'Plates number',
+    VEHICLE_UNDERCARRIAGE_NO: 'Undercarriage number',
+    VEHICLE_BRAND: 'Brand of the vehicle',
+    VEHICLE_INSURANCE: 'Vehicle insurance',
+    VEHICLE_INSURANCE_INFO: 'Vehicle insurance info',
+    OWNER_INFO: 'Owner information',
+    FLOOD: 'Flood',
+    FIRE: 'Fire',
+    ROBERRY: 'Robbery',
+    CURR_ADD_INS_PRICE: 'Insurance price'
 
 
 };
@@ -134,6 +148,22 @@ var translationsSRB= {
     BUILD_YEAR: 'Godina izgradnje',
     ESTIMATED_VALUE: 'Procenjena vrednost',
     TYPE_OF_HOME_INSURANCE: 'Vrsta osiguranja',
+    USERS_INSURANCE: 'Korisnici osiguranja',
+    NOT_INTERESTED: 'Nisam zainteresovan',
+    VEHICLE_INSURANCE_WANT: 'Želim osiguranje Pomoć na putu',
+    HOME_INSURANCE_WANT: 'Želim osiguranje doma',
+    VEHICLE_CHOOSE: 'Izaberi usluge osiguranja',
+    VEHICLE_YEAR: 'Godina proizvodnje',
+    VEHICLE_PLATES_NO: 'Broj registarskih tablica',
+    VEHICLE_UNDERCARRIAGE_NO: 'Broj šasije',
+    VEHICLE_BRAND: 'Marka vozila',
+    OWNER_INFO: 'Informacije o vlasniku',
+    FLOOD: 'Poplava',
+    FIRE: 'Požar',
+    ROBERRY: 'Krađa',
+    CURR_ADD_INS_PRICE: 'Cena osiguranja'
+
+    
     
     
 
