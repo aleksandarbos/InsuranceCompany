@@ -368,11 +368,11 @@
                                                     </legend>
 
                                                     <div layout="column" style="align-items:flex-start">
-                                                        <md-input-container class="md-block" flex-gt-lg style="width:100%">
+                                                        <md-input-container class="md-block" flex-gt-sm style="width:100%">
                                                             <label>{{ 'HOME_OWNER' | translate }}</label>
                                                             <input type="text" ng-model="vm.homeInfo.owner" required />
                                                         </md-input-container>
-                                                        <md-input-container class="md-block" flex-gt-lg style="width:100%">
+                                                        <md-input-container class="md-block" flex-gt-sm style="width:100%">
                                                             <label>{{ 'JMBG_HOME_OWNER' | translate }}</label>
                                                             <input type="text" ng-model="vm.homeInfo.ownerJMBG" required />
                                                         </md-input-container>
@@ -381,42 +381,44 @@
                                                 </fieldset>
                                             </div>
                                          
-                                            <div layout="column" ng-cloak class="md-inline-form" style="width:50vw; align-items:center">
-                                             
+                                            <div layout="column" ng-cloak class="md-inline-form" style="width:50vw; max-width:800px; align-items:center">
                                                 <img src="images/house.svg" style="width:64px; height:auto; align-self:center" />
-                                                <div layout="column" style="align-items:center">
-                                                    <md-input-container class="md-block" style="padding-right:3px">
-                                                        <label>{{ 'ADDRESS' | translate }}</label>
-                                                        <input type="text" ng-model="vm.homeInfo.address" required />
-                                                    </md-input-container>
-                                                    <md-input-container class="md-block" flex-gt-sm>
-                                                        <label>{{ 'FLAT_SIZE' | translate }}</label>
-                                                        <input type="number" ng-model="vm.homeInfo.flatSize" required />
-                                                    </md-input-container>
-                                                    <md-input-container class="md-block" flex-gt-sm>
-                                                        <label>{{ 'BUILD_YEAR' | translate }}</label>
-                                                        <input type="text" ng-model="vm.homeInfo.buildYear" required />
-                                                    </md-input-container>
-                                                    <md-input-container class="md-block" flex-gt-sm>
-                                                        <label>{{ 'ESTIMATED_VALUE' | translate }}</label>
-                                                        <input type="number" ng-model="vm.homeInfo.estimatedValue" required />
-                                                    </md-input-container>
-                                                </div>
-                                                  
-                                                <fieldset layout="column" style="align-items:center; width:50%">
-                                                    <legend>
-                                                        {{'CURR_ADD_INS_PRICE' | translate}}
-                                                    </legend>
-                                                    <md-whiteframe class="md-whiteframe-2dp" flex-sm="45" flex-gt-sm="35" flex-gt-md="25" layout layout-align="center center" style="height:10%">
-                                                        <span>Current insurance price 1000RSD</span>
-                                                    </md-whiteframe>
-                                                </fieldset>
-                                                   
+                                                <fieldset style="width:50%">
+                                                    <div layout-wrap="" layout-gt-sm="column">
+                                                        <md-input-container class="md-block" flex-gt-sm style="width:100%">
+                                                            <label>{{ 'ADDRESS' | translate }}</label>
+                                                            <input type="text" ng-model="vm.homeInfo.address" required />
+                                                        </md-input-container>
+                                                        <md-input-container class="md-block" flex-gt-sm style="width:100%">
+                                                            <label>{{ 'FLAT_SIZE' | translate }}</label>
+                                                            <input type="number" ng-model="vm.homeInfo.flatSize" required />
+                                                        </md-input-container>
+                                                        <md-input-container class="md-block" flex-gt-sm style="width:100%">
+                                                            <label>{{ 'BUILD_YEAR' | translate }}</label>
+                                                            <input type="text" ng-model="vm.homeInfo.buildYear" required />
+                                                        </md-input-container>
+                                                        <md-input-container class="md-block" flex-gt-sm style="width:100%">
+                                                            <label>{{ 'ESTIMATED_VALUE' | translate }}</label>
+                                                            <input type="number" ng-model="vm.homeInfo.estimatedValue" required />
+                                                        </md-input-container>
+                                                      </div>  
+                                                 </fieldset>
+                                                                                      
+                                                
+                                                    <fieldset layout="column" style="align-items:center; width:50%">
+                                                        <legend>
+                                                            {{'CURR_ADD_INS_PRICE' | translate}}
+                                                        </legend>
+                                                        <md-whiteframe class="md-whiteframe-2dp" flex-sm="45" flex-gt-sm="35" flex-gt-md="25" layout layout-align="center center" style="height:10% !important">
+                                                            <span>Current insurance price 1000RSD</span>
+                                                        </md-whiteframe>
+                                                    </fieldset>
+                                               
                                             </div>
 
 
 
-                                             </div>
+                                      </div>
 
                                     </md-content>
 
