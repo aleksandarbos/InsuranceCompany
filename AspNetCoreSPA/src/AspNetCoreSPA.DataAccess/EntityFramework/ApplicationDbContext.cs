@@ -218,7 +218,7 @@ namespace AspNetCoreSPA.EntityFramework
                 entity.HasKey(e => e.StId)
                     .HasName("PK_STATE_OF_ORIGIN");
 
-                entity.ToTable("COUNTRY");
+                entity.ToTable("STATE_OF_ORIGIN");
 
                 entity.HasIndex(e => e.ContinentId)
                     .HasName("RELATIONSHIP_41_FK");

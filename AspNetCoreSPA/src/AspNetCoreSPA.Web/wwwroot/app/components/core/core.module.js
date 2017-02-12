@@ -83,7 +83,11 @@ var translationsEN = {
     FLOOD: 'Flood',
     FIRE: 'Fire',
     ROBERRY: 'Robbery',
-    CURR_ADD_INS_PRICE: 'Insurance price'
+    CURR_ADD_INS_PRICE: 'Insurance price',
+    TOWING: 'Vehicle towing',
+    REPAIR: 'Vehicle repair',
+    ACCOMODATION: 'Hotel accomodation',
+    ALT_TRANSPORT: 'Alternative transportation'
 
 
 };
@@ -161,7 +165,11 @@ var translationsSRB= {
     FLOOD: 'Poplava',
     FIRE: 'Požar',
     ROBERRY: 'Krađa',
-    CURR_ADD_INS_PRICE: 'Cena osiguranja'
+    CURR_ADD_INS_PRICE: 'Cena osiguranja',
+    TOWING: 'Šlepovanje vozila',
+    REPAIR: 'Popravka vozila',
+    ACCOMODATION: 'Smeštaj u hotelu',
+    ALT_TRANSPORT: 'Alternativni prevoz'
 
     
     

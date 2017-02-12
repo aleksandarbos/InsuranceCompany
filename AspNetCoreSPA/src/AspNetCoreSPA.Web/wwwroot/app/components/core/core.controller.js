@@ -33,9 +33,9 @@
                 $scope.myDate.getFullYear() - 18,
                 $scope.myDate.getMonth(),
                 $scope.myDate.getDate()
-            );
+        );
         
-
+      
             $scope.changeLanguage = function (langKey) {
                 $translate.use(langKey);
                 //odraditi poziv i dodeliti ng modelu za odredjene entite
