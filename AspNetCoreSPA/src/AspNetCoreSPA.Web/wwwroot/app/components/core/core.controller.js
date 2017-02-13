@@ -309,6 +309,11 @@
 	    			}
 	    			console.log(idMain);
 
+	     $scope.sendTravelInfo = function () {
+	         vm.polisy.listOfUsers = {}
+	         vm.polisy.sportBool = {}
+	         vm.polisy.noDays = {}
+	         var oneDay = 24 * 60 * 60 * 1000;
 	    		}*/
 	    		var finalCar={};
 	    		finalCar.ClientId=19;
@@ -404,11 +409,6 @@
 	    	$scope.sendTravelInfo = function () {
 	    		vm.polisy.listOfUsers = {}
 	    		vm.polisy.sportBool = {}
-	     $scope.sendTravelInfo = function () {
-	         vm.polisy.listOfUsers = {}
-	         vm.polisy.sportBool = {}
-	         vm.polisy.noDays = {}
-	         var oneDay = 24 * 60 * 60 * 1000;
 
              if (vm.polisy.riskType == 'sport')
                  vm.polisy.sportBool = true;
