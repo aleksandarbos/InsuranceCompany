@@ -1,0 +1,112 @@
+﻿<div id="mainBodyPreview">
+    <div>
+        <h2>Travel Insurance Polisy</h2>
+        <table class="table">
+            <tr>
+                <td>Type of travel:</td>
+                <td>{{vm.polisy.travelType}}</td>
+            </tr>
+            <tr>
+                <td>Travel purpose:</td>
+                <td> {{vm.polisy.riskType}}</td>
+            </tr>
+            <tr>
+                <td> Sport: </td>
+                <td>{{vm.polisy.sport}}</td>
+            </tr>
+            <tr>
+                <td> Destination:</td>
+                <td> {{vm.polisy.destination}}</td>
+            </tr>
+            <tr>
+                <td>Start Date:</td>
+                <td> {{vm.polisy.date}}</td>
+                <td> End Date:</td>
+                <td> {{}}</td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <h3>User Info and Price per person</h3>
+        <table class="table">
+            <tr>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Jmbg</th>
+                <th>Passport</th>
+                <th>Price</th>
+            </tr>
+        </table>
+        <table class="table" ng-repeat="person in vm.polisy.listOfUsers">
+            <tr>
+                <td>{{person.name}}</td>
+                <td>{{person.surname}}</td>
+                <td>{{person.jmbg}}</td>
+                <td>{{person.passport}}</td>
+                <td>{{person.chosenPackagePrice}}</td>
+            </tr>
+        </table>
+        <table class="table">
+            <tr>
+               <td><label>Polisy owner's email:</label> {{vm.polisy.listOfUsers[0].email}}</td>
+            </tr>
+        </table>
+        <p class="text-right">Total price: <label>{{vm.polisy.polisyPackage}}</label></p>
+    </div>
+
+    <div class="row" ng-show="vm.homeInsuranceRadio">
+        <h3>Home info</h3>
+        <div class="col-xs-6">
+            <table class="table">
+                <tr><td>Owner: </td><td>{{vm.homeInfo.owner}}</td></tr>
+                <tr><td>Owners JMBG: </td><td>{{vm.homeInfo.ownerJMBG}}</td></tr>
+                <tr><td>Address: </td><td>{{vm.homeInfo.address}}</td></tr>
+                <tr><td>Home size: </td><td>{{vm.homeInfo.flatSize}}</td></tr>
+                <tr><td>Build year: </td><td>{{vm.homeInfo.buildYear}}</td></tr>
+                <tr><td>Estimate value: </td><td>{{vm.homeInfo.estimatedValue}}</td></tr>
+            </table>
+        </div>
+        <div class="col-xs-6">
+            <table class="table">
+                <tr>
+                    <th>Insured from</th>
+                </tr>
+            </table>
+            <table class="table">
+                <tr ng-show="vm.homeInfo.fire"><td>Fire </td></tr>
+                <tr ng-show="vm.homeInfo.flood"><td>Flood </td></tr>
+                <tr ng-show="vm.homeInfo.robbery"><td>Robbery </td></tr>
+            </table>
+            <p class="text-right">Total price: <label>{{vm.homeInfo.price}}</label></p>
+        </div>
+    </div>
+
+    <div class="row" ng-show="vm.vehicleInsuranceRadio">
+        <h3>Vehicle info</h3>
+        <div class="col-xs-6">
+            <table class="table">
+                <tr><td>Owner: </td><td>{{vm.vehicleInfo.owner}}</td></tr>
+                <tr><td>Owners JMBG: </td><td>{{vm.vehicleInfo.ownerJMBG}}</td></tr>
+                <tr><td>Mark: </td><td>{{vm.vehicleInfo.mark}}</td></tr>
+                <tr><td>Production year: </td><td>{{vm.vehicleInfo.productionYear}}</td></tr>
+                <tr><td>Serial No: </td><td>{{vm.vehicleInfo.serialNo}}</td></tr>
+                <tr><td>Chassis: </td><td>{{vm.vehicleInfo.chassis}}</td></tr>
+            </table>
+        </div>
+        <div class="col-xs-6">
+            <table class="table">
+                <tr>
+                    <th>Insured from</th>
+                </tr>
+            </table>
+            <table class="table">
+                <tr ng-show="vm.vehicleInfo.towing"><td>Towing up to {{vm.vehicleInfo.kilometers}} km</td></tr>
+                <tr ng-show="vm.vehicleInfo.repair"><td>Repair up to {{vm.vehicleInfo.repairPrice}} RSD </td></tr>
+                <tr ng-show="vm.vehicleInfo.hotel"><td>Hotel up to {{vm.vehicleInfo.hotelDays}} days </td></tr>
+                <tr ng-show="vm.vehicleInfo.alternativeTrasnportation"><td>Alternative transportation </td></tr>
+            </table>
+            <p class="text-right">Total price: <label>{{vm.vehicleInfo.price}}</label></p>
+        </div>
+    </div>
+    <p class="text-right">Total price of policy: <label>{{vm.finalPriceWithPotencialDiscount}}</label></p>
+</div>

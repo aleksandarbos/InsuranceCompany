@@ -112,6 +112,33 @@
 
         vm.currentUser;
 		
+        vm.setPackage1Selected = function setPackage1Selected(){
+            vm.package1Selected = true;
+            vm.package2Selected = false;
+            vm.package3Selected = false;
+        }
+
+        vm.setPackage2Selected = function setPackage2Selected() {
+            vm.package1Selected = false;
+            vm.package2Selected = true;
+            vm.package3Selected = false;
+        }
+
+        vm.setPackage3Selected = function setPackage3Selected() {
+            vm.package1Selected = false;
+            vm.package2Selected = false;
+            vm.package3Selected = true;
+        }
+
+        vm.setUserPrice = function setUserPrice() {
+            for (var person in vm.polisy.listOfUsers)
+                if( vm.package1Selected)
+                    vm.polisy.listOfUsers[person].chosenPackagePrice = vm.polisy.listOfUsers[person].price1
+                else if (vm.package2Selected)
+                    vm.polisy.listOfUsers[person].chosenPackagePrice = vm.polisy.listOfUsers[person].price2
+                else if (vm.package3Selected)
+                    vm.polisy.listOfUsers[person].chosenPackagePrice = vm.polisy.listOfUsers[person].price3
+        }
 
 		$scope.addNewChoice = function () {
 			var newItemNo = $scope.choices.length + 1;
@@ -178,13 +205,7 @@
 	         vm.homeInfo.insuranceDuration = vm.polisy.noDays;
 	         vm.homeInfo.chosenPackagePrice = vm.polisy.polisyPackage;
 	         vm.homeInfo.age = currentYear - vm.homeInfo.buildYear;
-             /*
-	         vm.homeInfo = {
-	             chosenPackagePrice: vm.polisy.polisyPackage,
-	             insuranceDuration:vm.polisy.noDays,
-	             age: currentYear - vm.homeInfo.buildYear
-	         }
-             */
+
 	         DroolsHome.save(vm.homeInfo, onsuccessHome)
 	     }
 
@@ -194,11 +215,6 @@
 	         vm.vehicleInfo.insuranceDuration = vm.polisy.noDays;
 	         vm.vehicleInfo.chosenPackagePrice = vm.polisy.polisyPackage;
              
-	       /*  vm.vehicleInfo = {
-	             chosenPackagePrice: vm.polisy.noDays,
-	             insuranceDuration: vm.polisy.polisyPackage
-	         }
-             */
              DroolsVehicle.save(vm.vehicleInfo, onsuccessVehicle)
 	     }
 
@@ -239,6 +255,7 @@
 			    vm.package1 = {};
 			    vm.package2 = {};
 			    vm.package3 = {};
+			    vm.polisy = result;
 			    vm.package1 = result.packagePrice1
 			    vm.package2 = result.packagePrice2
 			    vm.package3 = result.packagePrice3
