@@ -152,6 +152,7 @@
             console.log(vm.homeInsuranceRadio)
             console.log(vm.vehicleInsuranceRadio)
         }
+
 		$scope.addNewChoice = function () {
 			var newItemNo = $scope.choices.length + 1;
 			$scope.choices.push($scope.choices.length);
@@ -246,12 +247,18 @@
 	     $scope.sendTravelInfo = function () {
 	         vm.polisy.listOfUsers = {}
 	         vm.polisy.sportBool = {}
+	         vm.polisy.noDays = {}
+	         var oneDay = 24 * 60 * 60 * 1000;
 
              if (vm.polisy.riskType == 'sport')
                  vm.polisy.sportBool = true;
 	         else
                  vm.polisy.sportBool = false;
-	             
+
+             var startDate = new Date(vm.polisy.date)
+             var endDate = new Date(vm.polisy.endDate)
+
+             vm.polisy.noDays = Math.ceil(Math.abs(startDate - endDate)) / oneDay + 1;
 	         vm.polisy.listOfUsers = vm.listaKorisnika;
 	         DroolsInfo.save(vm.polisy, onSaveSuccess);
 	     }

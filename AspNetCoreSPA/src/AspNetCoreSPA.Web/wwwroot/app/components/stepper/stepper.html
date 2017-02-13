@@ -115,21 +115,21 @@
                                                    
 
                                                     <md-input-container style="padding-left:35px!important">
-                                                        <md-datepicker name="datePickerEnd" ng-model="vm.polisy.dateEnd" md-placeholder="{{'DATE_END' | translate}}" required md-min-date="vm.polisy.date"></md-datepicker>
+                                                        <md-datepicker name="datePickerEnd" ng-model="vm.polisy.endDate" md-placeholder="{{'DATE_END' | translate}}" required md-min-date="vm.polisy.date"></md-datepicker>
                                                        
                                                         <div ng-messages="chooseInsuranceForm.datePickerEnd.$error">
                                                             <div ng-message="required">{{'REQUIRED' | translate }}</div>
                                                         </div>
                                                     </md-input-container>
                                                 
-                                                    <md-input-container>
+                                                  <!--  <md-input-container>
                                                         <label class="label-without-icon">{{ 'DAYS' | translate }}</label>
                                                         <input name="noDays" type="number" ng-model="vm.polisy.noDays" min=1>
                                                         <div ng-messages="chooseInsuranceForm.noDays.$error">
                                                             <div ng-message="required">{{'REQUIRED' | translate }}</div>
                                                         </div>
                                                     </md-input-container>
-                                                   
+                                                   -->
                                                 </div>
                                             </div>
 
@@ -351,7 +351,7 @@
                         <md-step label="{{ 'HOME_INSURANCE_INFO' | translate }}" ng-if="vm.homeInsuranceRadio == 'true'">
                             <md-step-body>
                               
-                                <form name="vm.stepNoNext()" ng-submit="vm.submitCurrentStep(); sendHomeInfo()" novalidate ng-cloak>
+                                <form name="vm.stepNoNext()" ng-submit="vm.submitCurrentStep()" novalidate ng-cloak>
                                     <md-content layout-gt-sm="row" layout-wrap layout-padding style="height:73%">
                                         <div layout="row">
                                             <div layout="column" style="width:30vw">
@@ -359,20 +359,20 @@
                                                     <legend>{{'TYPE_OF_HOME_INSURANCE'  | translate}}</legend>
                                                     <div layout-wrap="" layout-gt-sm="column" style="align-items:flex-start;">
                                                         <md-input-container>
-                                                            <md-checkbox ng-model="vm.homeInfo.flood" aria-label="Flood">
+                                                            <md-checkbox ng-model="vm.homeInfo.flood" aria-label="Flood" ng-change="sendHomeInfo()">
                                                                 <img src="images/icons/house-flood.svg" style="width:36px; height:auto" alt="Flood" name="Flood" />
                                                                 <span>{{'FLOOD' | translate}}</span>
                                                              </md-checkbox>
                                                             
                                                         </md-input-container>
                                                         <md-input-container>
-                                                            <md-checkbox ng-model="vm.homeInfo.fire" aria-label="Fire" >
+                                                            <md-checkbox ng-model="vm.homeInfo.fire" aria-label="Fire" ng-change="sendHomeInfo()">
                                                                 <img src="images/icons/house-fire.svg" style="width:36px; height:auto" alt="Fire" name="Fire" />
                                                                 <span> {{'FIRE' | translate}}</span>
                                                               </md-checkbox>
                                                         </md-input-container>
                                                         <md-input-container>
-                                                            <md-checkbox ng-model="vm.homeInfo.robbery" aria-label="Robbery">
+                                                            <md-checkbox ng-model="vm.homeInfo.robbery" aria-label="Robbery" ng-change="sendHomeInfo()">
                                                                 <img src="images/icons/house-roberry.svg" style="width:36px; height:auto" alt="Robbery" name="Robbery" />
                                                                 <span> {{'ROBERRY' | translate}}</span>
                                                             </md-checkbox>
@@ -409,15 +409,25 @@
                                                         </md-input-container>
                                                         <md-input-container class="md-block" flex-gt-sm style="width:100%">
                                                             <label>{{ 'FLAT_SIZE' | translate }}</label>
-                                                            <input type="number" ng-model="vm.homeInfo.flatSize" required />
+                                                            <input type="number" ng-model="vm.homeInfo.flatSize" ng-change="sendHomeInfo()" required />
                                                         </md-input-container>
                                                         <md-input-container class="md-block" flex-gt-sm style="width:100%">
                                                             <label>{{ 'BUILD_YEAR' | translate }}</label>
-                                                            <input type="text" ng-model="vm.homeInfo.buildYear" required />
+                                                            <md-select name="buildYear" ng-model="vm.homeInfo.buildYear" ng-change="sendHomeInfo()" required>
+                                                                <md-option value="2010">
+                                                                    2010
+                                                                </md-option>
+                                                                <md-option value="2011">
+                                                                    2011
+                                                                </md-option>
+                                                                <md-option value="2012">
+                                                                    2012
+                                                                </md-option>
+                                                            </md-select>
                                                         </md-input-container>
                                                         <md-input-container class="md-block" flex-gt-sm style="width:100%">
                                                             <label>{{ 'ESTIMATED_VALUE' | translate }}</label>
-                                                            <input type="number" ng-model="vm.homeInfo.estimatedValue" required />
+                                                            <input type="number" ng-model="vm.homeInfo.estimatedValue" ng-change="sendHomeInfo()" required />
                                                         </md-input-container>
                                                       </div>  
                                                  </fieldset>
@@ -428,14 +438,10 @@
                                                             {{'CURR_ADD_INS_PRICE' | translate}}
                                                         </legend>
                                                         <md-whiteframe class="md-whiteframe-2dp" flex-sm="45" flex-gt-sm="35" flex-gt-md="25" layout layout-align="center center" style="height:10% !important">
-                                                            <span>Current insurance price 1000RSD</span>
+                                                            <span>Current insurance price {{vm.packageHome}}</span>
                                                         </md-whiteframe>
                                                     </fieldset>
-                                               
                                             </div>
-
-
-
                                       </div>
 
                                     </md-content>
@@ -534,7 +540,17 @@
                                                         </md-input-container>
                                                         <md-input-container class="md-block" flex-gt-sm>
                                                             <label>{{'VEHICLE_YEAR' | translate}}</label>
-                                                            <input type="text" ng-model="vm.vehicleInfo.productionYear" required />
+                                                            <md-select name="productionYear" ng-model="vm.vehicleInfo.productionYear" required>
+                                                                <md-option value="2010">
+                                                                    2010
+                                                                </md-option>
+                                                                <md-option value="2011">
+                                                                    2011
+                                                                </md-option>
+                                                                <md-option value="2012">
+                                                                    2012
+                                                                </md-option>
+                                                            </md-select>
                                                         </md-input-container>
                                                         <md-input-container class="md-block" flex-gt-sm>
                                                             <label>{{'VEHICLE_PLATES_NO' | translate}}</label>
@@ -553,7 +569,7 @@
                                                         {{'CURR_ADD_INS_PRICE' | translate}}
                                                     </legend>
                                                     <md-whiteframe class="md-whiteframe-2dp" flex-sm="45" flex-gt-sm="35" flex-gt-md="25" layout layout-align="center center" style="height:10% !important">
-                                                        <span>Current insurance price 1000RSD</span>
+                                                        <span>Current insurance price {{vm.packageVehicle}}</span>
                                                     </md-whiteframe>
                                                 </fieldset>
 
