@@ -15,7 +15,7 @@ namespace AspNetCoreSPA.BLL
             _itemsOfPackageDAL = itemsOfPackageDAL;
         }
 
-        public int add(ItemsOfPackage i)
+        public int Add(ItemsOfPackage i)
         {
             throw new NotImplementedException();
         }

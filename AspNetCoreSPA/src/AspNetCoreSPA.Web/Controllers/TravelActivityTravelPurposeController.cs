@@ -38,7 +38,7 @@ namespace AspNetCoreSPA.Web.Controllers
         [HttpPost]
         public IActionResult Post([FromBody]TravelActivityTravelPurpose value)
         {
-            return Json(_travelActivityTravelPurposeBLL.add(value));
+            return Json(_travelActivityTravelPurposeBLL.Add(value));
         }
 
         // PUT: api/TravelActivityTravelPurpose/5

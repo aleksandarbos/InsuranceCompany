@@ -15,7 +15,7 @@ namespace AspNetCoreSPA.BLL
             _continentDAL = continentDAL;
         }
 
-        public int add(Continent k)
+        public int Add(Continent k)
         {
             throw new NotImplementedException();
         }

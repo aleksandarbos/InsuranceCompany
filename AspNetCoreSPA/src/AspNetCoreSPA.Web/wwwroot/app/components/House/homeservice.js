@@ -1,37 +1,37 @@
 (function () {
 
     angular.module('app')
-    .service('HomeService', ['$http', function ($http) {
+    .service('HouseService', ['$http', function ($http) {
             //metode servisa
             return {
                 getAll: function () {
 
-                   $http.get("api/Homes")
+                   $http.get("api/Destination")
                    .then(function (response) {
                     return response;
                 });
                },
                getId:function(id){
-                $http.get("api/Homes/"+id)
+                $http.get("api/Destination/"+id)
                 .then(function (response) {
                     return response;
                 });
             }
 
             ,
-            put: function (house)
+            put: function (destination)
             {
-                return $http.put("api/Homes/"+house.id, house)
+                return $http.put("api/Destination/"+destination.id, destination)
 
 
             },
-            post: function (house) {
-              return $http.post("api/Homes", house)
+            post: function (destination) {
+              return $http.post("api/Destination", destination)
                
            },
-               delete : function(house)
+               delete : function(destination)
                {
-                $http.delete("api/Homes/"+house.id).then(function(response){
+                $http.delete("api/Destination/"+destination.id).then(function(response){
                     return response;
                 });
 

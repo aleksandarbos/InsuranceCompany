@@ -15,7 +15,7 @@ namespace AspNetCoreSPA.BLL
             _travelActivityTravelPurposeDAL = travelActivityTravelPurposeDAL;
         }
 
-        public int add(TravelActivityTravelPurpose t)
+        public int Add(TravelActivityTravelPurpose t)
         {
             throw new NotImplementedException();
         }

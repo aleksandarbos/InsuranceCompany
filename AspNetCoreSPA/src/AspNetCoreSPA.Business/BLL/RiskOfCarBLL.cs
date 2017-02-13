@@ -15,7 +15,7 @@ namespace AspNetCoreSPA.BLL
             _riskOfCarDAL = riskOfCarDAL;
         }
 
-        public int add(RiskOfCar r)
+        public int Add(RiskOfCar r)
         {
             _riskOfCarDAL.Create(r);
             return r.RocId;

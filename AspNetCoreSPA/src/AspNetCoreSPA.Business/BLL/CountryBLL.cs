@@ -15,7 +15,7 @@ namespace AspNetCoreSPA.BLL
             _countryDAL = countryDAL;
         }
 
-        public int add(Country c)
+        public int Add(Country c)
         {
             throw new NotImplementedException();
         }

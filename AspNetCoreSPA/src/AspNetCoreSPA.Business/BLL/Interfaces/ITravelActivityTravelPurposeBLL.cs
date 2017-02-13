@@ -6,6 +6,6 @@ namespace AspNetCoreSPA.BLL
     public interface ITravelActivityTravelPurposeBLL
     {
         List<TravelActivityTravelPurpose> GetAll();
-        int add(TravelActivityTravelPurpose t);
+        int Add(TravelActivityTravelPurpose t);
     }
 }

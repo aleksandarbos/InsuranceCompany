@@ -15,7 +15,7 @@ namespace AspNetCoreSPA.BLL
             _subjectOfInsuranceDAL = subjectOfInsuranceDAL;
         }
 
-        public int add(SubjectOfInsurance s)
+        public int Add(SubjectOfInsurance s)
         {
             _subjectOfInsuranceDAL.Create(s);
             return s.IiId;

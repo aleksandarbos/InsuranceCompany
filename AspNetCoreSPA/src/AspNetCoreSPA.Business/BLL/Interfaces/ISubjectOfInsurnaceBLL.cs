@@ -6,6 +6,6 @@ namespace AspNetCoreSPA.BLL
     public interface ISubjectOfInsuranceBLL
     {
         List<SubjectOfInsurance> GetAll();
-        int add(SubjectOfInsurance s);
+        int Add(SubjectOfInsurance s);
     }
 }

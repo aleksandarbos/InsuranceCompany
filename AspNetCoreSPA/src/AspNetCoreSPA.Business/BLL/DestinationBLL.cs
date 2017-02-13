@@ -15,7 +15,7 @@ namespace AspNetCoreSPA.BLL
             _destinationDAL = destinationDAL;
         }
 
-        public int add(Destination d)
+        public int Add(Destination d)
         {
             _destinationDAL.Create(d);
             return d.DstId;

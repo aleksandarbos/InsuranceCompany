@@ -6,6 +6,6 @@ namespace AspNetCoreSPA.BLL
     public interface IPdvBLL
     {
         List<Pdv> GetAll();
-        int add(Pdv p);
+        int Add(Pdv p);
     }
 }

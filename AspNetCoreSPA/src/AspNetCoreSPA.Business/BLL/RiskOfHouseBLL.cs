@@ -15,7 +15,7 @@ namespace AspNetCoreSPA.BLL
             _riskOfHouseDAL = riskOfHouseDAL;
         }
 
-        public int add(RiskOfHouse r)
+        public int Add(RiskOfHouse r)
         {
             _riskOfHouseDAL.Create(r);
             return r.RohId;

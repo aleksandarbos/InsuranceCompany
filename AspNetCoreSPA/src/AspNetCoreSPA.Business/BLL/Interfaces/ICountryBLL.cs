@@ -6,6 +6,6 @@ namespace AspNetCoreSPA.BLL
     public interface ICountryBLL
     {
         List<Country> GetAll();
-        int add(Country c);
+        int Add(Country c);
     }
 }

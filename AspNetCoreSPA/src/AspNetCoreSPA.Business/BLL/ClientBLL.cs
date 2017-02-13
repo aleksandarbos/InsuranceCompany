@@ -14,7 +14,7 @@ namespace AspNetCoreSPA.BLL
         public ClientBLL(IRepository<Client> policyDAL) {
             _clientDAL = policyDAL;
         }
-        public int add(Client cl)
+        public int Add(Client cl)
         {
             _clientDAL.Create(cl);
             return cl.ClientId;
@@ -24,5 +24,6 @@ namespace AspNetCoreSPA.BLL
         {
            return  _clientDAL.GetAll().ToList();
         }
+        
     }
 }

@@ -20,9 +20,9 @@
 		.primaryPalette('darkBlue')
 		.accentPalette('orange');
 	});
-	MainCtrl.$inject = ['$window', '$scope', '$q', '$timeout', '$state', '$translate', 'DroolsInfo', 'DroolsHome', 'DroolsVehicle', 'DroolsAllPackages','PolicyService','ClientService','DestinationService','CarService','HouseService'];
+	MainCtrl.$inject = ['$window', '$scope', '$q', '$timeout', '$state', '$translate', 'DroolsInfo', 'DroolsHome', 'DroolsVehicle', 'DroolsAllPackages','PolicyService','ClientService','DestinationService','HouseService','CarService'];
 
-	function MainCtrl($window, $scope, $q, $timeout, $state, $translate, DroolsInfo, DroolsHome, DroolsVehicle, DroolsAllPackages,PolicyService,ClientService,DestinationService,CarService,'HouseService') {
+	function MainCtrl($window, $scope, $q, $timeout, $state, $translate, DroolsInfo, DroolsHome, DroolsVehicle, DroolsAllPackages,PolicyService,ClientService,DestinationService,HouseService,CarService) {
 
 		$scope.myDate = new Date();
 		$scope.minDate = new Date(
@@ -194,7 +194,7 @@
 	    		var i=0
 	    		var idMain=0;
 	    		var listaKljuceva=[];
-	    		for(i=0;i<vm.listaKorisnika.length;i++)
+	    		/*for(i=0;i<vm.listaKorisnika.length;i++)
 	    		{
 	    			var client={};
 	    			client.Firstname=vm.listaKorisnika[i].name;
@@ -203,11 +203,14 @@
 	    			client.Jmbg=vm.listaKorisnika[i].jmbg;
 	    			client.PassportNumber=vm.listaKorisnika[i].passport;
 	    			client.Sex=vm.listaKorisnika[i].sex;
+	    			console.log(client);
 
 	    			if(i===0){
 
 	    				ClientService.post(client).then(function(res){
 	    					idMain=res.data;
+	    					console.log("Prvi")
+	    					console.log(res.data)
 
 	    				},function(res){
 
@@ -217,25 +220,39 @@
 	    			}else{
 	    				ClientService.post(client).then(function(res){
 	    					listaKljuceva.push(res.data);
+						console.log("Drugi")
+	    					
+						console.log(res.data)
 
 	    				},function(res){
 
 	    				});
 
 	    			}
+	    			console.log(idMain);
 
-	    		}
+	    		}*/
 	    		var finalCar={};
-	    		finalCar.Client=ClientNavigation;
+	    		finalCar.ClientId=19;
 	    		finalCar.Year=vm.vehicleInfo.productionYear;
 	    		finalCar.ChassisNumber=vm.vehicleInfo.chassis;
 	    		finalCar.LicencePlate=vm.vehicleInfo.serialNo;
 	    		finalCar.CarStartDate=vm.polisy.date;
 	    		finalCar.CarEndDate=vm.polisy.date;
-	    		finalCar.CarEndDate.setTime( vm.polisy.date.getTime() + vm.polisy.noDays * 86400000 );
+	    		console.log(finalCar)
+	    		console.log("Car")
+	    		//finalCar.CarEndDate.setTime( vm.polisy.date.getTime() + vm.polisy.noDays * 86400000 );
+	    		//var idCar=0;
+
+	    		CarService.post(finalCar).then(function(res){
+
+	    			idCar=res.data;
+	    		},function(res){
+
+	    		});
 
 
-	    		var finalHouse={};
+	    		/*var finalHouse={};
 	    		finalHouse.HomeSquares=vm.homeInfo.flatSize;
 	    		finalHouse.HomeBuildingYear=vm.homeInfo.buildYear;
 	    		finalHouse.HomeAddress=vm.homeInfo.address;
@@ -243,8 +260,15 @@
 	    		finalHouse.HomeStartDate=vm.polisy.date;
 	    		finalHouse.HomeEndDate=vm.polisy.date;
 	    		finalHouse.HomeEndDate.setTime( vm.polisy.date.getTime() + vm.polisy.noDays * 86400000 );
+	    		var idHouse=0;
+	    		/*HouseService.post(finalHouse).then(function(res){
 
-	    		var finalDestination={};
+	    			idHouse=res.data;
+	    		},function(res){
+
+	    		});*/
+
+	    	/*	var finalDestination={};
 	    		finalDestination.St=vm.polisy.destination;
 	    		finalDestination.DstDays=vm.polisy.noDays;
 
@@ -269,12 +293,12 @@
 
 	    		console.log(finalPolicy)
 
-	    		PolicyService.post(finalPolicy).then(function(response){
+	    		/*PolicyService.post(finalPolicy).then(function(response){
 	    			alert("Uspelo")
 	    		},function(response){
 	    			alert("Nije uspelo")
 	    		})
-
+*/
 
 
 

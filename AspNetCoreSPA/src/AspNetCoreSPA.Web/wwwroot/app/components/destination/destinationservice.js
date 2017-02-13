@@ -21,7 +21,7 @@
             ,
             put: function (destination)
             {
-                return $http.put("api/Destination/"+destination.id, destination)
+                return $http.put("api/Destination/"+destination.id, destination);
 
 
             },
@@ -31,9 +31,7 @@
            },
                delete : function(destination)
                {
-                $http.delete("api/Destination/"+destination.id).then(function(response){
-                    return response;
-                });
+                return $http.delete("api/Destination/"+destination.id);
 
 
               }

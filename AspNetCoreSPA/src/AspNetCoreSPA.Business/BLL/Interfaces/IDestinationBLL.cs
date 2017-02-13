@@ -6,6 +6,6 @@ namespace AspNetCoreSPA.BLL
     public interface IDestinationBLL
     {
         List<Destination> GetAll();
-        int add(Destination d);
+        int Add(Destination d);
     }
 }

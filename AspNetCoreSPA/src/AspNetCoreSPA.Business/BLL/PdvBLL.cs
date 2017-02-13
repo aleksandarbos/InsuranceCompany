@@ -15,7 +15,7 @@ namespace AspNetCoreSPA.BLL
             _pdvDAL = pdvDAL;
         }
 
-        public int add(Pdv p)
+        public int Add(Pdv p)
         {
             throw new NotImplementedException();
         }

@@ -38,7 +38,7 @@ namespace AspNetCoreSPA.Web.Controllers
         [HttpPost]
         public IActionResult Post([FromBody]SubjectOfInsurance value)
         {
-            return Json(_subjectOfInsuranceBLL.add(value));
+            return Json(_subjectOfInsuranceBLL.Add(value));
         }
 
         // PUT: api/SubjectOfInsurance/5

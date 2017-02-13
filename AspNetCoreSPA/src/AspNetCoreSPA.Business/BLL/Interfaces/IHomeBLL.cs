@@ -6,6 +6,6 @@ namespace AspNetCoreSPA.BLL
     public interface IHomeBLL
     {
         List<Home> GetAll();
-        int add(Home h);
+        int Add(Home h);
     }
 }

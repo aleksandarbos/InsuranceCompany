@@ -9,8 +9,6 @@ using AspNetCoreSPA.Model.POCOs;
 
 namespace AspNetCoreSPA.Web.Controllers
 {
-    [Produces("application/json")]
-    [Route("api/Home")]
     public class HomeController : Controller
     {
         private readonly IHomeBLL _homeBLL;
@@ -44,7 +42,7 @@ namespace AspNetCoreSPA.Web.Controllers
         [HttpPost]
         public IActionResult Post([FromBody]Home value)
         {
-            return Json(_homeBLL.add(value));
+            return Json(_homeBLL.Add(value));
         }
 
         // PUT: api/Home/5
@@ -52,7 +50,7 @@ namespace AspNetCoreSPA.Web.Controllers
         public void Put(int id, [FromBody]string value)
         {
         }
-        
+
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
         public void Delete(int id)

@@ -6,29 +6,29 @@
             return {
                 getAll: function () {
 
-                   $http.get("api/Clients")
+                   $http.get("api/Client")
                    .then(function (response) {
                     return response;
                 });
                },
                getId:function(id){
-               return  $http.get("api/Clients/"+id)
+               return  $http.get("api/Client/"+id)
                 
             }
 
             ,
             put: function (client)
             {
-               return  $http.put("api/Clients/"+client.id, client)
+               return  $http.put("api/Client/"+client.id, client)
 
 
             },
             post: function (client) {
-               return $http.post("api/Clients", client)
+               return $http.post("api/Client", client)
            },
-               delete : function(client)
+              delete : function(client)
                {
-                $http.delete("api/Clients/"+client.id).then(function(response){
+                $http.delete("api/Client/"+client.id).then(function(response){
                     return response;
                 });
 

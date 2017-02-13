@@ -15,7 +15,7 @@ namespace AspNetCoreSPA.BLL
             _rateOfPdvDAL = rateOfPdvDAL;
         }
 
-        public int add(RateOfPdv a)
+        public int Add(RateOfPdv a)
         {
             throw new NotImplementedException();
         }

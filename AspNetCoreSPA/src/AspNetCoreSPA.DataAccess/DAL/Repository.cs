@@ -42,5 +42,6 @@ namespace AspNetCoreSPA.DAL
                 throw;
             }
         }
+       
     }
 }

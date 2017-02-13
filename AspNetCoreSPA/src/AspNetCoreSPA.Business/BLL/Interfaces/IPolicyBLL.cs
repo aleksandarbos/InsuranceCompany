@@ -6,6 +6,6 @@ namespace AspNetCoreSPA.BLL
     public interface IPolicyBLL
     {
         List<Policy> GetAll();
-        int add(Policy polisa);
+        int Add(Policy polisa);
     }
 }

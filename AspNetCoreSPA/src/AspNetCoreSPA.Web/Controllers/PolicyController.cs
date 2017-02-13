@@ -38,7 +38,7 @@ namespace AspNetCoreSPA.Web.Controllers
         [HttpPost]
         public IActionResult Post([FromBody]Pdv value)
         {
-            return Json(_pdvBLL.add(value));
+            return Json(_pdvBLL.Add(value));
         }
 
         // PUT: api/Pdv/5

@@ -15,7 +15,7 @@ namespace AspNetCoreSPA.BLL
             _policyDAL = policyDAL;
         }
 
-        public int add(Policy polisa)
+        public int Add(Policy polisa)
         {
             _policyDAL.Create(polisa);
             return polisa.PolicyId;

@@ -6,6 +6,6 @@ namespace AspNetCoreSPA.BLL
     public interface IItemsOfPackageBLL
     {
         List<ItemsOfPackage> GetAll();
-        int add(ItemsOfPackage i);
+        int Add(ItemsOfPackage i);
     }
 }

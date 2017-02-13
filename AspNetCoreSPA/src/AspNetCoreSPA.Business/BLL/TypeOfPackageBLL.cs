@@ -15,7 +15,7 @@ namespace AspNetCoreSPA.BLL
             _typeOfPackageDAL = typeOfPackageDAL;
         }
 
-        public int add(TypeOfPackage s)
+        public int Add(TypeOfPackage s)
         {
             throw new NotImplementedException();
         }

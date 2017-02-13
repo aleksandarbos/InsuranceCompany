@@ -15,7 +15,7 @@ namespace AspNetCoreSPA.BLL
             _riskDAL = riskDAL;
         }
 
-        public int add(Risk r)
+        public int Add(Risk r)
         {
             throw new NotImplementedException();
         }
