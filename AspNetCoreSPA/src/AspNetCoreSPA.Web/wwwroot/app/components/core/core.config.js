@@ -6,7 +6,7 @@
         .config(['$mdDateLocaleProvider', '$compileProvider', '$mdThemingProvider', function ($mdDateLocaleProvider, $compileProvider, $mdThemingProvider) {
             //config date
             $mdDateLocaleProvider.firstDayOfWeek = 1;
-            
+            $mdDateLocaleProvider.firstRenderableDate = new Date(1800, 1, 1);
 
 
             $compileProvider.preAssignBindingsEnabled(true);
