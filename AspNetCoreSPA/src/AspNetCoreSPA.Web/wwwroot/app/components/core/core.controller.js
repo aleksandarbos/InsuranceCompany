@@ -95,11 +95,14 @@
 	    			vm.polisy.listOfUsers[person].chosenPackagePrice = vm.polisy.listOfUsers[person].price3
 	    	}
 
-
-	    	$scope.addNewChoice = function () {
-	    		var newItemNo = $scope.choices.length + 1;
-	    		$scope.choices.push($scope.choices.length);
-	    	};
+        vm.checkradiobutton = function checkradiobutton(){
+            console.log(vm.homeInsuranceRadio)
+            console.log(vm.vehicleInsuranceRadio)
+        }
+		$scope.addNewChoice = function () {
+			var newItemNo = $scope.choices.length + 1;
+			$scope.choices.push($scope.choices.length);
+		};
 
 	    	$scope.removeChoice = function () {
 	    		var lastItem = $scope.choices.length - 1;
