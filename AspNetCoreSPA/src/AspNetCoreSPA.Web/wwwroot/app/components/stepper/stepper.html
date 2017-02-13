@@ -24,14 +24,13 @@
 
                         <md-step label="{{'CHOOSE' | translate }}">
                             <md-step-body>
-                                <form name="vm.stepNoNext()" ng-submit="vm.submitCurrentStep(1,false)" ng-click="savePolicy()" novalidate>
-
-                                    <md-content style="height:72%" class="modified-input">
+                                <form name="chooseInsuranceForm" ng-submit="vm.submitCurrentStep(1,false)" ng-click="savePolicy()" novalidate>
+                                    <md-content style="height:73%" class="modified-input">
                                         <div>
                                             <div layout="row">
                                                 <md-input-container class="md-block" style=" width:250px">
-                                                    <label class="label-without-icon"">{{ 'TYPEOFTRAVEL' | translate }}</label>
-                                                    <md-select ng-model="vm.polisy.travelType" required>
+                                                    <label class="label-without-icon" ">{{ 'TYPEOFTRAVEL' | translate }}</label>
+                                                    <md-select name="travelType" ng-model="vm.polisy.travelType" required>
                                                         <md-option value="porodicno">
                                                             {{ 'FAMILY' | translate }}
                                                         </md-option>
@@ -39,9 +38,11 @@
                                                             {{ 'SELF' | translate }}
                                                         </md-option>
                                                     </md-select>
+                                                    <div ng-messages="chooseInsuranceForm.travelType.$error">
+                                                        <div ng-message="required">{{'REQUIRED' | translate }}</div>
+                                                    </div>
                                                 </md-input-container>
-
-                                                <div ng-show="vm.polisy.travelType=='porodicno'"  layout="row">
+                                                <div ng-show="vm.polisy.travelType=='porodicno'" layout="row">
                                                     <md-input-container class="md-block">
                                                         <md-icon md-svg-src="images/adults.svg"></md-icon>
                                                         <input type="number" ng-model="vm.polisy.noAdults" min=1 placeholder="{{ 'ADULT' | translate }}">
@@ -50,14 +51,13 @@
                                                         <md-icon md-svg-src="images/girl.svg"></md-icon>
                                                         <input type="number" ng-model="vm.polisy.noChildren" min=0 placeholder="{{ 'KIDS' | translate }}">
                                                     </md-input-container>
-                                                
-                                                </div>
 
+                                                </div>
                                             </div>
                                             <div layout="row">
                                                 <md-input-container class="md-block" style="width:250px">
-                                                    <label class="label-without-icon"">{{ 'PURPOSE' | translate }}</label>
-                                                    <md-select ng-model="vm.polisy.riskType" required>
+                                                    <label class="label-without-icon" ">{{ 'PURPOSE' | translate }}</label>
+                                                    <md-select name="riskType" ng-model="vm.polisy.riskType" required>
                                                         <md-option value="turisticki">
                                                             {{ 'TOURIST' | translate }}
                                                         </md-option>
@@ -68,11 +68,13 @@
                                                             {{ 'BUSINESS' | translate }}
                                                         </md-option>
                                                     </md-select>
+                                                    <div ng-messages="chooseInsuranceForm.riskType.$error">
+                                                        <div ng-message="required">{{'REQUIRED' | translate }}</div>
+                                                    </div>
                                                 </md-input-container>
-
                                                 <div ng-show="vm.polisy.riskType=='sport'">
                                                     <md-input-container class="md-block" style="width:250px">
-                                                        <label class="label-without-icon"">{{ 'SPORT_TYPE' | translate }}</label>
+                                                        <label class="label-without-icon" ">{{ 'SPORT_TYPE' | translate }}</label>
                                                         <md-select ng-model="vm.polisy.sport">
                                                             <md-option value="Skijanje">Skijanje</md-option>
                                                             <md-option value="Jedrenje">Jedrenje</md-option>
@@ -81,11 +83,10 @@
                                                     </md-input-container>
                                                 </div>
                                             </div>
-
                                             <div layout="column">
                                                 <md-input-container class="md-block" style="width:250px">
                                                     <label class="label-without-icon">{{ 'STATE' | translate }}</label>
-                                                    <md-select ng-model="vm.polisy.destination" required>
+                                                    <md-select name="destination" ng-model="vm.polisy.destination" required>
                                                         <md-option ng-repeat="state in states" value="{{state.abbrev}}">
                                                             Engleska
                                                         </md-option>
@@ -99,35 +100,42 @@
                                                             Engleska
                                                         </md-option>
                                                     </md-select>
+                                                    <div ng-messages="chooseInsuranceForm.destination.$error">
+                                                        <div ng-message="required">{{'REQUIRED' | translate }}</div>
+                                                    </div>
                                                 </md-input-container>
-
                                                 <div layout-gt-xs="row">
                                                     <md-input-container style="padding-left:35px!important">
-                                                        <md-datepicker ng-model="vm.polisy.date" md-placeholder="{{'DATE' | translate}}" required md-min-date="minDate"></md-datepicker>
+                                                        <md-datepicker name="datePicker" ng-model="vm.polisy.date" md-placeholder="{{'DATE' | translate}}" required md-min-date="minDate"></md-datepicker>
+                                                        <div ng-messages="chooseInsuranceForm.datePicker.$error">
+                                                            <div ng-message="required">{{'REQUIRED' | translate }}</div>
+                                                        </div>
                                                     </md-input-container>
-
+                                                
                                                     <md-input-container>
                                                         <label class="label-without-icon">{{ 'DAYS' | translate }}</label>
-                                                        <input type="number" ng-model="vm.polisy.noDays" min=1>
+                                                        <input name="noDays" type="number" ng-model="vm.polisy.noDays" min=1>
+                                                        <div ng-messages="chooseInsuranceForm.noDays.$error">
+                                                            <div ng-message="required">{{'REQUIRED' | translate }}</div>
+                                                        </div>
                                                     </md-input-container>
-
+                                                   
                                                 </div>
-
                                             </div>
-                                            
+
                                         </div>
                                     </md-content>
-
                                     <md-step-actions layout="row">
                                         <div flex layout="row" layout-align="end top">
                                             <md-button class="md-warn">{{ 'CANCEL' | translate }}</md-button>
-                                            <md-button type="submit" class="md-primary md-raised">{{ 'NEXT' | translate }}</md-button>
+                                            <md-button type="submit" ng-disabled="chooseInsuranceForm.$invalid" class="md-primary md-raised">{{ 'NEXT' | translate }}</md-button>
                                         </div>
                                     </md-step-actions>
                                 </form>
                             </md-step-body>
                         </md-step>
 
+                     
                         <md-step label="{{ 'INFO' | translate }}">
                             <md-step-body>
                                 <form name="vm.stepNoNext()" ng-submit="vm.submitCurrentStep(2,false)" novalidate ng-cloak>
@@ -445,7 +453,7 @@
                                                     <legend>{{'VEHICLE_CHOOSE'  | translate}}</legend>
                                                     <div layout-wrap="" layout-gt-sm="column" style="align-items:flex-start;">
                                                         <div>
-                                                            <md-checkbox class="pull-right checbox-towing" ng-model="vm.vehicleInfo.towing" aria-label="{{'TOWING' | translate}}">
+                                                            <md-checkbox ng-model="vm.vehicleInfo.towing" aria-label="{{'TOWING' | translate}}">
                                                                 <img src="images/icons/car-towed.svg" style="width:36px; align-self:flex-start; height:auto" alt="Towing" name="Towing" />
                                                                 <span>{{'TOWING' | translate}}</span>
                                                             </md-checkbox> 
