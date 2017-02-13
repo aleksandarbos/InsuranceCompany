@@ -15,6 +15,12 @@ namespace AspNetCoreSPA.BLL
             _homeDAL = homeDAL;
         }
 
+        public int add(Home h)
+        {
+            _homeDAL.Create(h);
+            return h.HomeId;
+        }
+
         public List<Home> GetAll()
         {
             try

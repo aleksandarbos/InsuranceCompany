@@ -6,5 +6,6 @@ namespace AspNetCoreSPA.BLL
     public interface IAgeGroupBLL
     {
         List<AgeGroup> GetAll();
+        int Add(AgeGroup a);
     }
 }

@@ -21,21 +21,13 @@
             ,
             put: function (house)
             {
-                $http.put("api/Homes/"+house.id, house).then(function(response){
-                    return response;
-                });
+                return $http.put("api/Homes/"+house.id, house)
 
 
             },
             post: function (house) {
-               $http.post("api/Homes", house)
-               .then(function (response) {
-                    // Re-load data
-                    return response;
-
-
-
-                });
+              return $http.post("api/Homes", house)
+               
            },
                delete : function(house)
                {

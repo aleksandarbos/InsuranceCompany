@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using AspNetCoreSPA.BLL;
+using AspNetCoreSPA.Model.POCOs;
 
 namespace AspNetCoreSPA.Web.Controllers
 {
@@ -35,8 +36,9 @@ namespace AspNetCoreSPA.Web.Controllers
 
         // POST: api/TravelActivityTravelPurpose
         [HttpPost]
-        public void Post([FromBody]string value)
+        public IActionResult Post([FromBody]TravelActivityTravelPurpose value)
         {
+            return Json(_travelActivityTravelPurposeBLL.add(value));
         }
 
         // PUT: api/TravelActivityTravelPurpose/5

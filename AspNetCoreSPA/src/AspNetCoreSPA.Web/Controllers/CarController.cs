@@ -1,10 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+
+
 using AspNetCoreSPA.BLL;
+using AspNetCoreSPA.Model.POCOs;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AspNetCoreSPA.Web.Controllers
 {
@@ -35,8 +33,9 @@ namespace AspNetCoreSPA.Web.Controllers
 
         // POST: api/Car
         [HttpPost]
-        public void Post([FromBody]string value)
+        public IActionResult Post([FromBody]Car value)
         {
+            return Json(_carBLL.Add(value));
         }
 
         // PUT: api/Car/5

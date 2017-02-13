@@ -8,7 +8,7 @@ namespace AspNetCoreSPA.DAL
 {
     public interface IRepository<T> where T : class
     {
-        void CreateCountry(T entity);
+        void Create(T entity);
         DbSet<T> GetAll();
     }
 }

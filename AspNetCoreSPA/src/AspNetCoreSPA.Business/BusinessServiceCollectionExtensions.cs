@@ -1,4 +1,5 @@
 ﻿using AspNetCoreSPA.BLL;
+using AspNetCoreSPA.BLL.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace AspNetCoreSPA
@@ -7,6 +8,9 @@ namespace AspNetCoreSPA
     {
         public static void AddBusinessTier(this IServiceCollection services)
         {
+
+            services.AddTransient<IClientBLL, ClientBLL>();
+            services.AddTransient<ICarBLL, CarBLL>();
             services.AddTransient<ICountryBLL, CountryBLL>();
             services.AddTransient<IAgeGroupBLL, AgeGroupBLL>();
             services.AddTransient<ICoefficientBLL, CoefficientBLL>();

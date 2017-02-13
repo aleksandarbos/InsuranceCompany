@@ -15,6 +15,11 @@ namespace AspNetCoreSPA.BLL
             _pdvDAL = pdvDAL;
         }
 
+        public int add(Pdv p)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Pdv> GetAll()
         {
             try

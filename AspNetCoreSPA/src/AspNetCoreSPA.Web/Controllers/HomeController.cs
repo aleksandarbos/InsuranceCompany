@@ -5,9 +5,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using AspNetCoreSPA.BLL;
+using AspNetCoreSPA.Model.POCOs;
 
 namespace AspNetCoreSPA.Web.Controllers
 {
+    [Produces("application/json")]
+    [Route("api/Home")]
     public class HomeController : Controller
     {
         private readonly IHomeBLL _homeBLL;
@@ -39,8 +42,9 @@ namespace AspNetCoreSPA.Web.Controllers
 
         // POST: api/Home
         [HttpPost]
-        public void Post([FromBody]string value)
+        public IActionResult Post([FromBody]Home value)
         {
+            return Json(_homeBLL.add(value));
         }
 
         // PUT: api/Home/5

@@ -15,6 +15,11 @@ namespace AspNetCoreSPA.BLL
             _itemsOfPackageDAL = itemsOfPackageDAL;
         }
 
+        public int add(ItemsOfPackage i)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<ItemsOfPackage> GetAll()
         {
             try

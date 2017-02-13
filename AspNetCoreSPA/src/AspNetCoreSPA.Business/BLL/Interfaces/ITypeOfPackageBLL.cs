@@ -6,5 +6,7 @@ namespace AspNetCoreSPA.BLL
     public interface ITypeOfPackageBLL
     {
         List<TypeOfPackage> GetAll();
+        int add(TypeOfPackage s);
+
     }
 }

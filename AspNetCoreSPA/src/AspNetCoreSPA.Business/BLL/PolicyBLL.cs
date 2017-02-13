@@ -15,6 +15,12 @@ namespace AspNetCoreSPA.BLL
             _policyDAL = policyDAL;
         }
 
+        public int add(Policy polisa)
+        {
+            _policyDAL.Create(polisa);
+            return polisa.PolicyId;
+        }
+
         public List<Policy> GetAll()
         {
             try

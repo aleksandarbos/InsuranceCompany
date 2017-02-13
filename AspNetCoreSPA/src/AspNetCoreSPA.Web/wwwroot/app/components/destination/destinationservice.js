@@ -1,39 +1,37 @@
 (function () {
 
     angular.module('app')
-    .service('CarService', ['$http', function ($http) {
+    .service('DestinationService', ['$http', function ($http) {
             //metode servisa
             return {
                 getAll: function () {
 
-                   $http.get("api/Cars")
+                   $http.get("api/Destination")
                    .then(function (response) {
                     return response;
                 });
                },
                getId:function(id){
-                $http.get("api/Cars/"+id)
+                $http.get("api/Destination/"+id)
                 .then(function (response) {
                     return response;
                 });
             }
 
             ,
-            put: function (car)
+            put: function (destination)
             {
-                $http.put("api/Cars/"+car.id, car).then(function(response){
-                    return response;
-                });
+                return $http.put("api/Destination/"+destination.id, destination)
 
 
             },
-            post: function (car) {
-               return $http.post("api/Cars", car)
+            post: function (destination) {
+              return $http.post("api/Destination", destination)
                
            },
-               delete : function(car)
+               delete : function(destination)
                {
-                $http.delete("api/Cars/"+car.id).then(function(response){
+                $http.delete("api/Destination/"+destination.id).then(function(response){
                     return response;
                 });
 

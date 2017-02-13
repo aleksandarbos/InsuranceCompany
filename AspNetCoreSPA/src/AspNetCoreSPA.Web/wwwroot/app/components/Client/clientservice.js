@@ -12,30 +12,19 @@
                 });
                },
                getId:function(id){
-                $http.get("api/Clients/"+id)
-                .then(function (response) {
-                    return response;
-                });
+               return  $http.get("api/Clients/"+id)
+                
             }
 
             ,
             put: function (client)
             {
-                $http.put("api/Clients/"+client.id, client).then(function(response){
-                    return response;
-                });
+               return  $http.put("api/Clients/"+client.id, client)
 
 
             },
             post: function (client) {
-               $http.post("api/Clients", client)
-               .then(function (response) {
-                    // Re-load data
-                    return response;
-
-
-
-                });
+               return $http.post("api/Clients", client)
            },
                delete : function(client)
                {

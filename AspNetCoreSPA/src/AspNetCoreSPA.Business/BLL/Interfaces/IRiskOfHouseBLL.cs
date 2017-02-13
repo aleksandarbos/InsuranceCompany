@@ -6,5 +6,6 @@ namespace AspNetCoreSPA.BLL
     public interface IRiskOfHouseBLL
     {
         List<RiskOfHouse> GetAll();
+        int add(RiskOfHouse r);
     }
 }

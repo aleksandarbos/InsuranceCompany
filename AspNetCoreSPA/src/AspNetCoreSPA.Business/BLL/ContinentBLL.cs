@@ -15,6 +15,11 @@ namespace AspNetCoreSPA.BLL
             _continentDAL = continentDAL;
         }
 
+        public int add(Continent k)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Continent> GetAll()
         {
             try

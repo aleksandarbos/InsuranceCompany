@@ -15,6 +15,11 @@ namespace AspNetCoreSPA.BLL
             _rateOfPdvDAL = rateOfPdvDAL;
         }
 
+        public int add(RateOfPdv a)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<RateOfPdv> GetAll()
         {
             try

@@ -1,8 +1,10 @@
-﻿using System;
+﻿
+
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using AspNetCoreSPA.Model.POCOs;
 using AspNetCoreSPA.DAL;
+using System.Linq;
 
 namespace AspNetCoreSPA.BLL
 {
@@ -13,6 +15,11 @@ namespace AspNetCoreSPA.BLL
         public AgeGroupBLL(IRepository<AgeGroup> ageGroupDAL)
         {
             _ageGroupDAL = ageGroupDAL;
+        }
+
+        public int Add(AgeGroup a)
+        {
+            throw new NotImplementedException();
         }
 
         public List<AgeGroup> GetAll()
@@ -26,6 +33,11 @@ namespace AspNetCoreSPA.BLL
 
                 throw;
             }
+        }
+
+        List<AgeGroup> IAgeGroupBLL.GetAll()
+        {
+            throw new NotImplementedException();
         }
     }
 }

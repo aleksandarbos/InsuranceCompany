@@ -15,6 +15,12 @@ namespace AspNetCoreSPA.BLL
             _subjectOfInsuranceDAL = subjectOfInsuranceDAL;
         }
 
+        public int add(SubjectOfInsurance s)
+        {
+            _subjectOfInsuranceDAL.Create(s);
+            return s.IiId;
+         }
+
         public List<SubjectOfInsurance> GetAll()
         {
             try
