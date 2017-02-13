@@ -3,13 +3,14 @@
 
     angular
         .module('coreModule')
-        .config(function ($mdDateLocaleProvider, $compileProvider, $mdThemingProvider) {
+        .config(['$mdDateLocaleProvider', '$compileProvider', '$mdThemingProvider', function ($mdDateLocaleProvider, $compileProvider, $mdThemingProvider) {
+            //config date
             $mdDateLocaleProvider.firstDayOfWeek = 1;
             
 
 
             $compileProvider.preAssignBindingsEnabled(true);
-
+            //config theme
             var darkBlueMap = $mdThemingProvider.extendPalette('indigo', {
                 '500': '#274474',
                 'contrastDefaultColor': 'light'
@@ -21,13 +22,7 @@
                 .primaryPalette('darkBlue')
                 .accentPalette('orange');
 
-
-
-
-
-
-
-        });
+        }]);
 
         
 })();

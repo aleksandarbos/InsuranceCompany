@@ -107,7 +107,17 @@
                                                 <div layout-gt-xs="row">
                                                     <md-input-container style="padding-left:35px!important">
                                                         <md-datepicker name="datePicker" ng-model="vm.polisy.date" md-placeholder="{{'DATE' | translate}}" required md-min-date="minDate"></md-datepicker>
+                                                       
                                                         <div ng-messages="chooseInsuranceForm.datePicker.$error">
+                                                            <div ng-message="required">{{'REQUIRED' | translate }}</div>
+                                                        </div>
+                                                    </md-input-container>
+                                                   
+
+                                                    <md-input-container style="padding-left:35px!important">
+                                                        <md-datepicker name="datePickerEnd" ng-model="vm.polisy.dateEnd" md-placeholder="{{'DATE_END' | translate}}" required md-min-date="vm.polisy.date"></md-datepicker>
+                                                       
+                                                        <div ng-messages="chooseInsuranceForm.datePickerEnd.$error">
                                                             <div ng-message="required">{{'REQUIRED' | translate }}</div>
                                                         </div>
                                                     </md-input-container>

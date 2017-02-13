@@ -3,7 +3,8 @@
 
 	angular
 		.module('coreModule')
-		.controller('MainCtrl', MainCtrl);
+		.controller('MainCtrl', MainCtrl)
+    ;
 
 	MainCtrl.$inject = ['$window', '$scope', '$q', '$timeout', '$state', '$translate', 'DroolsInfo', 'DroolsHome', 'DroolsVehicle', 'DroolsAllPackages'];
     
@@ -13,25 +14,30 @@
 	    $scope.minDate = new Date(
             $scope.myDate.getFullYear(),
             $scope.myDate.getMonth(),
-            $scope.myDate.getDay() + 1);
+            $scope.myDate.getDate() + 1);
 
 	    $scope.maxDateBirth = new Date(
                 $scope.myDate.getFullYear() - 18,
                 $scope.myDate.getMonth(),
-                $scope.myDate.getDay()
+                $scope.myDate.getDate()
             );
+
         
       
-        $scope.changeLanguage = function (langKey) {
-            $translate.use(langKey);
-            //odraditi poziv i dodeliti ng modelu za odredjene entite
-            };
+	    $scope.changeLanguage = function (langKey) {
+	        $translate.use(langKey);
+	        //odraditi poziv i dodeliti ng modelu za odredjene entite
+	    };
 
 
-		var vm = this;
-		$scope.choices = [];
-		vm.listaKorisnika = [];
-		var currentYear = new Date().getFullYear();
+	    var vm = this;
+	    $scope.choices = [];
+	    vm.listaKorisnika = [];
+	   
+	    var currentYear = new Date().getFullYear();
+
+
+
 
 		vm.stepNo = 0;
 		vm.stepNoNext = function () {
@@ -112,6 +118,8 @@
 
         vm.currentUser;
 		
+ 
+
         vm.setPackage1Selected = function setPackage1Selected(){
             vm.package1Selected = true;
             vm.package2Selected = false;
@@ -139,6 +147,7 @@
                 else if (vm.package3Selected)
                     vm.polisy.listOfUsers[person].chosenPackagePrice = vm.polisy.listOfUsers[person].price3
         }
+
 
 		$scope.addNewChoice = function () {
 			var newItemNo = $scope.choices.length + 1;

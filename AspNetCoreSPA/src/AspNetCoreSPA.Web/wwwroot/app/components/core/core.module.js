@@ -3,11 +3,11 @@
   
   angular.module('coreModule', ['pascalprecht.translate'])
   .config(['$translateProvider', function ($translateProvider) {
-  // add translation tables
-  $translateProvider.translations('en', translationsEN);
-  $translateProvider.translations('srb', translationsSRB);
-  $translateProvider.preferredLanguage('en');
-  $translateProvider.fallbackLanguage('en');
+       // add translation tables
+      $translateProvider.translations('en', translationsEN);
+      $translateProvider.translations('srb', translationsSRB);
+      $translateProvider.preferredLanguage('en');
+      $translateProvider.fallbackLanguage('en');
 }]);
 
 var translationsEN = {
@@ -49,6 +49,7 @@ var translationsEN = {
     FINISH: 'Finish',
     INSURANCE_WIZARD: 'Insurance wizard',
     DATE: 'Enter start date',
+    DATE_END: 'Enter end date',
     HOME: 'Home',
     ABOUT: 'About',
     LOGO_PHOTO: '/images/logo_full_white.png',
@@ -132,6 +133,7 @@ var translationsSRB= {
     FINISH: 'Završi',
     INSURANCE_WIZARD: 'Osiguravajući čarobnjak',
     DATE: 'Unesi početni datum',
+    DATE_END: 'Unesi krajnji datum',
     HOME: 'Početna',
     ABOUT: 'O nama',
     LOGO_PHOTO: '/images/logo_full_white_srb.png',
