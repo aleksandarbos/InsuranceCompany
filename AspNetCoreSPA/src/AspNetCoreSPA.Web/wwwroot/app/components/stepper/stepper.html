@@ -6,7 +6,6 @@
             background-position:center;
             background-repeat: no-repeat;
            "  ng-controller="MainCtrl as vm" layout="row">
-
     <md-content flex="nogrow" style="width: 100%; height:98%;  margin-left:5vw; margin-right:5vw"  name="page1">
         <div>
             <md-card>
@@ -26,7 +25,7 @@
                             <md-step-body>
                                 <form name="chooseInsuranceForm" ng-submit="vm.submitCurrentStep(1,false)" ng-click="savePolicy()" novalidate>
 
-                                    <md-content style="height:72%" class="modified-input">
+                                    <md-content style="height:73%">
                                         <div>
                                             <div layout="row">
                                                 <md-input-container class="md-block" style=" width:250px">
@@ -155,7 +154,7 @@
                                         <div layout="row">
                                             <div style="width:25vw; padding-left:30px">
                                                 <md-list ng-cloak style="padding-top:0px">
-                                                    <md-subheader class="md-no-sticky">{{'USERS_INSURANCE' | translate}}</md-subheader>
+                                                    <md-subheader class="md-no-sticky">Users of the insurance</md-subheader>
                                                     <md-list-item ng-repeat="user in vm.listaKorisnika track by $index">
                                                         <p>{{ user.name }} {{user.surname}}</p>
                                                         <md-icon md-svg-icon="images/icons/pencil.svg" ng-click="editUser($index)" aria-label="Edit user info" class="md-secondary md-hue-3"></md-icon>
@@ -262,7 +261,7 @@
                                                 <md-card-title>
                                                     <md-card-title-text>
                                                         <span class="md-headline">Standard</span>
-                                                        <span class="md-subhead"><strong>Base price: </strong>{{vm.package1}}9 RSD</span>
+                                                        <span class="md-subhead"><strong>Base price: </strong>{{vm.package1}} RSD</span>
                                                     </md-card-title-text>
                                                 </md-card-title>
                                                 <md-card-content>
@@ -270,7 +269,7 @@
                                                 </md-card-content>
                                                 <md-card-actions layout="row" layout-align="end center">
 
-                                                    <md-radio-button value="{{vm.package1}}1">Select this package for {{vm.package1}}8 RSD</md-radio-button>
+                                                    <md-radio-button value="{{vm.package1}}">Select this package for {{vm.package1}} RSD</md-radio-button>
 
 
                                                 </md-card-actions>
@@ -279,28 +278,28 @@
                                                 <md-card-title>
                                                     <md-card-title-text>
                                                         <span class="md-headline">Comfort</span>
-                                                        <span class="md-subhead"><strong>Base price: </strong>{{vm.package2}}7 RSD</span>
+                                                        <span class="md-subhead"><strong>Base price: </strong>{{vm.package2}} RSD</span>
                                                     </md-card-title-text>
                                                 </md-card-title>
                                                 <md-card-content>
                                                     {{ 'PACKAGE2' | translate }}
                                                 </md-card-content>
                                                 <md-card-actions layout="row" layout-align="end center">
-                                                   <md-radio-button value="{{vm.package2}}2">Select this package for {{vm.package2}} RSD</md-radio-button>
+                                                   <md-radio-button value="{{vm.package2}}">Select this package for {{vm.package2}} RSD</md-radio-button>
                                                 </md-card-actions>
                                             </md-card>
                                             <md-card>
                                                 <md-card-title>
                                                     <md-card-title-text>
                                                         <span class="md-headline">Exclusive</span>
-                                                        <span class="md-subhead"><strong>Base price: </strong>{{vm.package3}} 9RSD</span>
+                                                        <span class="md-subhead"><strong>Base price: </strong>{{vm.package3}} RSD</span>
                                                     </md-card-title-text>
                                                 </md-card-title>
                                                 <md-card-content>
                                                     {{ 'PACKAGE3' | translate }}
                                                 </md-card-content>
                                                 <md-card-actions layout="row" layout-align="end center">
-                                                    <md-radio-button value="{{vm.package3}}3">Select this package for {{vm.package3}}9 RSD </md-radio-button>
+                                                    <md-radio-button value="{{vm.package3}}">Select this package for {{vm.package3}} RSD </md-radio-button>
                                                 </md-card-actions>
                                             </md-card>
                                         </div>
@@ -340,8 +339,8 @@
                                             </md-card-content>
                                             <md-card-actions layout="row" layout-align="end center">
                                                 <md-radio-group class="homeInsuranceRadio" ng-model="vm.homeInsuranceRadio">
-                                                    <md-radio-button value="true">{{'HOME_INSURANCE_WANT' | translate}}</md-radio-button>
-                                                    <md-radio-button value="false">{{'NOT_INTERESTED' | translate}}</md-radio-button>
+                                                    <md-radio-button value="true">I want home insurance</md-radio-button>
+                                                    <md-radio-button value="false">I am not interested</md-radio-button>
                                                 </md-radio-group>
                                             </md-card-actions>
                                         </md-card>
@@ -356,8 +355,8 @@
                                             </md-card-content>
                                             <md-card-actions layout="row" layout-align="end center">
                                                 <md-radio-group class="vehicleInsuranceRadio" ng-model="vm.vehicleInsuranceRadio">
-                                                    <md-radio-button value="true">{{'VEHICLE_INSURANCE_WANT' | translate}}</md-radio-button>
-                                                    <md-radio-button value="false">{{'NOT_INTERESTED' | translate}}</md-radio-button>
+                                                    <md-radio-button value="true">I want vehicle insurance</md-radio-button>
+                                                    <md-radio-button value="false">I am not interested</md-radio-button>
                                                 </md-radio-group>
                                             </md-card-actions>
                                         </md-card>
@@ -377,91 +376,62 @@
                             <md-step-body>
                               
                                 <form name="vm.stepNoNext()" ng-submit="vm.submitCurrentStep(); sendHomeInfo()" novalidate ng-cloak>
-                                    <md-content layout-gt-sm="row" layout-wrap layout-padding style="height:73%">
+                                    <md-content layout-gt-sm="row" layout-wrap layout-padding style="height:72%">
                                         <div layout="row">
-                                            <div layout="column" style="width:30vw">
-                                                <fieldset class="standard">
-                                                    <legend>{{'TYPE_OF_HOME_INSURANCE'  | translate}}</legend>
-                                                    <div layout-wrap="" layout-gt-sm="column" style="align-items:flex-start;">
-                                                        <md-input-container>
-                                                            <md-checkbox ng-model="vm.homeInfo.flood" aria-label="Flood">
-                                                                <img src="images/icons/house-flood.svg" style="width:36px; height:auto" alt="Flood" name="Flood" />
-                                                                <span>{{'FLOOD' | translate}}</span>
-                                                             </md-checkbox>
+                                            <div layout="column" ng-cloak class="md-inline-form" style="width:30vw; align-items:center">
+                                                <img src="images/person.svg" style="width:64px; height:auto;" />
+                                                                                         
+                                                <md-input-container class="md-block" flex-gt-sm>
+                                                    <label class="label-without-icon">{{ 'HOME_OWNER' | translate }}</label>
+                                                    <input type="text" ng-model="vm.homeInfo.owner" required />
+                                                </md-input-container>
+                                                <md-input-container class="md-block" flex-gt-sm>
+                                                    <label class="label-without-icon">{{ 'JMBG_HOME_OWNER' | translate }}</label>
+                                                    <input type="text" ng-model="vm.homeInfo.ownerJMBG" required />
+                                                </md-input-container>
+
+                                            </div>
+                                            <div layout="column" ng-cloak class="md-inline-form" style="width:50vw">
+                                             <div style="align-items:center">
+                                                    <img src="images/house.svg" style="width:64px; height:auto; align-self:center" />
+                                             </div> 
+                                                   <md-input-container class="md-block" style="padding-right:3px">
+                                                         <label class="label-without-icon">{{ 'ADDRESS' | translate }}</label>
+                                                         <input type="text" ng-model="vm.homeInfo.address" required />
+                                                    </md-input-container> 
+                                                   <md-input-container class="md-block" flex-gt-sm>
+                                                        <label class="label-without-icon">{{ 'FLAT_SIZE' | translate }}</label>
+                                                        <input type="number" ng-model="vm.homeInfo.flatSize" required />
+                                                    </md-input-container>
+                                                    <md-input-container class="md-block" flex-gt-sm>
+                                                        <label class="label-without-icon">{{ 'BUILD_YEAR' | translate }}</label>
+                                                        <input type="text" ng-model="vm.homeInfo.buildYear" required />
+                                                    </md-input-container>
+                                                    <md-input-container class="md-block" flex-gt-sm>
+                                                        <label class="label-without-icon">{{ 'ESTIMATED_VALUE' | translate }}</label>
+                                                        <input type="number" ng-model="vm.homeInfo.estimatedValue" required />
+                                                    </md-input-container>
+
+
+                                                  
+                                                     <fieldset class="standard">
+                                                         <legend>{{'TYPE_OF_HOME_INSURANCE'  | translate}}</legend>
+                                                         <div layout-wrap="" layout-gt-sm="row" style="align-items:stretch">
+                                                                 <md-checkbox ng-model="vm.homeInfo.flood" aria-label="Flood"></md-checkbox>
+                                                                 <img src="images/flood.svg" style="width:64px; height:auto" alt="Flood" name="Flood" />
+                                                                                                                       
+                                                                 <md-checkbox ng-model="vm.homeInfo.fire" aria-label="Fire"/>
+                                                                <img src="images/fire.svg" style="width:64px; height:auto" alt="Fire" name="Fire" />
+                                                          
+                                                                 <md-checkbox ng-model="vm.homeInfo.robbery" aria-label="Robbery">
+                                                                 <img src="images/roberry.svg" style="width:64px; height:auto" alt="Robbery" name="Robbery" />       
                                                             
-                                                        </md-input-container>
-                                                        <md-input-container>
-                                                            <md-checkbox ng-model="vm.homeInfo.fire" aria-label="Fire" >
-                                                                <img src="images/icons/house-fire.svg" style="width:36px; height:auto" alt="Fire" name="Fire" />
-                                                                <span> {{'FIRE' | translate}}</span>
-                                                              </md-checkbox>
-                                                        </md-input-container>
-                                                        <md-input-container>
-                                                            <md-checkbox ng-model="vm.homeInfo.robbery" aria-label="Robbery">
-                                                                <img src="images/icons/house-roberry.svg" style="width:36px; height:auto" alt="Robbery" name="Robbery" />
-                                                                <span> {{'ROBERRY' | translate}}</span>
-                                                            </md-checkbox>
-                                                        </md-input-container>
+                                                   
+                                                         </div>
+                                                     </fieldset>
+                                                 </div>
 
-                                                    </div>
-                                                </fieldset>
-                                                <fieldset>
-                                                    <legend>
-                                                        {{'OWNER_INFO' | translate}}
-                                                    </legend>
-
-                                                    <div layout="column" style="align-items:flex-start">
-                                                        <md-input-container class="md-block" flex-gt-sm style="width:100%">
-                                                            <label>{{ 'HOME_OWNER' | translate }}</label>
-                                                            <input type="text" ng-model="vm.homeInfo.owner" required />
-                                                        </md-input-container>
-                                                        <md-input-container class="md-block" flex-gt-sm style="width:100%">
-                                                            <label>{{ 'JMBG_HOME_OWNER' | translate }}</label>
-                                                            <input type="text" ng-model="vm.homeInfo.ownerJMBG" required />
-                                                        </md-input-container>
-                                                    </div>
-
-                                                </fieldset>
-                                            </div>
-                                         
-                                            <div layout="column" ng-cloak class="md-inline-form" style="width:50vw; max-width:800px; align-items:center">
-                                                <img src="images/house.svg" style="width:64px; height:auto; align-self:center" />
-                                                <fieldset style="width:50%">
-                                                    <div layout-wrap="" layout-gt-sm="column">
-                                                        <md-input-container class="md-block" flex-gt-sm style="width:100%">
-                                                            <label>{{ 'ADDRESS' | translate }}</label>
-                                                            <input type="text" ng-model="vm.homeInfo.address" required />
-                                                        </md-input-container>
-                                                        <md-input-container class="md-block" flex-gt-sm style="width:100%">
-                                                            <label>{{ 'FLAT_SIZE' | translate }}</label>
-                                                            <input type="number" ng-model="vm.homeInfo.flatSize" required />
-                                                        </md-input-container>
-                                                        <md-input-container class="md-block" flex-gt-sm style="width:100%">
-                                                            <label>{{ 'BUILD_YEAR' | translate }}</label>
-                                                            <input type="text" ng-model="vm.homeInfo.buildYear" required />
-                                                        </md-input-container>
-                                                        <md-input-container class="md-block" flex-gt-sm style="width:100%">
-                                                            <label>{{ 'ESTIMATED_VALUE' | translate }}</label>
-                                                            <input type="number" ng-model="vm.homeInfo.estimatedValue" required />
-                                                        </md-input-container>
-                                                      </div>  
-                                                 </fieldset>
-                                                                                      
-                                                
-                                                    <fieldset layout="column" style="align-items:center; width:50%">
-                                                        <legend>
-                                                            {{'CURR_ADD_INS_PRICE' | translate}}
-                                                        </legend>
-                                                        <md-whiteframe class="md-whiteframe-2dp" flex-sm="45" flex-gt-sm="35" flex-gt-md="25" layout layout-align="center center" style="height:10% !important">
-                                                            <span>Current insurance price 1000RSD</span>
-                                                        </md-whiteframe>
-                                                    </fieldset>
-                                               
-                                            </div>
-
-
-
-                                      </div>
+                                             </div>
 
                                     </md-content>
 
@@ -480,113 +450,84 @@
 
                         <md-step label="{{ 'VEHICLE_INSURANCE_INFO' | translate }}" ng-if="vm.vehicleInsuranceRadio == 'true'">
                             <md-step-body>
+
                                 <form name="vm.stepNoNext()" ng-submit="vm.submitCurrentStep(); sendVehicleInfo()" novalidate ng-cloak>
-                                    <md-content layout-gt-sm="row" layout-wrap layout-padding style="height:73%">
+                                    <md-content  layout-gt-sm="row" layout-padding style="height:72%">
                                         <div layout="row">
-                                            <div layout="column" style="width:30vw">
+                                            <div layout="column" ng-cloak width="50vw">
                                                 <fieldset class="standard">
-                                                    <legend>{{'VEHICLE_CHOOSE'  | translate}}</legend>
-                                                    <div layout-wrap="" layout-gt-sm="column" style="align-items:flex-start;">
+                                                    <legend>Choose type of insurance</legend>
+                                                    <div layout-wrap="" layout-gt-sm="row" style="align-items:stretch">
                                                         <div>
+
                                                             <md-checkbox ng-model="vm.vehicleInfo.towing" aria-label="{{'TOWING' | translate}}">
                                                                 <img src="images/icons/car-towed.svg" style="width:36px; align-self:flex-start; height:auto" alt="Towing" name="Towing" />
                                                                 <span>{{'TOWING' | translate}}</span>
                                                             </md-checkbox> 
                                                            
+
                                                             <md-input-container class="md-block" flex-gt-sm ng-if="vm.vehicleInfo.towing">
-                                                                <label>Slepovanje do:</label> <!-- km -->
-                                                                <input type="number" min='100' ng-model="vm.vehicleInfo.kilometers" />
+                                                                <label class="label-without-icon">Slepovanje do:</label>
+                                                                <input type="number" ng-model="vm.vehicleInfo.kilometers" />
                                                             </md-input-container>
                                                         </div>
                                                         <div>
-                                                            <md-checkbox ng-model="vm.vehicleInfo.repair" aria-label="{{'REPAIR'| translate}}">
-                                                               <img src="images/icons/car-repair.svg" style="width:36px; align-self:flex-start; height:auto" alt="Repair" name="Repair" />
-                                                               <span>{{'REPAIR' | translate}}</span>
-                                                            </md-checkbox>
+                                                            <md-checkbox ng-model="vm.vehicleInfo.repair" aria-label="Repair" > Popravka </md-checkbox>
                                                             <md-input-container class="md-block" flex-gt-sm ng-if="vm.vehicleInfo.repair">
-                                                                <label> Repair do:</label> <!-- Price -->
-                                                                <input type="number" min="1000" ng-model="vm.vehicleInfo.repairPrice" />
+                                                                <label class="label-without-icon"> do:</label>
+                                                                <input type="number" ng-model="vm.vehicleInfo.repairPrice" />
                                                             </md-input-container>
                                                         </div>
                                                         <div>
-                                                            <md-checkbox ng-model="vm.vehicleInfo.hotel" aria-label="{{'ACCOMODATION' | translate}}"> 
-                                                               <img src="images/icons/hotel-accomodation.svg" style="width:36px; height:auto" alt="Repair" name="Repair" />
-                                                               <span>{{'ACCOMODATION' | translate}}</span> 
-                                                            </md-checkbox>
+                                                            <md-checkbox ng-model="vm.vehicleInfo.hotel" aria-label="Hotel" > Smestaj u hotelu </md-checkbox>
                                                             <md-input-container class="md-block" flex-gt-sm ng-if="vm.vehicleInfo.hotel">
-                                                                <label> Accomodation do:</label>
-                                                                <input type="number" min="5" ng-model="vm.vehicleInfo.hotelDays" /> <!-- days -->
+                                                                <label class="label-without-icon"> do:</label>
+                                                                <input type="number" ng-model="vm.vehicleInfo.hotelDays" />
                                                             </md-input-container>
                                                         </div>
                                                         <div>
-                                                            <md-checkbox ng-model="vm.vehicleInfo.alternativeTrasnportation" aria-label="{{'ALT_TRASNPORT' | translate}}">
-                                                                <img src="images/icons/alt-transport.svg" style="width:36px; height:auto" alt="Alt transport" name="Alt transport" />
-                                                                <span> {{'ALT_TRANSPORT' | translate}}</span>
+
+
+                                                            <md-checkbox ng-model="vm.vehicleInfo.alternativeTransportation" aria-label="Alternative transporattion">
+                                                                Alternativni prevoz
                                                             </md-checkbox>
-                                                
                                                         </div>
-                                         
                                                     </div>
-                                                </fieldset>
-                                                
-                                                <fieldset>
-                                                    <legend>
-                                                        {{'OWNER_INFO' | translate}}
-                                                    </legend>
-
-                                                    <div layout="column" style="align-items:flex-start">
-                                                        <md-input-container class="md-block" flex-gt-sm style="width:100%">
-                                                            <label>{{ 'HOME_OWNER' | translate }}</label>
-                                                            <input type="text" ng-model="vm.vehicleInfo.owner" required />
-                                                        </md-input-container>
-                                                        <md-input-container class="md-block" flex-gt-sm style="width:100%">
-                                                            <label>{{ 'JMBG_HOME_OWNER' | translate }}</label>
-                                                            <input type="text" ng-model="vm.vehicleInfo.ownerJMBG" required />
-                                                        </md-input-container>
-                                                    </div>
-
-                                                </fieldset>
-                                            </div>
-
-                                            <div layout="column" ng-cloak class="md-inline-form" style="width:50vw; max-width:800px; align-items:center">
-                                                <img src="images/icons/car-main.svg" style="width:64px; height:auto; align-self:center" />
-                                                <fieldset style="width:50%">
-                                                    <div layout-wrap="" layout-gt-sm="column">
-
-                                                        <md-input-container class="md-block" style="padding-right:3px">
-                                                            <label>{{ 'VEHICLE_BRAND' | translate }}</label>
-                                                            <input type="text" ng-model="vm.vehicleInfo.mark" required />
-                                                        </md-input-container>
-                                                        <md-input-container class="md-block" flex-gt-sm>
-                                                            <label>{{'VEHICLE_YEAR' | translate}}</label>
-                                                            <input type="text" ng-model="vm.vehicleInfo.productionYear" required />
-                                                        </md-input-container>
-                                                        <md-input-container class="md-block" flex-gt-sm>
-                                                            <label>{{'VEHICLE_PLATES_NO' | translate}}</label>
-                                                            <input type="number" ng-model="vm.vehicleInfo.serialNo" required />
-                                                        </md-input-container>
-                                                        <md-input-container class="md-block" flex-gt-sm>
-                                                            <label>{{'VEHICLE_UNDERCARRIAGE_NO' | translate}}</label>
-                                                            <input type="number" ng-model="vm.vehicleInfo.chassis" required />
-                                                        </md-input-container>
-                                                    </div>
-                                                </fieldset>
-
-
-                                                <fieldset layout="column" style="align-items:center; width:50%">
-                                                    <legend>
-                                                        {{'CURR_ADD_INS_PRICE' | translate}}
-                                                    </legend>
-                                                    <md-whiteframe class="md-whiteframe-2dp" flex-sm="45" flex-gt-sm="35" flex-gt-md="25" layout layout-align="center center" style="height:10% !important">
-                                                        <span>Current insurance price 1000RSD</span>
-                                                    </md-whiteframe>
                                                 </fieldset>
 
                                             </div>
+                                            <div layout="column" ng-cloak class="md-inline-form" style="width:30vw">
+                                                <div>
+                                                    <md-input-container class="md-block" style="padding-right:3px">
+                                                        <label class="label-without-icon">Marka vozila</label>
+                                                        <input type="text" ng-model="vm.vehicleInfo.mark" required />
+                                                    </md-input-container>
+                                                    <md-input-container class="md-block" flex-gt-sm>
+                                                        <label class="label-without-icon">Godina proizvodnje</label>
+                                                        <input type="text" ng-model="vm.vehicleInfo.productionYear" required />
+                                                    </md-input-container>
+                                                    <md-input-container class="md-block" flex-gt-sm>
+                                                        <label class="label-without-icon">Broj registarske tablice</label>
+                                                        <input type="number" ng-model="vm.vehicleInfo.serialNo" required />
+                                                    </md-input-container>
 
+                                                    <md-input-container class="md-block" flex-gt-sm>
+                                                        <label class="label-without-icon">Broj sasije</label>
+                                                        <input type="number" ng-model="vm.vehicleInfo.chassis" required />
+                                                    </md-input-container>
+                                                    <md-input-container class="md-block" flex-gt-sm>
+                                                        <label class="label-without-icon">{{ 'HOME_OWNER' | translate }}</label>
+                                                        <input type="text" ng-model="vm.vehicleInfo.owner" required />
+                                                    </md-input-container>
+                                                    <md-input-container class="md-block" flex-gt-sm>
+                                                        <label class="label-without-icon">{{ 'JMBG_HOME_OWNER' | translate }}</label>
+                                                        <input type="text" ng-model="vm.vehicleInfo.ownerJMBG" required />
+                                                    </md-input-container>
 
-
-                                        </div>
+                                                 
+                                                </div>
+                                                </div>
+                                            </div>
 
                                     </md-content>
 
@@ -606,6 +547,7 @@
                         <md-step label="{{ 'PAYMENT' | translate }}" md-complete="vm.stepData[vm.stepNo+1].data.completed" ng-disabled="vm.stepProgress < 4">
                             <md-step-body>
                                 <form name="vm.stepNoNext()">
+
                                     <md-content class="md-padding">
                                         <div>
                                             <!--<policy-review-directive></policy-review-directive>-->
@@ -613,7 +555,6 @@
                                             <pay-pal-directive></pay-pal-directive>
                                         </div>
                                     </md-content>
-
 
                                     <md-step-actions layout="row">
                                         <div flex>

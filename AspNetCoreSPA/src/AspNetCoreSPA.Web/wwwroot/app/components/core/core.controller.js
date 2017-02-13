@@ -19,7 +19,7 @@
                 $scope.myDate.getFullYear() - 18,
                 $scope.myDate.getMonth(),
                 $scope.myDate.getDate()
-        );
+            );
         
       
         $scope.changeLanguage = function (langKey) {
@@ -221,6 +221,8 @@
 
              if (vm.polisy.riskType == 'sport')
                  vm.polisy.sportBool = true;
+	         else
+                 vm.polisy.sportBool = false;
 	             
 	         vm.polisy.listOfUsers = vm.listaKorisnika;
 	         DroolsInfo.save(vm.polisy, onSaveSuccess);

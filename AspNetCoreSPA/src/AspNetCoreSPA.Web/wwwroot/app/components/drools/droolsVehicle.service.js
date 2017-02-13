@@ -7,7 +7,7 @@
     DroolsVehicle.$inject = ['$resource'];
 
     function DroolsVehicle($resource) {
-        var resourceUrl = 'http://localhost:8080/setVehiclePackage';
+        var resourceUrl = 'https://localhost:8443/setVehiclePackage';
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true },

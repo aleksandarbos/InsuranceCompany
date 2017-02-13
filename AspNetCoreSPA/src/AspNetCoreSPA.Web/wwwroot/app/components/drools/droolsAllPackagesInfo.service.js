@@ -7,7 +7,7 @@
     DroolsAllPackages.$inject = ['$resource'];
 
     function DroolsAllPackages($resource) {
-        var resourceUrl = 'http://localhost:8080/setAllPackagePrices';
+        var resourceUrl = 'https://localhost:8443/setAllPackagePrices';
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true },
