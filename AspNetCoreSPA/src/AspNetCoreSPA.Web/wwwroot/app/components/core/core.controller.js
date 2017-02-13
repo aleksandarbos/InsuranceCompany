@@ -6,9 +6,9 @@
 		.controller('MainCtrl', MainCtrl)
     ;
 
-	MainCtrl.$inject = ['$window', '$scope', '$q', '$timeout', '$state', '$translate', 'DroolsInfo', 'DroolsHome', 'DroolsVehicle', 'DroolsAllPackages'];
+	MainCtrl.$inject = ['$window', '$scope', '$q', '$timeout', '$state', '$translate', 'DroolsInfo', 'DroolsHome', 'DroolsVehicle', 'DroolsAllPackages','PolicyService','ClientService','DestinationService','HouseService','CarService'];
     
-	function MainCtrl($window, $scope, $q, $timeout, $state, $translate, DroolsInfo, DroolsHome, DroolsVehicle, DroolsAllPackages) {
+	function MainCtrl($window, $scope, $q, $timeout, $state, $translate, DroolsInfo, DroolsHome, DroolsVehicle, DroolsAllPackages,ClientService,DestinationService,HouseService,CarService) {
 
 	    var vm = this;
 	    $scope.myDate = new Date();
@@ -247,6 +247,61 @@
                  totalPrice: ""
 	         }
 	         DroolsAllPackages.save(vm.packagesInfo, onsuccessAllPackages)
+
+
+
+
+	var finalListaKorisnika=[];
+	    		var ClientNavigation={};
+	    		var i=0
+	    		var idMain=0;
+	    		var listaKljuceva=[];
+	    		/*for(i=0;i<vm.listaKorisnika.length;i++)
+	    		{
+	    			var client={};
+	    			client.Firstname=vm.listaKorisnika[i].name;
+	    			client.Lastname=vm.listaKorisnika[i].surname;
+	    			client.DateOfBirth=vm.listaKorisnika[i].myDate;
+	    			client.Jmbg=vm.listaKorisnika[i].jmbg;
+	    			client.PassportNumber=vm.listaKorisnika[i].passport;
+	    			client.Sex=vm.listaKorisnika[i].sex;
+	    			console.log(client);
+
+	    			if(i===0){
+
+	    				ClientService.post(client).then(function(res){
+	    					idMain=res.data;
+	    					console.log("Prvi")
+	    					console.log(res.data)
+
+	    				},function(res){
+
+
+	    				});
+
+	    			}else{
+	    				ClientService.post(client).then(function(res){
+	    					listaKljuceva.push(res.data);
+						console.log("Drugi")
+	    					
+						console.log(res.data)
+
+	    				},function(res){
+
+	    				});
+
+	    			}
+	    			console.log(idMain);
+
+	     $scope.sendTravelInfo = function () {
+	         vm.polisy.listOfUsers = {}
+	         vm.polisy.sportBool = {}
+	         vm.polisy.noDays = {}
+	         var oneDay = 24 * 60 * 60 * 1000;
+	    		}*/
+
+
+
 
 	     }
 
