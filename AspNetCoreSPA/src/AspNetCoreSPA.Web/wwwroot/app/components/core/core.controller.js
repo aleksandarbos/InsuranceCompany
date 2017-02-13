@@ -13,12 +13,12 @@
 	    $scope.minDate = new Date(
             $scope.myDate.getFullYear(),
             $scope.myDate.getMonth(),
-            $scope.myDate.getDate() + 1);
+            $scope.myDate.getDay() + 1);
 
 	    $scope.maxDateBirth = new Date(
                 $scope.myDate.getFullYear() - 18,
                 $scope.myDate.getMonth(),
-                $scope.myDate.getDate()
+                $scope.myDate.getDay()
             );
         
       
