@@ -148,7 +148,10 @@
                     vm.polisy.listOfUsers[person].chosenPackagePrice = vm.polisy.listOfUsers[person].price3
         }
 
-
+        vm.checkradiobutton = function checkradiobutton(){
+            console.log(vm.homeInsuranceRadio)
+            console.log(vm.vehicleInsuranceRadio)
+        }
 		$scope.addNewChoice = function () {
 			var newItemNo = $scope.choices.length + 1;
 			$scope.choices.push($scope.choices.length);
