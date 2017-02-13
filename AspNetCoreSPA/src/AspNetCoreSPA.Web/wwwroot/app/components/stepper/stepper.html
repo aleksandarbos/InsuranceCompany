@@ -266,7 +266,7 @@
                                                 <md-card-title>
                                                     <md-card-title-text>
                                                         <span class="md-headline">Exclusive</span>
-                                                        <span class="md-subhead"><strong>Base price: </strong>{{vm.package3}} 9RSD</span>
+                                                        <span class="md-subhead"><strong>Base price: </strong>{{vm.package3}} RSD</span>
                                                     </md-card-title-text>
                                                 </md-card-title>
                                                 <md-card-content>
@@ -407,7 +407,7 @@
                                                         </md-input-container>
                                                         <md-input-container class="md-block" flex-gt-sm style="width:100%">
                                                             <label>{{ 'FLAT_SIZE' | translate }}</label>
-                                                            <input type="number" ng-model="vm.homeInfo.flatSize" ng-change="sendHomeInfo()" required />
+                                                            <input type="number" min="0" ng-model="vm.homeInfo.flatSize" ng-change="sendHomeInfo()" required />
                                                         </md-input-container>
                                                         <md-input-container class="md-block" flex-gt-sm style="width:100%">
                                                             <label>{{ 'BUILD_YEAR' | translate }}</label>
@@ -425,7 +425,7 @@
                                                         </md-input-container>
                                                         <md-input-container class="md-block" flex-gt-sm style="width:100%">
                                                             <label>{{ 'ESTIMATED_VALUE' | translate }}</label>
-                                                            <input type="number" ng-model="vm.homeInfo.estimatedValue" ng-change="sendHomeInfo()" required />
+                                                            <input type="number" min="0" ng-model="vm.homeInfo.estimatedValue" ng-change="sendHomeInfo()" required />
                                                         </md-input-container>
                                                       </div>  
                                                  </fieldset>
@@ -473,8 +473,8 @@
                                                             </md-checkbox> 
                                                            
                                                             <md-input-container class="md-block" flex-gt-sm ng-if="vm.vehicleInfo.towing">
-                                                                <label>Slepovanje do:</label> <!-- km -->
-                                                                <input type="number" min='100' ng-model="vm.vehicleInfo.kilometers" />
+                                                                <label>Towing up to:</label> <!-- km -->
+                                                                <input type="number" min='0' ng-model="vm.vehicleInfo.kilometers" ng-change="sendVehicleInfo()"/>
                                                             </md-input-container>
                                                         </div>
                                                         <div>
@@ -483,8 +483,8 @@
                                                                <span>{{'REPAIR' | translate}}</span>
                                                             </md-checkbox>
                                                             <md-input-container class="md-block" flex-gt-sm ng-if="vm.vehicleInfo.repair">
-                                                                <label> Repair do:</label> <!-- Price -->
-                                                                <input type="number" min="1000" ng-model="vm.vehicleInfo.repairPrice" />
+                                                                <label> Repair up to:</label> <!-- Price -->
+                                                                <input type="number" min="0" ng-model="vm.vehicleInfo.repairPrice" ng-change="sendVehicleInfo()"/>
                                                             </md-input-container>
                                                         </div>
                                                         <div>
@@ -493,12 +493,12 @@
                                                                <span>{{'ACCOMODATION' | translate}}</span> 
                                                             </md-checkbox>
                                                             <md-input-container class="md-block" flex-gt-sm ng-if="vm.vehicleInfo.hotel">
-                                                                <label> Accomodation do:</label>
-                                                                <input type="number" min="5" ng-model="vm.vehicleInfo.hotelDays" /> <!-- days -->
+                                                                <label> Accomodation up to:</label>
+                                                                <input type="number" min="0" ng-model="vm.vehicleInfo.hotelDays" ng-change="sendVehicleInfo()"/> <!-- days -->
                                                             </md-input-container>
                                                         </div>
                                                         <div>
-                                                            <md-checkbox ng-model="vm.vehicleInfo.alternativeTrasnportation" aria-label="{{'ALT_TRASNPORT' | translate}}">
+                                                            <md-checkbox ng-model="vm.vehicleInfo.alternativeTrasnportation" ng-change="sendVehicleInfo()" aria-label="{{'ALT_TRASNPORT' | translate}}">
                                                                 <img src="images/icons/alt-transport.svg" style="width:36px; height:auto" alt="Alt transport" name="Alt transport" />
                                                                 <span> {{'ALT_TRANSPORT' | translate}}</span>
                                                             </md-checkbox>
