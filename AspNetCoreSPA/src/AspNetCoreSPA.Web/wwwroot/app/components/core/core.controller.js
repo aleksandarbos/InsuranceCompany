@@ -3,22 +3,8 @@
 
 	angular
 		.module('coreModule')
-		.controller('MainCtrl', MainCtrl)
-        .config(function($mdDateLocaleProvider, $compileProvider, $mdThemingProvider){
-            $mdDateLocaleProvider.firstDayOfWeek = 1;
-            $compileProvider.preAssignBindingsEnabled(true);
+		.controller('MainCtrl', MainCtrl);
 
-            var darkBlueMap = $mdThemingProvider.extendPalette('indigo', {
-                '500': '#274474',
-                'contrastDefaultColor': 'light'
-            });
-
-            $mdThemingProvider.definePalette('darkBlue', darkBlueMap);
-
-            $mdThemingProvider.theme('default')
-                .primaryPalette('darkBlue')
-                .accentPalette('orange');
-        });
 	MainCtrl.$inject = ['$window', '$scope', '$q', '$timeout', '$state', '$translate', 'DroolsInfo', 'DroolsHome', 'DroolsVehicle', 'DroolsAllPackages'];
     
 	function MainCtrl($window, $scope, $q, $timeout, $state, $translate, DroolsInfo, DroolsHome, DroolsVehicle, DroolsAllPackages) {
@@ -36,10 +22,10 @@
         );
         
       
-            $scope.changeLanguage = function (langKey) {
-                $translate.use(langKey);
-                //odraditi poziv i dodeliti ng modelu za odredjene entite
-             };
+        $scope.changeLanguage = function (langKey) {
+            $translate.use(langKey);
+            //odraditi poziv i dodeliti ng modelu za odredjene entite
+            };
 
 
 		var vm = this;
@@ -55,9 +41,76 @@
 		    return 'step' + vm.stepNo;
 		}
 
-		vm.states = ['destination', 'userinfo', 'package', 'payment'];
-		vm.stateIdx = 0;
-		vm.currentUser;
+//		vm.states = ['insuranceWizard.chooseInsurance', 'insuranceWizard.userInfo', 'insuranceWizard.choosePackage','insuranceWizard.additionalOptions','insuranceWizard.homeInfo','insuranceWizard.vehicleInfo', 'insuranceWizard.payment'];
+	//	vm.stateIdx = 0;
+
+		vm.selectedStep = 0;
+		vm.stepProgress = 1;
+		vm.maxStep = 7;
+		vm.showBusyText = false;
+		vm.stepData = [
+            { step: 1, completed: false, optional: false, data: {} },
+            { step: 2, completed: false, optional: false, data: {} },
+            { step: 3, completed: false, optional: false, data: {} },
+            { step: 4, completed: false, optional: false, data: {} },
+            { step: 5, completed: false, optional: false, data: {} },
+            { step: 6, completed: false, optional: false, data: {} },
+            { step: 7, completed: false, optional: false, data: {} }
+
+
+		];
+
+		vm.enableNextStep = function nextStep() {
+		    //do not exceed into max step
+		    if (vm.selectedStep >= vm.maxStep) {
+		        return;
+		    }
+		    //do not increment vm.stepProgress when submitting from previously completed step
+		    if (vm.selectedStep === vm.stepProgress - 1) {
+		        vm.stepProgress = vm.stepProgress + 1;
+		    }
+		    vm.selectedStep = vm.selectedStep + 1;
+	//	    $state.go(vm.states[++vm.stateIdx]);
+
+		}
+
+		vm.moveToPreviousStep = function moveToPreviousStep() {
+		    if (vm.selectedStep > 0) {
+		        vm.selectedStep = vm.selectedStep - 1;
+	//	        $state.go(vm.states[--vm.stateIdx]);
+		    }
+		}
+
+        
+		vm.submitCurrentStep = function submitCurrentStep(stepData, isSkip) {
+		    var deferred = $q.defer();
+		    vm.showBusyText = true;
+		    if (stepData == 1)
+		        $scope.userCount();
+		    console.log('On before submit');
+		    //connecting with drools
+		    if (stepData == 2) {
+		        $scope.sendTravelInfo();
+		    }
+		    //if (!stepData.completed && !isSkip) {
+		    if (!isSkip) {
+		        //simulate $http
+		        $timeout(function () {
+		            vm.showBusyText = false;
+		            console.log('On submit success');
+		            deferred.resolve({ status: 200, statusText: 'success', data: {} });
+		            //move to next step when success
+		            // stepData.completed = true;
+		            vm.enableNextStep();
+		        }, 2000)
+		    } else {
+		        vm.showBusyText = false;
+		        vm.enableNextStep();
+		    }
+		}
+
+
+        vm.currentUser;
 		
 
 		$scope.addNewChoice = function () {
@@ -80,9 +133,14 @@
 		      else
 		          brKorisnika = vm.polisy.noAdults + vm.polisy.noChildren;
 
-			  for(var i=1; i<=brKorisnika; i++){
-				  vm.listaKorisnika.push({name: 'Jane ', surname: 'Doe'+i, myDate: '', passport: '', jmbg: '', sex: '', email: ''});
-			  }
+		      if (brKorisnika != vm.listaKorisnika.length) {
+		          vm.listaKorisnika = [];
+		          for (var i = 1; i <= brKorisnika; i++) {
+		              vm.listaKorisnika.push({ name: 'Jane ', surname: 'Doe' + i, myDate: '', passport: '', jmbg: '', sex: '', email: '' });
+		          }
+		      }
+		              
+			 
 			  vm.currentUser = vm.listaKorisnika[0];
 			  vm.currentUserIndex = 0;
 			
@@ -174,69 +232,6 @@
 	
 			}
 			
-			vm.selectedStep = 0;
-			vm.stepProgress = 1;
-			vm.maxStep = 7;
-			vm.showBusyText = false;
-			vm.stepData = [
-				{ step: 1, completed: false, optional: false, data: {} },
-				{ step: 2, completed: false, optional: false, data: {} },
-				{ step: 3, completed: false, optional: false, data: {} },
-				{ step: 4, completed: false, optional: false, data: {} },
-                { step: 5, completed: false, optional: false, data: {} },
-                { step: 6, completed: false, optional: false, data: {} },
-                { step: 7, completed: false, optional: false, data: {} }
-              
-
-			];
-
-		vm.enableNextStep = function nextStep() {
-			//do not exceed into max step
-			if (vm.selectedStep >= vm.maxStep) {
-				return;
-			}
-			//do not increment vm.stepProgress when submitting from previously completed step
-			if (vm.selectedStep === vm.stepProgress - 1) {
-				vm.stepProgress = vm.stepProgress + 1;
-			}
-			vm.selectedStep = vm.selectedStep + 1;
-			$state.go(vm.states[++vm.stateIdx]);
-			
-		}
-
-		vm.moveToPreviousStep = function moveToPreviousStep() {
-			if (vm.selectedStep > 0) {
-				vm.selectedStep = vm.selectedStep - 1;
-				$state.go(vm.states[--vm.stateIdx]);
-			}
-		}
-
-			vm.submitCurrentStep = function submitCurrentStep(stepData, isSkip) {
-				var deferred = $q.defer();
-				vm.showBusyText = true;
-                if(stepData == 1)
-				    $scope.userCount();
-				console.log('On before submit');
-                //connecting with drools
-				if (stepData == 2) {
-				    $scope.sendTravelInfo();
-				}
-				//if (!stepData.completed && !isSkip) {
-					if(!isSkip){
-					//simulate $http
-					$timeout(function () {
-						vm.showBusyText = false;
-						console.log('On submit success');
-						deferred.resolve({ status: 200, statusText: 'success', data: {} });
-						//move to next step when success
-					   // stepData.completed = true;
-						vm.enableNextStep();
-					}, 2000)
-				} else {
-					vm.showBusyText = false;
-					vm.enableNextStep();
-				}
-			}
 		
 			function onSaveSuccess(result) {
 			    vm.package1 = {};
@@ -303,7 +298,7 @@
 						// Execute the payment here, when the buyer approves the transaction
 						// Optional: display a confirmation page here
 						return actions.payment.execute().then(function() {
-							// Show a success page to the buyer
+						    $('#myModal').modal('show');
 							console.log(">>> SUCCESS!");
 							console.log(data);
 

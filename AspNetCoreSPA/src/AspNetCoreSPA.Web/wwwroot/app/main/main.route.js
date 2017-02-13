@@ -14,17 +14,9 @@
                 url: '/',
                 views: {
                     'main': {
-                        templateUrl: 'app/main/main.html',
+                        templateUrl:'app/main/main.html',
                         controller: 'MainController',
                         controllerAs: 'vm'
-                    },
-                    'content@main': {
-                        templateUrl: 'app/components/home/home.html',
-                        controller: 'HomeController',
-                        controllerAs: 'vm'
-                    },
-                    'stepper@main': {
-                        templateUrl: 'app/components/stepper/stepper.html'
                     }
                 }
             });
@@ -38,6 +30,9 @@
                         templateUrl: 'app/components/stepper/stepper.html'
                     }
                 }
-            });
+            })
+
+
+        ;
     }
 })();
