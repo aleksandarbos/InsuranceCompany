@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('app')
+        .module('coreModule')
         .config(function ($mdDateLocaleProvider, $compileProvider, $mdThemingProvider) {
             $mdDateLocaleProvider.firstDayOfWeek = 1;
             
