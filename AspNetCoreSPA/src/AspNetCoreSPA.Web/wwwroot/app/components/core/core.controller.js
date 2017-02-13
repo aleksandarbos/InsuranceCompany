@@ -2,33 +2,20 @@
 	"use strict";
 
 	angular
-	.module('coreModule')
-	.controller('MainCtrl', MainCtrl)
+		.module('coreModule')
+		.controller('MainCtrl', MainCtrl)
+    ;
 
-	.config(function($mdDateLocaleProvider, $compileProvider, $mdThemingProvider){
-		$mdDateLocaleProvider.firstDayOfWeek = 1;
-		$compileProvider.preAssignBindingsEnabled(true);
+	MainCtrl.$inject = ['$window', '$scope', '$q', '$timeout', '$state', '$translate', 'DroolsInfo', 'DroolsHome', 'DroolsVehicle', 'DroolsAllPackages'];
+    
+	function MainCtrl($window, $scope, $q, $timeout, $state, $translate, DroolsInfo, DroolsHome, DroolsVehicle, DroolsAllPackages) {
 
-		var darkBlueMap = $mdThemingProvider.extendPalette('indigo', {
-			'500': '#274474',
-			'contrastDefaultColor': 'light'
-		});
-
-		$mdThemingProvider.definePalette('darkBlue', darkBlueMap);
-
-		$mdThemingProvider.theme('default')
-		.primaryPalette('darkBlue')
-		.accentPalette('orange');
-	});
-	MainCtrl.$inject = ['$window', '$scope', '$q', '$timeout', '$state', '$translate', 'DroolsInfo', 'DroolsHome', 'DroolsVehicle', 'DroolsAllPackages','PolicyService','ClientService','DestinationService','HouseService','CarService'];
-
-	function MainCtrl($window, $scope, $q, $timeout, $state, $translate, DroolsInfo, DroolsHome, DroolsVehicle, DroolsAllPackages,PolicyService,ClientService,DestinationService,HouseService,CarService) {
-
-		$scope.myDate = new Date();
-		$scope.minDate = new Date(
-			$scope.myDate.getFullYear(),
-			$scope.myDate.getMonth(),
-			$scope.myDate.getDate() + 1);
+	    var vm = this;
+	    $scope.myDate = new Date();
+	    $scope.minDate = new Date(
+            $scope.myDate.getFullYear(),
+            $scope.myDate.getMonth(),
+            $scope.myDate.getDate() + 1);
 
 	    $scope.maxDate = new Date(
             $scope.myDate.getFullYear() - 18,
@@ -51,7 +38,7 @@
 
 	    $scope.choices = [];
 	    vm.listaKorisnika = [];
-
+	   
 	    var currentYear = new Date().getFullYear();
         
 		vm.stepNo = 0;
@@ -139,27 +126,27 @@
             vm.package3Selected = false;
         }
 
-	    vm.setPackage2Selected = function setPackage2Selected() {
-	    	vm.package1Selected = false;
-	    	vm.package2Selected = true;
-	    	vm.package3Selected = false;
-	    }
+        vm.setPackage2Selected = function setPackage2Selected() {
+            vm.package1Selected = false;
+            vm.package2Selected = true;
+            vm.package3Selected = false;
+        }
 
-	    vm.setPackage3Selected = function setPackage3Selected() {
-	    	vm.package1Selected = false;
-	    	vm.package2Selected = false;
-	    	vm.package3Selected = true;
-	    }
+        vm.setPackage3Selected = function setPackage3Selected() {
+            vm.package1Selected = false;
+            vm.package2Selected = false;
+            vm.package3Selected = true;
+        }
 
-	    vm.setUserPrice = function setUserPrice() {
-	    	for (var person in vm.polisy.listOfUsers)
-	    		if( vm.package1Selected)
-	    			vm.polisy.listOfUsers[person].chosenPackagePrice = vm.polisy.listOfUsers[person].price1
-	    		else if (vm.package2Selected)
-	    			vm.polisy.listOfUsers[person].chosenPackagePrice = vm.polisy.listOfUsers[person].price2
-	    		else if (vm.package3Selected)
-	    			vm.polisy.listOfUsers[person].chosenPackagePrice = vm.polisy.listOfUsers[person].price3
-	    	}
+        vm.setUserPrice = function setUserPrice() {
+            for (var person in vm.polisy.listOfUsers)
+                if( vm.package1Selected)
+                    vm.polisy.listOfUsers[person].chosenPackagePrice = vm.polisy.listOfUsers[person].price1
+                else if (vm.package2Selected)
+                    vm.polisy.listOfUsers[person].chosenPackagePrice = vm.polisy.listOfUsers[person].price2
+                else if (vm.package3Selected)
+                    vm.polisy.listOfUsers[person].chosenPackagePrice = vm.polisy.listOfUsers[person].price3
+        }
 
         vm.checkradiobutton = function checkradiobutton(){
             console.log(vm.homeInsuranceRadio)
@@ -171,15 +158,15 @@
 			$scope.choices.push($scope.choices.length);
 		};
 
-	    	$scope.removeChoice = function () {
-	    		var lastItem = $scope.choices.length - 1;
-	    		$scope.choices.splice(lastItem);
-	    	};
+		$scope.removeChoice = function () {
+			var lastItem = $scope.choices.length - 1;
+			$scope.choices.splice(lastItem);
+		};
 
 
 
-	    	$scope.userCount = function(){
-	    		var brKorisnika;
+		  $scope.userCount = function(){
+		      var brKorisnika;
 
 		      if (vm.polisy.travelType == 'pojedinacno') {
 		          brKorisnika = 1;
@@ -206,209 +193,68 @@
               
 		  }
 
-	    	$scope.saveUser = function () {
-	    		vm.currentUser.age = [];
-	    		vm.currentUser.age = $scope.calculateAge(vm.currentUser.myDate);
-	    		vm.listaKorisnika[vm.currentUserIndex] = vm.currentUser;
-	    	}
+		  $scope.saveUser = function () {
+		      vm.currentUser.age = [];
+		      vm.currentUser.age = $scope.calculateAge(vm.currentUser.myDate);
+		      vm.listaKorisnika[vm.currentUserIndex] = vm.currentUser;
+		  }
 
-	    	$scope.nextUser = function () {
-	    		$scope.saveUser();
-	    		vm.currentUserIndex++;
-	    		vm.currentUser = vm.listaKorisnika[vm.currentUserIndex];
+	     $scope.nextUser = function () {
+	         $scope.saveUser();
+	         vm.currentUserIndex++;
+		     vm.currentUser = vm.listaKorisnika[vm.currentUserIndex];
+            
+	     }
 
-	    	}
+	     $scope.editUser = function (index) {
+	         console.log(index);
+	         vm.currentUserIndex = index;
+	         vm.currentUser = vm.listaKorisnika[index];
+	     }
 
-	    	$scope.editUser = function (index) {
-	    		console.log(index);
-	    		vm.currentUserIndex = index;
-	    		vm.currentUser = vm.listaKorisnika[index];
-	    	}
+	     $scope.calculateAge = function (year) {
+	         var userYear = year.getFullYear();
+	         return currentYear - userYear;
+	     }
+	
+	     $scope.sendHomeInfo = function () {
+	         vm.homeInfo.chosenPackagePrice = {};
+	         vm.homeInfo.age = {};
+	         vm.homeInfo.insuranceDuration = {};
+	         vm.homeInfo.insuranceDuration = vm.polisy.noDays;
+	         vm.homeInfo.chosenPackagePrice = vm.polisy.polisyPackage;
+	         vm.homeInfo.age = currentYear - vm.homeInfo.buildYear;
 
-	    	$scope.calculateAge = function (year) {
-	    		var userYear = year.getFullYear();
-	    		return currentYear - userYear;
-	    	}
+	         DroolsHome.save(vm.homeInfo, onsuccessHome)
+	     }
 
-	    	$scope.sendHomeInfo = function () {
-	    		vm.homeInfo.chosenPackagePrice = {};
-	    		vm.homeInfo.age = {};
-	    		vm.homeInfo.insuranceDuration = {};
-	    		vm.homeInfo.insuranceDuration = vm.polisy.noDays;
-	    		vm.homeInfo.chosenPackagePrice = vm.polisy.polisyPackage;
-	    		vm.homeInfo.age = currentYear - vm.homeInfo.buildYear;
+	     $scope.sendVehicleInfo = function () {
+	         vm.vehicleInfo.chosenPackagePrice = {};
+	         vm.vehicleInfo.insuranceDuration = {};
+	         vm.vehicleInfo.insuranceDuration = vm.polisy.noDays;
+	         vm.vehicleInfo.chosenPackagePrice = vm.polisy.polisyPackage;
+             
+             DroolsVehicle.save(vm.vehicleInfo, onsuccessVehicle)
+	     }
 
-	    		DroolsHome.save(vm.homeInfo, onsuccessHome)
-	    	}
+	     $scope.sendAllPackagesPriceInfo = function () {
+	         vm.packagesInfo = {
+	             homeIns: vm.homeInsuranceRadio,
+	             vehicleIns: vm.vehicleInsuranceRadio,
+	             homeInsPrice: vm.packageHome,
+	             vehicleInsPrice: vm.packageVehicle,
+	             travelInsPrice: vm.polisy.polisyPackage,
+                 totalPrice: ""
+	         }
+	         DroolsAllPackages.save(vm.packagesInfo, onsuccessAllPackages)
 
-	    	$scope.sendVehicleInfo = function () {
-	    		vm.vehicleInfo.chosenPackagePrice = {};
-	    		vm.vehicleInfo.insuranceDuration = {};
-	    		vm.vehicleInfo.insuranceDuration = vm.polisy.noDays;
-	    		vm.vehicleInfo.chosenPackagePrice = vm.polisy.polisyPackage;
-
-	    		DroolsVehicle.save(vm.vehicleInfo, onsuccessVehicle)
-	    	}
-
-	    	$scope.sendAllPackagesPriceInfo = function () {
-	    		vm.packagesInfo = {
-	    			homeIns: vm.homeInsuranceRadio,
-	    			vehicleIns: vm.vehicleInsuranceRadio,
-	    			homeInsPrice: vm.packageHome,
-	    			vehicleInsPrice: vm.packageVehicle,
-	    			travelInsPrice: vm.polisy.polisyPackage,
-	    			totalPrice: ""
-	    		}
-	    		DroolsAllPackages.save(vm.packagesInfo, onsuccessAllPackages)
-
-
-
-
-
-
-
-	    		var finalListaKorisnika=[];
-	    		var ClientNavigation={};
-	    		var i=0
-	    		var idMain=0;
-	    		var listaKljuceva=[];
-	    		/*for(i=0;i<vm.listaKorisnika.length;i++)
-	    		{
-	    			var client={};
-	    			client.Firstname=vm.listaKorisnika[i].name;
-	    			client.Lastname=vm.listaKorisnika[i].surname;
-	    			client.DateOfBirth=vm.listaKorisnika[i].myDate;
-	    			client.Jmbg=vm.listaKorisnika[i].jmbg;
-	    			client.PassportNumber=vm.listaKorisnika[i].passport;
-	    			client.Sex=vm.listaKorisnika[i].sex;
-	    			console.log(client);
-
-	    			if(i===0){
-
-	    				ClientService.post(client).then(function(res){
-	    					idMain=res.data;
-	    					console.log("Prvi")
-	    					console.log(res.data)
-
-	    				},function(res){
-
-
-	    				});
-
-	    			}else{
-	    				ClientService.post(client).then(function(res){
-	    					listaKljuceva.push(res.data);
-						console.log("Drugi")
-	    					
-						console.log(res.data)
-
-	    				},function(res){
-
-	    				});
-
-	    			}
-	    			console.log(idMain);
+	     }
 
 	     $scope.sendTravelInfo = function () {
 	         vm.polisy.listOfUsers = {}
 	         vm.polisy.sportBool = {}
 	         vm.polisy.noDays = {}
 	         var oneDay = 24 * 60 * 60 * 1000;
-	    		}*/
-	    		var finalCar={};
-	    		finalCar.ClientId=19;
-	    		finalCar.Year=vm.vehicleInfo.productionYear;
-	    		finalCar.ChassisNumber=vm.vehicleInfo.chassis;
-	    		finalCar.LicencePlate=vm.vehicleInfo.serialNo;
-	    		finalCar.CarStartDate=vm.polisy.date;
-	    		finalCar.CarEndDate=vm.polisy.date;
-	    		console.log(finalCar)
-	    		console.log("Car")
-	    		//finalCar.CarEndDate.setTime( vm.polisy.date.getTime() + vm.polisy.noDays * 86400000 );
-	    		//var idCar=0;
-
-	    		CarService.post(finalCar).then(function(res){
-
-	    			idCar=res.data;
-	    		},function(res){
-
-	    		});
-
-
-	    		/*var finalHouse={};
-	    		finalHouse.HomeSquares=vm.homeInfo.flatSize;
-	    		finalHouse.HomeBuildingYear=vm.homeInfo.buildYear;
-	    		finalHouse.HomeAddress=vm.homeInfo.address;
-	    		finalHouse.HomeValue=vm.homeInfo.estimatedValue;
-	    		finalHouse.HomeStartDate=vm.polisy.date;
-	    		finalHouse.HomeEndDate=vm.polisy.date;
-	    		finalHouse.HomeEndDate.setTime( vm.polisy.date.getTime() + vm.polisy.noDays * 86400000 );
-	    		var idHouse=0;
-	    		/*HouseService.post(finalHouse).then(function(res){
-
-	    			idHouse=res.data;
-	    		},function(res){
-
-	    		});*/
-
-	    	/*	var finalDestination={};
-	    		finalDestination.St=vm.polisy.destination;
-	    		finalDestination.DstDays=vm.polisy.noDays;
-
-
-	    		var finalSubjectOfInsurance={};
-	    		finalSubjectOfInsurance.Car=finalCar;
-	    		finalSubjectOfInsurance.Home=finalHouse;
-	    		finalSubjectOfInsurance.Tp=vm.polisy.riskType;
-	    		finalSubjectOfInsurance.Dst=finalDestination;
-
-
-	    		var finalPolicy={};
-	    		finalPolicy.R=vm.polisy.sport;
-	    		finalPolicy.Client=finalListaKorisnika;
-	    		finalPolicy.ClientNavigation=ClientNavigation;
-	    		finalPolicy.Ii=finalSubjectOfInsurance;
-	    		finalPolicy.Package=vm.polisy.polisyPackage;
-
-
-
-
-
-	    		console.log(finalPolicy)
-
-	    		/*PolicyService.post(finalPolicy).then(function(response){
-	    			alert("Uspelo")
-	    		},function(response){
-	    			alert("Nije uspelo")
-	    		})
-*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	    	}
-
-	    	$scope.sendTravelInfo = function () {
-	    		vm.polisy.listOfUsers = {}
-	    		vm.polisy.sportBool = {}
 
              if (vm.polisy.riskType == 'sport')
                  vm.polisy.sportBool = true;
@@ -431,31 +277,31 @@
 			
 		
 			function onSaveSuccess(result) {
-				vm.package1 = {};
-				vm.package2 = {};
-				vm.package3 = {};
-				vm.polisy = result;
-				vm.package1 = result.packagePrice1
-				vm.package2 = result.packagePrice2
-				vm.package3 = result.packagePrice3
+			    vm.package1 = {};
+			    vm.package2 = {};
+			    vm.package3 = {};
+			    vm.polisy = result;
+			    vm.package1 = result.packagePrice1
+			    vm.package2 = result.packagePrice2
+			    vm.package3 = result.packagePrice3
 			}
 
 			function onsuccessHome(result) {
-				vm.packageHome = {};
-				vm.packageHome = result.price;
+			    vm.packageHome = {};
+			    vm.packageHome = result.price;
 			}
 
 			function onsuccessVehicle(result) {
-				vm.packageVehicle = {};
-				vm.packageVehicle = result.price;
+			    vm.packageVehicle = {};
+			    vm.packageVehicle = result.price;
 			}
 
 			function onsuccessAllPackages(result) {
-				vm.finalPriceWithPotencialDiscount = {}
-				vm.finalPriceWithPotencialDiscount = result.totalPrice;
+			    vm.finalPriceWithPotencialDiscount = {}
+			    vm.finalPriceWithPotencialDiscount = result.totalPrice;
 			}
 
-			paypal.Button.render({
+			 paypal.Button.render({
 
 					env: 'sandbox', // Specify 'sandbox' for the test environment //'production'
 
@@ -465,10 +311,10 @@
 						shape: 'pill'
 					},
 
-					client: {
-						sandbox:    'AUlcGuyTEzEq-YB7nmrCi8MDumqrghQIlID387O1SFkEyVNSDvXoB7gpapZdDcSUmK5z_n6tQUcBWPa7',
-						production: 'xxxxxxxxx'
-					},
+					 client: {
+								sandbox:    'AUlcGuyTEzEq-YB7nmrCi8MDumqrghQIlID387O1SFkEyVNSDvXoB7gpapZdDcSUmK5z_n6tQUcBWPa7',
+								production: 'xxxxxxxxx'
+					 },
 
 					//TODO - redirections
 					//https://developer.paypal.com/docs/integration/direct/express-checkout/integration-jsv4/script-options/
@@ -476,14 +322,14 @@
 					payment: function() {
 						// Set up the payment here, when the buyer clicks on the button
 
-						var env    = this.props.env;
-						var client = this.props.client;
+						 var env    = this.props.env;
+						 var client = this.props.client;
 
 						return paypal.rest.payment.create(env, client, {
 							transactions: [
-							{
-								amount: { total: vm.polisy.polisyPackage, currency: 'USD' }
-							}
+								{
+								    amount: { total: vm.polisy.polisyPackage, currency: 'USD' }
+								}
 							]
 						});
 
@@ -496,7 +342,7 @@
 						// Execute the payment here, when the buyer approves the transaction
 						// Optional: display a confirmation page here
 						return actions.payment.execute().then(function() {
-							// Show a success page to the buyer
+						    $('#myModal').modal('show');
 							console.log(">>> SUCCESS!");
 							console.log(data);
 
@@ -504,16 +350,16 @@
 
 						});
 
-					},
+				   },
 
 					onCancel: function(data, actions) {
 						 // Show a cancel page or return to cart
-						 console.log(">>> CANCELED!");
-						 console.log(data);
-						}
+						console.log(">>> CANCELED!");
+						console.log(data);
+					}
 
-					}, '.paypal-button');
+				}, '.paypal-button');
 			
 		}
-
-	})();
+	
+})();
