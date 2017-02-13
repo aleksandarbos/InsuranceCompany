@@ -1,5 +1,7 @@
 ﻿using AspNetCoreSPA.EntityFramework;
 using AspNetCoreSPA.Web.Configurations;
+using AspNetCoreSPA.Web.Services;
+using AspNetCoreSPA.Web.Services.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -32,6 +34,8 @@ namespace AspNetCoreSPA.Web
             services.AddMvc();
 
             services.ReplaceDefaultViewEngine();
+
+            services.AddTransient<IMailService, MailService>();
 
             services.AddDALTier();
             services.AddBusinessTier();
