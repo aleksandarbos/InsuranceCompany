@@ -22,7 +22,7 @@ var translationsEN = {
     SPORT: 'Active holiday(Skiing...)',
     BUSINESS: 'Business travel',
     STATE: 'State',
-    DAYS: 'Number of days',
+    NO_DAYS: 'Number of days',
     CANCEL: 'CANCEL',
     NEXT: 'NEXT',
     PREVIOUS:'PREVIOUS',
@@ -89,9 +89,25 @@ var translationsEN = {
     REPAIR: 'Vehicle repair',
     ACCOMODATION: 'Hotel accomodation',
     ALT_TRANSPORT: 'Alternative transportation',
-    REQUIRED: 'This is required'
+    REQUIRED: 'This is required',
 
-
+    TRAVEL_INSURANCE_POLICY: 'Travel insurance policy',
+    DESTINATION: 'Destination',
+    START_DATE: 'Start date',
+    END_DATE: 'End date',
+    USER_INFO_PRICE: 'User Info and Price per person',
+    POLICY_OWNER_EMAIL: 'Policy owners email',
+    TOTAL_PRICE: 'Total price',
+    OWNER: 'Owner',
+    INSURED_FROM: 'Insured from',
+    TOTAL_PRICE_POLICY: 'Total price policy',
+    TOWING_TO: 'Towing up to',
+    REPAIR_TO: 'Repair up to',
+    HOTEL_TO: 'Hotel up to',
+    HOME_INFO: 'Home info',
+    VEHICLE_INFO: 'Vehicle info',
+    DAYS: 'Days'
+    
 };
  
 var translationsSRB= {
@@ -103,10 +119,10 @@ var translationsSRB= {
     KIDS: 'Broj dece',
     PURPOSE:'Svrha putovanja',
     TOURIST: 'Turistički',
-    SPORT: 'Aktivan odmor (skijanje..)',
+    SPORT: 'Aktivan odmor',
     BUSINESS: 'Poslovni put',
     STATE: 'Država',
-    DAYS: 'Broj dana',
+    NO_DAYS: 'Broj dana',
     CANCEL: 'ODUSTANI',
     NEXT: 'DALJE',
     PREVIOUS:'NAZAD',
@@ -173,12 +189,25 @@ var translationsSRB= {
     REPAIR: 'Popravka vozila',
     ACCOMODATION: 'Smeštaj u hotelu',
     ALT_TRANSPORT: 'Alternativni prevoz',
-    REQUIRED: 'Ovo je obavezno za unos'
+    REQUIRED: 'Ovo je obavezno za unos',
 
-    
-    
-    
+    TRAVEL_INSURANCE_POLICY: 'Polisa putnog osiguranja',
+    DESTINATION: 'Destinacija',
+    START_DATE: 'Početni datum',
+    END_DATE: 'Krajnji datum',
+    USER_INFO_PRICE: 'Informacije o korisniku i cena',
+    POLICY_OWNER_EMAIL: 'Email nosioca polise',
+    TOTAL_PRICE: 'Ukupna cena',
+    OWNER: 'Vlasnik',
+    INSURED_FROM: 'Osiguran od',
+    TOTAL_PRICE_POLICY: 'Ukupna cena polise',
 
+    TOWING_TO: 'šlepovanje do',
+    REPAIR_TO: 'Popravka do',
+    HOTEL_TO: 'Smeštaj do',
+    HOME_INFO: 'Informacije o smeštaju',
+    VEHICLE_INFO: 'Inforacije o vozilu',
+    DAYS: 'Dani'
 
 };
 

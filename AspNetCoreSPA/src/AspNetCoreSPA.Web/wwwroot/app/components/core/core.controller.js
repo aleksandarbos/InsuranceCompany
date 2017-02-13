@@ -274,6 +274,8 @@
              var endDate = new Date(vm.polisy.endDate)
 
              vm.polisy.noDays = Math.ceil(Math.abs(startDate - endDate)) / oneDay + 1;
+             vm.polisy.date = startDate.toDateString;
+             vm.polisy.endDate = endDate.toDateString;
 	         vm.polisy.listOfUsers = vm.listaKorisnika;
 	         DroolsInfo.save(vm.polisy, onSaveSuccess);
 	     }
