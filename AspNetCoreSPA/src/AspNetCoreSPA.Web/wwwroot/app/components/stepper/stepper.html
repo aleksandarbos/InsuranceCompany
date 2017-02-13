@@ -162,8 +162,6 @@
                                                 </md-list>
                                             </div>
                                             <div layout="column" ng-cloak class="md-inline-form" style="width:50vw">
-                                                <!--   <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding> -->
-                                                <!-- dodati ikonicu za nosioca osiguranja-->
                                                 <div>
                                                     <div layout="row">
                                                         <md-input-container class="md-block" style="padding-right:3px">
@@ -184,8 +182,10 @@
                                                     </div>
                                                     <md-input-container class="birthdate-picker" style="margin-top:0px; margin-bottom:0px; padding-left:35px">
                                                         <md-icon md-svg-src="images/icons/calendar.svg"></md-icon>
-                                                        <md-datepicker name="birthDate" ng-disabled="vm.listaKorisnika.length <= vm.currentUserIndex" ng-model="vm.currentUser.myDate" md-placeholder="{{'DATEBIRTH' | translate}}" md-max-date="maxDateBirth" ></md-datepicker>
-                                                           
+                                                        <md-datepicker name="birthDate" ng-disabled="vm.listaKorisnika.length <= vm.currentUserIndex" ng-model="vm.currentUser.myDate" md-placeholder="{{'DATEBIRTH' | translate}}" required></md-datepicker>
+                                                        <div ng-messages="userInfoForm.birthDate.$error">
+                                                            <div ng-message="required">This is required.</div>
+                                                        </div>           
                                                      </md-input-container>
 
                                                     <md-input-container class="md-block" flex-gt-sm style="padding-right:3px">
@@ -201,11 +201,11 @@
                                                         <md-icon md-svg-src="images/icons/jmbg.svg"></md-icon>
                                                         <label>JMBG</label>
                                                         <input type="number" name="jmbg" ng-model="vm.currentUser.jmbg" required ng-disabled="vm.listaKorisnika.length <= vm.currentUserIndex" 
-                                                               ng-minlength="13" ng-maxlength="13"/>
+                                                               minlength="13" md-maxlength="14"/>
                                                         <div ng-messages="userInfoForm.jmbg.$error">
                                                             <div ng-message="required">This is required.</div>
-                                                            <div ng-message="minLength">The JMBG must have 13 numbers exactly.</div>
-                                                            <div ng-message="maxLength">The JMBG must have 13 numbers exactly.</div>
+                                                            <div ng-message="minlength">The JMBG must have 13 numbers exactly.</div>
+                                                         
                                                         </div>
                                                      </md-input-container>
                                                     <md-input-container class="md-block" flex-gt-sm style="padding-right:3px">

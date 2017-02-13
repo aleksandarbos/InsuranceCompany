@@ -87,7 +87,8 @@ var translationsEN = {
     TOWING: 'Vehicle towing',
     REPAIR: 'Vehicle repair',
     ACCOMODATION: 'Hotel accomodation',
-    ALT_TRANSPORT: 'Alternative transportation'
+    ALT_TRANSPORT: 'Alternative transportation',
+    REQUIRED: 'This is required'
 
 
 };
@@ -169,7 +170,8 @@ var translationsSRB= {
     TOWING: 'Šlepovanje vozila',
     REPAIR: 'Popravka vozila',
     ACCOMODATION: 'Smeštaj u hotelu',
-    ALT_TRANSPORT: 'Alternativni prevoz'
+    ALT_TRANSPORT: 'Alternativni prevoz',
+    REQUIRED: 'Ovo je obavezno za unos'
 
     
     

@@ -1,0 +1,107 @@
+﻿<md-step label="{{'CHOOSE' | translate }}">
+    <md-step-body>
+        <form name="vm.stepNoNext()" ng-submit="vm.submitCurrentStep(1,false)" ng-click="savePolicy()" novalidate>
+
+            <md-content style="height:72%" class="modified-input">
+                <div>
+                    <div layout="row">
+                        <md-input-container class="md-block" style=" width:250px">
+                            <label class="label-without-icon" ">{{ 'TYPEOFTRAVEL' | translate }}</label>
+                            <md-select ng-model="vm.polisy.travelType" required>
+                                <md-option value="porodicno">
+                                    {{ 'FAMILY' | translate }}
+                                </md-option>
+                                <md-option value="pojedinacno">
+                                    {{ 'SELF' | translate }}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+
+                        <div ng-show="vm.polisy.travelType=='porodicno'" layout="row">
+                            <md-input-container class="md-block">
+                                <md-icon md-svg-src="images/adults.svg"></md-icon>
+                                <input type="number" ng-model="vm.polisy.noAdults" min=1 placeholder="{{ 'ADULT' | translate }}">
+                            </md-input-container>
+                            <md-input-container class="md-block">
+                                <md-icon md-svg-src="images/girl.svg"></md-icon>
+                                <input type="number" ng-model="vm.polisy.noChildren" min=0 placeholder="{{ 'KIDS' | translate }}">
+                            </md-input-container>
+
+                        </div>
+
+                    </div>
+                    <div layout="row">
+                        <md-input-container class="md-block" style="width:250px">
+                            <label class="label-without-icon" ">{{ 'PURPOSE' | translate }}</label>
+                            <md-select ng-model="vm.polisy.riskType" required>
+                                <md-option value="turisticki">
+                                    {{ 'TOURIST' | translate }}
+                                </md-option>
+                                <md-option value="sport">
+                                    {{ 'SPORT' | translate }}
+                                </md-option>
+                                <md-option value="poslovno">
+                                    {{ 'BUSINESS' | translate }}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+
+
+
+                        <div ng-show="vm.polisy.riskType=='sport'">
+                            <md-input-container class="md-block" style="width:250px">
+                                <label class="label-without-icon" ">{{ 'SPORT_TYPE' | translate }}</label>
+                                <md-select ng-model="vm.polisy.sport">
+                                    <md-option value="Skijanje">Skijanje</md-option>
+                                    <md-option value="Jedrenje">Jedrenje</md-option>
+                                    <md-option value="Planinarenje">Planinarenje</md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                    </div>
+
+                    <div layout="column">
+                        <md-input-container class="md-block" style="width:250px">
+                            <label class="label-without-icon">{{ 'STATE' | translate }}</label>
+                            <md-select ng-model="vm.polisy.destination" required>
+                                <md-option ng-repeat="state in states" value="{{state.abbrev}}">
+                                    Engleska
+                                </md-option>
+                                <md-option value="Srbija">
+                                    Srbija
+                                </md-option>
+                                <md-option value="Bosna">
+                                    Bosna i Hercegovina
+                                </md-option>
+                                <md-option value="Engleska">
+                                    Engleska
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+
+                        <div layout-gt-xs="row">
+                            <md-input-container style="padding-left:35px!important">
+                                <md-datepicker ng-model="vm.polisy.date" md-placeholder="{{'DATE' | translate}}" required md-min-date="minDate"></md-datepicker>
+                            </md-input-container>
+
+                            <md-input-container>
+                                <label class="label-without-icon">{{ 'DAYS' | translate }}</label>
+                                <input type="number" ng-model="vm.polisy.noDays" min=1>
+                            </md-input-container>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </md-content>
+
+            <md-step-actions layout="row">
+                <div flex layout="row" layout-align="end top">
+                    <md-button class="md-warn">{{ 'CANCEL' | translate }}</md-button>
+                    <md-button type="submit" class="md-primary md-raised">{{ 'NEXT' | translate }}</md-button>
+                </div>
+            </md-step-actions>
+        </form>
+    </md-step-body>
+</md-step>

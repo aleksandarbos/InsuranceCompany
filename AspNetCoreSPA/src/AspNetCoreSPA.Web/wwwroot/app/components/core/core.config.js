@@ -5,6 +5,9 @@
         .module('app')
         .config(function ($mdDateLocaleProvider, $compileProvider, $mdThemingProvider) {
             $mdDateLocaleProvider.firstDayOfWeek = 1;
+            
+
+
             $compileProvider.preAssignBindingsEnabled(true);
 
             var darkBlueMap = $mdThemingProvider.extendPalette('indigo', {
@@ -17,6 +20,13 @@
             $mdThemingProvider.theme('default')
                 .primaryPalette('darkBlue')
                 .accentPalette('orange');
+
+
+
+
+
+
+
         });
 
         
