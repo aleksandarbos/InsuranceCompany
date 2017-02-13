@@ -2,11 +2,11 @@
     "use strict"
 
     angular.module('coreModule')
-        
-        .directive("policyPreviewDirective", policyPreviewDirective);
 
-    policyPreviewDirective.$inject = [];
-    function policyPreviewDirective() {
+        .directive("jmbgValidationDirective", jmbgValidationDirective);
+
+    jmbgValidationDirective.$inject = [];
+    function jmbgValidationDirective() {
         return {
             templateUrl: '/app/components/stepper/polisyPreview.html'
         };

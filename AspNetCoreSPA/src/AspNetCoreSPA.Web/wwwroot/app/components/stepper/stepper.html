@@ -18,6 +18,7 @@
                     </div>
                 </md-toolbar>
 
+                <!-- chooseInsurance step -->
                 <md-stepper-card-content class="md-no-padding">
                     <md-steppers md-dynamic-height md-disable-tabs-behavior="true" md-stretch-steppers="always" md-selected="vm.selectedStep"
                         md-busy-text="'Processing...'" md-busy="vm.showBusyText">
@@ -145,7 +146,7 @@
                             </md-step-body>
                         </md-step>
 
-                     
+                     <!-- userInfo step -->
                         <md-step label="{{ 'INFO' | translate }}">
                             <md-step-body>
                                 <form name="vm.stepNoNext()" ng-submit="vm.submitCurrentStep(2,false)" novalidate ng-cloak>
@@ -155,15 +156,13 @@
                                                 <md-list ng-cloak style="padding-top:0px">
                                                     <md-subheader class="md-no-sticky">{{'USERS_INSURANCE' | translate}}</md-subheader>
                                                     <md-list-item ng-repeat="user in vm.listaKorisnika track by $index">
-                                                        <p>{{ user.name }} {{user.surname}}</p>
+                                                        <p>{{ user.name }} {{user.surname}} <sup>{{user.ageType}}</sup></p>
                                                         <md-icon md-svg-icon="images/icons/pencil.svg" ng-click="editUser($index)" aria-label="Edit user info" class="md-secondary md-hue-3"></md-icon>
                                                     </md-list-item>
                                                 </md-list>
                                             </div>
-                                            <div layout="column" ng-cloak class="md-inline-form" style="width:50vw">
-                                                <!--   <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding> -->
-                                                <!-- dodati ikonicu za nosioca osiguranja-->
-                                                <div>
+                                            <div layout="column" ng-cloak class="md-inline-form" style="width:50vw;  max-width:800px;">
+                                                 <div>
                                                     <div layout="row">
                                                         <md-input-container class="md-block" style="padding-right:3px">
                                                             <md-icon md-svg-src="images/icons/person-info.svg"></md-icon>
@@ -171,14 +170,21 @@
                                                             <input type="text" ng-model="vm.currentUser.name" required ng-disabled="vm.listaKorisnika.length <= vm.currentUserIndex" />
                                                         </md-input-container>
                                                         <md-input-container class="md-block" flex-gt-sm>
-                                                            <label class="label-without-icon">{{ 'SURNAME' | translate }}</label>
+                                                            <label>{{ 'SURNAME' | translate }}</label>
                                                             <input type="text" ng-model="vm.currentUser.surname" ng-disabled="vm.listaKorisnika.length <= vm.currentUserIndex" required />
                                                         </md-input-container>
                                                     </div>
-                                                    <md-input-container class="birthdate-picker" style="margin-top:0px; margin-bottom:0px; padding-left:35px">
-                                                        <md-icon md-svg-src="images/icons/calendar.svg"></md-icon>
-                                                        <md-datepicker ng-disabled="vm.listaKorisnika.length <= vm.currentUserIndex" ng-model="vm.currentUser.myDate" md-placeholder="{{'DATEBIRTH' | translate}}" required md-max-date="maxDateBirth"></md-datepicker>
-                                                    </md-input-container>
+                                            
+                                                   <birth-date-directive></birth-date-directive>
+                                                   
+                                                     <md-input-container class="md-block" flex-gt-sm style="padding-right:3px">
+                                                         <md-icon md-svg-src="images/icons/sex.svg"></md-icon>
+                                                         <label>{{ 'SEX' | translate }}</label>
+                                                         <md-select ng-model="vm.currentUser.sex" required ng-disabled="vm.listaKorisnika.length <= vm.currentUserIndex">
+                                                             <md-option value="musko">{{ 'MALE' | translate }}</md-option>
+                                                             <md-option value="zensko">{{ 'FEMALE' | translate }}</md-option>
+                                                         </md-select>
+                                                     </md-input-container>
 
                                                     <md-input-container class="md-block" flex-gt-sm style="padding-right:3px">
                                                         <md-icon md-svg-src="images/icons/passport.svg"></md-icon>
@@ -191,15 +197,7 @@
                                                         <label>JMBG</label>
                                                         <input type="number" ng-model="vm.currentUser.jmbg" required ng-disabled="vm.listaKorisnika.length <= vm.currentUserIndex" />
                                                     </md-input-container>
-                                                    <md-input-container class="md-block" flex-gt-sm style="padding-right:3px">
-                                                        <md-icon md-svg-src="images/icons/sex.svg"></md-icon>
-                                                        <label>{{ 'SEX' | translate }}</label>
-                                                        <md-select ng-model="vm.currentUser.sex" required ng-disabled="vm.listaKorisnika.length <= vm.currentUserIndex">
-                                                            <md-option value="musko">{{ 'MALE' | translate }}</md-option>
-                                                            <md-option value="zensko">{{ 'FEMALE' | translate }}</md-option>
-                                                            <md-option value="other">{{ 'OTHER' | translate }}</md-option>
-                                                        </md-select>
-                                                    </md-input-container>
+                                               
 
                                                     <md-input-container class="md-block" flex-gt-sm ng-show="vm.currentUserIndex==0" style="padding-right:3px; margin-bottom:10px">
                                                         <md-icon md-svg-src="images/icons/email.svg"></md-icon>
@@ -209,7 +207,7 @@
 
                                                     <div flex layout="row" layout-align="start bottom">
                                                         <md-button class="md-raised" ng-disabled="vm.listaKorisnika.length <= vm.currentUserIndex" ng-click="saveUser()">Save user</md-button>
-                                                        <md-button class="md-raised" ng-disabled="vm.listaKorisnika.length <= vm.currentUserIndex" ng-click="nextUser()">Enter next user</md-button>
+                                                        <md-button class="md-raised" ng-show="vm.polisy.travelType=='porodicno'" ng-disabled="vm.listaKorisnika.length <= vm.currentUserIndex" ng-click="nextUser()">Enter next user</md-button>
                                                     </div>
                                                 </div>
 

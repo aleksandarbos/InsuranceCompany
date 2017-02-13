@@ -10,35 +10,37 @@
     
 	function MainCtrl($window, $scope, $q, $timeout, $state, $translate, DroolsInfo, DroolsHome, DroolsVehicle, DroolsAllPackages) {
 
+	    var vm = this;
 	    $scope.myDate = new Date();
 	    $scope.minDate = new Date(
             $scope.myDate.getFullYear(),
             $scope.myDate.getMonth(),
             $scope.myDate.getDate() + 1);
 
-	    $scope.maxDateBirth = new Date(
+	    $scope.maxDate = new Date(
+            $scope.myDate.getFullYear() - 18,
+            $scope.myDate.getMonth(),
+            $scope.myDate.getDate() + 1);
+
+	  
+
+	    $scope.maxDateAdult = new Date(
                 $scope.myDate.getFullYear() - 18,
                 $scope.myDate.getMonth(),
                 $scope.myDate.getDate()
-            );
-
+        );
         
-      
+           
 	    $scope.changeLanguage = function (langKey) {
 	        $translate.use(langKey);
 	        //odraditi poziv i dodeliti ng modelu za odredjene entite
 	    };
 
-
-	    var vm = this;
 	    $scope.choices = [];
 	    vm.listaKorisnika = [];
 	   
 	    var currentYear = new Date().getFullYear();
-
-
-
-
+        
 		vm.stepNo = 0;
 		vm.stepNoNext = function () {
 		    console.log('stepNoNext function');
@@ -117,8 +119,6 @@
 
 
         vm.currentUser;
-		
- 
 
         vm.setPackage1Selected = function setPackage1Selected(){
             vm.package1Selected = true;
@@ -168,15 +168,21 @@
 		  $scope.userCount = function(){
 		      var brKorisnika;
 
-		      if (vm.polisy.travelType == 'pojedinacno')
+		      if (vm.polisy.travelType == 'pojedinacno') {
 		          brKorisnika = 1;
+		          vm.listaKorisnika = [];
+		          vm.listaKorisnika.push({ name: 'Jane', surname: 'Doe', myDate: '', passport: '', jmbg: '', sex: '', email: '', ageType: 'adult' });
+		      }
 		      else
 		          brKorisnika = vm.polisy.noAdults + vm.polisy.noChildren;
 
 		      if (brKorisnika != vm.listaKorisnika.length) {
 		          vm.listaKorisnika = [];
-		          for (var i = 1; i <= brKorisnika; i++) {
-		              vm.listaKorisnika.push({ name: 'Jane ', surname: 'Doe' + i, myDate: '', passport: '', jmbg: '', sex: '', email: '' });
+		          for (var i = 1; i <= vm.polisy.noAdults; i++) {
+		              vm.listaKorisnika.push({ name: 'Jane ', surname: 'Doe' + i, myDate: '', passport: '', jmbg: '', sex: '', email: '', ageType:'adult' });
+		          }
+		          for (var i = 1; i <= vm.polisy.noChildren; i++) {
+		              vm.listaKorisnika.push({ name: 'Jacy ', surname: 'Doe' + i, myDate: '', passport: '', jmbg: '', sex: '', email: '', ageType:'child' });
 		          }
 		      }
 		              
