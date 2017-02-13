@@ -30,48 +30,114 @@
 			$scope.myDate.getMonth(),
 			$scope.myDate.getDate() + 1);
 
-		$scope.maxDateBirth = new Date(
-			$scope.myDate.getFullYear() - 18,
-			$scope.myDate.getMonth(),
-			$scope.myDate.getDate()
-			);
+	    $scope.maxDate = new Date(
+            $scope.myDate.getFullYear() - 18,
+            $scope.myDate.getMonth(),
+            $scope.myDate.getDate() + 1);
 
+	  
 
-		$scope.changeLanguage = function (langKey) {
-			$translate.use(langKey);
+	    $scope.maxDateAdult = new Date(
+                $scope.myDate.getFullYear() - 18,
+                $scope.myDate.getMonth(),
+                $scope.myDate.getDate()
+        );
+        
+           
+	    $scope.changeLanguage = function (langKey) {
+	        $translate.use(langKey);
 	        //odraditi poziv i dodeliti ng modelu za odredjene entite
 	    };
 
-
-	    var vm = this;
 	    $scope.choices = [];
 	    vm.listaKorisnika = [];
 
 	    var currentYear = new Date().getFullYear();
+        
+		vm.stepNo = 0;
+		vm.stepNoNext = function () {
+		    console.log('stepNoNext function');
+		    vm.stepNo = vm.stepNo + 1;
+            console.log('step'+vm.stepNo)
+		    return 'step' + vm.stepNo;
+		}
+
+//		vm.states = ['insuranceWizard.chooseInsurance', 'insuranceWizard.userInfo', 'insuranceWizard.choosePackage','insuranceWizard.additionalOptions','insuranceWizard.homeInfo','insuranceWizard.vehicleInfo', 'insuranceWizard.payment'];
+	//	vm.stateIdx = 0;
+
+		vm.selectedStep = 0;
+		vm.stepProgress = 1;
+		vm.maxStep = 7;
+		vm.showBusyText = false;
+		vm.stepData = [
+            { step: 1, completed: false, optional: false, data: {} },
+            { step: 2, completed: false, optional: false, data: {} },
+            { step: 3, completed: false, optional: false, data: {} },
+            { step: 4, completed: false, optional: false, data: {} },
+            { step: 5, completed: false, optional: false, data: {} },
+            { step: 6, completed: false, optional: false, data: {} },
+            { step: 7, completed: false, optional: false, data: {} }
 
 
+		];
+
+		vm.enableNextStep = function nextStep() {
+		    //do not exceed into max step
+		    if (vm.selectedStep >= vm.maxStep) {
+		        return;
+		    }
+		    //do not increment vm.stepProgress when submitting from previously completed step
+		    if (vm.selectedStep === vm.stepProgress - 1) {
+		        vm.stepProgress = vm.stepProgress + 1;
+		    }
+		    vm.selectedStep = vm.selectedStep + 1;
+	//	    $state.go(vm.states[++vm.stateIdx]);
+
+		}
+
+		vm.moveToPreviousStep = function moveToPreviousStep() {
+		    if (vm.selectedStep > 0) {
+		        vm.selectedStep = vm.selectedStep - 1;
+	//	        $state.go(vm.states[--vm.stateIdx]);
+		    }
+		}
+
+        
+		vm.submitCurrentStep = function submitCurrentStep(stepData, isSkip) {
+		    var deferred = $q.defer();
+		    vm.showBusyText = true;
+		    if (stepData == 1)
+		        $scope.userCount();
+		    console.log('On before submit');
+		    //connecting with drools
+		    if (stepData == 2) {
+		        $scope.sendTravelInfo();
+		    }
+		    //if (!stepData.completed && !isSkip) {
+		    if (!isSkip) {
+		        //simulate $http
+		        $timeout(function () {
+		            vm.showBusyText = false;
+		            console.log('On submit success');
+		            deferred.resolve({ status: 200, statusText: 'success', data: {} });
+		            //move to next step when success
+		            // stepData.completed = true;
+		            vm.enableNextStep();
+		        }, 2000)
+		    } else {
+		        vm.showBusyText = false;
+		        vm.enableNextStep();
+		    }
+		}
 
 
+        vm.currentUser;
 
-	    vm.stepNo = 0;
-	    vm.stepNoNext = function () {
-	    	console.log('stepNoNext function');
-	    	vm.stepNo = vm.stepNo + 1;
-	    	console.log('step'+vm.stepNo)
-	    	return 'step' + vm.stepNo;
-	    }
-
-	    vm.states = ['destination', 'userinfo', 'package', 'payment'];
-	    vm.stateIdx = 0;
-	    vm.currentUser;
-
-
-
-	    vm.setPackage1Selected = function setPackage1Selected(){
-	    	vm.package1Selected = true;
-	    	vm.package2Selected = false;
-	    	vm.package3Selected = false;
-	    }
+        vm.setPackage1Selected = function setPackage1Selected(){
+            vm.package1Selected = true;
+            vm.package2Selected = false;
+            vm.package3Selected = false;
+        }
 
 	    vm.setPackage2Selected = function setPackage2Selected() {
 	    	vm.package1Selected = false;
@@ -99,6 +165,7 @@
             console.log(vm.homeInsuranceRadio)
             console.log(vm.vehicleInsuranceRadio)
         }
+
 		$scope.addNewChoice = function () {
 			var newItemNo = $scope.choices.length + 1;
 			$scope.choices.push($scope.choices.length);
@@ -114,19 +181,30 @@
 	    	$scope.userCount = function(){
 	    		var brKorisnika;
 
-	    		if (vm.polisy.travelType == 'pojedinacno')
-	    			brKorisnika = 1;
-	    		else
-	    			brKorisnika = vm.polisy.noAdults + vm.polisy.noChildren;
+		      if (vm.polisy.travelType == 'pojedinacno') {
+		          brKorisnika = 1;
+		          vm.listaKorisnika = [];
+		          vm.listaKorisnika.push({ name: 'Jane', surname: 'Doe', myDate: '', passport: '', jmbg: '', sex: '', email: '', ageType: 'adult' });
+		      }
+		      else
+		          brKorisnika = vm.polisy.noAdults + vm.polisy.noChildren;
 
-	    		for(var i=1; i<=brKorisnika; i++){
-	    			vm.listaKorisnika.push({name: 'Jane ', surname: 'Doe'+i, myDate: '', passport: '', jmbg: '', sex: '', email: ''});
-	    		}
-	    		vm.currentUser = vm.listaKorisnika[0];
-	    		vm.currentUserIndex = 0;
-
-
-	    	}
+		      if (brKorisnika != vm.listaKorisnika.length) {
+		          vm.listaKorisnika = [];
+		          for (var i = 1; i <= vm.polisy.noAdults; i++) {
+		              vm.listaKorisnika.push({ name: 'Jane ', surname: 'Doe' + i, myDate: '', passport: '', jmbg: '', sex: '', email: '', ageType:'adult' });
+		          }
+		          for (var i = 1; i <= vm.polisy.noChildren; i++) {
+		              vm.listaKorisnika.push({ name: 'Jacy ', surname: 'Doe' + i, myDate: '', passport: '', jmbg: '', sex: '', email: '', ageType:'child' });
+		          }
+		      }
+		              
+			 
+			  vm.currentUser = vm.listaKorisnika[0];
+			  vm.currentUserIndex = 0;
+			
+              
+		  }
 
 	    	$scope.saveUser = function () {
 	    		vm.currentUser.age = [];
@@ -326,86 +404,32 @@
 	    	$scope.sendTravelInfo = function () {
 	    		vm.polisy.listOfUsers = {}
 	    		vm.polisy.sportBool = {}
+	     $scope.sendTravelInfo = function () {
+	         vm.polisy.listOfUsers = {}
+	         vm.polisy.sportBool = {}
+	         vm.polisy.noDays = {}
+	         var oneDay = 24 * 60 * 60 * 1000;
 
-	    		if (vm.polisy.riskType == 'sport')
-	    			vm.polisy.sportBool = true;
-	    		else
-	    			vm.polisy.sportBool = false;
+             if (vm.polisy.riskType == 'sport')
+                 vm.polisy.sportBool = true;
+	         else
+                 vm.polisy.sportBool = false;
 
-	    		vm.polisy.listOfUsers = vm.listaKorisnika;
-	    		DroolsInfo.save(vm.polisy, onSaveSuccess);
-	    	}
+             var startDate = new Date(vm.polisy.date)
+             var endDate = new Date(vm.polisy.endDate)
 
-
-	    	$scope.savePolicy = function(){
-	    		$window.localStorage.polisy = vm.polisy;
-
-	    	}
-
-	    	vm.selectedStep = 0;
-	    	vm.stepProgress = 1;
-	    	vm.maxStep = 7;
-	    	vm.showBusyText = false;
-	    	vm.stepData = [
-	    	{ step: 1, completed: false, optional: false, data: {} },
-	    	{ step: 2, completed: false, optional: false, data: {} },
-	    	{ step: 3, completed: false, optional: false, data: {} },
-	    	{ step: 4, completed: false, optional: false, data: {} },
-	    	{ step: 5, completed: false, optional: false, data: {} },
-	    	{ step: 6, completed: false, optional: false, data: {} },
-	    	{ step: 7, completed: false, optional: false, data: {} }
-
-
-	    	];
-
-	    	vm.enableNextStep = function nextStep() {
-			//do not exceed into max step
-			if (vm.selectedStep >= vm.maxStep) {
-				return;
+             vm.polisy.noDays = Math.ceil(Math.abs(startDate - endDate)) / oneDay + 1;
+	         vm.polisy.listOfUsers = vm.listaKorisnika;
+	         DroolsInfo.save(vm.polisy, onSaveSuccess);
+	     }
+           
+		  
+			$scope.savePolicy = function(){
+				$window.localStorage.polisy = vm.polisy;
+	
 			}
-			//do not increment vm.stepProgress when submitting from previously completed step
-			if (vm.selectedStep === vm.stepProgress - 1) {
-				vm.stepProgress = vm.stepProgress + 1;
-			}
-			vm.selectedStep = vm.selectedStep + 1;
-			$state.go(vm.states[++vm.stateIdx]);
 			
-		}
-
-		vm.moveToPreviousStep = function moveToPreviousStep() {
-			if (vm.selectedStep > 0) {
-				vm.selectedStep = vm.selectedStep - 1;
-				$state.go(vm.states[--vm.stateIdx]);
-			}
-		}
-
-		vm.submitCurrentStep = function submitCurrentStep(stepData, isSkip) {
-			var deferred = $q.defer();
-			vm.showBusyText = true;
-			if(stepData == 1)
-				$scope.userCount();
-			console.log('On before submit');
-                //connecting with drools
-                if (stepData == 2) {
-                	$scope.sendTravelInfo();
-                }
-				//if (!stepData.completed && !isSkip) {
-					if(!isSkip){
-					//simulate $http
-					$timeout(function () {
-						vm.showBusyText = false;
-						console.log('On submit success');
-						deferred.resolve({ status: 200, statusText: 'success', data: {} });
-						//move to next step when success
-					   // stepData.completed = true;
-					   vm.enableNextStep();
-					}, 2000)
-				} else {
-					vm.showBusyText = false;
-					vm.enableNextStep();
-				}
-			}
-
+		
 			function onSaveSuccess(result) {
 				vm.package1 = {};
 				vm.package2 = {};

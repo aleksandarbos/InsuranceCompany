@@ -1,0 +1,12 @@
+﻿<md-input-container ng-if="vm.currentUser.ageType == 'child'" class="birthdate-picker" style="margin-top:0px; margin-bottom:0px; padding-left:35px">
+    <md-icon md-svg-src="images/icons/calendar.svg"></md-icon>
+    <md-datepicker  name="birthDatePicker" ng-disabled="vm.listaKorisnika.length <= vm.currentUserIndex" ng-model="vm.currentUser.myDate"  md-placeholder="{{'DATEBIRTH' | translate}}" md-min-date="maxDate" md-max-date="minDate"  required></md-datepicker>
+
+</md-input-container>
+
+
+<md-input-container ng-if="vm.currentUser.ageType != 'child'" class="birthdate-picker" style="margin-top:0px; margin-bottom:0px; padding-left:35px">
+    <md-icon md-svg-src="images/icons/calendar.svg"></md-icon>
+    <md-datepicker  name="birthDatePicker" ng-disabled="vm.listaKorisnika.length <= vm.currentUserIndex" ng-model="vm.currentUser.myDate" md-placeholder="{{'DATEBIRTH' | translate}}" md-max-date="maxDate" required></md-datepicker>
+
+</md-input-container>
