@@ -34,7 +34,8 @@ Project analysis has been done at our [Wiki page](https://github.com/aleksandarb
 ## Deployment instructions:
   - 1. ```dotnet restore``` at InsuranceCompany folder to install all project dependencies
   - 2. ```dotnet run``` at InsuranceCompany folder to run web server
-  OR
+
+OR
   - Publish and deploy app to IIS
 
 ## Licence:
