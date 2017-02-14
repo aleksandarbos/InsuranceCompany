@@ -20,8 +20,8 @@ Project analysis has been done at our [Wiki page](https://github.com/aleksandarb
 
 ## Tools used:
 ### Backend:
-  - .NET Core 1.0 Web API 2
-  - Drools for .NET as Business Rules Management System (BRMS)
+  - .NET Core 1.0 MVC
+  - Drools for Spring Boot 
   
 ### Frontend:
   - JavaScript - Angular 1.5 (Material design)
@@ -30,14 +30,17 @@ Project analysis has been done at our [Wiki page](https://github.com/aleksandarb
 ### Database:
   - PowerDesigner for schema modeling
   - Microsoft SQL Server
+
+### System representation:
+  - Draw.io - for general diagrams
+  - Microsoft ThreatModelingTool 2016 - for Data flow diagram
   
 ## Deployment instructions:
-  - 1. ```dotnet restore``` at InsuranceCompany folder to install dotnet core Web Api 2 dependencies
-  - 2. ```dotnet run``` at InsuranceCompany folder to run the Web Api 2 server
-  - [Note now backend Web API server is being ran]
-  - 3. ```npm install``` at ```InsuranceCompany/wwwwroot``` folder to install dependencies for angular 
-  - 4. ```grunt server``` run nodejs frontend server with angularjs app
-  - [Note now frontend NodeJS server is being ran with AngularJS app deployed]
+  - 1. ```dotnet restore``` at InsuranceCompany folder to install all project dependencies
+  - 2. ```dotnet run``` at InsuranceCompany folder to run web server
+
+OR
+  - Publish and deploy app to IIS
 
 ## Licence:
   - MIT
