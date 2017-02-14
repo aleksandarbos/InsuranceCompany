@@ -90,7 +90,7 @@ var translationsEN = {
     ACCOMODATION: 'Hotel accomodation',
     ALT_TRANSPORT: 'Alternative transportation',
     REQUIRED: 'This is required',
-
+    JMBG_INVALID: 'JMBG is not valid',
     TRAVEL_INSURANCE_POLICY: 'Travel insurance policy',
     DESTINATION: 'Destination',
     START_DATE: 'Start date',
@@ -190,7 +190,7 @@ var translationsSRB= {
     ACCOMODATION: 'Smeštaj u hotelu',
     ALT_TRANSPORT: 'Alternativni prevoz',
     REQUIRED: 'Ovo je obavezno za unos',
-
+    JMBG_INVALID: 'JMBG nije validan',
     TRAVEL_INSURANCE_POLICY: 'Polisa putnog osiguranja',
     DESTINATION: 'Destinacija',
     START_DATE: 'Početni datum',

@@ -1,0 +1,10 @@
+﻿<md-input-container class="md-block" flex-gt-sm style="padding-right:3px">
+    <label>JMBG</label>
+    <input name="jmbg" type="text" ng-model='vm.currentUser.jmbg' required ng-disabled="vm.listaKorisnika.length <= vm.currentUserIndex" maxlength="13" onkeypress='return event.charCode >= 48 && event.charCode <= 57' jmbg-validation-directive />
+    <div ng-messages="userInfoForm.jmbg.$error">
+        <div ng-message="required">{{'REQUIRED' | translate}}</div>
+        <div ng-message="invalidJmbg">{{'JMBG_INVALID' | translate}}</div>      
+    </div>
+   
+</md-input-container>
+

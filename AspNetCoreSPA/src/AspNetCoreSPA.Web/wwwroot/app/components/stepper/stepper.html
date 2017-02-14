@@ -149,7 +149,7 @@
                      <!-- userInfo step -->
                         <md-step label="{{ 'INFO' | translate }}">
                             <md-step-body>
-                                <form name="vm.stepNoNext()" ng-submit="vm.submitCurrentStep(2,false)" novalidate ng-cloak>
+                                <form name="userInfoForm" ng-submit="vm.submitCurrentStep(2,false)" novalidate ng-cloak>
                                     <md-content layout-gt-sm="row" layout-padding style="height:73%" >
                                         <div layout="row">
                                             <div style="width:25vw; padding-left:30px">
@@ -191,18 +191,18 @@
                                                         <label>{{ 'PASSPORT' | translate }}</label>
                                                         <input type="text" ng-model="vm.currentUser.passport" required ng-disabled="vm.listaKorisnika.length <= vm.currentUserIndex" />
                                                     </md-input-container>
-                                                    <md-input-container class="md-block" flex-gt-sm style="padding-right:3px">
-                                                        <!-- uradti validaciju jmbg-a -->
-                                                        <md-icon md-svg-src="images/icons/jmbg.svg"></md-icon>
-                                                        <label>JMBG</label>
-                                                        <input type="number" ng-model="vm.currentUser.jmbg" required ng-disabled="vm.listaKorisnika.length <= vm.currentUserIndex" />
-                                                    </md-input-container>
+                                                    
+                                                   <div jmbg-directive style="margin-left:32px"></div> 
+                                                   <!--  <jmbg-directive formName="vm.currentUser.jmbg"></jmbg-directive> -->
                                                
-
+                                                    
                                                     <md-input-container class="md-block" flex-gt-sm ng-show="vm.currentUserIndex==0" style="padding-right:3px; margin-bottom:10px">
                                                         <md-icon md-svg-src="images/icons/email.svg"></md-icon>
                                                         <label>Email</label>
-                                                        <input type="email" ng-model="vm.currentUser.email" required ng-disabled="vm.listaKorisnika.length <= vm.currentUserIndex" />
+                                                        <input name="email" type="email" ng-model="vm.currentUser.email" required ng-disabled="vm.listaKorisnika.length <= vm.currentUserIndex" />
+                                                        <div ng-messages="userInfoForm.email.$error">
+                                                            <div ng-message="required">{{'REQUIRED' | translate }}</div>
+                                                        </div>
                                                     </md-input-container>
 
                                                     <div flex layout="row" layout-align="start bottom">
