@@ -6,9 +6,9 @@
 		.controller('MainCtrl', MainCtrl)
     ;
 
-	MainCtrl.$inject = ['$window', '$scope', '$q', '$timeout', '$state', '$translate', 'DroolsInfo', 'DroolsHome', 'DroolsVehicle', 'DroolsAllPackages','PolicyService','ClientService','DestinationService','HouseService','CarService','SubjectOfInsuranceService'];
+	MainCtrl.$inject = ['$window', '$scope', '$q', '$timeout', '$state', '$translate', 'DroolsInfo', 'DroolsHome', 'DroolsVehicle', 'DroolsAllPackages','PolicyService','ClientService','DestinationService','HouseService','CarService','SubjectOfInsuranceService','stateOfOrigin','travelPurpose','sport'];
     
-	function MainCtrl($window, $scope, $q, $timeout, $state, $translate, DroolsInfo, DroolsHome, DroolsVehicle, DroolsAllPackages,PolicyService,ClientService,DestinationService,HouseService,CarService,SubjectOfInsuranceService) {
+	function MainCtrl($window, $scope, $q, $timeout, $state, $translate, DroolsInfo, DroolsHome, DroolsVehicle, DroolsAllPackages,PolicyService,ClientService,DestinationService,HouseService,CarService,SubjectOfInsuranceService,stateOfOrigin,travelPurpose,sport) {
 
 	    var vm = this;
 	    $scope.myDate = new Date();
@@ -22,8 +22,6 @@
             $scope.myDate.getMonth(),
             $scope.myDate.getDate() + 1);
 
-	  
-
 	    $scope.maxDateAdult = new Date(
                 $scope.myDate.getFullYear() - 18,
                 $scope.myDate.getMonth(),
@@ -35,6 +33,28 @@
 	        $translate.use(langKey);
 	        //odraditi poziv i dodeliti ng modelu za odredjene entite
 	    };
+
+	    var getStates = function () {
+	        stateOfOrigin.query(onsuccessState);
+	        travelPurpose.query(onsuccessTravelPurpose);
+	        sport.query(onsuccessSport);
+	    }
+	    getStates();
+
+	    function onsuccessState(result) {
+	        vm.states = {}
+	        vm.states = result;
+	        console.log(result)
+	    }
+	    function onsuccessTravelPurpose(result) {
+	        vm.travelPurpose = {}
+	        vm.travelPurpose = result;
+	    }
+
+	    function onsuccessSport(result) {
+	        vm.sport = {}
+	        vm.sport = result;
+	    }
 
 	    $scope.choices = [];
 	    vm.listaKorisnika = [];

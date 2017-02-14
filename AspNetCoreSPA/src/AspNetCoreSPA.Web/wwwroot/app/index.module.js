@@ -16,7 +16,10 @@
             'site',
             'coreModule',
             'policyModule',
-            'droolsModule'
+            'droolsModule',
+            'stateOfOriginModule',
+            'sportModule',
+            'travelPurposeModule'
         ]);
 
     angular
