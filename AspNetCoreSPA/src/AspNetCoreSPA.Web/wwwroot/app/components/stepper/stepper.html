@@ -167,11 +167,17 @@
                                                         <md-input-container class="md-block" style="padding-right:3px">
                                                             <md-icon md-svg-src="images/icons/person-info.svg"></md-icon>
                                                             <label>{{ 'NAME' | translate }}</label>
-                                                            <input type="text" ng-model="vm.currentUser.name" required ng-disabled="vm.listaKorisnika.length <= vm.currentUserIndex" />
+                                                            <input name="name" type="text" ng-model="vm.currentUser.name" required ng-disabled="vm.listaKorisnika.length <= vm.currentUserIndex" />
+                                                            <div ng-messages="userInfoForm.name.$error">
+                                                                <div ng-message="required">{{'REQUIRED' | translate}}</div>
+                                                            </div>
                                                         </md-input-container>
                                                         <md-input-container class="md-block" flex-gt-sm>
                                                             <label>{{ 'SURNAME' | translate }}</label>
-                                                            <input type="text" ng-model="vm.currentUser.surname" ng-disabled="vm.listaKorisnika.length <= vm.currentUserIndex" required />
+                                                            <input name="surname" type="text" ng-model="vm.currentUser.surname" ng-disabled="vm.listaKorisnika.length <= vm.currentUserIndex" required />
+                                                            <div ng-messages="userInfoForm.surname.$error">
+                                                                <div ng-message="required">{{'REQUIRED' | translate}}</div>
+                                                            </div>
                                                         </md-input-container>
                                                     </div>
                                             
@@ -180,16 +186,25 @@
                                                      <md-input-container class="md-block" flex-gt-sm style="padding-right:3px">
                                                          <md-icon md-svg-src="images/icons/sex.svg"></md-icon>
                                                          <label>{{ 'SEX' | translate }}</label>
-                                                         <md-select ng-model="vm.currentUser.sex" required ng-disabled="vm.listaKorisnika.length <= vm.currentUserIndex">
+                                                         <md-select name="sex" ng-model="vm.currentUser.sex" required ng-disabled="vm.listaKorisnika.length <= vm.currentUserIndex">
                                                              <md-option value="musko">{{ 'MALE' | translate }}</md-option>
                                                              <md-option value="zensko">{{ 'FEMALE' | translate }}</md-option>
                                                          </md-select>
+                                                         <div ng-messages="userInfoForm.sex.$error">
+                                                             <div ng-message="required">{{'REQUIRED' | translate}}</div>
+                                                         </div>
                                                      </md-input-container>
 
                                                     <md-input-container class="md-block" flex-gt-sm style="padding-right:3px">
                                                         <md-icon md-svg-src="images/icons/passport.svg"></md-icon>
                                                         <label>{{ 'PASSPORT' | translate }}</label>
-                                                        <input type="text" ng-model="vm.currentUser.passport" required ng-disabled="vm.listaKorisnika.length <= vm.currentUserIndex" />
+                                                        <input name="passport" type="text" ng-model="vm.currentUser.passport" required ng-disabled="vm.listaKorisnika.length <= vm.currentUserIndex" ng-maxlength="9" ng-minlength="9" maxlength="9" onkeypress='return event.charCode >= 48 && event.charCode <= 57' />
+                                                        <div ng-messages="userInfoForm.passport.$error">
+                                                            <div ng-message="required">{{'REQUIRED' | translate}}</div>
+                                                            <div ng-message="ng-maxlength">{{'PASS_LENG' | translate}}</div>
+                                                            <div ng-message="ng-minlength">{{'PASS_LENG' | translate}}</div>
+                                                           
+                                                        </div>
                                                     </md-input-container>
                                                     
                                                    <div jmbg-directive style="margin-left:32px"></div> 
@@ -199,15 +214,16 @@
                                                     <md-input-container class="md-block" flex-gt-sm ng-show="vm.currentUserIndex==0" style="padding-right:3px; margin-bottom:10px">
                                                         <md-icon md-svg-src="images/icons/email.svg"></md-icon>
                                                         <label>Email</label>
-                                                        <input name="email" type="email" ng-model="vm.currentUser.email" required ng-disabled="vm.listaKorisnika.length <= vm.currentUserIndex" />
+                                                        <input name="email" type="email" ng-model="vm.currentUser.email" required ng-disabled="vm.listaKorisnika.length <= vm.currentUserIndex" ng-pattern="/^.+@.+\..+$/" />
                                                         <div ng-messages="userInfoForm.email.$error">
                                                             <div ng-message="required">{{'REQUIRED' | translate }}</div>
+                                                            <div ng-message="pattern">{{'EMAIL_INVALID' | translate}}</div>
                                                         </div>
                                                     </md-input-container>
 
                                                     <div flex layout="row" layout-align="start bottom">
-                                                        <md-button class="md-raised" ng-disabled="vm.listaKorisnika.length <= vm.currentUserIndex" ng-click="saveUser()">Save user</md-button>
-                                                        <md-button class="md-raised" ng-show="vm.polisy.travelType=='porodicno'" ng-disabled="vm.listaKorisnika.length <= vm.currentUserIndex" ng-click="nextUser()">Enter next user</md-button>
+                                                        <md-button class="md-raised" ng-disabled="vm.listaKorisnika.length <= vm.currentUserIndex || userInfoForm.$invalid" ng-click="saveUser()">Save user</md-button>
+                                                        <md-button class="md-raised" ng-show="vm.polisy.travelType=='porodicno'" ng-disabled="vm.listaKorisnika.length <= vm.currentUserIndex || userInfoForm.$invalid" ng-click="nextUser()">Enter next user</md-button>
                                                     </div>
                                                 </div>
 

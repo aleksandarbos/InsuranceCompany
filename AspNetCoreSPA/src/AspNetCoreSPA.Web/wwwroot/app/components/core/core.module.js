@@ -106,7 +106,10 @@ var translationsEN = {
     HOTEL_TO: 'Hotel up to',
     HOME_INFO: 'Home info',
     VEHICLE_INFO: 'Vehicle info',
-    DAYS: 'Days'
+    DAYS: 'Days',
+    EMAIL_INVALID: 'Your email must look like an e-mail address (example@zsbdi.com).',
+    PASS_LENG: 'Your passport number must consist of 9 numbers.',
+   
     
 };
  
@@ -207,7 +210,9 @@ var translationsSRB= {
     HOTEL_TO: 'Smeštaj do',
     HOME_INFO: 'Informacije o smeštaju',
     VEHICLE_INFO: 'Inforacije o vozilu',
-    DAYS: 'Dani'
+    DAYS: 'Dani',
+    EMAIL_INVALID: 'Vaš email mora da izgleda kao email adresa (example@zsbdi.com)',
+    PASS_LENG: 'Vaš broj pasoša mora se sastojati od 9 cifara'
 
 };
 
