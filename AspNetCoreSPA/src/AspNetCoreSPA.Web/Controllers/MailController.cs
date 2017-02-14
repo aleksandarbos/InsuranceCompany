@@ -1,13 +1,8 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using AspNetCoreSPA.BLL;
 using AspNetCoreSPA.Web.Services.Interfaces;
-using Newtonsoft.Json.Linq;
 using AspNetCoreSPA.Model.POCOs;
+
 
 namespace AspNetCoreSPA.Web.Controllers
 {
@@ -30,8 +25,7 @@ namespace AspNetCoreSPA.Web.Controllers
             try
             {
                 //string email, subject, message;
-
-                _mailService.SendEmail(value.email, value.subject, value.message);
+               _mailService.SendEmail(value.email, value.subject, value.message);
             }
             catch (Exception)
             {
@@ -51,5 +45,6 @@ namespace AspNetCoreSPA.Web.Controllers
         public void Delete(int id)
         {
         }
+
     }
 }

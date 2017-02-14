@@ -493,7 +493,8 @@ console.log(idHouse);
 			}
             
 			function sendEmail(userEmail, mailSubject, mailMessage) {
-			    var parameter = JSON.stringify({ email: userEmail, subject: mailSubject, message: mailMessage});
+
+			    var parameter = JSON.stringify({ email: userEmail, subject: mailSubject, message: mailMessage });
 
 			    $http.post("https://localhost:44330/api/Mail", parameter);
                 /*.success(function (data, status, headers, config) {
