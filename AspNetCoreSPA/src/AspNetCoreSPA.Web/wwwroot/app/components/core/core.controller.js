@@ -503,6 +503,17 @@ console.log(idHouse);
                   error(function (data, status, headers, config) {
                 });*/
 			}
+
+			vm.pdfReady = false;
+
+			vm.getPDF = function getPDF() {		  
+			    var doc = new jsPDF();
+			    doc.addHTML($('#mainBodyPreview'), 15, 15, {
+			        'background': '#fff',
+			    }, function () {
+			        doc.save('policy.pdf');
+			    });			    
+			}
             
 			 paypal.Button.render({
 
@@ -550,10 +561,12 @@ console.log(idHouse);
                             
 					        var mailMessage = "<html>" +
                                                 "<h1>ZSBDI Insurance Company</h1><hr/>" +
-                                                "<label>Vas ukupan racun iznosi:</label> " + vm.finalPriceWithPotencialDiscount+"</html>";
+                                                "<label>Uspesno ste obavili kupovinu:</label> " + vm.finalPriceWithPotencialDiscount+"</html>";
 					        sendEmail(vm.polisy.listOfUsers[0].email, "ZSBDI Insurance Order!", mailMessage);
 
-							console.log(">>> SUCCESS!");
+					        vm.pdfReady = true;
+
+                     		console.log(">>> SUCCESS!");
 							console.log(data);
 						});
 
