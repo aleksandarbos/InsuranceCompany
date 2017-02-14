@@ -59,27 +59,21 @@
                                                 <md-input-container class="md-block" style="width:250px">
                                                     <label class="label-without-icon" ">{{ 'PURPOSE' | translate }}</label>
                                                     <md-select name="riskType" ng-model="vm.polisy.riskType" required>
-                                                        <md-option value="turisticki">
-                                                            {{ 'TOURIST' | translate }}
-                                                        </md-option>
-                                                        <md-option value="sport">
-                                                            {{ 'SPORT' | translate }}
-                                                        </md-option>
-                                                        <md-option value="poslovno">
-                                                            {{ 'BUSINESS' | translate }}
+                                                        <md-option value="{{purpose.tpNameEn}}" ng-repeat="purpose in vm.travelPurpose">
+                                                            {{purpose.tpNameEn}}
                                                         </md-option>
                                                     </md-select>
                                                     <div ng-messages="chooseInsuranceForm.riskType.$error">
                                                         <div ng-message="required">{{'REQUIRED' | translate }}</div>
                                                     </div>
                                                 </md-input-container>
-                                                <div ng-show="vm.polisy.riskType=='sport'">
+                                                <div ng-show="vm.polisy.riskType=='Active vocation'">
                                                     <md-input-container class="md-block" style="width:250px">
                                                         <label class="label-without-icon" ">{{ 'SPORT_TYPE' | translate }}</label>
-                                                        <md-select ng-model="vm.polisy.sport">
-                                                            <md-option value="Skijanje">Skijanje</md-option>
-                                                            <md-option value="Jedrenje">Jedrenje</md-option>
-                                                            <md-option value="Planinarenje">Planinarenje</md-option>
+                                                        <md-select ng-model="vm.polisy.sport" >
+                                                            <md-option value="{{sport.snameEn}}" ng-repeat="sport in vm.sport">
+                                                                {{sport.snameEn}}
+                                                            </md-option>                                                         
                                                         </md-select>
                                                     </md-input-container>
                                                 </div>
@@ -87,19 +81,10 @@
                                             <div layout="column">
                                                 <md-input-container class="md-block" style="width:250px">
                                                     <label class="label-without-icon">{{ 'STATE' | translate }}</label>
-                                                    <md-select name="destination" ng-model="vm.polisy.destination" required>
-                                                        <md-option ng-repeat="state in states" value="{{state.abbrev}}">
-                                                            Engleska
-                                                        </md-option>
-                                                        <md-option value="Srbija">
-                                                            Srbija
-                                                        </md-option>
-                                                        <md-option value="Bosna">
-                                                            Bosna i Hercegovina
-                                                        </md-option>
-                                                        <md-option value="Engleska">
-                                                            Engleska
-                                                        </md-option>
+                                                    <md-select name="destination" ng-model="vm.polisy.destination"  required>
+                                                        <md-option  value="{{state.stNameEn}}" ng-repeat="state in vm.states">
+                                                            {{state.stNameEn}}
+                                                        </md-option>                                     
                                                     </md-select>
                                                     <div ng-messages="chooseInsuranceForm.destination.$error">
                                                         <div ng-message="required">{{'REQUIRED' | translate }}</div>
@@ -122,15 +107,6 @@
                                                             <div ng-message="required">{{'REQUIRED' | translate }}</div>
                                                         </div>
                                                     </md-input-container>
-
-                                                    <!--  <md-input-container>
-                                                          <label class="label-without-icon">{{ 'NO_DAYS' | translate }}</label>
-                                                          <input name="noDays" type="number" ng-model="vm.polisy.noDays" min=1>
-                                                          <div ng-messages="chooseInsuranceForm.noDays.$error">
-                                                              <div ng-message="required">{{'REQUIRED' | translate }}</div>
-                                                          </div>
-                                                      </md-input-container>
-                                                     -->
                                                 </div>
                                             </div>
 

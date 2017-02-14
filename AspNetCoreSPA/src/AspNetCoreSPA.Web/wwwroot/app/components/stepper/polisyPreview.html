@@ -28,7 +28,7 @@
     </div>
     <div>
         <h3>{{'USER_INFO_PRICE' | translate}}</h3>
-        <table class="table">
+        <table class="table" >
             <tr>
                 <th>{{'NAME' | translate}}</th>
                 <th>{{'SURNAME' | translate}}</th>
@@ -36,9 +36,7 @@
                 <th>{{'PASSPORT' | translate}}</th>
                 <th>{{'PRICE' | translate}}</th>
             </tr>
-        </table>
-        <table class="table" ng-repeat="person in vm.polisy.listOfUsers">
-            <tr>
+            <tr ng-repeat="person in vm.polisy.listOfUsers">
                 <td>{{person.name}}</td>
                 <td>{{person.surname}}</td>
                 <td>{{person.jmbg}}</td>
