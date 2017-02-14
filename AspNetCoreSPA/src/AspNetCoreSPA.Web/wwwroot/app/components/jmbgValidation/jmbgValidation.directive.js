@@ -56,9 +56,9 @@
                 var valid = false;
                
                 ngModel.$validators.invalidJmbg = function (modelValue, viewValue) {
-                    console.log('nije usao u if' + isValidJmbg(viewValue));
+                 //   console.log('nije usao u if' + isValidJmbg(viewValue));
                     if (isValidJmbg(viewValue)) {
-                        console.log('usao u if' + isValidJmbg(viewValue));
+               //         console.log('usao u if' + isValidJmbg(viewValue));
                         valid = true;
                     }
 
