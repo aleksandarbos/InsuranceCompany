@@ -199,7 +199,7 @@
 		  $scope.userCount = function(){
 		      var brKorisnika;
 
-		      if (vm.polisy.travelType == 'pojedinacno') {
+		      if (vm.polisy.travelType == 'Individual' || vm.polisy.travelType == 'Individualno') {
 		          brKorisnika = 1;
 		          vm.listaKorisnika = [];
 		          vm.listaKorisnika.push({ name: 'Jane', surname: 'Doe', myDate: '', passport: '', jmbg: '', sex: '', email: '', ageType: 'adult' });

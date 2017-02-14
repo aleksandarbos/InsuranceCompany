@@ -112,11 +112,12 @@ var translationsEN = {
     EMAIL_INVALID: 'Your email must look like an e-mail address (example@zsbdi.com).',
     PASS_LENG: 'Your passport number must consist of 9 numbers.',
     RESPONSE: 'Response',
-    SUCCESSFULL_PAYMENT: 'You have successfully paid in amount of ',
+    SUCCESSFULL_PAYMENT: 'You have successfully paid amount of ',
     CONFIRMATION: 'Confirmation',
     BILL_AMOUNT: 'Your bill is ',
-    DO_TRANSACTION: 'Please complete transaction '
-
+    DO_TRANSACTION: 'Please complete transaction ',
+    VEHICLE_OFFER: 'We offer you the organization of assistance, repairs in the event of minor fault, towing (towing), rent a replacement vehicle, accommodation for the driver and passengers, the driver and passenger transport to the residence or destination ',
+    HOME_OFFER: 'We offer home insurance against natural disasters such as fires and thefts and break-ins of your home'
     
 };
  
@@ -169,7 +170,7 @@ var translationsSRB= {
     START: 'Izaberi svoje osiguranje',
     SPORT_TYPE: 'Vrta aktivnosti',
     ADDITIONAL_OPTIONS: 'Dodatne opcije',
-    OFFER: 'Sa nama ne morate da razmišljate ni o čemu, mi mislimo za vas. <br /> Pogledajte koje dodatne opcije smo pripremili za vas.',
+    OFFER: 'Sa nama ne morate da razmišljate ni o čemu, mi mislimo za vas. Pogledajte koje dodatne opcije smo pripremili za vas.',
     HOME_INSURANCE: 'Osiguranje doma',
     VEHICLE_INSURANCE: 'Osiguranje vozila',
     HOME_INSURANCE_INFO: 'Informacije o domu',
@@ -226,9 +227,9 @@ var translationsSRB= {
     SUCCESSFULL_PAYMENT: 'Uspesno ste izvrsili uplatu u iznosu od',
     CONFIRMATION: 'Potvrda',
     BILL_AMOUNT: 'Vas račun iznosi ',
-    DO_TRANSACTION: 'Molimo Vas izvrsite uplatu'
-
-
+    DO_TRANSACTION: 'Molimo Vas izvrsite uplatu',
+    VEHICLE_OFFER: 'Nudimo Vam organizaciju pomoći, popravke u slučaju manjeg kvara, vuče (šlepanje), najma zamenskog vozila, prenoćišta za vozača i putnike, prevoza vozača i putnika do prebivališta, odnosno odredišta',
+    HOME_OFFER: 'Nudimo Vam osiguranje doma од elementarnih nepogoda као što su paožari i poplave, а i od obijanja i potkradanja Vašeg doma'
 };
 
 
