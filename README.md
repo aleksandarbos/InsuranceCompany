@@ -32,12 +32,10 @@ Project analysis has been done at our [Wiki page](https://github.com/aleksandarb
   - Microsoft SQL Server
   
 ## Deployment instructions:
-  - 1. ```dotnet restore``` at InsuranceCompany folder to install dotnet core Web Api 2 dependencies
-  - 2. ```dotnet run``` at InsuranceCompany folder to run the Web Api 2 server
-  - [Note now backend Web API server is being ran]
-  - 3. ```npm install``` at ```InsuranceCompany/wwwwroot``` folder to install dependencies for angular 
-  - 4. ```grunt server``` run nodejs frontend server with angularjs app
-  - [Note now frontend NodeJS server is being ran with AngularJS app deployed]
+  - 1. ```dotnet restore``` at InsuranceCompany folder to install all project dependencies
+  - 2. ```dotnet run``` at InsuranceCompany folder to run web server
+  OR
+  - Publish and deploy app to IIS
 
 ## Licence:
   - MIT
