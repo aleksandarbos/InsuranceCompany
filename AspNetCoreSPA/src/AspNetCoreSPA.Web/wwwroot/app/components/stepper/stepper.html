@@ -261,7 +261,7 @@
                                                     </md-card-content>
                                                     <md-card-actions layout="row" layout-align="end center">
 
-                                                        <md-radio-button value="{{vm.package1}}1" ng-click="vm.setPackage1Selected()" checked="checked">
+                                                        <md-radio-button value="{{vm.package1}}" ng-click="vm.setPackage1Selected()" checked="checked">
                                                             Select this package for {{vm.package1}} RSD
                                                         </md-radio-button>
 
@@ -279,7 +279,7 @@
                                                         {{ 'PACKAGE2' | translate }}
                                                     </md-card-content>
                                                     <md-card-actions layout="row" layout-align="end center">
-                                                        <md-radio-button value="{{vm.package2}}2" ng-click="vm.setPackage2Selected()">Select this package for {{vm.package2}} RSD</md-radio-button>
+                                                        <md-radio-button value="{{vm.package2}}" ng-click="vm.setPackage2Selected()">Select this package for {{vm.package2}} RSD</md-radio-button>
                                                     </md-card-actions>
                                                 </md-card>
                                                 <md-card>
@@ -293,7 +293,7 @@
                                                         {{ 'PACKAGE3' | translate }}
                                                     </md-card-content>
                                                     <md-card-actions layout="row" layout-align="end center">
-                                                        <md-radio-button value="{{vm.package3}}3" ng-click="vm.setPackage3Selected()">Select this package for {{vm.package3}} RSD </md-radio-button>
+                                                        <md-radio-button value="{{vm.package3}}" ng-click="vm.setPackage3Selected()">Select this package for {{vm.package3}} RSD </md-radio-button>
                                                     </md-card-actions>
                                                 </md-card>
                                         </div>
@@ -309,9 +309,10 @@
                             </md-step-body>
                         </md-step>
 
+                        <!-- additionalOptionsForm step-->
                         <md-step label="{{ 'ADDITIONAL_OPTIONS' | translate }}" md-complete="vm.stepData[vm.stepNo+1].data.completed" ng-disabled="vm.stepProgress < 4">
                             <md-step-body>
-                                <form name="vm.stepNoNext()" ng-submit="vm.submitCurrentStep(4, false)">
+                                <form name="additionalOptionsForm" ng-submit="vm.submitCurrentStep(4, false)">
                                     <md-content class="md-padding">
                                        
                                         <md-card>
@@ -332,7 +333,7 @@
                                                <p>Opis Opis Opis</p>
                                             </md-card-content>
                                             <md-card-actions layout="row" layout-align="end center">
-                                                <md-radio-group class="homeInsuranceRadio" ng-model="vm.homeInsuranceRadio">
+                                                <md-radio-group class="homeInsuranceRadio" ng-model="vm.homeInsuranceRadio" ng-required="true">
                                                     <md-radio-button value="true" >{{'HOME_INSURANCE_WANT' | translate}}</md-radio-button>
                                                     <md-radio-button value="false">{{'NOT_INTERESTED' | translate}}</md-radio-button>
                                                 </md-radio-group>
@@ -348,7 +349,7 @@
                                                 <p>Opis Opis Opis</p>
                                             </md-card-content>
                                             <md-card-actions layout="row" layout-align="end center">
-                                                <md-radio-group class="vehicleInsuranceRadio" ng-model="vm.vehicleInsuranceRadio">
+                                                <md-radio-group class="vehicleInsuranceRadio" ng-model="vm.vehicleInsuranceRadio" ng-required="true">
                                                     <md-radio-button value="true" >{{'VEHICLE_INSURANCE_WANT' | translate}}</md-radio-button>
                                                     <md-radio-button value="false">{{'NOT_INTERESTED' | translate}}</md-radio-button>
                                                 </md-radio-group>
@@ -358,7 +359,7 @@
                                     <md-step-actions layout="row">
                                         <div flex layout="row" layout-align="end top">
                                             <md-button class="md-warn" ng-click="vm.moveToPreviousStep()">{{ 'PREVIOUS' | translate }}</md-button>
-                                            <md-button type="submit" class="md-primary md-raised">{{ 'NEXT' | translate }}</md-button>
+                                            <md-button ng-disabled="additionalOptionsForm.$invalid" type="submit" class="md-primary md-raised">{{ 'NEXT' | translate }}</md-button>
                                         </div>
                                     </md-step-actions>
                                 </form>
