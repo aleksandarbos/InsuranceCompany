@@ -11,8 +11,8 @@ namespace AspNetCoreSPA.Web.Services
         /// <summary>
         /// TODO: Change mail account credentials.
         /// </summary>
-        private readonly string EMAIL_UNAME = "xxxxx@gmail.com";
-        private readonly string EMAIL_PWD = "xxxxx";
+        private readonly string EMAIL_UNAME = "violeta.vns@gmail.com";
+        private readonly string EMAIL_PWD = "trecasreca23";
         
         public void SendEmail(string email, string subject, string message)
         {

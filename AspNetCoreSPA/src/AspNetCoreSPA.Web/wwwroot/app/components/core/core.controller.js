@@ -549,12 +549,12 @@
 			function sendEmail(userEmail, mailSubject, mailMessage) {
 			    var parameter = JSON.stringify({ email: userEmail, subject: mailSubject, message: mailMessage});
 
-			    $http.post("http://localhost:5000/api/mail", parameter).
-                success(function (data, status, headers, config) {
+			    $http.post("https://localhost:44330/api/Mail", parameter);
+                /*.success(function (data, status, headers, config) {
                     console.log(data);
                 }).
                   error(function (data, status, headers, config) {
-                });
+                });*/
 			}
             
 			 paypal.Button.render({
@@ -603,9 +603,8 @@
                             
 					        var mailMessage = "<html>" +
                                                 "<h1>ZSBDI Insurance Company</h1><hr/>" +
-                                                "<label>Vas ukupan racun iznosi:</label> NEKA_CIFRA" +
-                                              "</html>";
-					        sendEmail("KORISNICKI_MAIL", "ZSBDI Insurance Order!", mailMessage);
+                                                "<label>Vas ukupan racun iznosi:</label> " + vm.finalPriceWithPotencialDiscount+"</html>";
+					        sendEmail(vm.polisy.listOfUsers[0].email, "ZSBDI Insurance Order!", mailMessage);
 
 							console.log(">>> SUCCESS!");
 							console.log(data);
