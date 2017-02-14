@@ -6,9 +6,9 @@
 		.controller('MainCtrl', MainCtrl)
     ;
 
-	MainCtrl.$inject = ['$window', '$scope', '$q', '$timeout', '$state', '$translate', 'DroolsInfo', 'DroolsHome', 'DroolsVehicle', 'DroolsAllPackages','PolicyService','ClientService','DestinationService','HouseService','CarService','SubjectOfInsuranceService'];
+	MainCtrl.$inject = ['$window', '$scope', '$q', '$http', '$timeout', '$state', '$translate', 'DroolsInfo', 'DroolsHome', 'DroolsVehicle', 'DroolsAllPackages','PolicyService','ClientService','DestinationService','HouseService','CarService','SubjectOfInsuranceService'];
     
-	function MainCtrl($window, $scope, $q, $timeout, $state, $translate, DroolsInfo, DroolsHome, DroolsVehicle, DroolsAllPackages,PolicyService,ClientService,DestinationService,HouseService,CarService,SubjectOfInsuranceService) {
+	function MainCtrl($window, $scope, $q, $http, $timeout, $state, $translate, DroolsInfo, DroolsHome, DroolsVehicle, DroolsAllPackages,PolicyService,ClientService,DestinationService,HouseService,CarService,SubjectOfInsuranceService) {
 
 	    var vm = this;
 	    $scope.myDate = new Date();
@@ -468,7 +468,18 @@ console.log(idHouse);
 			    vm.finalPriceWithPotencialDiscount = {}
 			    vm.finalPriceWithPotencialDiscount = result.totalPrice;
 			}
+            
+			function sendEmail(userEmail, mailSubject, mailMessage) {
+			    var parameter = JSON.stringify({ email: userEmail, subject: mailSubject, message: mailMessage});
 
+			    $http.post("http://localhost:5000/api/mail", parameter).
+                success(function (data, status, headers, config) {
+                    console.log(data);
+                }).
+                  error(function (data, status, headers, config) {
+                });
+			}
+            
 			 paypal.Button.render({
 
 					env: 'sandbox', // Specify 'sandbox' for the test environment //'production'
@@ -511,12 +522,16 @@ console.log(idHouse);
 						// Optional: display a confirmation page here
 					    return actions.payment.execute().then(function () {
 					        $('#payPalConfirmation').modal('hide');
-						    $('#myModal').modal('show');
+					        $('#myModal').modal('show');
+                            
+					        var mailMessage = "<html>" +
+                                                "<h1>ZSBDI Insurance Company</h1><hr/>" +
+                                                "<label>Vas ukupan racun iznosi:</label> NEKA_CIFRA" +
+                                              "</html>";
+					        sendEmail("KORISNICKI_MAIL", "ZSBDI Insurance Order!", mailMessage);
+
 							console.log(">>> SUCCESS!");
 							console.log(data);
-
-
-
 						});
 
 				   },
