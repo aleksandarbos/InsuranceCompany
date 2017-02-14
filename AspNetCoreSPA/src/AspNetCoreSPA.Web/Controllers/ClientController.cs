@@ -36,6 +36,7 @@ namespace AspNetCoreSPA.Web.Controllers
         [HttpPost]
         public IActionResult Post([FromBody]Client value)
         {
+
            return Json(_clientBLL.Add(value));
         }
         

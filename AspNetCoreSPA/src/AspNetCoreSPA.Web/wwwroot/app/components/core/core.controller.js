@@ -260,7 +260,7 @@
 
 
 
-
+/*
 
 
 
@@ -282,10 +282,13 @@
 
 	    			if(i===0){
 
-	    				ClientService.post(client).then(function(res){
-	    					idMain=res.data;
-	    			
-	    				});
+	    				$timeout(function () {
+	    				idMain=ClientService.post(client);
+            			
+    					}, 4000);
+	    		console.log(idMain);
+	    
+	    				
 	    				
 
 	    			}else{
@@ -299,11 +302,7 @@
 	    		}
 
 
-	    		$timeout(function () {
-            			
-    					}, 4000);
-	    		console.log(idMain);
-	    /*
+
 	    		var finalCar={};
 	    		finalCar.ClientId=19;
 	    		//finalCar.Year=vm.vehicleInfo.productionYear;
@@ -341,7 +340,7 @@
 	    		});
 
 console.log(idHouse);
-	    		/*var oneDay = 24*60*60*1000;
+	    		var oneDay = 24*60*60*1000;
 
 	    		var finalDestination={};
 	    		finalDestination.StId=1;
@@ -355,7 +354,7 @@ console.log(idHouse);
 
 	    		});
 
-			console.log("Klucevi"+idMain+idDest+idHouse+idCar);
+			    console.log("Klucevi"+idMain+idDest+idHouse+idCar);
 
 	    		var finalSubjectOfInsurance={};
 	    		finalSubjectOfInsurance.DstId=1;
@@ -371,33 +370,38 @@ console.log(idHouse);
 	    		});
 
 
-	    	/*	var finalPolicy={};
+	    		var finalPolicy={};
 	    		finalPolicy.R=1;
 	    		finalPolicy.Client=finalListaKorisnika;
 	    		finalPolicy.ClientNavigation=ClientNavigation;
+	    		PackageId
+	    		ClientId
+	    		PdvId
+	    		PlItemId
+	    		IiId
 	    		finalPolicy.Ii=finalSubjectOfInsurance;
 	    		finalPolicy.Package=vm.polisy.polisyPackage;
 
 
 
 
-*/
+
 	    		
 
-	    		/*PolicyService.post(finalPolicy).then(function(response){
+	    		PolicyService.post(finalPolicy).then(function(response){
 	    			alert("Uspelo")
 	    		},function(response){
 	    			alert("Nije uspelo")
 	    		})
+
+
+
+
+
+
+
+
 */
-
-
-
-
-
-
-
-
 
 
 
