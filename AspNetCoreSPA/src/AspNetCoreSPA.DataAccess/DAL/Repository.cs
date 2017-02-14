@@ -15,12 +15,14 @@ namespace AspNetCoreSPA.DAL
         {
             this._context = context;
         }
-   
-        public void CreateCountry(T entity)
+
+        public void Create(T entity)
         {
             try
             {
                 _context.Set<T>().Add(entity);
+                _context.SaveChanges();
+
             }
             catch (Exception)
             {
@@ -40,5 +42,6 @@ namespace AspNetCoreSPA.DAL
                 throw;
             }
         }
+       
     }
 }

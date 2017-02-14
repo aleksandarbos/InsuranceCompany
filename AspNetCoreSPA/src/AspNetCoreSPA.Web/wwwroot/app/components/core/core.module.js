@@ -19,7 +19,7 @@ var translationsEN = {
     KIDS: 'Number of kids',
     PURPOSE: 'Travel purpose',
     TOURIST: 'Vacation',
-    SPORT: 'Active holiday(Skiing...)',
+    SPORT: 'Active holiday',
     BUSINESS: 'Business travel',
     STATE: 'State',
     NO_DAYS: 'Number of days',
@@ -71,6 +71,7 @@ var translationsEN = {
     TYPE_OF_HOME_INSURANCE: 'Type of insurance',
     USERS_INSURANCE: 'Users of the insurance',
     NOT_INTERESTED: 'I am not interested',
+    INTERESTED: 'I am interested',
     VEHICLE_INSURANCE_WANT: 'I want assistence on the road insurance',
     HOME_INSURANCE_WANT: 'I want home insurance',
     VEHICLE_CHOOSE: 'Choose services',
@@ -107,9 +108,15 @@ var translationsEN = {
     HOME_INFO: 'Home info',
     VEHICLE_INFO: 'Vehicle info',
     DAYS: 'Days',
+
     EMAIL_INVALID: 'Your email must look like an e-mail address (example@zsbdi.com).',
     PASS_LENG: 'Your passport number must consist of 9 numbers.',
-   
+    RESPONSE: 'Response',
+    SUCCESSFULL_PAYMENT: 'You have successfully paid in amount of ',
+    CONFIRMATION: 'Confirmation',
+    BILL_AMOUNT: 'Your bill is ',
+    DO_TRANSACTION: 'Please complete transaction '
+
     
 };
  
@@ -176,6 +183,7 @@ var translationsSRB= {
     TYPE_OF_HOME_INSURANCE: 'Vrsta osiguranja',
     USERS_INSURANCE: 'Korisnici osiguranja',
     NOT_INTERESTED: 'Nisam zainteresovan',
+    INTERESTED: 'Zainteresovan sam',
     VEHICLE_INSURANCE_WANT: 'Želim osiguranje Pomoć na putu',
     HOME_INSURANCE_WANT: 'Želim osiguranje doma',
     VEHICLE_CHOOSE: 'Izaberi usluge osiguranja',
@@ -212,7 +220,14 @@ var translationsSRB= {
     VEHICLE_INFO: 'Inforacije o vozilu',
     DAYS: 'Dani',
     EMAIL_INVALID: 'Vaš email mora da izgleda kao email adresa (example@zsbdi.com)',
-    PASS_LENG: 'Vaš broj pasoša mora se sastojati od 9 cifara'
+    PASS_LENG: 'Vaš broj pasoša mora se sastojati od 9 cifara',
+    DAYS: 'Dana',
+    RESPONSE: 'Odgovor',
+    SUCCESSFULL_PAYMENT: 'Uspesno ste izvrsili uplatu u iznosu od',
+    CONFIRMATION: 'Potvrda',
+    BILL_AMOUNT: 'Vas račun iznosi ',
+    DO_TRANSACTION: 'Molimo Vas izvrsite uplatu'
+
 
 };
 

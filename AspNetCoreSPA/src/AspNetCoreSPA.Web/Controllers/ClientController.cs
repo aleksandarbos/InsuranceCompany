@@ -1,27 +1,28 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+
+
+using AspNetCoreSPA.BLL;
+using AspNetCoreSPA.BLL.Interfaces;
+using AspNetCoreSPA.Model.POCOs;
 using Microsoft.AspNetCore.Mvc;
+
 namespace AspNetCoreSPA.Web.Controllers
 {
     [Produces("application/json")]
     [Route("api/Client")]
     public class ClientController : Controller
     {
-        //private readonly IClientBLL _clientBLL;
+        private readonly IClientBLL _clientBLL;
 
-        public ClientController(/*IClientBLL clientBLL*/)
+        public ClientController(IClientBLL clientBLL)
         {
-            //_clientBLL = clientBLL;
+            _clientBLL = clientBLL;
         }
 
         // GET: api/Client
         [HttpGet]
         public IActionResult Get()
         {
-            return Json(/*_clientBLL.GetAll()*/"");
+            return Json(_clientBLL.GetAll());
         }
 
         // GET: api/Client/5
@@ -33,8 +34,10 @@ namespace AspNetCoreSPA.Web.Controllers
 
         // POST: api/Client
         [HttpPost]
-        public void Post([FromBody]string value)
+        public IActionResult Post([FromBody]Client value)
         {
+
+           return Json(_clientBLL.Add(value));
         }
         
         // PUT: api/Client/5

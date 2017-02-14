@@ -15,6 +15,11 @@ namespace AspNetCoreSPA.BLL
             _pricelistDAL = pricelistDAL;
         }
 
+        public int Add(Pricelist p)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Pricelist> GetAll()
         {
             try

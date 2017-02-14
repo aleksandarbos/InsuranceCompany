@@ -6,13 +6,13 @@
             return {
                 getAll: function () {
 
-                   $http.get("api/Cars")
+                   $http.get("api/Car")
                    .then(function (response) {
                     return response;
                 });
                },
                getId:function(id){
-                $http.get("api/Cars/"+id)
+                $http.get("api/Car/"+id)
                 .then(function (response) {
                     return response;
                 });
@@ -21,25 +21,19 @@
             ,
             put: function (car)
             {
-                $http.put("api/Cars/"+car.id, car).then(function(response){
+                $http.put("api/Car/"+car.id, car).then(function(response){
                     return response;
                 });
 
 
             },
             post: function (car) {
-               $http.post("api/Cars", car)
-               .then(function (response) {
-                    // Re-load data
-                    return response;
-
-
-
-                });
+               return $http.post("api/Car", car)
+               
            },
                delete : function(car)
                {
-                $http.delete("api/Cars/"+car.id).then(function(response){
+                $http.delete("api/Car/"+car.id).then(function(response){
                     return response;
                 });
 

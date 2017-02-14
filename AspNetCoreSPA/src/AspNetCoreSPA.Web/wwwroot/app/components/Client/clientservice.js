@@ -6,40 +6,29 @@
             return {
                 getAll: function () {
 
-                   $http.get("api/Clients")
+                   $http.get("api/Client")
                    .then(function (response) {
                     return response;
                 });
                },
                getId:function(id){
-                $http.get("api/Clients/"+id)
-                .then(function (response) {
-                    return response;
-                });
+               return  $http.get("api/Client/"+id)
+                
             }
 
             ,
             put: function (client)
             {
-                $http.put("api/Clients/"+client.id, client).then(function(response){
-                    return response;
-                });
+               return  $http.put("api/Client/"+client.id, client)
 
 
             },
             post: function (client) {
-               $http.post("api/Clients", client)
-               .then(function (response) {
-                    // Re-load data
-                    return response;
-
-
-
-                });
+               return $http.post("api/Client", client)
            },
-               delete : function(client)
+              delete : function(client)
                {
-                $http.delete("api/Clients/"+client.id).then(function(response){
+                $http.delete("api/Client/"+client.id).then(function(response){
                     return response;
                 });
 

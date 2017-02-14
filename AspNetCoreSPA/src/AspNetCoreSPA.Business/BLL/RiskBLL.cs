@@ -15,6 +15,11 @@ namespace AspNetCoreSPA.BLL
             _riskDAL = riskDAL;
         }
 
+        public int Add(Risk r)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Risk> GetAll()
         {
             try

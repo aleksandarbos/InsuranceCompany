@@ -6,5 +6,6 @@ namespace AspNetCoreSPA.BLL
     public interface IRiskBLL
     {
         List<Risk> GetAll();
+        int Add(Risk r);
     }
 }

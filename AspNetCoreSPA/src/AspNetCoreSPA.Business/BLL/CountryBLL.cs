@@ -15,6 +15,11 @@ namespace AspNetCoreSPA.BLL
             _countryDAL = countryDAL;
         }
 
+        public int Add(Country c)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Country> GetAll()
         {
             try

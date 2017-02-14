@@ -15,6 +15,11 @@ namespace AspNetCoreSPA.BLL
             _coefficientDAL = coefficientDAL;
         }
 
+        public int Add(Coefficient c)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Coefficient> GetAll()
         {
             try

@@ -1,8 +1,10 @@
-﻿using System;
+﻿
+
+using AspNetCoreSPA.DAL;
+using AspNetCoreSPA.Model.POCOs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using AspNetCoreSPA.Model.POCOs;
-using AspNetCoreSPA.DAL;
 
 namespace AspNetCoreSPA.BLL
 {
@@ -13,6 +15,12 @@ namespace AspNetCoreSPA.BLL
         public CarBLL(IRepository<Car> carDAL)
         {
             _carDAL = carDAL;
+        }
+
+        public int Add(Car c)
+        {
+            _carDAL.Create(c);
+            return c.Carid;
         }
 
         public List<Car> GetAll()
@@ -27,5 +35,7 @@ namespace AspNetCoreSPA.BLL
                 throw;
             }
         }
+
+        
     }
 }

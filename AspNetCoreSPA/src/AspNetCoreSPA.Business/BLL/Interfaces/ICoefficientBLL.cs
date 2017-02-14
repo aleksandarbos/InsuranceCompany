@@ -6,5 +6,6 @@ namespace AspNetCoreSPA.BLL
     public interface ICoefficientBLL
     {
         List<Coefficient> GetAll();
+        int Add(Coefficient c);
     }
 }

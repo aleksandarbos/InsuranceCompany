@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using AspNetCoreSPA.BLL;
+using AspNetCoreSPA.Model.POCOs;
 
 namespace AspNetCoreSPA.Web.Controllers
 {
@@ -35,8 +36,10 @@ namespace AspNetCoreSPA.Web.Controllers
 
         // POST: api/Policy
         [HttpPost]
-        public void Post([FromBody]string value)
+        public void Post([FromBody]Policy polisa)
         {
+            
+            Console.WriteLine(polisa);
         }
 
         // PUT: api/Policy/5
