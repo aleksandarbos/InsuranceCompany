@@ -361,9 +361,8 @@
 
                         <!-- homeInsuranceInfo step -->
                         <md-step label="{{ 'HOME_INSURANCE_INFO' | translate }}" ng-if="vm.homeInsuranceRadio == 'true'">
-                            <md-step-body>
-                              
-                                <form name="homeInsuranceInfoForm" ng-submit="vm.submitCurrentStep(5, false)" novalidate ng-cloak>
+                            <md-step-body>                             
+                                <form name="homeInsuranceInfoForm" ng-submit="vm.submitCurrentStep(5, false)" novalidate ng-cloak>s
                                     <md-content layout-gt-sm="row" layout-wrap layout-padding style="height:73%">
                                         <div layout="row">
                                             <div layout="column" style="width:30vw">
@@ -371,19 +370,19 @@
                                                     <legend>{{'TYPE_OF_HOME_INSURANCE'  | translate}}</legend>
                                                     <div layout-wrap="" layout-gt-sm="column" style="align-items:flex-start;">
                                                         <md-input-container>
-                                                            <md-checkbox ng-model="vm.homeInfo.flood" aria-label="Flood" ng-change="sendHomeInfo()">
+                                                            <md-checkbox ng-model="vm.homeInfo.flood" aria-label="Flood" ng-change="vm.sendHomeInfo()">
                                                                 <img src="images/icons/house-flood.svg" style="width:36px; height:auto" alt="Flood" name="Flood" />
                                                                 <span>{{'FLOOD' | translate}}</span>
                                                             </md-checkbox>
                                                         </md-input-container>
                                                         <md-input-container>
-                                                            <md-checkbox ng-model="vm.homeInfo.fire" aria-label="Fire" ng-change="sendHomeInfo()">
+                                                            <md-checkbox ng-model="vm.homeInfo.fire" aria-label="Fire" ng-change="vm.sendHomeInfo()">
                                                                 <img src="images/icons/house-fire.svg" style="width:36px; height:auto" alt="Fire" name="Fire" />
                                                                 <span> {{'FIRE' | translate}}</span>
                                                             </md-checkbox>
                                                         </md-input-container>
                                                         <md-input-container>
-                                                            <md-checkbox ng-model="vm.homeInfo.robbery" aria-label="Robbery" ng-change="sendHomeInfo()">
+                                                            <md-checkbox ng-model="vm.homeInfo.robbery" aria-label="Robbery" ng-change="vm.sendHomeInfo()">
                                                                 <img src="images/icons/house-roberry.svg" style="width:36px; height:auto" alt="Robbery" name="Robbery" />
                                                                 <span> {{'ROBERRY' | translate}}</span>
                                                             </md-checkbox>
@@ -416,7 +415,6 @@
 
                                                 </fieldset>
                                             </div>
-
                                             <div layout="column" ng-cloak class="md-inline-form" style="width:50vw; max-width:800px; align-items:center">
                                                 <img src="images/house.svg" style="width:64px; height:auto; align-self:center" />
                                                 <fieldset style="width:50%">
@@ -437,12 +435,10 @@
                                                         </md-input-container>
                                                         <md-input-container class="md-block" flex-gt-sm style="width:100%">
                                                             <label>{{ 'BUILD_YEAR' | translate }}</label>
-
                                                             <md-datepicker name="buildYear" ng-model="vm.homeInfo.buildYear" md-placeholder="{{'DATE' | translate}}" ng-change="sendHomeInfo()" required></md-datepicker>
                                                             <div ng-messages="homeInsuranceInfoForm.buildYear.$error">
                                                                 <div ng-message="required">{{'REQUIRED' | translate }}</div>
                                                             </div>
-                                                
                                                         </md-input-container>
                                                         <md-input-container class="md-block" flex-gt-sm style="width:100%">
                                                             <label>{{ 'ESTIMATED_VALUE' | translate }} [RSD]</label>
@@ -451,7 +447,6 @@
                                                                 <div ng-message="required">{{'REQUIRED' | translate }}</div>
                                                             </div>
                                                          </md-input-container>
-
                                                     </div>
                                                 </fieldset>
                                                                                       
@@ -642,8 +637,6 @@
         </div>
     </md-content>
 
-
-
     <!-- Modal payPal-->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -660,7 +653,6 @@
             </div>
         </div>
     </div>
-
 
     <!-- Modal confirm-->
     <div class="modal fade" id="payPalConfirmation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
@@ -679,5 +671,4 @@
             </div>
         </div>
     </div>
-
 </div>

@@ -227,12 +227,16 @@
 	         var userYear = year.getFullYear();
 	         return currentYear - userYear;
 	     }
+	     $scope.random = function () {
+	         consol.log();
+	     }
 	
-	     $scope.sendHomeInfo = function () {
+	     vm.sendHomeInfo = function sendHomeInfo() {
 	         vm.homeInfo.chosenPackagePrice = {};
 	         vm.homeInfo.age = {};
 	         vm.homeInfo.insuranceDuration = {};
-	         vm.homeInfo.buildYear = vm.homeInfo.buildYear.getFullYear();
+	         vm.homeInfo.buildYear = {};
+	         vm.homeInfo.buildYear = vm.buildYear.getFullYear();
 	         vm.homeInfo.insuranceDuration = vm.polisy.noDays;
 	         vm.homeInfo.chosenPackagePrice = vm.polisy.polisyPackage;
 	         vm.homeInfo.age = currentYear - vm.homeInfo.buildYear;
@@ -427,8 +431,8 @@ console.log(idHouse);
              var endDate = new Date(vm.polisy.endDate)
 
              vm.polisy.noDays = Math.ceil(Math.abs(startDate - endDate)) / oneDay + 1;
-             vm.polisy.date = startDate;
-             vm.polisy.endDate = endDate;
+             vm.polisy.date = new String(startDate).substring(4, 15);
+             vm.polisy.endDate = new String(endDate).substring(4, 15);
 	         vm.polisy.listOfUsers = vm.listaKorisnika;
 	         DroolsInfo.save(vm.polisy, onSaveSuccess);
 	     }
