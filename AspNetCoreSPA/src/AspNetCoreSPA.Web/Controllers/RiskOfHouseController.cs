@@ -38,7 +38,7 @@ namespace AspNetCoreSPA.Web.Controllers
         [HttpPost]
         public IActionResult Post([FromBody]RiskOfHouse value)
         {
-            return Json(_riskOfHouseBLL.Add(value));
+             return Json(_riskOfHouseBLL.Add(value));
         }
 
         // PUT: api/RiskOfHouse/5

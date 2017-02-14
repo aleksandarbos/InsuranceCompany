@@ -6,9 +6,41 @@
 		.controller('MainCtrl', MainCtrl)
     ;
 
-	MainCtrl.$inject = ['$window', '$scope', '$q', '$http', '$timeout', '$state', '$translate', 'DroolsInfo', 'DroolsHome', 'DroolsVehicle', 'DroolsAllPackages','PolicyService','ClientService','DestinationService','HouseService','CarService','SubjectOfInsuranceService','stateOfOrigin','travelPurpose','sport'];
+	MainCtrl.$inject = ['$window', '$scope', '$q', '$http', '$timeout', '$state', '$translate', 'DroolsInfo', 'DroolsHome', 'DroolsVehicle', 'DroolsAllPackages','PolicyService','ClientService','DestinationService','HouseService','CarService','SubjectOfInsuranceService','stateOfOrigin','travelPurpose','sport','RiskOfHouseService','RiskOfCarService'];
     
-	function MainCtrl($window, $scope, $q, $timeout, $http, $state, $translate, DroolsInfo, DroolsHome, DroolsVehicle, DroolsAllPackages,PolicyService,ClientService,DestinationService,HouseService,CarService,SubjectOfInsuranceService,stateOfOrigin,travelPurpose,sport) {
+	function MainCtrl($window, $scope, $q, $timeout, $http, $state, $translate, DroolsInfo, DroolsHome, DroolsVehicle, DroolsAllPackages,PolicyService,ClientService,DestinationService,HouseService,CarService,SubjectOfInsuranceService,stateOfOrigin,travelPurpose,sport,RiskOfHouseService,RiskOfCarService) {
+
+
+	var brojac=6;
+
+		var riskofhouse={}
+
+	    		riskofhouse.HomeId="1";
+	    		riskofhouse.RId="1";
+	    		brojac=brojac+1;
+	    		riskofhouse.RohId=brojac;
+	    		
+	    		RiskOfHouseService.post(riskofhouse, function(response){
+      		var id = response;
+      		console.log(id);
+   });
+
+
+
+	 var brojac=6;
+
+		var riskofcar={}
+
+	    		riskofcar.Carid="1";
+	    		riskofcar.RId="1";
+	    		brojac=brojac+1;
+	    		riskofcar.RocId=brojac;
+	    		
+	    		RiskOfCarService.post(riskofcar, function(response){
+      			var id = response;
+      			console.log(id);
+   });   		
+
 
 	    var vm = this;
 	    $scope.myDate = new Date();
@@ -287,14 +319,14 @@
 
 
 
+
+
 /*
 
-
-
 	    		var finalListaKorisnika=[];
-	    		var ClientNavigation={};
+	    		
 	    		var i=0
-	    		var idMain=0;
+	    		var idMainClient=0;
 	    		var listaKljuceva=[];
 	    		for(i=0;i<vm.listaKorisnika.length;i++)
 	    		{
@@ -309,11 +341,14 @@
 
 	    			if(i===0){
 
-	    				$timeout(function () {
-	    				idMain=ClientService.post(client);
+	    				
+	    				ClientService.post(client).then(function(response){
+	    					idClient=response.data;
+
+	    				});
             			
-    					}, 4000);
-	    		console.log(idMain);
+    					
+	    				console.log(idMainClient);
 	    
 	    				
 	    				
@@ -329,47 +364,69 @@
 	    		}
 
 
-
+				var clientCar={};
 	    		var finalCar={};
-	    		finalCar.ClientId=19;
-	    		//finalCar.Year=vm.vehicleInfo.productionYear;
+	    		var idClient=0;
+	    		clientCar.Jmbg=vm.vehicleInfo.ownerJMBG;
+	    		var res = vm.vehicleInfo.owner.split(" ");
+	    		clientCar.Firstname=res[0];
+	    		clientCar.Lastname=res[1];
+	    		clientCar.DateOfBirth="2011-1-1";
+
+	    		idClient=ClientService.post(clientCar);
+
+				if(vm.vehicleInsuranceRadio=="false"){
+	    		//finalCar.ClientId=idClient;
+	    		finalCar.ClientId=idClient;
+	    		//finalCar.Year=vm.vehicleInfo.productionYear.concat("-1-1");
 	    		finalCar.ChassisNumber=vm.vehicleInfo.chassis;
 	    		finalCar.LicencePlate=vm.vehicleInfo.serialNo;
 	    		finalCar.CarStartDate=vm.polisy.date;
 	    		finalCar.CarEndDate=vm.polisy.endDate;
-	    		//finalCar.CarEndDate.setTime( vm.polisy.date.getTime() + vm.polisy.noDays * 86400000 );
 	    		var idCar=0;
-
 	    		CarService.post(finalCar).then(function(res){
-
 	    			idCar=res.data;
 	    		},function(res){
 
 	    		});
+				}
 
+	    	/*	var clientHouse={}
+
+	    		clientHouse.Jmbg=vm.homeInfo.ownerJMBG;
+	    		res = vm.homeInfo.owner.split(" ");
+	    		clientHouse.Firstname=res[0];
+	    		clientHouse.Lastname=res[1];
+	    		clientHouse.DateOfBirth="2011-1-1";
+	    		ClientService.post(clientCar).then(function(res){
+	    			idClient=res.data;
+	    		});
+
+	    		
+
+
+				if(vm.homeInsuranceRadio=="true"){
 
 	    		var finalHouse={};
 	    		finalHouse.HomeSquares=vm.homeInfo.flatSize;
-	    		//finalHouse.HomeBuildingYear=vm.homeInfo.buildYear;
+	    		//finalHouse.HomeBuildingYear=vm.homeInfo.buildYear.concat("-1-1");
 	    		finalHouse.HomeAddress=vm.homeInfo.address;
 	    		finalHouse.HomeValue=vm.homeInfo.estimatedValue;
 	    		finalHouse.HomeStartDate=vm.polisy.date;
 	    		finalHouse.HomeEndDate=vm.polisy.endDate;
-	    		//finalHouse.HomeEndDate.setTime( vm.polisy.date.getTime() + vm.polisy.noDays * 86400000 );
 	    		var idHouse=0;
 	    		idHouse=HouseService.post(finalHouse).then(function(res){
 
-	    			return res.data;
+	    			idHouse=res.data;
 	    			
 	    		},function(res){
 
-	    			console.log("b");
 	    		});
+				}
 
-console.log(idHouse);
+
 	    		var oneDay = 24*60*60*1000;
-
-	    		var finalDestination={};
+				var finalDestination={};
 	    		finalDestination.StId=1;
 	    		var diffDays = Math.round(Math.abs((vm.polisy.date.getTime() - vm.polisy.endDate.getTime())/(oneDay)));
 	    		finalDestination.DstDays=diffDays;
@@ -381,7 +438,7 @@ console.log(idHouse);
 
 	    		});
 
-			    console.log("Klucevi"+idMain+idDest+idHouse+idCar);
+
 
 	    		var finalSubjectOfInsurance={};
 	    		finalSubjectOfInsurance.DstId=1;
@@ -390,24 +447,25 @@ console.log(idHouse);
 	    		finalSubjectOfInsurance.Carid=1;
 
 	    		SubjectOfInsuranceService.post(finalSubjectOfInsurance).then(function(res){
-
 	    			idSOI=res.data;
 	    		},function(res){
 
 	    		});
 
 
+	    		var pricelistidtem={};
+
+
+
 	    		var finalPolicy={};
-	    		finalPolicy.R=1;
-	    		finalPolicy.Client=finalListaKorisnika;
-	    		finalPolicy.ClientNavigation=ClientNavigation;
-	    		PackageId
-	    		ClientId
-	    		PdvId
-	    		PlItemId
-	    		IiId
-	    		finalPolicy.Ii=finalSubjectOfInsurance;
-	    		finalPolicy.Package=vm.polisy.polisyPackage;
+	    		finalPolicy.RId=1;
+	    		finalPolicy.ClientId=1;
+	    		finalPolicy.PackageId=1;
+	    		finalPolicy.PdvId=1;
+	    		finalPolicy.PlItemId=1;
+	    		finalPolicy.IiId=1;
+	    		
+	    		
 
 
 
@@ -424,11 +482,10 @@ console.log(idHouse);
 
 
 
-
-
-
-
 */
+
+
+
 
 
 

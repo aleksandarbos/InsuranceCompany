@@ -1029,7 +1029,7 @@ go
 create table RISK_OF_CAR (
    CARID                int                  not null,
    R_ID                 int                  not null,
-   ROC_ID               int                  not null,
+   ROC_ID               int                 IDENTITY,
    constraint PK_RISK_OF_CAR primary key (ROC_ID)
 )
 go
@@ -1060,7 +1060,7 @@ go
 create table RISK_OF_HOUSE (
    R_ID                 int                  not null,
    HOME_ID              int                  not null,
-   ROH_ID               int                  not null,
+   ROH_ID               int                  identity,
    constraint PK_RISK_OF_HOUSE primary key (ROH_ID)
 )
 go

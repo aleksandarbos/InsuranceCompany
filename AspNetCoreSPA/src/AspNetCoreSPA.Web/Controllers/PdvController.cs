@@ -36,10 +36,9 @@ namespace AspNetCoreSPA.Web.Controllers
 
         // POST: api/Policy
         [HttpPost]
-        public void Post([FromBody]Policy polisa)
+        public IActionResult Post([FromBody]Policy polisa)
         {
-            
-            Console.WriteLine(polisa);
+            return Json(_policyBLL.Add(polisa));
         }
 
         // PUT: api/Policy/5
