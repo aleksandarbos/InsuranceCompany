@@ -6,9 +6,9 @@
 		.controller('MainCtrl', MainCtrl)
     ;
 
-	MainCtrl.$inject = ['$window', '$scope', '$q', '$timeout', '$state', '$translate', 'DroolsInfo', 'DroolsHome', 'DroolsVehicle', 'DroolsAllPackages','PolicyService','ClientService','DestinationService','HouseService','CarService'];
+	MainCtrl.$inject = ['$window', '$scope', '$q', '$timeout', '$state', '$translate', 'DroolsInfo', 'DroolsHome', 'DroolsVehicle', 'DroolsAllPackages','PolicyService','ClientService','DestinationService','HouseService','CarService','SubjectOfInsuranceService'];
     
-	function MainCtrl($window, $scope, $q, $timeout, $state, $translate, DroolsInfo, DroolsHome, DroolsVehicle, DroolsAllPackages,ClientService,DestinationService,HouseService,CarService) {
+	function MainCtrl($window, $scope, $q, $timeout, $state, $translate, DroolsInfo, DroolsHome, DroolsVehicle, DroolsAllPackages,PolicyService,ClientService,DestinationService,HouseService,CarService,SubjectOfInsuranceService) {
 
 	    var vm = this;
 	    $scope.myDate = new Date();
@@ -251,17 +251,21 @@
 
 
 
-	var finalListaKorisnika=[];
+
+
+
+
+	    		var finalListaKorisnika=[];
 	    		var ClientNavigation={};
 	    		var i=0
 	    		var idMain=0;
 	    		var listaKljuceva=[];
-	    		/*for(i=0;i<vm.listaKorisnika.length;i++)
+	    		for(i=0;i<vm.listaKorisnika.length;i++)
 	    		{
 	    			var client={};
 	    			client.Firstname=vm.listaKorisnika[i].name;
 	    			client.Lastname=vm.listaKorisnika[i].surname;
-	    			client.DateOfBirth=vm.listaKorisnika[i].myDate;
+	    			client.DateOfBirth="2011-1-1";
 	    			client.Jmbg=vm.listaKorisnika[i].jmbg;
 	    			client.PassportNumber=vm.listaKorisnika[i].passport;
 	    			client.Sex=vm.listaKorisnika[i].sex;
@@ -271,34 +275,121 @@
 
 	    				ClientService.post(client).then(function(res){
 	    					idMain=res.data;
-	    					console.log("Prvi")
-	    					console.log(res.data)
-
-	    				},function(res){
-
-
+	    			
 	    				});
+	    				
 
 	    			}else{
 	    				ClientService.post(client).then(function(res){
 	    					listaKljuceva.push(res.data);
-						console.log("Drugi")
-	    					
-						console.log(res.data)
-
-	    				},function(res){
+						},function(res){
 
 	    				});
 
 	    			}
-	    			console.log(idMain);
+	    		}
 
-	     $scope.sendTravelInfo = function () {
-	         vm.polisy.listOfUsers = {}
-	         vm.polisy.sportBool = {}
-	         vm.polisy.noDays = {}
-	         var oneDay = 24 * 60 * 60 * 1000;
-	    		}*/
+
+	    		$timeout(function () {
+            			
+    					}, 4000);
+	    		console.log(idMain);
+	    /*
+	    		var finalCar={};
+	    		finalCar.ClientId=19;
+	    		//finalCar.Year=vm.vehicleInfo.productionYear;
+	    		finalCar.ChassisNumber=vm.vehicleInfo.chassis;
+	    		finalCar.LicencePlate=vm.vehicleInfo.serialNo;
+	    		finalCar.CarStartDate=vm.polisy.date;
+	    		finalCar.CarEndDate=vm.polisy.endDate;
+	    		//finalCar.CarEndDate.setTime( vm.polisy.date.getTime() + vm.polisy.noDays * 86400000 );
+	    		var idCar=0;
+
+	    		CarService.post(finalCar).then(function(res){
+
+	    			idCar=res.data;
+	    		},function(res){
+
+	    		});
+
+
+	    		var finalHouse={};
+	    		finalHouse.HomeSquares=vm.homeInfo.flatSize;
+	    		//finalHouse.HomeBuildingYear=vm.homeInfo.buildYear;
+	    		finalHouse.HomeAddress=vm.homeInfo.address;
+	    		finalHouse.HomeValue=vm.homeInfo.estimatedValue;
+	    		finalHouse.HomeStartDate=vm.polisy.date;
+	    		finalHouse.HomeEndDate=vm.polisy.endDate;
+	    		//finalHouse.HomeEndDate.setTime( vm.polisy.date.getTime() + vm.polisy.noDays * 86400000 );
+	    		var idHouse=0;
+	    		idHouse=HouseService.post(finalHouse).then(function(res){
+
+	    			return res.data;
+	    			
+	    		},function(res){
+
+	    			console.log("b");
+	    		});
+
+console.log(idHouse);
+	    		/*var oneDay = 24*60*60*1000;
+
+	    		var finalDestination={};
+	    		finalDestination.StId=1;
+	    		var diffDays = Math.round(Math.abs((vm.polisy.date.getTime() - vm.polisy.endDate.getTime())/(oneDay)));
+	    		finalDestination.DstDays=diffDays;
+	    		var idDest=0;
+	    		DestinationService.post(finalDestination).then(function(res){
+
+	    			idDest=res.data;
+	    		},function(res){
+
+	    		});
+
+			console.log("Klucevi"+idMain+idDest+idHouse+idCar);
+
+	    		var finalSubjectOfInsurance={};
+	    		finalSubjectOfInsurance.DstId=1;
+	    		finalSubjectOfInsurance.HomeId=1;
+	    		finalSubjectOfInsurance.TpId=1;
+	    		finalSubjectOfInsurance.Carid=1;
+
+	    		SubjectOfInsuranceService.post(finalSubjectOfInsurance).then(function(res){
+
+	    			idSOI=res.data;
+	    		},function(res){
+
+	    		});
+
+
+	    	/*	var finalPolicy={};
+	    		finalPolicy.R=1;
+	    		finalPolicy.Client=finalListaKorisnika;
+	    		finalPolicy.ClientNavigation=ClientNavigation;
+	    		finalPolicy.Ii=finalSubjectOfInsurance;
+	    		finalPolicy.Package=vm.polisy.polisyPackage;
+
+
+
+
+*/
+	    		
+
+	    		/*PolicyService.post(finalPolicy).then(function(response){
+	    			alert("Uspelo")
+	    		},function(response){
+	    			alert("Nije uspelo")
+	    		})
+*/
+
+
+
+
+
+
+
+
+
 
 
 

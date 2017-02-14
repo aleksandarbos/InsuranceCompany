@@ -6,32 +6,32 @@
             return {
                 getAll: function () {
 
-                   $http.get("api/Destination")
+                   $http.get("api/House")
                    .then(function (response) {
                     return response;
                 });
                },
                getId:function(id){
-                $http.get("api/Destination/"+id)
+                $http.get("api/House/"+id)
                 .then(function (response) {
                     return response;
                 });
             }
 
             ,
-            put: function (destination)
+            put: function (house)
             {
-                return $http.put("api/Destination/"+destination.id, destination)
+                return $http.put("api/House/"+house.id, house)
 
 
             },
-            post: function (destination) {
-              return $http.post("api/Destination", destination)
+            post: function (house) {
+              return $http.post("api/House", house)
                
            },
-               delete : function(destination)
+               delete : function(house)
                {
-                $http.delete("api/Destination/"+destination.id).then(function(response){
+                $http.delete("api/House/"+house.id).then(function(response){
                     return response;
                 });
 
