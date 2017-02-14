@@ -25,7 +25,7 @@
 
                         <md-step label="{{'CHOOSE' | translate }}">
                             <md-step-body>
-                                <form name="chooseInsuranceForm" ng-submit="vm.submitCurrentStep(1,false)" ng-click="savePolicy()" novalidate>
+                                <form name="chooseInsuranceForm" ng-submit="vm.submitCurrentStep(1,true)" ng-click="savePolicy()" novalidate>
                                     <md-content style="height:73%" class="modified-input">
                                         <div>
                                             <div layout="row">
@@ -125,7 +125,7 @@
                         <!-- userInfo step -->
                         <md-step label="{{ 'INFO' | translate }}">
                             <md-step-body>
-                                <form name="userInfoForm" ng-submit="vm.submitCurrentStep(2,false)" novalidate ng-cloak>
+                                <form name="userInfoForm" ng-submit="vm.submitCurrentStep(2,true)" novalidate ng-cloak>
                                     <md-content layout-gt-sm="row" layout-padding style="height:73%" >
 
                                         <div layout="row">
@@ -219,7 +219,7 @@
                         <!-- choosePackageForm -->
                         <md-step label="{{ 'PACKAGE' | translate }}">
                             <md-step-body>
-                                <form name="choosePackageForm" ng-submit="vm.submitCurrentStep(3, false); vm.setUserPrice()" ng-cloak novalidate>
+                                <form name="choosePackageForm" ng-submit="vm.submitCurrentStep(3, true); vm.setUserPrice()" ng-cloak novalidate>
                                     <md-radio-group ng-model="vm.polisy.polisyPackage" ng-required="true">
                                         <div row="column">
                                             <md-card>
@@ -278,7 +278,7 @@
                         <!-- additionalOptionsForm step-->
                         <md-step label="{{ 'ADDITIONAL_OPTIONS' | translate }}" md-complete="vm.stepData[vm.stepNo+1].data.completed" ng-disabled="vm.stepProgress < 4">
                             <md-step-body>
-                                <form name="additionalOptionsForm" ng-submit="vm.submitCurrentStep(4, false)">
+                                <form name="additionalOptionsForm" ng-submit="vm.submitCurrentStep(4, true)">
                                     <md-content class="md-padding">
 
                                         <md-card>
@@ -338,7 +338,7 @@
                         <!-- homeInsuranceInfo step -->
                         <md-step label="{{ 'HOME_INSURANCE_INFO' | translate }}" ng-if="vm.homeInsuranceRadio == 'true'">
                             <md-step-body>                             
-                                <form name="homeInsuranceInfoForm" ng-submit="vm.submitCurrentStep(5, false)" novalidate ng-cloak>
+                                <form name="homeInsuranceInfoForm" ng-submit="vm.submitCurrentStep(5, true)" novalidate ng-cloak>
                                     <md-content layout-gt-sm="row" layout-wrap layout-padding style="height:73%">
                                         <div layout="row">
                                             <div layout="column" style="width:30vw">
@@ -451,7 +451,7 @@
                         <!-- vehicleInsuranceInfo step -->
                         <md-step label="{{ 'VEHICLE_INSURANCE_INFO' | translate }}" ng-if="vm.vehicleInsuranceRadio == 'true'">
                             <md-step-body>
-                                <form name="vehicleInsuranceInfoForm" ng-submit="vm.submitCurrentStep(6, false)" novalidate ng-cloak>
+                                <form name="vehicleInsuranceInfoForm" ng-submit="vm.submitCurrentStep(6, true)" novalidate ng-cloak>
                                     <md-content layout-gt-sm="row" layout-wrap layout-padding style="height:73%">
                                         <div layout="row">
                                             <div layout="column" style="width:30vw">
@@ -538,17 +538,7 @@
                                                         </md-input-container>
                                                         <md-input-container class="md-block" flex-gt-sm>
                                                             <label>{{'VEHICLE_YEAR' | translate}}</label>
-                                                            <md-select name="productionYear" ng-model="vm.vehicleInfo.productionYear" required>
-                                                                <md-option value="2010">
-                                                                    2010
-                                                                </md-option>
-                                                                <md-option value="2011">
-                                                                    2011
-                                                                </md-option>
-                                                                <md-option value="2012">
-                                                                    2012
-                                                                </md-option>
-                                                            </md-select>
+                                                            <md-datepicker name="productionYear" ng-model="vm.vehicleInfo.productionYear" md-placeholder="{{'DATE' | translate}}" required></md-datepicker>  
                                                             <div ng-messages="vehicleInsuranceInfoForm.productionYear.$error">
                                                                 <div ng-message="required">{{'REQUIRED' | translate }}</div>
                                                             </div>
