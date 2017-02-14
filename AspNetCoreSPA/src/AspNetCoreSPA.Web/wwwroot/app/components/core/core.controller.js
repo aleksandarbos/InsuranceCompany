@@ -11,22 +11,32 @@
 	function MainCtrl($window, $scope, $q, $timeout, $http, $state, $translate, DroolsInfo, DroolsHome, DroolsVehicle, DroolsAllPackages,PolicyService,ClientService,DestinationService,HouseService,CarService,SubjectOfInsuranceService,stateOfOrigin,travelPurpose,sport,RiskOfHouseService,RiskOfCarService) {
 
 
-	var brojac=6;
+	
+
+	/*	var mojafunkcija=function(){
+		
+		var brojac=6;
 
 		var riskofhouse={}
 
 	    		riskofhouse.HomeId="1";
 	    		riskofhouse.RId="1";
-	    		brojac=brojac+1;
-	    		riskofhouse.RohId=brojac;
 	    		
-	    		RiskOfHouseService.post(riskofhouse, function(response){
-      		var id = response;
-      		console.log(id);
-   });
+	    		riskofhouse.RohId="919";
+	    		var idHouseeee=0;
+	    		
+	    		RiskOfHouseService.post(riskofhouse).then(function(res){
+	    			if(res.data){
+	    			idHouseeee=res.data;
+	    			console.log(idHouseeee);
+	    		};
+	    		//aj probajs ada
+	    		})
 
+		};
 
-
+		$scope.mojafunkcija = mojafunkcija;
+/*
 	 var brojac=6;
 
 		var riskofcar={}
@@ -39,7 +49,7 @@
 	    		RiskOfCarService.post(riskofcar, function(response){
       			var id = response;
       			console.log(id);
-   });   		
+   }); */  		
 
 
 	    var vm = this;
@@ -213,7 +223,205 @@
  
         vm.triggerPayPal = function triggerPayPal() {
             $('#payPalConfirmation').modal('show');
-            console.log(vm.finalPriceWithPotencialDiscount)
+            console.log(vm.finalPriceWithPotencialDiscount);
+
+
+	    		var finalListaKorisnika=[];
+	    		
+	    		var i=0
+	    		var idMainClient=0;
+	    		var listaKljuceva=[];
+	    		for(i=0;i<vm.listaKorisnika.length;i++)
+	    		{
+	    			var client={};
+	    			client.Firstname=vm.listaKorisnika[i].name;
+	    			client.Lastname=vm.listaKorisnika[i].surname;
+	    			client.DateOfBirth="2011-1-1";
+	    			client.Jmbg=vm.listaKorisnika[i].jmbg;
+	    			client.PassportNumber=vm.listaKorisnika[i].passport;
+	    			client.Sex=vm.listaKorisnika[i].sex;
+	    			console.log(client);
+
+	    			if(i===0){
+
+	    				
+	    				ClientService.post(client).then(function(response){
+	    					if(response.data){
+	    					idMainClient=response.data;
+							}
+	    				});
+            			
+    					
+	    			
+	    				
+	    				
+
+	    			}else{
+	    				ClientService.post(client).then(function(res){
+	    					if(res.data){
+	    					listaKljuceva.push(res.data);
+	    				}
+						},function(res){
+
+	    				});
+
+	    			}
+	    		}
+
+
+				
+
+				if(vm.vehicleInsuranceRadio=="false"){
+
+				var clientCar={};
+	    		var finalCar={};
+	    		var idClient=0;
+	    		clientCar.Jmbg=vm.vehicleInfo.ownerJMBG;
+	    		var res = vm.vehicleInfo.owner.split(" ");
+	    		clientCar.Firstname=res[0];
+	    		clientCar.Lastname=res[1];
+	    		clientCar.DateOfBirth="2011-1-1";
+
+	    		ClientService.post(clientCar).then(function(res){
+	    			if(res.data){
+	    				idClient=res.data;
+	    			}
+
+	    		});
+	    		finalCar.ClientId=idClient;
+	    		//finalCar.ClientId=idClient;
+	    		finalCar.Year=vm.vehicleInfo.productionYear.concat("-1-1");
+	    		finalCar.ChassisNumber=vm.vehicleInfo.chassis;
+	    		finalCar.LicencePlate=vm.vehicleInfo.serialNo;
+	    		finalCar.CarStartDate=vm.polisy.date;
+	    		finalCar.CarEndDate=vm.polisy.endDate;
+	    		var idCar=0;
+	    		CarService.post(finalCar).then(function(res){
+	    			if(res.data){
+	    				idCar=res.data;
+	    			}
+	    		},function(res){
+
+	    		});
+				}
+
+	   
+
+				if(vm.homeInsuranceRadio=="true"){
+
+
+				var clientHouse={}
+
+	    		clientHouse.Jmbg=vm.homeInfo.ownerJMBG;
+	    		res = vm.homeInfo.owner.split(" ");
+	    		clientHouse.Firstname=res[0];
+	    		clientHouse.Lastname=res[1];
+	    		clientHouse.DateOfBirth="2011-1-1";
+	    		ClientService.post(clientHouse).then(function(res){
+	    			if(res.data){
+	    			idClient=res.data;
+	    		}
+	    		});
+
+	    		var finalHouse={};
+	    		finalHouse.HomeSquares=vm.homeInfo.flatSize;
+	    		//finalHouse.HomeBuildingYear=vm.homeInfo.buildYear.concat("-1-1");
+	    		finalHouse.HomeAddress=vm.homeInfo.address;
+	    		finalHouse.HomeValue=vm.homeInfo.estimatedValue;
+	    		finalHouse.HomeStartDate=vm.polisy.date;
+	    		finalHouse.HomeEndDate=vm.polisy.endDate;
+	    		var idHouse=0;
+	    		idHouse=HouseService.post(finalHouse).then(function(res){
+
+	    			idHouse=res.data;
+	    			
+	    		},function(res){
+
+	    		});
+				}
+
+
+	    		var oneDay = 24*60*60*1000;
+				var finalDestination={};
+	    		finalDestination.StId=1;
+	    		var diffDays = Math.round(Math.abs((vm.polisy.date.getTime() - vm.polisy.endDate.getTime())/(oneDay)));
+	    		finalDestination.DstDays=diffDays;
+	    		var idDest=0;
+	    		DestinationService.post(finalDestination).then(function(res){
+
+	    			idDest=res.data;
+	    		},function(res){
+
+	    		});
+
+
+
+	    		var finalSubjectOfInsurance={};
+	    		finalSubjectOfInsurance.DstId=idDest;
+	    		finalSubjectOfInsurance.HomeId=idHouse;
+	    		finalSubjectOfInsurance.TpId=1;
+	    		finalSubjectOfInsurance.Carid=idCar;
+
+	    		SubjectOfInsuranceService.post(finalSubjectOfInsurance).then(function(res){
+	    			if(res.data){
+	    			idSOI=res.data;
+	    		}
+	    		},function(res){
+
+	    		});
+
+
+	    		var pricelistidtem={};
+
+
+
+	    		var finalPolicy={};
+	    		var idPolicy=0;
+	    		finalPolicy.RId=1;
+	    		finalPolicy.ClientId=idMainClient;
+	    		finalPolicy.PackageId=1;
+	    		finalPolicy.PdvId=1;
+	    		finalPolicy.PlItemId=1;
+	    		finalPolicy.IiId=idSOI;
+	    		
+	    		
+				PolicyService.post(finalPolicy).then(function(response){
+	    			if(response.data){
+	    				idPolicy=response.data;
+	    			}
+	    		},function(response){
+	    			alert("Nije uspelo")
+	    		})
+
+				var brojac=6;
+
+				var riskofhouse={}
+
+	    		riskofhouse.HomeId=idHouse;
+	    		riskofhouse.RId="1";
+	    		brojac=brojac+1;
+	    		riskofhouse.RohId=brojac;
+	    		
+	    		RiskOfHouseService.post(riskofhouse, function(response){
+
+  				});
+
+
+
+				 var brojac=6;
+
+				var riskofcar={}
+
+	    		riskofcar.Carid="1";
+	    		riskofcar.RId="1";
+	    		brojac=brojac+1;
+	    		riskofcar.RocId=brojac;
+	    		
+	    		RiskOfCarService.post(riskofcar, function(response){
+      			
+  				});   		
+
+
         }
 
 		$scope.addNewChoice = function () {
@@ -314,179 +522,7 @@
 	             travelInsPrice: vm.polisy.polisyPackage,
                  totalPrice: ""
 	         }
-	         DroolsAllPackages.save(vm.packagesInfo, onsuccessAllPackages)
-
-
-
-
-
-
-/*
-
-	    		var finalListaKorisnika=[];
-	    		
-	    		var i=0
-	    		var idMainClient=0;
-	    		var listaKljuceva=[];
-	    		for(i=0;i<vm.listaKorisnika.length;i++)
-	    		{
-	    			var client={};
-	    			client.Firstname=vm.listaKorisnika[i].name;
-	    			client.Lastname=vm.listaKorisnika[i].surname;
-	    			client.DateOfBirth="2011-1-1";
-	    			client.Jmbg=vm.listaKorisnika[i].jmbg;
-	    			client.PassportNumber=vm.listaKorisnika[i].passport;
-	    			client.Sex=vm.listaKorisnika[i].sex;
-	    			console.log(client);
-
-	    			if(i===0){
-
-	    				
-	    				ClientService.post(client).then(function(response){
-	    					idClient=response.data;
-
-	    				});
-            			
-    					
-	    				console.log(idMainClient);
-	    
-	    				
-	    				
-
-	    			}else{
-	    				ClientService.post(client).then(function(res){
-	    					listaKljuceva.push(res.data);
-						},function(res){
-
-	    				});
-
-	    			}
-	    		}
-
-
-				var clientCar={};
-	    		var finalCar={};
-	    		var idClient=0;
-	    		clientCar.Jmbg=vm.vehicleInfo.ownerJMBG;
-	    		var res = vm.vehicleInfo.owner.split(" ");
-	    		clientCar.Firstname=res[0];
-	    		clientCar.Lastname=res[1];
-	    		clientCar.DateOfBirth="2011-1-1";
-
-	    		idClient=ClientService.post(clientCar);
-
-				if(vm.vehicleInsuranceRadio=="false"){
-	    		//finalCar.ClientId=idClient;
-	    		finalCar.ClientId=idClient;
-	    		//finalCar.Year=vm.vehicleInfo.productionYear.concat("-1-1");
-	    		finalCar.ChassisNumber=vm.vehicleInfo.chassis;
-	    		finalCar.LicencePlate=vm.vehicleInfo.serialNo;
-	    		finalCar.CarStartDate=vm.polisy.date;
-	    		finalCar.CarEndDate=vm.polisy.endDate;
-	    		var idCar=0;
-	    		CarService.post(finalCar).then(function(res){
-	    			idCar=res.data;
-	    		},function(res){
-
-	    		});
-				}
-
-	    	/*	var clientHouse={}
-
-	    		clientHouse.Jmbg=vm.homeInfo.ownerJMBG;
-	    		res = vm.homeInfo.owner.split(" ");
-	    		clientHouse.Firstname=res[0];
-	    		clientHouse.Lastname=res[1];
-	    		clientHouse.DateOfBirth="2011-1-1";
-	    		ClientService.post(clientCar).then(function(res){
-	    			idClient=res.data;
-	    		});
-
-	    		
-
-
-				if(vm.homeInsuranceRadio=="true"){
-
-	    		var finalHouse={};
-	    		finalHouse.HomeSquares=vm.homeInfo.flatSize;
-	    		//finalHouse.HomeBuildingYear=vm.homeInfo.buildYear.concat("-1-1");
-	    		finalHouse.HomeAddress=vm.homeInfo.address;
-	    		finalHouse.HomeValue=vm.homeInfo.estimatedValue;
-	    		finalHouse.HomeStartDate=vm.polisy.date;
-	    		finalHouse.HomeEndDate=vm.polisy.endDate;
-	    		var idHouse=0;
-	    		idHouse=HouseService.post(finalHouse).then(function(res){
-
-	    			idHouse=res.data;
-	    			
-	    		},function(res){
-
-	    		});
-				}
-
-
-	    		var oneDay = 24*60*60*1000;
-				var finalDestination={};
-	    		finalDestination.StId=1;
-	    		var diffDays = Math.round(Math.abs((vm.polisy.date.getTime() - vm.polisy.endDate.getTime())/(oneDay)));
-	    		finalDestination.DstDays=diffDays;
-	    		var idDest=0;
-	    		DestinationService.post(finalDestination).then(function(res){
-
-	    			idDest=res.data;
-	    		},function(res){
-
-	    		});
-
-
-
-	    		var finalSubjectOfInsurance={};
-	    		finalSubjectOfInsurance.DstId=1;
-	    		finalSubjectOfInsurance.HomeId=1;
-	    		finalSubjectOfInsurance.TpId=1;
-	    		finalSubjectOfInsurance.Carid=1;
-
-	    		SubjectOfInsuranceService.post(finalSubjectOfInsurance).then(function(res){
-	    			idSOI=res.data;
-	    		},function(res){
-
-	    		});
-
-
-	    		var pricelistidtem={};
-
-
-
-	    		var finalPolicy={};
-	    		finalPolicy.RId=1;
-	    		finalPolicy.ClientId=1;
-	    		finalPolicy.PackageId=1;
-	    		finalPolicy.PdvId=1;
-	    		finalPolicy.PlItemId=1;
-	    		finalPolicy.IiId=1;
-	    		
-	    		
-
-
-
-
-
-	    		
-
-	    		PolicyService.post(finalPolicy).then(function(response){
-	    			alert("Uspelo")
-	    		},function(response){
-	    			alert("Nije uspelo")
-	    		})
-
-
-
-
-*/
-
-
-
-
+	      DroolsAllPackages.save(vm.packagesInfo, onsuccessAllPackages)
 
 
 

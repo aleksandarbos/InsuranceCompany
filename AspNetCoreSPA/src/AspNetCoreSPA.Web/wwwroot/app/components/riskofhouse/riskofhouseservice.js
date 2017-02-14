@@ -23,11 +23,17 @@
 
 
             },
-            post: function (riskofhouse,callback) {
+            /*post: function (riskofhouse,callback) {
                $http.post("api/RiskOfHouse", riskofhouse).success(function (response) {
                 callback(response.data);
+            }).error(function(response){
+
             });
-           },
+           }*/
+          post: function (riskofhouse) {
+               return $http.post("api/RiskOfHouse", riskofhouse)
+           }
+           ,
             delete : function(riskofhouse)
                {
                 $http.delete("api/RiskOfHouse/"+riskofhouse.id).then(function(response){

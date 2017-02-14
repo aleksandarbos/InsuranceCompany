@@ -18,6 +18,7 @@ namespace AspNetCoreSPA.BLL
         public int Add(Policy polisa)
         {
             _policyDAL.Create(polisa);
+
             return polisa.PolicyId;
         }
 
