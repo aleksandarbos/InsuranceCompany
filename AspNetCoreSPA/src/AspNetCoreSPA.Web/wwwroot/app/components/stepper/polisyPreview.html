@@ -1,33 +1,51 @@
 ﻿<div id="mainBodyPreview">
-    <div>
-        <h2>{{ 'TRAVEL_INSURANCE_POLICY' | translate}}</h2>
-        <table class="table">
-            <tr>
-                <td>{{'TYPEOFTRAVEL' | translate}}:</td>
-                <td>{{vm.polisy.travelType}}</td>
-            </tr>
-            <tr>
-                <td>{{'PURPOSE' | translate}}:</td>
-                <td> {{vm.polisy.riskType}}</td>
-            </tr>
-            <tr>
-                <td> {{'SPORT' | translate}}: </td>
-                <td>{{vm.polisy.sport}}</td>
-            </tr>
-            <tr>
-                <td> {{'DESTINATION' | translate}}:</td>
-                <td> {{vm.polisy.destination}}</td>
-            </tr>
-            <tr>
-                <td>{{'START_DATE' | translate}}:</td>
-                <td> {{vm.polisy.date}}</td>
-                <td>{{'END_DATE' | translate}}:</td>
-                <td> {{vm.polisy.endDate}}</td>
-            </tr>
-        </table>
+    <div class="row">
+        <div  class="col-xs-6">
+            <h2>{{ 'TRAVEL_INSURANCE_POLICY' | translate}}</h2>
+            <table class="table">
+                <tr>
+                    <td>{{'TYPEOFTRAVEL' | translate}}:</td>
+                    <td>{{vm.polisy.travelType}}</td>
+                </tr>
+                <tr>
+                    <td>{{'PURPOSE' | translate}}:</td>
+                    <td> {{vm.polisy.riskType}}</td>
+                </tr>
+                <tr>
+                    <td> {{'SPORT' | translate}}: </td>
+                    <td>{{vm.polisy.sport}}</td>
+                </tr>
+                <tr>
+                    <td> {{'DESTINATION' | translate}}:</td>
+                    <td> {{vm.polisy.destination}}</td>
+                </tr>
+                <tr>
+                    <td>{{'START_DATE' | translate}}:</td>
+                    <td> {{vm.polisy.date}}</td>
+                </tr>
+                <tr>
+                    <td>{{'END_DATE' | translate}}:</td>
+                    <td> {{vm.polisy.endDate}}</td>
+                </tr>
+            </table>
+        </div>
+        <div  class="col-xs-6">
+            <table>
+                <tr>
+                    <td>
+                        <img src="./images/rsz_logo_crop.png">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h1>Your safety has no price!</h1>
+                    </td>
+                </tr>
+            </table>
+        </div>
     </div>
     <div>
-        <h3>{{'USER_INFO_PRICE' | translate}}</h3>
+        <h2>{{'USER_INFO_PRICE' | translate}}</h2>
         <table class="table" >
             <tr>
                 <th>{{'NAME' | translate}}</th>
@@ -54,7 +72,7 @@
 
     <div class="row" ng-show="vm.homeInsuranceRadio == 'true'">
         <div>
-        <h3>{{'HOME_INFO' | translate}}</h3>
+        <h2>{{'HOME_INFO' | translate}}</h2>
         <div class="col-xs-6">     
             <table class="table">
                 <tr><td>{{'OWNER' | translate}}: </td><td>{{vm.homeInfo.owner}}</td></tr>

@@ -31,6 +31,7 @@ namespace AspNetCoreSPA.Web.Services
             smtp.Credentials = new NetworkCredential(EMAIL_UNAME, EMAIL_PWD);
 
             smtp.EnableSsl = true;
+            smtp.Port = 587;
             smtp.Send(mail);
         }
     }

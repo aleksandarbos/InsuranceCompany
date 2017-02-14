@@ -595,6 +595,9 @@
                                         <div flex>
                                             <md-button class="md-warn" ng-click="vm.moveToPreviousStep()">{{ 'PREVIOUS' | translate }}</md-button>
                                             <md-button ng-click="vm.triggerPayPal()">{{ 'FINISH' | translate }}</md-button>
+                                            <md-button ng-show="vm.pdfReady" ng-click="vm.getPDF()">{{'DOWNLOAD_PDF' | translate}}</md-button>
+                                            <!--<md-button ng-click="vm.getPDF()">{{'DOWNLOAD_PDF' | translate}}</md-button>-->
+
                                         </div>
                                     </md-step-actions>
                                 </form>
@@ -618,11 +621,11 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="md-button" data-dismiss="modal">Ok</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-
+  
     <!-- Modal confirm-->
     <div class="modal fade" id="payPalConfirmation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
         <div class="modal-dialog" role="document">

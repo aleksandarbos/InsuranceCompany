@@ -583,7 +583,8 @@
 			}
             
 			function sendEmail(userEmail, mailSubject, mailMessage) {
-			    var parameter = JSON.stringify({ email: userEmail, subject: mailSubject, message: mailMessage});
+
+			    var parameter = JSON.stringify({ email: userEmail, subject: mailSubject, message: mailMessage });
 
 			    $http.post("https://localhost:44330/api/Mail", parameter);
                 /*.success(function (data, status, headers, config) {
@@ -591,6 +592,17 @@
                 }).
                   error(function (data, status, headers, config) {
                 });*/
+			}
+
+			vm.pdfReady = false;
+
+			vm.getPDF = function getPDF() {		  
+			    var doc = new jsPDF();
+			    doc.addHTML($('#mainBodyPreview'), 15, 15, {
+			        'background': '#fff',
+			    }, function () {
+			        doc.save('policy.pdf');
+			    });			    
 			}
             
 			 paypal.Button.render({
@@ -639,10 +651,12 @@
                             
 					        var mailMessage = "<html>" +
                                                 "<h1>ZSBDI Insurance Company</h1><hr/>" +
-                                                "<label>Vas ukupan racun iznosi:</label> " + vm.finalPriceWithPotencialDiscount+"</html>";
+                                                "<label>Uspesno ste obavili kupovinu:</label> " + vm.finalPriceWithPotencialDiscount+"</html>";
 					        sendEmail(vm.polisy.listOfUsers[0].email, "ZSBDI Insurance Order!", mailMessage);
 
-							console.log(">>> SUCCESS!");
+					        vm.pdfReady = true;
+
+                     		console.log(">>> SUCCESS!");
 							console.log(data);
 						});
 

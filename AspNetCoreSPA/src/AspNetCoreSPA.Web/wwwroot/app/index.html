@@ -1,4 +1,4 @@
-<html>
+﻿<html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -26,7 +26,7 @@
         
         <script src="https://www.paypalobjects.com/api/checkout.js" data-version-4></script>
         <!-- bower:js -->
-        <script src="/libraries/jquery/dist/jquery.js"></script>
+        <script src="/libraries/jquery/dist/jquery.min.js"></script>
         <script src="/libraries/bootstrap/dist/js/bootstrap.js"></script>
         <script src="/libraries/angular/angular.js"></script>
         <script src="/libraries/angular-ui-router/release/angular-ui-router.js"></script>
@@ -40,6 +40,9 @@
         <script src="/libraries/angular-translate/angular-translate.js"></script>
         <script src="/libraries/ngstorage/ngStorage.js"></script>
         <script src="/libraries/angular-resource/angular-resource.js"></script>
+    <script src="https://cdn.rawgit.com/niklasvh/html2canvas/0.5.0-alpha2/dist/html2canvas.min.js"></script>
+    <script src="/libraries/jsPDF-master/dist/jspdf.debug.js"></script>
+    <script src="../dist/saveHtmlToPdf.min.js"></script>
         <!-- endbower -->
         <!-- inject:js -->
         <script src="/scripts/site.common.js"></script>
@@ -92,6 +95,7 @@
     <script src="/app/components/riskofhouse/riskofhouseservice.js"></script>
     <script src="/app/components/riskofcar/riskfocarservice.js"></script>
        
+    
 
 </body>
 </html>
