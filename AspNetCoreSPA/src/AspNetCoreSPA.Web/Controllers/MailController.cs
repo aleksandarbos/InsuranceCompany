@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using AspNetCoreSPA.BLL;
 using AspNetCoreSPA.Web.Services.Interfaces;
+using Newtonsoft.Json.Linq;
+using AspNetCoreSPA.Model.POCOs;
 
 namespace AspNetCoreSPA.Web.Controllers
 {
@@ -22,13 +24,14 @@ namespace AspNetCoreSPA.Web.Controllers
 
         // POST: api/Mail
         [HttpPost]
-        public void Post([FromBody]string value)
+        public void Post([FromBody]MailEntity value)
         {
+         
             try
             {
-                string email, subject, message;
+                //string email, subject, message;
 
-                _mailService.SendEmail("", "", "");
+                _mailService.SendEmail(value.email, value.subject, value.message);
             }
             catch (Exception)
             {
