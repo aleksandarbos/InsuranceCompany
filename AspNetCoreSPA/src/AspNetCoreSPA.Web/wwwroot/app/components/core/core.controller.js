@@ -101,6 +101,15 @@
 		        $scope.sendTravelInfo();
 		    }
 		    //if (!stepData.completed && !isSkip) {
+		    if (vm.homeInsuranceRadio == 'false' && vm.vehicleInsuranceRadio == 'false')
+		        $scope.sendAllPackagesPriceInfo();
+		    else if (vm.homeInsuranceRadio == 'true' && vm.vehicleInsuranceRadio == 'false' && stepData + 2 == 7)
+		        $scope.sendAllPackagesPriceInfo();
+		    else if (vm.homeInsuranceRadio == 'false' && vm.vehicleInsuranceRadio == 'true' && stepData + 1 == 7)
+		        $scope.sendAllPackagesPriceInfo();
+		    else if (vm.homeInsuranceRadio == 'true' && vm.vehicleInsuranceRadio == 'true' && stepData + 1 == 7)
+		        $scope.sendAllPackagesPriceInfo();
+
 		    if (!isSkip) {
 		        //simulate $http
 		        $timeout(function () {
@@ -411,6 +420,8 @@ console.log(idHouse);
              var endDate = new Date(vm.polisy.endDate)
 
              vm.polisy.noDays = Math.ceil(Math.abs(startDate - endDate)) / oneDay + 1;
+             vm.polisy.date = startDate.toDateString;
+             vm.polisy.endDate = endDate.toDateString;
 	         vm.polisy.listOfUsers = vm.listaKorisnika;
 	         DroolsInfo.save(vm.polisy, onSaveSuccess);
 	     }
