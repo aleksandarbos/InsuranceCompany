@@ -20,8 +20,8 @@ Project analysis has been done at our [Wiki page](https://github.com/aleksandarb
 
 ## Tools used:
 ### Backend:
-  - .NET Core 1.0 Web API 2
-  - Drools for .NET as Business Rules Management System (BRMS)
+  - .NET Core 1.0 MVC
+  - Drools for Spring Boot 
   
 ### Frontend:
   - JavaScript - Angular 1.5 (Material design)
@@ -30,6 +30,10 @@ Project analysis has been done at our [Wiki page](https://github.com/aleksandarb
 ### Database:
   - PowerDesigner for schema modeling
   - Microsoft SQL Server
+
+### System representation:
+  - Draw.io - for general diagrams
+  - Microsoft ThreatModelingTool 2016 - for Data flow diagram
   
 ## Deployment instructions:
   - 1. ```dotnet restore``` at InsuranceCompany folder to install all project dependencies
