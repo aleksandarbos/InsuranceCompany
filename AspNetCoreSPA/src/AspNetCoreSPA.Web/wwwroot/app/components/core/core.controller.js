@@ -157,9 +157,10 @@
                     vm.polisy.listOfUsers[person].chosenPackagePrice = vm.polisy.listOfUsers[person].price3
         }
 
-        vm.checkradiobutton = function checkradiobutton(){
-            console.log(vm.homeInsuranceRadio)
-            console.log(vm.vehicleInsuranceRadio)
+ 
+        vm.triggerPayPal = function triggerPayPal() {
+            $('#payPalConfirmation').modal('show');
+            console.log(vm.finalPriceWithPotencialDiscount)
         }
 
 		$scope.addNewChoice = function () {
@@ -230,6 +231,7 @@
 	         vm.homeInfo.chosenPackagePrice = {};
 	         vm.homeInfo.age = {};
 	         vm.homeInfo.insuranceDuration = {};
+	         vm.homeInfo.buildYear = vm.homeInfo.buildYear.getFullYear();
 	         vm.homeInfo.insuranceDuration = vm.polisy.noDays;
 	         vm.homeInfo.chosenPackagePrice = vm.polisy.polisyPackage;
 	         vm.homeInfo.age = currentYear - vm.homeInfo.buildYear;
@@ -424,8 +426,8 @@ console.log(idHouse);
              var endDate = new Date(vm.polisy.endDate)
 
              vm.polisy.noDays = Math.ceil(Math.abs(startDate - endDate)) / oneDay + 1;
-             vm.polisy.date = startDate.toDateString;
-             vm.polisy.endDate = endDate.toDateString;
+             vm.polisy.date = startDate;
+             vm.polisy.endDate = endDate;
 	         vm.polisy.listOfUsers = vm.listaKorisnika;
 	         DroolsInfo.save(vm.polisy, onSaveSuccess);
 	     }
@@ -489,7 +491,7 @@ console.log(idHouse);
 						return paypal.rest.payment.create(env, client, {
 							transactions: [
 								{
-								    amount: { total: vm.polisy.polisyPackage, currency: 'USD' }
+								    amount: { total: vm.finalPriceWithPotencialDiscount, currency: 'USD' }
 								}
 							]
 						});
@@ -502,7 +504,8 @@ console.log(idHouse);
 					onAuthorize: function(data, actions) {
 						// Execute the payment here, when the buyer approves the transaction
 						// Optional: display a confirmation page here
-						return actions.payment.execute().then(function() {
+					    return actions.payment.execute().then(function () {
+					        $('#payPalConfirmation').modal('hide');
 						    $('#myModal').modal('show');
 							console.log(">>> SUCCESS!");
 							console.log(data);

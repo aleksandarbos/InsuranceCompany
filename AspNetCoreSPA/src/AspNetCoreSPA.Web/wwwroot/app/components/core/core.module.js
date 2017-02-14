@@ -107,9 +107,15 @@ var translationsEN = {
     HOME_INFO: 'Home info',
     VEHICLE_INFO: 'Vehicle info',
     DAYS: 'Days',
+
     EMAIL_INVALID: 'Your email must look like an e-mail address (example@zsbdi.com).',
     PASS_LENG: 'Your passport number must consist of 9 numbers.',
-   
+    RESPONSE: 'Response',
+    SUCCESSFULL_PAYMENT: 'You have successfully paid in amount of ',
+    CONFIRMATION: 'Confirmation',
+    BILL_AMOUNT: 'Your bill is ',
+    DO_TRANSACTION: 'Please complete transaction '
+
     
 };
  
@@ -210,9 +216,18 @@ var translationsSRB= {
     HOTEL_TO: 'Smeštaj do',
     HOME_INFO: 'Informacije o smeštaju',
     VEHICLE_INFO: 'Inforacije o vozilu',
+
     DAYS: 'Dani',
     EMAIL_INVALID: 'Vaš email mora da izgleda kao email adresa (example@zsbdi.com)',
-    PASS_LENG: 'Vaš broj pasoša mora se sastojati od 9 cifara'
+    PASS_LENG: 'Vaš broj pasoša mora se sastojati od 9 cifara',
+
+    DAYS: 'Dana',
+    RESPONSE: 'Odgovor',
+    SUCCESSFULL_PAYMENT: 'Uspesno ste izvrsili uplatu u iznosu od',
+    CONFIRMATION: 'Potvrda',
+    BILL_AMOUNT: 'Vas račun iznosi ',
+    DO_TRANSACTION: 'Molimo Vas izvrsite uplatu'
+
 
 };
 

@@ -5,9 +5,9 @@
             background-size:cover;
             background-position:center;
             background-repeat: no-repeat;
-           "  ng-controller="MainCtrl as vm" layout="row">
+           " ng-controller="MainCtrl as vm" layout="row">
 
-    <md-content flex="nogrow" style="width: 100%; height:98%;  margin-left:5vw; margin-right:5vw"  name="page1">
+    <md-content flex="nogrow" style="width: 100%; height:98%;  margin-left:5vw; margin-right:5vw" name="page1">
         <div>
             <md-card>
                 <md-toolbar>
@@ -21,7 +21,7 @@
                 <!-- chooseInsurance step -->
                 <md-stepper-card-content class="md-no-padding">
                     <md-steppers md-dynamic-height md-disable-tabs-behavior="true" md-stretch-steppers="always" md-selected="vm.selectedStep"
-                        md-busy-text="'Processing...'" md-busy="vm.showBusyText">
+                                 md-busy-text="'Processing...'" md-busy="vm.showBusyText">
 
                         <md-step label="{{'CHOOSE' | translate }}">
                             <md-step-body>
@@ -108,29 +108,29 @@
                                                 <div layout-gt-xs="row">
                                                     <md-input-container style="padding-left:35px!important">
                                                         <md-datepicker name="datePicker" ng-model="vm.polisy.date" md-placeholder="{{'DATE' | translate}}" required md-min-date="minDate"></md-datepicker>
-                                                       
+
                                                         <div ng-messages="chooseInsuranceForm.datePicker.$error">
                                                             <div ng-message="required">{{'REQUIRED' | translate }}</div>
                                                         </div>
                                                     </md-input-container>
-                                                   
+
 
                                                     <md-input-container style="padding-left:35px!important">
                                                         <md-datepicker name="datePickerEnd" ng-model="vm.polisy.endDate" md-placeholder="{{'DATE_END' | translate}}" required md-min-date="vm.polisy.date"></md-datepicker>
-                                                       
+
                                                         <div ng-messages="chooseInsuranceForm.datePickerEnd.$error">
                                                             <div ng-message="required">{{'REQUIRED' | translate }}</div>
                                                         </div>
                                                     </md-input-container>
-                                                
-                                                  <!--  <md-input-container>
-                                                        <label class="label-without-icon">{{ 'NO_DAYS' | translate }}</label>
-                                                        <input name="noDays" type="number" ng-model="vm.polisy.noDays" min=1>
-                                                        <div ng-messages="chooseInsuranceForm.noDays.$error">
-                                                            <div ng-message="required">{{'REQUIRED' | translate }}</div>
-                                                        </div>
-                                                    </md-input-container>
-                                                   -->
+
+                                                    <!--  <md-input-container>
+                                                          <label class="label-without-icon">{{ 'NO_DAYS' | translate }}</label>
+                                                          <input name="noDays" type="number" ng-model="vm.polisy.noDays" min=1>
+                                                          <div ng-messages="chooseInsuranceForm.noDays.$error">
+                                                              <div ng-message="required">{{'REQUIRED' | translate }}</div>
+                                                          </div>
+                                                      </md-input-container>
+                                                     -->
                                                 </div>
                                             </div>
 
@@ -146,11 +146,12 @@
                             </md-step-body>
                         </md-step>
 
-                     <!-- userInfo step -->
+                        <!-- userInfo step -->
                         <md-step label="{{ 'INFO' | translate }}">
                             <md-step-body>
                                 <form name="userInfoForm" ng-submit="vm.submitCurrentStep(2,false)" novalidate ng-cloak>
                                     <md-content layout-gt-sm="row" layout-padding style="height:73%" >
+
                                         <div layout="row">
                                             <div style="width:25vw; padding-left:30px">
                                                 <md-list ng-cloak style="padding-top:0px">
@@ -162,7 +163,7 @@
                                                 </md-list>
                                             </div>
                                             <div layout="column" ng-cloak class="md-inline-form" style="width:50vw;  max-width:800px;">
-                                                 <div>
+                                                <div>
                                                     <div layout="row">
                                                         <md-input-container class="md-block" style="padding-right:3px">
                                                             <md-icon md-svg-src="images/icons/person-info.svg"></md-icon>
@@ -194,7 +195,6 @@
                                                              <div ng-message="required">{{'REQUIRED' | translate}}</div>
                                                          </div>
                                                      </md-input-container>
-
                                                     <md-input-container class="md-block" flex-gt-sm style="padding-right:3px">
                                                         <md-icon md-svg-src="images/icons/passport.svg"></md-icon>
                                                         <label>{{ 'PASSPORT' | translate }}</label>
@@ -205,12 +205,10 @@
                                                             <div ng-message="ng-minlength">{{'PASS_LENG' | translate}}</div>
                                                            
                                                         </div>
-                                                    </md-input-container>
-                                                    
+                                                    </md-input-container>                                                    
                                                    <div jmbg-directive style="margin-left:32px"></div> 
                                                    <!--  <jmbg-directive formName="vm.currentUser.jmbg"></jmbg-directive> -->
-                                               
-                                                    
+
                                                     <md-input-container class="md-block" flex-gt-sm ng-show="vm.currentUserIndex==0" style="padding-right:3px; margin-bottom:10px">
                                                         <md-icon md-svg-src="images/icons/email.svg"></md-icon>
                                                         <label>Email</label>
@@ -251,38 +249,32 @@
                                                 <md-card-title>
                                                     <md-card-title-text>
                                                         <span class="md-headline">Standard</span>
-                                                        <span class="md-subhead"><strong>Base price: </strong>{{vm.package1}} RSD</span>
                                                     </md-card-title-text>
                                                 </md-card-title>
                                                 <md-card-content>
                                                     {{ 'PACKAGE1' | translate }}
                                                 </md-card-content>
                                                 <md-card-actions layout="row" layout-align="end center">
-
                                                     <md-radio-button value="{{vm.package1}}" ng-click="vm.setPackage1Selected()">Select this package for {{vm.package1}} RSD</md-radio-button>
-
-
                                                 </md-card-actions>
                                             </md-card>
                                             <md-card>
                                                 <md-card-title>
                                                     <md-card-title-text>
                                                         <span class="md-headline">Comfort</span>
-                                                        <span class="md-subhead"><strong>Base price: </strong>{{vm.package2}} RSD</span>
                                                     </md-card-title-text>
                                                 </md-card-title>
                                                 <md-card-content>
                                                     {{ 'PACKAGE2' | translate }}
                                                 </md-card-content>
                                                 <md-card-actions layout="row" layout-align="end center">
-                                                   <md-radio-button value="{{vm.package2}}" ng-click="vm.setPackage2Selected()">Select this package for {{vm.package2}} RSD</md-radio-button>
+                                                    <md-radio-button value="{{vm.package2}}" ng-click="vm.setPackage2Selected()">Select this package for {{vm.package2}} RSD</md-radio-button>
                                                 </md-card-actions>
                                             </md-card>
                                             <md-card>
                                                 <md-card-title>
                                                     <md-card-title-text>
                                                         <span class="md-headline">Exclusive</span>
-                                                        <span class="md-subhead"><strong>Base price: </strong>{{vm.package3}} RSD</span>
                                                     </md-card-title-text>
                                                 </md-card-title>
                                                 <md-card-content>
@@ -293,7 +285,7 @@
                                                 </md-card-actions>
                                             </md-card>
                                         </div>
-                                                
+
                                         <md-step-actions layout="row">
                                             <div flex layout="row" layout-align="end top">
                                                 <md-button class="md-warn" ng-click="vm.moveToPreviousStep()">{{ 'PREVIOUS' | translate }}</md-button>
@@ -309,14 +301,14 @@
                             <md-step-body>
                                 <form name="vm.stepNoNext()" ng-submit="vm.submitCurrentStep(4, false)">
                                     <md-content class="md-padding">
-                                       
+
                                         <md-card>
                                             <md-card-title>
                                                 <md-card-title-text>
                                                     <span class="md-headline">{{'OFFER' | translate}}</span>
                                                 </md-card-title-text>
                                             </md-card-title>
-                                            
+
                                         </md-card>
                                         <md-card>
                                             <md-card-title>
@@ -325,11 +317,11 @@
                                                 </md-card-title-text>
                                             </md-card-title>
                                             <md-card-content>
-                                               <p>Opis Opis Opis</p>
+                                                <p>Opis Opis Opis</p>
                                             </md-card-content>
                                             <md-card-actions layout="row" layout-align="end center">
                                                 <md-radio-group class="homeInsuranceRadio" ng-model="vm.homeInsuranceRadio">
-                                                    <md-radio-button value="true" >{{'HOME_INSURANCE_WANT' | translate}}</md-radio-button>
+                                                    <md-radio-button value="true">{{'HOME_INSURANCE_WANT' | translate}}</md-radio-button>
                                                     <md-radio-button value="false">{{'NOT_INTERESTED' | translate}}</md-radio-button>
                                                 </md-radio-group>
                                             </md-card-actions>
@@ -345,7 +337,7 @@
                                             </md-card-content>
                                             <md-card-actions layout="row" layout-align="end center">
                                                 <md-radio-group class="vehicleInsuranceRadio" ng-model="vm.vehicleInsuranceRadio">
-                                                    <md-radio-button value="true" >{{'VEHICLE_INSURANCE_WANT' | translate}}</md-radio-button>
+                                                    <md-radio-button value="true">{{'VEHICLE_INSURANCE_WANT' | translate}}</md-radio-button>
                                                     <md-radio-button value="false">{{'NOT_INTERESTED' | translate}}</md-radio-button>
                                                 </md-radio-group>
                                             </md-card-actions>
@@ -358,14 +350,13 @@
                                         </div>
                                     </md-step-actions>
                                 </form>
-                                
+
                             </md-step-body>
                         </md-step>
-                        
+
                         <md-step label="{{ 'HOME_INSURANCE_INFO' | translate }}" ng-if="vm.homeInsuranceRadio == 'true'">
                             <md-step-body>
-                              
-                                <form name="vm.stepNoNext()" ng-submit="vm.submitCurrentStep(5, false)" novalidate ng-cloak>
+                               <form name="vm.stepNoNext()" ng-submit="vm.submitCurrentStep(5, false); sendHomeInfo()" novalidate ng-cloak>
                                     <md-content layout-gt-sm="row" layout-wrap layout-padding style="height:73%">
                                         <div layout="row">
                                             <div layout="column" style="width:30vw">
@@ -376,14 +367,13 @@
                                                             <md-checkbox ng-model="vm.homeInfo.flood" aria-label="Flood" ng-change="sendHomeInfo()">
                                                                 <img src="images/icons/house-flood.svg" style="width:36px; height:auto" alt="Flood" name="Flood" />
                                                                 <span>{{'FLOOD' | translate}}</span>
-                                                             </md-checkbox>
-                                                            
+                                                            </md-checkbox>
                                                         </md-input-container>
                                                         <md-input-container>
                                                             <md-checkbox ng-model="vm.homeInfo.fire" aria-label="Fire" ng-change="sendHomeInfo()">
                                                                 <img src="images/icons/house-fire.svg" style="width:36px; height:auto" alt="Fire" name="Fire" />
                                                                 <span> {{'FIRE' | translate}}</span>
-                                                              </md-checkbox>
+                                                            </md-checkbox>
                                                         </md-input-container>
                                                         <md-input-container>
                                                             <md-checkbox ng-model="vm.homeInfo.robbery" aria-label="Robbery" ng-change="sendHomeInfo()">
@@ -412,7 +402,7 @@
 
                                                 </fieldset>
                                             </div>
-                                         
+
                                             <div layout="column" ng-cloak class="md-inline-form" style="width:50vw; max-width:800px; align-items:center">
                                                 <img src="images/house.svg" style="width:64px; height:auto; align-self:center" />
                                                 <fieldset style="width:50%">
@@ -427,47 +417,33 @@
                                                         </md-input-container>
                                                         <md-input-container class="md-block" flex-gt-sm style="width:100%">
                                                             <label>{{ 'BUILD_YEAR' | translate }}</label>
-                                                            <md-select name="buildYear" ng-model="vm.homeInfo.buildYear" ng-change="sendHomeInfo()" required>
-                                                                <md-option value="2010">
-                                                                    2010
-                                                                </md-option>
-                                                                <md-option value="2011">
-                                                                    2011
-                                                                </md-option>
-                                                                <md-option value="2012">
-                                                                    2012
-                                                                </md-option>
-                                                            </md-select>
+                                                            <md-datepicker name="buildYear" ng-model="vm.homeInfo.buildYear" md-placeholder="{{'DATE' | translate}}" ng-change="sendHomeInfo()" required></md-datepicker>
                                                         </md-input-container>
                                                         <md-input-container class="md-block" flex-gt-sm style="width:100%">
                                                             <label>{{ 'ESTIMATED_VALUE' | translate }}</label>
                                                             <input type="number" min="0" ng-model="vm.homeInfo.estimatedValue" ng-change="sendHomeInfo()" required />
                                                         </md-input-container>
-                                                      </div>  
-                                                 </fieldset>
-                                                                                      
-                                                
-                                                    <fieldset layout="column" style="align-items:center; width:50%">
-                                                        <legend>
-                                                            {{'CURR_ADD_INS_PRICE' | translate}}
-                                                        </legend>
-                                                        <md-whiteframe class="md-whiteframe-2dp" flex-sm="45" flex-gt-sm="35" flex-gt-md="25" layout layout-align="center center" style="height:10% !important">
-                                                            <span>Current insurance price {{vm.packageHome}}</span>
-                                                        </md-whiteframe>
-                                                    </fieldset>
+                                                    </div>
+                                                </fieldset>
+
+
+                                                <fieldset layout="column" style="align-items:center; width:50%">
+                                                    <legend>
+                                                        {{'CURR_ADD_INS_PRICE' | translate}}
+                                                    </legend>
+                                                    <md-whiteframe class="md-whiteframe-2dp" flex-sm="45" flex-gt-sm="35" flex-gt-md="25" layout layout-align="center center" style="height:10% !important">
+                                                        <span>Current insurance price {{vm.packageHome}}</span>
+                                                    </md-whiteframe>
+                                                </fieldset>
                                             </div>
-                                      </div>
-
+                                        </div>
                                     </md-content>
-
                                     <md-step-actions layout="row">
                                         <div flex layout="row" layout-align="end top">
                                             <md-button class="md-warn" ng-click="vm.moveToPreviousStep()">{{ 'PREVIOUS' | translate }}</md-button>
                                             <md-button type="submit" class="md-primary md-raised">{{ 'NEXT' | translate }}</md-button>
                                         </div>
                                     </md-step-actions>
-
-
                                 </form>
                             </md-step-body>
                         </md-step>
@@ -486,31 +462,31 @@
                                                             <md-checkbox ng-model="vm.vehicleInfo.towing" aria-label="{{'TOWING' | translate}}">
                                                                 <img src="images/icons/car-towed.svg" style="width:36px; align-self:flex-start; height:auto" alt="Towing" name="Towing" />
                                                                 <span>{{'TOWING' | translate}}</span>
-                                                            </md-checkbox> 
-                                                           
+                                                            </md-checkbox>
+
                                                             <md-input-container class="md-block" flex-gt-sm ng-if="vm.vehicleInfo.towing">
                                                                 <label>Towing up to:</label> <!-- km -->
-                                                                <input type="number" min='0' ng-model="vm.vehicleInfo.kilometers" ng-change="sendVehicleInfo()"/>
+                                                                <input type="number" min='0' ng-model="vm.vehicleInfo.kilometers" ng-change="sendVehicleInfo()" />
                                                             </md-input-container>
                                                         </div>
                                                         <div>
                                                             <md-checkbox ng-model="vm.vehicleInfo.repair" aria-label="{{'REPAIR'| translate}}">
-                                                               <img src="images/icons/car-repair.svg" style="width:36px; align-self:flex-start; height:auto" alt="Repair" name="Repair" />
-                                                               <span>{{'REPAIR' | translate}}</span>
+                                                                <img src="images/icons/car-repair.svg" style="width:36px; align-self:flex-start; height:auto" alt="Repair" name="Repair" />
+                                                                <span>{{'REPAIR' | translate}}</span>
                                                             </md-checkbox>
                                                             <md-input-container class="md-block" flex-gt-sm ng-if="vm.vehicleInfo.repair">
                                                                 <label> Repair up to:</label> <!-- Price -->
-                                                                <input type="number" min="0" ng-model="vm.vehicleInfo.repairPrice" ng-change="sendVehicleInfo()"/>
+                                                                <input type="number" min="0" ng-model="vm.vehicleInfo.repairPrice" ng-change="sendVehicleInfo()" />
                                                             </md-input-container>
                                                         </div>
                                                         <div>
-                                                            <md-checkbox ng-model="vm.vehicleInfo.hotel" aria-label="{{'ACCOMODATION' | translate}}"> 
-                                                               <img src="images/icons/hotel-accomodation.svg" style="width:36px; height:auto" alt="Repair" name="Repair" />
-                                                               <span>{{'ACCOMODATION' | translate}}</span> 
+                                                            <md-checkbox ng-model="vm.vehicleInfo.hotel" aria-label="{{'ACCOMODATION' | translate}}">
+                                                                <img src="images/icons/hotel-accomodation.svg" style="width:36px; height:auto" alt="Repair" name="Repair" />
+                                                                <span>{{'ACCOMODATION' | translate}}</span>
                                                             </md-checkbox>
                                                             <md-input-container class="md-block" flex-gt-sm ng-if="vm.vehicleInfo.hotel">
                                                                 <label> Accomodation up to:</label>
-                                                                <input type="number" min="0" ng-model="vm.vehicleInfo.hotelDays" ng-change="sendVehicleInfo()"/> <!-- days -->
+                                                                <input type="number" min="0" ng-model="vm.vehicleInfo.hotelDays" ng-change="sendVehicleInfo()" /> <!-- days -->
                                                             </md-input-container>
                                                         </div>
                                                         <div>
@@ -518,12 +494,12 @@
                                                                 <img src="images/icons/alt-transport.svg" style="width:36px; height:auto" alt="Alt transport" name="Alt transport" />
                                                                 <span> {{'ALT_TRANSPORT' | translate}}</span>
                                                             </md-checkbox>
-                                                
+
                                                         </div>
-                                         
+
                                                     </div>
                                                 </fieldset>
-                                                
+
                                                 <fieldset>
                                                     <legend>
                                                         {{'OWNER_INFO' | translate}}
@@ -539,7 +515,6 @@
                                                             <input type="text" ng-model="vm.vehicleInfo.ownerJMBG" required />
                                                         </md-input-container>
                                                     </div>
-
                                                 </fieldset>
                                             </div>
 
@@ -547,7 +522,6 @@
                                                 <img src="images/icons/car-main.svg" style="width:64px; height:auto; align-self:center" />
                                                 <fieldset style="width:50%">
                                                     <div layout-wrap="" layout-gt-sm="column">
-
                                                         <md-input-container class="md-block" style="padding-right:3px">
                                                             <label>{{ 'VEHICLE_BRAND' | translate }}</label>
                                                             <input type="text" ng-model="vm.vehicleInfo.mark" required />
@@ -568,16 +542,14 @@
                                                         </md-input-container>
                                                         <md-input-container class="md-block" flex-gt-sm>
                                                             <label>{{'VEHICLE_PLATES_NO' | translate}}</label>
-                                                            <input type="number" ng-model="vm.vehicleInfo.serialNo" required />
+                                                            <input type="number" min='0' ng-model="vm.vehicleInfo.serialNo" required />
                                                         </md-input-container>
                                                         <md-input-container class="md-block" flex-gt-sm>
                                                             <label>{{'VEHICLE_UNDERCARRIAGE_NO' | translate}}</label>
-                                                            <input type="number" ng-model="vm.vehicleInfo.chassis" required />
+                                                            <input type="number" min='0' ng-model="vm.vehicleInfo.chassis" required />
                                                         </md-input-container>
                                                     </div>
                                                 </fieldset>
-
-
                                                 <fieldset layout="column" style="align-items:center; width:50%">
                                                     <legend>
                                                         {{'CURR_ADD_INS_PRICE' | translate}}
@@ -586,23 +558,15 @@
                                                         <span>Current insurance price {{vm.packageVehicle}}</span>
                                                     </md-whiteframe>
                                                 </fieldset>
-
                                             </div>
-
-
-
                                         </div>
-
                                     </md-content>
-
                                     <md-step-actions layout="row">
                                         <div flex layout="row" layout-align="end top">
                                             <md-button class="md-warn" ng-click="vm.moveToPreviousStep()">{{ 'PREVIOUS' | translate }}</md-button>
                                             <md-button type="submit" class="md-primary md-raised">{{ 'NEXT' | translate }}</md-button>
                                         </div>
                                     </md-step-actions>
-
-
                                 </form>
                             </md-step-body>
                         </md-step>
@@ -613,14 +577,11 @@
                                 <form name="vm.stepNoNext()">
                                     <md-content class="md-padding">
                                         <policy-preview-directive></policy-preview-directive>
-                                        <div class="paypal-button"></div>
                                     </md-content>
-
-
                                     <md-step-actions layout="row">
                                         <div flex>
                                             <md-button class="md-warn" ng-click="vm.moveToPreviousStep()">{{ 'PREVIOUS' | translate }}</md-button>
-                                            <md-button ng-mouseenter="sendAllPackagesPriceInfo()" >{{ 'FINISH' | translate }}</md-button>
+                                            <md-button ng-click="vm.triggerPayPal()">{{ 'FINISH' | translate }}</md-button>
                                         </div>
                                     </md-step-actions>
                                 </form>
@@ -629,6 +590,45 @@
                     </md-steppers>
                 </md-stepper-card-content>
             </md-card>
-            </div>
+        </div>
     </md-content>
+
+
+
+    <!-- Modal payPal-->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">  
+                    <h3 class="modal-title">PayPal {{'RESPONSE' | translate}}</h3>
+                </div>
+                <div class="modal-body">
+                    <p> {{'SUCCESSFULL_PAYMENT' | translate}} {{vm.finalPriceWithPotencialDiscount}} RSD</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="md-button" data-dismiss="modal">Ok</button>
+                </div>
+            </div>
+        </div>
     </div>
+
+
+    <!-- Modal confirm-->
+    <div class="modal fade" id="payPalConfirmation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">{{'CONFIRMATION' | translate}}</h3>
+                </div>
+                <div class="modal-body">
+                    <h3> {{'BILL_AMOUNT' | translate}} {{vm.finalPriceWithPotencialDiscount}} RSD, {{'DO_TRANSACTION' | translate}}...</h3>
+
+                </div>
+                <div class="modal-footer">
+                    <div class="paypal-button"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
