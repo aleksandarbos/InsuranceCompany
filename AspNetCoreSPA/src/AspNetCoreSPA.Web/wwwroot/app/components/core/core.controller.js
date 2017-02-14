@@ -126,6 +126,7 @@
 		    }
 		}
 
+		
 
         vm.currentUser;
 

@@ -202,8 +202,7 @@
                                                         <div ng-messages="userInfoForm.passport.$error">
                                                             <div ng-message="required">{{'REQUIRED' | translate}}</div>
                                                             <div ng-message="ng-maxlength">{{'PASS_LENG' | translate}}</div>
-                                                            <div ng-message="ng-minlength">{{'PASS_LENG' | translate}}</div>
-                                                           
+                                                            <div ng-message="ng-minlength">{{'PASS_LENG' | translate}}</div>                   
                                                         </div>
                                                     </md-input-container>
                                                     
@@ -242,62 +241,67 @@
                             </md-step-body>
                         </md-step>
 
+
+                        <!-- choosePackageForm -->
                         <md-step label="{{ 'PACKAGE' | translate }}">
                             <md-step-body>
-                                <form name="vm.stepNoNext()" ng-submit="vm.submitCurrentStep(3, false); vm.setUserPrice()" ng-cloak novalidate>
-                                    <md-radio-group ng-model="vm.polisy.polisyPackage">
+                                <form name="choosePackageForm" ng-submit="vm.submitCurrentStep(3, false); vm.setUserPrice()" ng-cloak novalidate>
+                                    <md-radio-group ng-model="vm.polisy.polisyPackage" ng-required="true">
                                         <div row="column">
-                                            <md-card>
-                                                <md-card-title>
-                                                    <md-card-title-text>
-                                                        <span class="md-headline">Standard</span>
-                                                        <span class="md-subhead"><strong>Base price: </strong>{{vm.package1}} RSD</span>
-                                                    </md-card-title-text>
-                                                </md-card-title>
-                                                <md-card-content>
-                                                    {{ 'PACKAGE1' | translate }}
-                                                </md-card-content>
-                                                <md-card-actions layout="row" layout-align="end center">
+                                          
+                                                <md-card>
+                                                    <md-card-title>
+                                                        <md-card-title-text>
+                                                            <span class="md-headline">Standard</span>
+                                                            <span class="md-subhead"><strong>Base price: </strong>{{vm.package1}} RSD</span>
+                                                        </md-card-title-text>
+                                                    </md-card-title>
+                                                    <md-card-content>
+                                                        {{ 'PACKAGE1' | translate }}
+                                                    </md-card-content>
+                                                    <md-card-actions layout="row" layout-align="end center">
 
-                                                    <md-radio-button value="{{vm.package1}}" ng-click="vm.setPackage1Selected()">Select this package for {{vm.package1}} RSD</md-radio-button>
+                                                        <md-radio-button value="{{vm.package1}}1" ng-click="vm.setPackage1Selected()" checked="checked">
+                                                            Select this package for {{vm.package1}} RSD
+                                                        </md-radio-button>
 
 
-                                                </md-card-actions>
-                                            </md-card>
-                                            <md-card>
-                                                <md-card-title>
-                                                    <md-card-title-text>
-                                                        <span class="md-headline">Comfort</span>
-                                                        <span class="md-subhead"><strong>Base price: </strong>{{vm.package2}} RSD</span>
-                                                    </md-card-title-text>
-                                                </md-card-title>
-                                                <md-card-content>
-                                                    {{ 'PACKAGE2' | translate }}
-                                                </md-card-content>
-                                                <md-card-actions layout="row" layout-align="end center">
-                                                   <md-radio-button value="{{vm.package2}}" ng-click="vm.setPackage2Selected()">Select this package for {{vm.package2}} RSD</md-radio-button>
-                                                </md-card-actions>
-                                            </md-card>
-                                            <md-card>
-                                                <md-card-title>
-                                                    <md-card-title-text>
-                                                        <span class="md-headline">Exclusive</span>
-                                                        <span class="md-subhead"><strong>Base price: </strong>{{vm.package3}} RSD</span>
-                                                    </md-card-title-text>
-                                                </md-card-title>
-                                                <md-card-content>
-                                                    {{ 'PACKAGE3' | translate }}
-                                                </md-card-content>
-                                                <md-card-actions layout="row" layout-align="end center">
-                                                    <md-radio-button value="{{vm.package3}}" ng-click="vm.setPackage3Selected()">Select this package for {{vm.package3}} RSD </md-radio-button>
-                                                </md-card-actions>
-                                            </md-card>
+                                                    </md-card-actions>
+                                                </md-card>
+                                                <md-card>
+                                                    <md-card-title>
+                                                        <md-card-title-text>
+                                                            <span class="md-headline">Comfort</span>
+                                                            <span class="md-subhead"><strong>Base price: </strong>{{vm.package2}} RSD</span>
+                                                        </md-card-title-text>
+                                                    </md-card-title>
+                                                    <md-card-content>
+                                                        {{ 'PACKAGE2' | translate }}
+                                                    </md-card-content>
+                                                    <md-card-actions layout="row" layout-align="end center">
+                                                        <md-radio-button value="{{vm.package2}}2" ng-click="vm.setPackage2Selected()">Select this package for {{vm.package2}} RSD</md-radio-button>
+                                                    </md-card-actions>
+                                                </md-card>
+                                                <md-card>
+                                                    <md-card-title>
+                                                        <md-card-title-text>
+                                                            <span class="md-headline">Exclusive</span>
+                                                            <span class="md-subhead"><strong>Base price: </strong>{{vm.package3}} RSD</span>
+                                                        </md-card-title-text>
+                                                    </md-card-title>
+                                                    <md-card-content>
+                                                        {{ 'PACKAGE3' | translate }}
+                                                    </md-card-content>
+                                                    <md-card-actions layout="row" layout-align="end center">
+                                                        <md-radio-button value="{{vm.package3}}3" ng-click="vm.setPackage3Selected()">Select this package for {{vm.package3}} RSD </md-radio-button>
+                                                    </md-card-actions>
+                                                </md-card>
                                         </div>
-                                                
+                                      
                                         <md-step-actions layout="row">
                                             <div flex layout="row" layout-align="end top">
                                                 <md-button class="md-warn" ng-click="vm.moveToPreviousStep()">{{ 'PREVIOUS' | translate }}</md-button>
-                                                <md-button type="submit" class="md-primary md-raised">{{ 'NEXT' | translate }}</md-button>
+                                                <md-button ng-disabled="choosePackageForm.$invalid" type="submit" class="md-primary md-raised">{{ 'NEXT' | translate }}</md-button>
                                             </div>
                                         </md-step-actions>
                                     </md-radio-group>
